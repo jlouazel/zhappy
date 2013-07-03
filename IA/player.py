@@ -413,8 +413,13 @@ class player:
                 y = (y + 1) % self._lenMapX
         return to_return
 
-    def checkIfTabBelowToTab(self):
-        
+    def checkIfTabBelowToTab(self, area, tab):
+        i = 0
+        while i < area.__len__():
+            if (area[i][0] == tab[0] and area[i][1] == tab[1]):
+                return 1
+            i = i + 1
+        return 0
 
     def moveToAction(self):
         #Ici definir le mouvement pour chercher l'objectif numero 2 si il est sur le passage ou s'il faut faire un petit detour
