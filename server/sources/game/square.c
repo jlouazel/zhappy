@@ -6,9 +6,10 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jun 28 20:21:32 2013 louaze_j
-** Last update Mon Jul  1 17:10:11 2013 louaze_j
+** Last update Tue Jul  2 19:52:17 2013 louaze_j
 */
 
+#include	<strings.h>
 #include	"lib_std.h"
 #include	"square.h"
 
@@ -20,6 +21,6 @@ t_square	*new_square(int x, int y)
     return (NULL);
   square->x = x;
   square->y = y;
-  square->objects = NULL;
+  bzero(square->content, sizeof(square->content));
   return (square);
 }

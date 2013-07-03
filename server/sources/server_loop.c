@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
-** Last update Tue Jul  2 07:18:17 2013 louaze_j
+** Last update Wed Jul  3 07:49:59 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -58,6 +58,13 @@ int	server_loop(const t_server *server)
   t_list		*l = server->game->players;
   t_player		*pl = create_player(NULL, &l);
 
+  pl->voir(pl, server->game->world);
+  printf("\n");
+  pl->inventaire(pl);
+  printf("\n");
+  printf("%s\n", pl->prend(pl, server->game->world, "nourriture"));
+  pl->inventaire(pl);
+  printf("\n");
   pl->voir(pl, server->game->world);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)

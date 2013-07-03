@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jun 28 19:03:49 2013 louaze_j
-** Last update Tue Jul  2 05:30:08 2013 louaze_j
+** Last update Tue Jul  2 19:08:24 2013 louaze_j
 */
 
 #ifndef __ERESSOURCES_H__
