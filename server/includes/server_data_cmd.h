@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jun 21 16:29:14 2013 julien fortin
-** Last update Fri Jun 21 16:30:16 2013 julien fortin
+** Last update Tue Jul  2 16:38:13 2013 julien fortin
 */
 
 #ifndef	__SERVER_DATA_CMD_H__
@@ -17,9 +17,9 @@ typedef struct s_server t_server;
 
 typedef struct  s_cmd
 {
-  const unsigned char   *name[SERVER_CMD_NB + 1];
-  int                   (*cmd[SERVER_CMD_NB + 1])(const t_server *,
-                                                  const char *);
+  const char	*name[SERVER_CMD_NB + 1];
+  const char	*(*cmd[SERVER_CMD_NB + 1])(const t_server *,
+					  const char *);
 } t_cmd;
 
 #endif

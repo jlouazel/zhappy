@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Wed Jul  3 07:48:27 2013 louaze_j
+** Last update Wed Jul  3 15:07:02 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -42,7 +42,7 @@ static void	init_actions(t_player *new_player)
   _prend(new_player);
 }
 
-t_player	*create_player(const t_socket *socket, t_list **player_stack)
+t_player	*create_player(const t_socket *socket)
 {
   t_player	*new_player;
 
@@ -51,10 +51,6 @@ t_player	*create_player(const t_socket *socket, t_list **player_stack)
     return (NULL);
   init_attr(new_player, socket);
   init_actions(new_player);
-  if (*player_stack)
-    (*player_stack)->push_back(player_stack, new_player);
-  else
-    *player_stack = new_list(new_player);
   /**/
   printf("Player %u : I'm alive !\n", new_player->id);
   /**/
