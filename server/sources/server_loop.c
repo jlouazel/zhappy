@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
-** Last update Tue Jul  2 16:00:13 2013 julien fortin
+** Last update Wed Jul  3 18:34:03 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -16,6 +16,8 @@
 #include	"lib_errs.h"
 #include	"lib_std.h"
 #include	"server.h"
+
+#include	"player.h"
 
 static int	_init_select_serv(const t_server *server,
 				  fd_set *rfd,
@@ -48,6 +50,7 @@ static int	_server_action(const t_server *server,
   return (EXIT_SUCCESS);
 }
 
+#include <unistd.h>
 int	server_loop(const t_server *server)
 {
   static int		fail_select = 0;
@@ -55,7 +58,14 @@ int	server_loop(const t_server *server)
   fd_set		rfd;
   fd_set		wfd;
   int			max_fd;
+  /* t_player		*pl = create_player(NULL); */
 
+  /* pl->voir(pl, server->game->world); */
+  /* pl->inventaire(pl); */
+  /* pl->pose(pl, server->game->world, "nourriture"); */
+  /* pl->inventaire(pl); */
+  /* pl->voir(pl, server->game->world); */
+  /* sleep(10); */
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
     {

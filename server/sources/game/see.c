@@ -1,28 +1,26 @@
 /*
-** player_voir.c for zhappy in /home/louaze_j
+** see.c for zhappy in /home/louaze_j
 ** 
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
 ** 
-** Started on  Sat Jun 29 10:24:07 2013 louaze_j
-** Last update Wed Jul  3 07:45:11 2013 louaze_j
+** Started on  Wed Jul  3 18:32:22 2013 louaze_j
+** Last update Wed Jul  3 18:35:28 2013 louaze_j
 */
 
 #include	<stdio.h>
 
 #include	"player.h"
-#include	"world.h"
 #include	"ressources.h"
 #include	"rel_positions.h"
-
-#include "square.h"
 
 #define		MY_ABS(x)	((x < 0) ? -x : x)
 #define		ABS_X(x, w)	((x < 0) ? (w - MY_ABS(x)) : MY_ABS(x) % w)
 #define		ABS_Y(y, h)	((y < 0) ? (h - MY_ABS(y)) : MY_ABS(y) % h)
 #define		LVL_I(l)	(2 * l + 1)
 
-static const char	*voir(t_player *player, t_world *world)
+static
+const char	*see(t_player *player, t_server *server, void *arg)
 {
   unsigned int		i;
   unsigned int		index;
@@ -30,6 +28,7 @@ static const char	*voir(t_player *player, t_world *world)
   t_square		*sq;
 
   i = 0;
+  (void)arg;
   index = 0;
   while (i <= player->level)
     index += LVL_I(i++);
@@ -39,11 +38,11 @@ static const char	*voir(t_player *player, t_world *world)
     {
       type = 0;
       sq =
-	world->map->at(world->map,
+	server->game->world->map->at(server->game->world->map,
 		       POS_LIST(ABS_X(vision[player->direction][i][0],
-				      world->width),
+				      server->game->world->width),
 				ABS_Y(vision[player->direction][i][1],
-				      world->height), world->width));
+				      server->game->world->height), server->game->world->width));
       while (type != EMPTY)
 	{
 	  if (sq->content[type] != 0)
@@ -58,10 +57,10 @@ static const char	*voir(t_player *player, t_world *world)
   return (NULL);
 }
 
-void			_voir(t_player *player)
+void		_see(t_player *player)
 {
   if (player)
     {
-      player->voir = &voir;
+      player->see = &see;
     }
 }

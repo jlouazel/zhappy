@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Wed Jul  3 06:49:36 2013 louaze_j
-** Last update Wed Jul  3 07:15:20 2013 louaze_j
+** Last update Wed Jul  3 18:40:09 2013 louaze_j
 */
 
 #include	"world.h"
@@ -32,7 +32,7 @@ static const char	*prend(t_player *player,
 	  else
 	    {
 	      sq->content[type]--;
-	      player->inventory[type]++;
+	      player->inventory_tab[type]++;
 	    return ("OK\n");
 	    }
 	}
