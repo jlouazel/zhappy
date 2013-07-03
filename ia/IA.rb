@@ -4,9 +4,7 @@ require 'socket'
 require 'optparse'
 
 class IA
-
 	attr_reader :team
-
 	attr_reader :socket
 	attr_writer :socket
 	
