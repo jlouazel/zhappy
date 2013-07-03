@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
-** Last update Tue Jul  2 07:18:17 2013 louaze_j
+** Last update Tue Jul  2 16:00:13 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -33,9 +33,8 @@ static int	_init_select_serv(const t_server *server,
   server_listen_player(server, rfd);
   server_will_notify_player(server, wfd);
   bzero(timeout, sizeof(*timeout));
-  timeout->tv_sec = 10;
+  timeout->tv_usec = 1000;
   return (max_fd);
-  // FD_SET tous les users en rfd et (en wfd ceux qui ont un message dans la queue)
 }
 
 static int	_server_action(const t_server *server,
@@ -44,6 +43,7 @@ static int	_server_action(const t_server *server,
 {
   (void)wfd;
   server_accept(server, rfd);
+  server_players_actions(server, rfd);
   server_notify_player(server);
   return (EXIT_SUCCESS);
 }
@@ -55,10 +55,7 @@ int	server_loop(const t_server *server)
   fd_set		rfd;
   fd_set		wfd;
   int			max_fd;
-  t_list		*l = server->game->players;
-  t_player		*pl = create_player(NULL, &l);
 
-  pl->voir(pl, server->game->world);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
     {

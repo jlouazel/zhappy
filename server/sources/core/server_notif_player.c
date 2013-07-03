@@ -5,29 +5,36 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Mon Jul  1 23:45:24 2013 julien fortin
+** Last update Tue Jul  2 14:07:21 2013 julien fortin
 */
 
 #include	"server.h"
+
+static void	_server_wnplayer(void *data, void *arg)
+{
+  t_player	*player;
+  fd_set	*wfd;
+
+  if (data && arg)
+    {
+      player = (t_player*)data;
+      wfd = (fd_set*)arg;
+      if (player->io && player->io->out && player->socket)
+	FD_SET(player->socket->_socket, wfd);
+    }
+}
 
 bool		server_will_notify_player(const t_server *serv,
 					  fd_set *wfd)
 {
   t_list	*list;
-  t_player	*player;
 
-  player = NULL;
   list = serv && serv->io && serv->io->out
     ? serv->io->out : NULL;
-  while (list)
-    {
-      if (list->data)
-	{
-	  player = (t_player*)list->data;
-	  if (player->io && player->io->out && player->socket)
-	    FD_SET(player->socket->_socket, wfd);
-	}
-    }
+  if (list)
+    list->foreach(list, &_server_wnplayer, wfd);
+  else
+    return (false);
   return (true);
 }
 

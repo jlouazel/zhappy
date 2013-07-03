@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Tue Jul  2 07:22:49 2013 louaze_j
+** Last update Wed Jul  3 15:08:36 2013 julien fortin
 */
 
 #ifndef __PLAYERS_H__
@@ -29,11 +29,10 @@ typedef struct  s_player
   int			x;
   int			y;
   unsigned int		id;
-  unsigned int		life;
   unsigned int		level;
   unsigned char		status;
   e_direction		direction;
-  t_list		*inventory;
+  unsigned int		inventory[7];
 
   const t_io		*io;
   const t_socket	*socket;
@@ -43,7 +42,7 @@ typedef struct  s_player
   const char    *(*gauche)(struct s_player *);
   const char    *(*voir)(struct s_player *, t_world *);
   const char    *(*inventaire)(struct s_player *);
-  const char    *(*prend)(struct s_player *);
+  const char    *(*prend)(struct s_player *, t_world *, void *);
   const char    *(*pose)(struct s_player *);
   const char    *(*expulse)(struct s_player *);
   const char    *(*broadcast)(struct s_player *);
@@ -51,7 +50,7 @@ typedef struct  s_player
   const char    *(*connect_nbr)(struct s_player *);
 } t_player;
 
-t_player        *create_player(const t_socket *, t_list **);
+t_player        *create_player(const t_socket *);
 
 void            delete_player(t_player *);
 
@@ -59,5 +58,7 @@ void		_avance(t_player *);
 void		_droite(t_player *);
 void		_gauche(t_player *);
 void		_voir(t_player *);
+void		_inventaire(t_player *);
+void		_prend(t_player *);
 
 #endif

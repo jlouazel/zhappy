@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Sat Jun 29 10:24:07 2013 louaze_j
-** Last update Tue Jul  2 10:40:06 2013 louaze_j
+** Last update Wed Jul  3 07:45:11 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -22,20 +22,12 @@
 #define		ABS_Y(y, h)	((y < 0) ? (h - MY_ABS(y)) : MY_ABS(y) % h)
 #define		LVL_I(l)	(2 * l + 1)
 
-/* static void		print(void *elem, void *lal) */
-/* { */
-/*   (void)lal; */
-/*   printf("%d\n - ", ((t_ressource *)elem)->type); */
-/* } */
-
 static const char	*voir(t_player *player, t_world *world)
 {
   unsigned int		i;
   unsigned int		index;
+  e_ressource		type;
   t_square		*sq;
-  t_list		**objs;
-  t_list		*tmp;
-  t_ressource		*res;
 
   i = 0;
   index = 0;
@@ -45,16 +37,21 @@ static const char	*voir(t_player *player, t_world *world)
   printf("{");
   while (i < index)
     {
-      sq = world->map->at(world->map, POS_LIST(ABS_X(vision[player->direction][i][0], world->width), ABS_Y(vision[player->direction][i][1], world->height), world->width));
-      objs = &sq->objects;
-      tmp = *objs;
-      while (tmp)
+      type = 0;
+      sq =
+	world->map->at(world->map,
+		       POS_LIST(ABS_X(vision[player->direction][i][0],
+				      world->width),
+				ABS_Y(vision[player->direction][i][1],
+				      world->height), world->width));
+      while (type != EMPTY)
 	{
-	  res = tmp->data;
-	  printf("%s", res->get_str(res));
-	  tmp = tmp->next;
+	  if (sq->content[type] != 0)
+	    printf(" %s", get_str(type));
+	  type++;
 	}
-      printf(",");
+      if (i != index - 1)
+	printf(",");
       i++;
     }
   printf("}\n");

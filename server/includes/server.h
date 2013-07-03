@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
-** Last update Mon Jul  1 23:40:36 2013 julien fortin
+** Last update Tue Jul  2 16:00:03 2013 julien fortin
 */
 
 #ifndef	__SERVERZAPPY_H__
@@ -34,6 +34,7 @@ const t_game    *init_game(const t_options*);
 int		server_loop(const t_server*);
 int		run(const t_server*);
 
+bool            server_players_actions(const t_server *, fd_set *);
 bool		server_listen_connection_queue(const t_server*, fd_set*);
 bool            server_listen_player(const t_server *, fd_set *);
 bool            server_will_notify_player(const t_server *, fd_set *);
