@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Wed Jul  3 19:00:36 2013 louaze_j
+** Last update Thu Jul  4 00:35:44 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -24,7 +24,7 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   new_player->y = 0;
   new_player->id = id;
   new_player->level = DEFAULT_LVL;
-  new_player->direction = DOWN;
+  new_player->direction = rand() % 4;
   new_player->socket = socket;
   new_player->status = PLAYER_NOT_ALLOWED;
   new_player->io = init_server_io();
@@ -42,6 +42,8 @@ static void	init_actions(t_player *new_player)
   _take(new_player);
   _put(new_player);
   _broadcast(new_player);
+  _connect_nbr(new_player);
+  _deport(new_player);
 }
 
 t_player	*create_player(const t_socket *socket)

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
-** Last update Wed Jul  3 23:46:01 2013 louaze_j
+** Last update Wed Jul  3 23:53:27 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -59,12 +59,9 @@ int	server_loop(const t_server *server)
   fd_set		wfd;
   int			max_fd;
   t_player		*pl = create_player(NULL);
+  t_player		*pl2 = create_player(NULL);
 
-  pl->see(pl, server, NULL);
-  pl->inventory(pl, server, NULL);
-  pl->put(pl, server, "nourriture");
-  pl->inventory(pl, server, NULL);
-  pl->see(pl, server, NULL);
+  pl->broadcast(pl, server, pl2);
   sleep(10);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)

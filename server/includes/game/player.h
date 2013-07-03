@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Wed Jul  3 23:48:26 2013 louaze_j
+** Last update Thu Jul  4 00:35:57 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -45,10 +45,10 @@ typedef struct  s_player
   const char    *(*inventory)(struct s_player *, const t_server *, void *);
   const char    *(*take)(struct s_player *, const t_server *, void *);
   const char    *(*put)(struct s_player *, const t_server *, void *);
-  const char    *(*expulse)(struct s_player *); //
-  const char    *(*broadcast)(struct s_player *, const  t_server *, void *);
+  const char    *(*deport)(struct s_player *, const t_server *, void *);
+  const char    *(*broadcast)(struct s_player *, const t_server *, void *);
   const char    *(*fork)(struct s_player *); //
-  const char    *(*connect_nbr)(struct s_player *); //
+  const char    *(*connect_nbr)(struct s_player *, const t_server *, void *);
 } t_player;
 
 t_player        *create_player(const t_socket *);
@@ -63,5 +63,7 @@ void		_inventory(t_player *);
 void		_take(t_player *);
 void		_put(t_player *);
 void		_broadcast(t_player *);
+void		_connect_nbr(t_player *);
+void		_deport(t_player *);
 
 #endif

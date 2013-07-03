@@ -1,0 +1,11 @@
+/*
+** deport.c for zhappy in /home/louaze_j
+** 
+** Made by louaze_j
+** Login   <louaze_j@epitech.net>
+** 
+** Started on  Thu Jul  4 00:33:07 2013 louaze_j
+** Last update Thu Jul  4 00:33:15 2013 louaze_j
+*/
+
+#include	"player.h"
