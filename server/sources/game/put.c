@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Wed Jul  3 18:58:04 2013 louaze_j
-** Last update Wed Jul  3 18:58:53 2013 louaze_j
+** Last update Wed Jul  3 23:50:14 2013 louaze_j
 */
 
 #include	"world.h"
@@ -15,7 +15,7 @@
 #include	"str_ressources.h"
 
 static
-const char	*put(t_player *player, t_server *server, void *arg)
+const char	*put(t_player *player, const t_server *server, void *arg)
 {
   t_square	*sq;
   e_ressource	type;

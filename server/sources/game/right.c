@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Wed Jul  3 18:23:05 2013 louaze_j
-** Last update Wed Jul  3 18:23:54 2013 louaze_j
+** Last update Wed Jul  3 23:49:18 2013 louaze_j
 */
 
 #include	"player.h"
@@ -23,7 +23,7 @@ static void	look_in_good_direction(t_player *player)
 }
 
 static
-const char	*right(t_player *player, t_server *server, void *arg)
+const char	*right(t_player *player, const t_server *server, void *arg)
 {
   (void)server;
   (void)arg;

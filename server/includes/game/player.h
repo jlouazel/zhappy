@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Wed Jul  3 19:00:49 2013 louaze_j
+** Last update Wed Jul  3 23:48:26 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -38,17 +38,17 @@ typedef struct  s_player
   const t_io		*io;
   const t_socket	*socket;
 
-  const char    *(*advance)(struct s_player *, t_server *, void *);
-  const char    *(*right)(struct s_player *, t_server *, void *);
-  const char    *(*left)(struct s_player *, t_server *, void *);
-  const char    *(*see)(struct s_player *, t_server *, void *);
-  const char    *(*inventory)(struct s_player *, t_server *, void *);
-  const char    *(*take)(struct s_player *, t_server *, void *);
-  const char    *(*put)(struct s_player *, t_server *, void *);
-  const char    *(*expulse)(struct s_player *);
-  const char    *(*broadcast)(struct s_player *, t_world *, void *);
-  const char    *(*fork)(struct s_player *);
-  const char    *(*connect_nbr)(struct s_player *);
+  const char    *(*advance)(struct s_player *, const t_server *, void *);
+  const char    *(*right)(struct s_player *, const t_server *, void *);
+  const char    *(*left)(struct s_player *, const t_server *, void *);
+  const char    *(*see)(struct s_player *, const t_server *, void *);
+  const char    *(*inventory)(struct s_player *, const t_server *, void *);
+  const char    *(*take)(struct s_player *, const t_server *, void *);
+  const char    *(*put)(struct s_player *, const t_server *, void *);
+  const char    *(*expulse)(struct s_player *); //
+  const char    *(*broadcast)(struct s_player *, const  t_server *, void *);
+  const char    *(*fork)(struct s_player *); //
+  const char    *(*connect_nbr)(struct s_player *); //
 } t_player;
 
 t_player        *create_player(const t_socket *);

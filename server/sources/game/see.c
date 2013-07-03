@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Wed Jul  3 18:35:28 2013 louaze_j
+** Last update Wed Jul  3 23:49:40 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -20,7 +20,7 @@
 #define		LVL_I(l)	(2 * l + 1)
 
 static
-const char	*see(t_player *player, t_server *server, void *arg)
+const char	*see(t_player *player, const t_server *server, void *arg)
 {
   unsigned int		i;
   unsigned int		index;

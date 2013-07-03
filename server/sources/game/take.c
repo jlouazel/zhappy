@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Wed Jul  3 18:55:06 2013 louaze_j
-** Last update Wed Jul  3 18:57:35 2013 louaze_j
+** Last update Wed Jul  3 23:50:01 2013 louaze_j
 */
 
 #include	"world.h"
@@ -15,7 +15,7 @@
 #include	"str_ressources.h"
 
 static
-const char	*take(t_player *player, t_server *server, void *arg)
+const char	*take(t_player *player, const t_server *server, void *arg)
 {
   t_square		*sq;
   e_ressource		type;

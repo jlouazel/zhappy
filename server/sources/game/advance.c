@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Wed Jul  3 17:32:06 2013 louaze_j
-** Last update Wed Jul  3 18:20:55 2013 louaze_j
+** Last update Wed Jul  3 23:49:02 2013 louaze_j
 */
 #include	"player.h"
 
@@ -30,7 +30,7 @@ static void	modify_coors(t_player *player, t_world *world)
 }
 
 static
-const char	*advance(t_player *player, t_server *server, void *arg)
+const char	*advance(t_player *player, const t_server *server, void *arg)
 {
   (void)arg;
   modify_coors(player, server->game->world);

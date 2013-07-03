@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
-** Last update Wed Jul  3 18:34:03 2013 louaze_j
+** Last update Wed Jul  3 23:46:01 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -58,14 +58,14 @@ int	server_loop(const t_server *server)
   fd_set		rfd;
   fd_set		wfd;
   int			max_fd;
-  /* t_player		*pl = create_player(NULL); */
+  t_player		*pl = create_player(NULL);
 
-  /* pl->voir(pl, server->game->world); */
-  /* pl->inventaire(pl); */
-  /* pl->pose(pl, server->game->world, "nourriture"); */
-  /* pl->inventaire(pl); */
-  /* pl->voir(pl, server->game->world); */
-  /* sleep(10); */
+  pl->see(pl, server, NULL);
+  pl->inventory(pl, server, NULL);
+  pl->put(pl, server, "nourriture");
+  pl->inventory(pl, server, NULL);
+  pl->see(pl, server, NULL);
+  sleep(10);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
     {
