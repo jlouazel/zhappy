@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Tue Jul  2 04:28:16 2013 louaze_j
+** Last update Wed Jul  3 07:48:27 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -14,6 +14,7 @@
 #include	"lib_std.h"
 #include	"player.h"
 #include	"list.h"
+#include	"eressources.h"
 
 static void	init_attr(t_player *new_player, const t_socket *socket)
 {
@@ -22,12 +23,12 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   new_player->x = 0;
   new_player->y = 0;
   new_player->id = id;
-  new_player->life = DEFAULT_LIFE;
   new_player->level = DEFAULT_LVL;
   new_player->direction = DOWN;
   new_player->socket = socket;
   new_player->status = PLAYER_NOT_ALLOWED;
   new_player->io = init_server_io();
+  new_player->inventory[FOOD] = 10;
   id++;
 }
 
@@ -37,6 +38,8 @@ static void	init_actions(t_player *new_player)
   _droite(new_player);
   _gauche(new_player);
   _voir(new_player);
+  _inventaire(new_player);
+  _prend(new_player);
 }
 
 t_player	*create_player(const t_socket *socket, t_list **player_stack)

@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Mon Jul  1 23:38:41 2013 julien fortin
+## Last update Wed Jul  3 06:51:43 2013 louaze_j
 ##
 
 CC			= gcc
@@ -17,7 +17,7 @@ CFLAGS			+= -I ./includes/
 CFLAGS			+= -I ./includes/core/
 CFLAGS			+= -I ./includes/game/
 CFLAGS			+= -I ./includes/lib/
-CFLAGS			+= -msse -msse2 -msse3 -mmmx -m3dnow -O3 -fomit-frame-pointer -g3
+CFLAGS			+= -msse -msse2 -msse3 -mmmx -m3dnow -O3 -fomit-frame-pointer -frerun-loop-opt -fgcse  -g3
 
 LDFLAGS			=
 
@@ -72,6 +72,9 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)player_droite.c \
 			$(SRCS_DIR)$(GAME_DIR)player_gauche.c \
 			$(SRCS_DIR)$(GAME_DIR)player_voir.c \
+			$(SRCS_DIR)$(GAME_DIR)player_inventaire.c \
+			$(SRCS_DIR)$(GAME_DIR)player_prend.c \
+
 
 #
 #library
