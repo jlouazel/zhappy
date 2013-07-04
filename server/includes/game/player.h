@@ -5,18 +5,18 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Thu Jul  4 00:35:57 2013 louaze_j
+** Last update Thu Jul  4 14:20:42 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
 #define __PLAYERS_H__
 
-#include	"server_data_io.h"
-#include	"lib_socket.h"
 #include	"list.h"
-#include	"world.h"
+#include	"team.h"
 #include	"server.h"
+#include	"lib_socket.h"
 #include	"edirections.h"
+#include	"server_data_io.h"
 
 #define DEFAULT_PID     0
 #define DEFAULT_LVL     1
@@ -30,6 +30,7 @@ typedef struct  s_player
   int			x;
   int			y;
   unsigned int		id;
+  t_team		*team;
   unsigned int		level;
   unsigned char		status;
   e_direction		direction;
