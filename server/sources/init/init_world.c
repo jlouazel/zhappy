@@ -5,11 +5,9 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Tue Jul  2 10:25:55 2013 louaze_j
-** Last update Wed Jul  3 07:22:11 2013 louaze_j
+** Last update Wed Jul  3 23:54:59 2013 louaze_j
 */
 
-#include	<time.h>
-#include	<stdlib.h>
 #include	<stdbool.h>
 #include	<strings.h>
 #include	"world.h"
@@ -73,7 +71,6 @@ t_world		*new_world(const t_options *options)
 {
   t_world	*world;
 
-  srand(time(NULL));
   if (!(world = xcalloc(1, sizeof(*world))))
     return (NULL);
   bzero(world->qte_rs, sizeof(*world->qte_rs));

@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Wed Jul  3 15:09:04 2013 julien fortin
+## Last update Thu Jul  4 00:34:50 2013 louaze_j
 ##
 
 CC			= gcc
@@ -69,13 +69,16 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)square.c \
 			$(SRCS_DIR)$(GAME_DIR)player.c \
 			$(SRCS_DIR)$(GAME_DIR)ressources.c \
-			$(SRCS_DIR)$(GAME_DIR)player_avance.c \
-			$(SRCS_DIR)$(GAME_DIR)player_droite.c \
-			$(SRCS_DIR)$(GAME_DIR)player_gauche.c \
-			$(SRCS_DIR)$(GAME_DIR)player_voir.c \
-			$(SRCS_DIR)$(GAME_DIR)player_inventaire.c \
-			$(SRCS_DIR)$(GAME_DIR)player_prend.c \
-
+			$(SRCS_DIR)$(GAME_DIR)advance.c \
+			$(SRCS_DIR)$(GAME_DIR)right.c \
+			$(SRCS_DIR)$(GAME_DIR)left.c \
+			$(SRCS_DIR)$(GAME_DIR)see.c \
+			$(SRCS_DIR)$(GAME_DIR)inventory.c \
+			$(SRCS_DIR)$(GAME_DIR)take.c \
+			$(SRCS_DIR)$(GAME_DIR)put.c \
+			$(SRCS_DIR)$(GAME_DIR)broadcast.c \
+			$(SRCS_DIR)$(GAME_DIR)connect_nbr.c \
+			$(SRCS_DIR)$(GAME_DIR)deport.c \
 
 #
 #library

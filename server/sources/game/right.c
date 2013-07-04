@@ -1,11 +1,11 @@
 /*
-** player_droite.c for zhappy in /home/louaze_j
+** right.c for zhappy in /home/louaze_j
 ** 
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
 ** 
-** Started on  Fri Jun 28 16:25:02 2013 louaze_j
-** Last update Fri Jun 28 17:09:11 2013 louaze_j
+** Started on  Wed Jul  3 18:23:05 2013 louaze_j
+** Last update Wed Jul  3 23:49:18 2013 louaze_j
 */
 
 #include	"player.h"
@@ -23,16 +23,18 @@ static void	look_in_good_direction(t_player *player)
 }
 
 static
-const char	*droite(t_player *player)
+const char	*right(t_player *player, const t_server *server, void *arg)
 {
+  (void)server;
+  (void)arg;
   look_in_good_direction(player);
   return (NULL);
 }
 
-void		_droite(t_player *player)
+void		_right(t_player *player)
 {
   if (player)
     {
-      player->droite = &droite;
+      player->right = &right;
     }
 }

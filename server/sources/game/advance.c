@@ -1,13 +1,12 @@
 /*
-** player_avance.c for zhappy in /home/louaze_j
+** advance.c for zhappy in /home/louaze_j
 ** 
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
 ** 
-** Started on  Fri Jun 28 10:44:41 2013 louaze_j
-** Last update Fri Jun 28 16:39:22 2013 louaze_j
+** Started on  Wed Jul  3 17:32:06 2013 louaze_j
+** Last update Wed Jul  3 23:49:02 2013 louaze_j
 */
-
 #include	"player.h"
 
 static void	modify_coors(t_player *player, t_world *world)
@@ -31,16 +30,17 @@ static void	modify_coors(t_player *player, t_world *world)
 }
 
 static
-const char	*avance(t_player *player, t_world *world)
+const char	*advance(t_player *player, const t_server *server, void *arg)
 {
-  modify_coors(player, world);
-  return (NULL); /* OK */
+  (void)arg;
+  modify_coors(player, server->game->world);
+  return ("OK\n");
 }
 
-void		_avance(t_player *player)
+void		_advance(t_player *player)
 {
   if (player)
     {
-      player->avance = &avance;
+      player->advance = &advance;
     }
 }
