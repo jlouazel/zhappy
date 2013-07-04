@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Tue Jul  2 14:17:16 2013 julien fortin
+** Last update Fri Jul  5 01:35:00 2013 louaze_j
 */
 
 #include	<sys/select.h>
@@ -22,9 +22,10 @@ static bool		_server_accept_player(const t_server *serv,
     {
       list = serv->game->players;
       if (list && list->size(list))
-	list->push_back(&list, (void*)create_player(client));
+	list->push_back(&list, (void*)create_player(client, serv));
       else
-	((t_game*)serv->game)->players = new_list((void*)create_player(client));
+	((t_game*)serv->game)->players = new_list((void*)create_player(client,
+								       serv));
       return (true);
     }
   return (false);

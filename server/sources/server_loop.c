@@ -6,7 +6,7 @@
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
 <<<<<<< HEAD
-** Last update Thu Jul  4 01:13:11 2013 louaze_j
+** Last update Fri Jul  5 01:37:39 2013 louaze_j
 =======
 <<<<<<< HEAD
 ** Last update Wed Jul  3 15:25:30 2013 julien fortin
@@ -65,11 +65,12 @@ int	server_loop(const t_server *server)
   fd_set		rfd;
   fd_set		wfd;
   int			max_fd;
-  t_player		*pl = create_player(NULL);
+  t_player		*pl = create_player(NULL, server);
   //  t_player		*pl2 = create_player(NULL);
 
   //pl->broadcast(pl, server, pl2);
-  pl->inventory(pl, server, NULL);
+  /* pl->inventory(pl, server, NULL); */
+  printf("x = %d - y = %d\n", pl->x, pl->y);
   sleep(10);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
