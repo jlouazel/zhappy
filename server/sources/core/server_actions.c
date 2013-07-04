@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Tue Jul  2 16:37:45 2013 julien fortin
+** Last update Wed Jul  3 16:13:14 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -34,7 +34,6 @@ static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
       i++;
     }
   return (-1);
-
 }
 
 static void	_server_treat_actions_for_player(const t_server *serv,
@@ -53,7 +52,12 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 	  (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, data)) >= 0)
 	if (serv->cmd->cmd[index])
 	  if ((data = serv->cmd->cmd[index](serv, data)))
-	    {}
+	    {
+	      if (player->io && player->io->out)
+		player->io->out->push_back((t_list**)&player->io->out, (void*)data);
+	      else if (player->io)
+		((t_io*)player->io)->out = new_list((void*)data);
+	    }
     }
 }
 
