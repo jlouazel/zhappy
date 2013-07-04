@@ -6,10 +6,14 @@
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
 <<<<<<< HEAD
+** Last update Thu Jul  4 01:13:11 2013 louaze_j
+=======
+<<<<<<< HEAD
 ** Last update Wed Jul  3 15:25:30 2013 julien fortin
 =======
 ** Last update Wed Jul  3 23:53:27 2013 louaze_j
 >>>>>>> e7e9f9b10b68c4ddc90f6ce03838e38d97063e6c
+>>>>>>> e9fd51fd031ad594a5df0fc512cc5bb34f78eae8
 */
 
 #include	<stdio.h>
@@ -62,9 +66,10 @@ int	server_loop(const t_server *server)
   fd_set		wfd;
   int			max_fd;
   t_player		*pl = create_player(NULL);
-  t_player		*pl2 = create_player(NULL);
+  //  t_player		*pl2 = create_player(NULL);
 
-  pl->broadcast(pl, server, pl2);
+  //pl->broadcast(pl, server, pl2);
+  pl->inventory(pl, server, NULL);
   sleep(10);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
