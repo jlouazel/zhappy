@@ -5,7 +5,15 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
+<<<<<<< HEAD
 ** Last update Thu Jul  4 01:13:11 2013 louaze_j
+=======
+<<<<<<< HEAD
+** Last update Wed Jul  3 15:25:30 2013 julien fortin
+=======
+** Last update Wed Jul  3 23:53:27 2013 louaze_j
+>>>>>>> e7e9f9b10b68c4ddc90f6ce03838e38d97063e6c
+>>>>>>> e9fd51fd031ad594a5df0fc512cc5bb34f78eae8
 */
 
 #include	<stdio.h>
@@ -43,10 +51,9 @@ static int	_server_action(const t_server *server,
 			       fd_set *rfd,
 			       fd_set *wfd)
 {
-  (void)wfd;
   server_accept(server, rfd);
   server_players_actions(server, rfd);
-  server_notify_player(server);
+  server_notify_player(server, wfd);
   return (EXIT_SUCCESS);
 }
 
