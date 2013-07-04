@@ -5,11 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-<<<<<<< HEAD
-** Last update Thu Jul  4 14:22:40 2013 julien fortin
-=======
-** Last update Thu Jul  4 14:20:42 2013 louaze_j
->>>>>>> 4bd127b6f4b6f0e46abe86a6442f7245e71115cc
+** Last update Thu Jul  4 21:31:08 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -41,8 +37,6 @@ typedef struct  s_player
   unsigned char		status;
   e_direction		direction;
   unsigned int		inventory_tab[7];
-
-  t_team		*team;
 
   const t_io		*io;
   const t_socket	*socket;
