@@ -5,14 +5,15 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:36:54 2013 louaze_j
-** Last update Thu Jul  4 14:20:31 2013 louaze_j
+** Last update Thu Jul  4 21:39:23 2013 julien fortin
 */
 
 #ifndef	__TEAMS_H__
 #define	__TEAMS_H__
 
 #include "list.h"
-#include "player.h"
+
+typedef struct s_player	t_player;
 
 #define	DEFAULT_TID	0
 

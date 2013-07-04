@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Wed Jul  3 16:13:14 2013 julien fortin
+** Last update Thu Jul  4 21:40:38 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -13,6 +13,7 @@
 #include	"lib_std.h"
 #include	"lib_strings.h"
 #include	"server.h"
+#include	"player.h"
 
 static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
 {

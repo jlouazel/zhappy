@@ -5,10 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Wed Jul  3 15:55:57 2013 julien fortin
+** Last update Thu Jul  4 21:40:53 2013 julien fortin
 */
 
 #include	"server.h"
+#include	"player.h"
 
 static void	_server_wnplayer(void *data, void *arg)
 {
