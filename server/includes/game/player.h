@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Thu Jul  4 00:35:57 2013 louaze_j
+** Last update Thu Jul  4 14:22:40 2013 julien fortin
 */
 
 #ifndef __PLAYERS_H__
@@ -25,6 +25,8 @@
 #define	PLAYER_ALLOWED		42
 #define	PLAYER_NOT_ALLOWED	0
 
+typedef struct s_team t_team;
+
 typedef struct  s_player
 {
   int			x;
@@ -34,6 +36,8 @@ typedef struct  s_player
   unsigned char		status;
   e_direction		direction;
   unsigned int		inventory_tab[7];
+
+  t_team		*team;
 
   const t_io		*io;
   const t_socket	*socket;
