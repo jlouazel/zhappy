@@ -6,7 +6,11 @@
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
 <<<<<<< HEAD
-** Last update Fri Jul  5 11:37:54 2013 julien fortin
+<<<<<<< HEAD
+** Last update Fri Jul  5 12:02:02 2013 julien fortin
+=======
+** Last update Fri Jul  5 10:48:29 2013 louaze_j
+>>>>>>> 3a91f9e714aed69cfdca71805d621237781b7934
 =======
 <<<<<<< HEAD
 ** Last update Wed Jul  3 15:25:30 2013 julien fortin
@@ -24,8 +28,6 @@
 #include	"lib_errs.h"
 #include	"lib_std.h"
 #include	"server.h"
-
-#include	"player.h"
 
 static int	_init_select_serv(const t_server *server,
 				  fd_set *rfd,

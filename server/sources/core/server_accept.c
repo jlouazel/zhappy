@@ -5,9 +5,14 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
+<<<<<<< HEAD
 ** Last update Fri Jul  5 11:33:05 2013 julien fortin
+=======
+** Last update Fri Jul  5 10:55:22 2013 louaze_j
+>>>>>>> 3a91f9e714aed69cfdca71805d621237781b7934
 */
 
+#include	<stdio.h>
 #include	<sys/select.h>
 #include	"lib_std.h"
 #include	"player.h"
@@ -22,10 +27,10 @@ static bool		_server_accept_player(const t_server *serv,
     {
       list = serv->game->players;
       if (list && list->size(list))
-	list->push_back(&list, (void*)create_player(client, serv));
+	list->push_back(&list, (void*)create_player(client));
       else
-	((t_game*)serv->game)->players = new_list((void*)create_player(client,
-								       serv));
+	((t_game*)serv->game)->players = new_list((void*)create_player(client));
+      printf("NEW CLIENT!\n");
       return (true);
     }
   return (false);

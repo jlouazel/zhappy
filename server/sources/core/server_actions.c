@@ -5,7 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
+<<<<<<< HEAD
 ** Last update Fri Jul  5 12:00:29 2013 julien fortin
+=======
+** Last update Fri Jul  5 10:54:42 2013 louaze_j
+>>>>>>> 3a91f9e714aed69cfdca71805d621237781b7934
 */
 
 #include	<sys/select.h>
