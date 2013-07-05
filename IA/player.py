@@ -15,7 +15,7 @@ class case:
         self._phiras = 0
         self._thystame = 0
         self._nourriture = 0
-        self._probabilities = 100
+        self._probabilities = 0
 
     def reset(self):
         self._linemate = 0
@@ -30,7 +30,6 @@ class case:
     def set(self, tab):
         i = 0
         while (i < tab.__len__()):
-            print tab[i]
             if (tab[i] == "linemate" or tab[i] == "linemate}"):
                 self._linemate += 1
             if (tab[i] == "deraumere" or tab[i] == "deraumere}"):
@@ -66,8 +65,7 @@ class case:
         print "}",
 
     def reduceProbabilities(self):
-        if self._probabilities > 0:
-            self._probabilities = self._probabilities - 2
+        self._probabilities = self._probabilities - 2
 
 class inventaire:
     def __init__(self):
@@ -189,7 +187,6 @@ class player:
             self._posX = self.myAbsolute(self._posX - 1, self._lenMapX)
 
     def goUp(self):
-        print "go Up"
         while self._orientation != 0:
             if (self._orientation == 1):
                 self.turnLeft()
@@ -198,7 +195,6 @@ class player:
         self.avance()
 
     def goDown(self):
-        print "go Down"
         while self._orientation != 2:
             if (self._orientation == 3):
                 self.turnLeft()
@@ -207,7 +203,6 @@ class player:
         self.avance()
 
     def goLeft(self):
-        print "go Left"
         while self._orientation != 3:
             if (self._orientation == 0):
                 self.turnLeft()
@@ -216,7 +211,6 @@ class player:
         self.avance()
 
     def goRight(self):
-        print "go Right"
         while self._orientation != 1:
             if (self._orientation == 2):
                 self.turnLeft()
@@ -291,10 +285,10 @@ class player:
             tab[i] = tab[i].split(' ')
             self._inventaire.modifie(tab[i][0], int(tab[i][1]))
             i = i + 1
+        self._inventaire.aff()
 
     def prendreObject(self, Object):
         toSend = "prend " + Object + "\n"
-        print "prendre ", Object
         self._socket.send(toSend)
         self._queue.put(toSend)
         time.sleep(0.05)
@@ -316,8 +310,6 @@ class player:
                 i = i + 1
             j = j + 1
         if nb != 100000:
-            print "Find food at x = ", x, " y = ", y
-            #            self._action.setMove(x, y, self._action._PossibleAction._nourriture, emergency)
             return [x, y]
         return [-1, -1]
 
@@ -374,7 +366,7 @@ class player:
         if (self._posX != x):
             x1 = self.myAbsolute(self._posX - x, self._lenMapX)
             x2 = self.myAbsolute(x - self._posX, self._lenMapX)
-            if (x1 < x2): # Pourquoi pas obtimiser en regardant l'orientation du personnage.
+            if (x1 < x2):
                 self.goLeft()
             else:
                 self.goRight()
@@ -398,10 +390,8 @@ class player:
         y = self._posY
         to_return = []
         while (y != self._action._y):
-            print "lalal1"
             x = self._posX
             while (x != self._action._x):
-                print "lalal2 : x = ", x, " y = ", y, " actionX = ", self._action._define
                 to_return.append([x, y])
                 if left == 1:
                     x = self.myAbsolute(x - 1, self._lenMapX)
@@ -422,8 +412,6 @@ class player:
         return 0
 
     def moveToAction(self):
-        #Ici definir le mouvement pour chercher l'objectif numero 2 si il est sur le passage ou s'il faut faire un petit detour
-        print "I move to action"
         if self._action._emergency == 3:
             self.deplacementAbsolut(self._action._x , self._action._y)
         else:
@@ -431,11 +419,8 @@ class player:
             x2 = self.myAbsolute(self._action._x - self._posX, self._lenMapX)
             y1 = self.myAbsolute(self._posY - self._action._y, self._lenMapY)
             y2 = self.myAbsolute(self._action._y - self._posY, self._lenMapY)
-            print "Creat Area :"
             area = self.createArea(x1, x2, y1, y2)
-            print "finished to Creat Area :"
             tab = self.findStone("linemate")
-            print "finished find stone"
             if (self.checkIfTabBelowToTab(area, tab) == 1):
                 self.deplacementAbsolut(tab[0], tab[1])
             else:
@@ -476,13 +461,32 @@ class player:
                 self._map[i]._nourriture -= 1
             j = j + 1
 
+    def goToUnknow(self):
+        j = 0
+        x = 0
+        y = 0
+        nb = 100000
+        while j < self._lenMapY - 1:
+            i = 0
+            while i < self._lenMapX - 1:
+                tmp = math.fabs(self._posX - i) + math.fabs(self._posY - j)
+                tmp2 = self._lenMapX * j + i
+                if tmp < nb and self._map[tmp2]._probabilities <= 0:
+                    x = i
+                    y = j
+                    nb = tmp
+                i = i + 1
+            j = j + 1
+        if nb != 100000:
+            self.deplacementAbsolut(x, y)
+        else:
+            self.avance()
+        self.voir()
+
     def findGoodMove(self):
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
-            if (tab[0] == -1 or tab[1] == -1):
-                 self.avance()
-                 self.voir()
-            else:
+            if (tab[0] != -1 and tab[1] != -1):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
         else:
             self.takeObject()
@@ -491,13 +495,12 @@ class player:
         elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0):
             self.moveToAction()
         else:
-            self.avance()
-            self.voir()
+            self.goToUnknow()
             self.decideCaseToGo()
+        self.reduceProbabilities()
 
     def treatOk(self, trame):
         if trame == "ok" or trame == "ko":
             tmp = self._queue.get()
             if tmp.split(' ')[0] == "prend" and trame == "ok":
                 self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
-        print "nouriture = ", self._inventaire._nourriture
