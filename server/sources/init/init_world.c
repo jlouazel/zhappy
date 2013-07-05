@@ -5,8 +5,10 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Tue Jul  2 10:25:55 2013 louaze_j
-** Last update Wed Jul  3 23:54:59 2013 louaze_j
+** Last update Fri Jul  5 12:02:33 2013 louaze_j
 */
+
+#include	<stdio.h>
 
 #include	<stdbool.h>
 #include	<strings.h>
@@ -45,17 +47,21 @@ static bool	place_ressources(t_world *world)
 
 static t_list	*create_world(const t_options *options)
 {
+  unsigned int	p;
   unsigned int	x;
   unsigned int	y;
   t_list	*squares;
 
   y = 0;
+  p = 0;
   squares = NULL;
   while (y != options->y)
     {
       x = 0;
       while (x != options->x)
 	{
+	  printf("%u\n", (p / (options->y * options->x)) * 100);
+	  p++;
 	  if (!squares)
 	    squares = new_list(new_square(x, y));
 	  else

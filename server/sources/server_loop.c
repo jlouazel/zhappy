@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
 ** server_loop.c for zhappy in /home/fortin_j/tek2/projects/zappy/fortin_j/server
 **
 ** Made by julien fortin
@@ -18,6 +19,15 @@
 ** Last update Wed Jul  3 23:53:27 2013 louaze_j
 >>>>>>> e7e9f9b10b68c4ddc90f6ce03838e38d97063e6c
 >>>>>>> e9fd51fd031ad594a5df0fc512cc5bb34f78eae8
+=======
+** server_loop.c for zhappy in /home/louaze_j
+** 
+** Made by louaze_j
+** Login   <louaze_j@epitech.net>
+** 
+** Started on  Fri Jul  5 11:17:01 2013 louaze_j
+** Last update Fri Jul  5 11:17:02 2013 louaze_j
+>>>>>>> df5a296c92468a0b2a9db910edd7640163a04ab5
 */
 
 #include	<stdio.h>
