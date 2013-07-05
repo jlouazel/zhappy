@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:36:54 2013 louaze_j
-** Last update Thu Jul  4 21:39:23 2013 julien fortin
+** Last update Fri Jul  5 11:25:20 2013 louaze_j
 */
 
 #ifndef	__TEAMS_H__
@@ -22,6 +22,7 @@ typedef struct s_team
   unsigned int	id;
   char		*name;
   t_list	*members;
+  unsigned int	eggs;
   unsigned int	nb_members;
 
   void		(*add_player)(struct s_team *, t_player *);
