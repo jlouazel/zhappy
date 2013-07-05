@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Fri Jul  5 17:52:34 2013 julien fortin
+** Last update Fri Jul  5 18:09:40 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -14,7 +14,6 @@
 #include	"lib_strings.h"
 #include	"server.h"
 #include	"player.h"
-
 
 #include	<stdio.h>
 
@@ -46,16 +45,13 @@ static void	_server_treat_actions_for_player(const t_server *serv,
   const char	*data;
   int		index;
 
-  puts("NULLLLllll");
- exit(1);
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     {
-      puts("WHILE");
       //Extraire tout le contenu de la socket et apres decouper au \n pour voir
       // si ya plusieurs commandes;
       data = player->socket->read(player->socket, 424242);
-      printf("[GET:%s:%d] %s\n", player->socket->_client->_ip, player->socket->_port, data);
+      printf("[GET:%s:%d] %s<\n", player->socket->_client->_ip, player->socket->_port, data);
       if (serv && serv->cmd &&
 	  (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, data)) >= 0)
 	if (serv->cmd->cmd[index])
@@ -80,20 +76,6 @@ bool		server_players_actions(const t_server *serv, fd_set *rfd)
       if (list->data)
 	{
 	  player = (t_player*)list->data;
-
-	  if (!player)
-	    puts("NULL player");
-	  if (!player->socket)
-	    puts("NULL player->socket");
-	  if (!FD_ISSET(player->socket->_socket, rfd))
-	    printf("!FD_ISSET: %d fd=%d\t %p\n", player->id, player->socket->_socket, player);
-	  else
-	    {
-	      puts("ISSET!");
-	      exit(1);
-	    }
-	  puts("#");
-
 	  if (player && player->socket && FD_ISSET(player->socket->_socket, rfd))
 	    _server_treat_actions_for_player(serv, player);
 	}
