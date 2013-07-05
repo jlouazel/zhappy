@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Fri Jul  5 11:07:31 2013 julien fortin
+** Last update Fri Jul  5 17:56:20 2013 julien fortin
 */
 
 #include	"server.h"
@@ -26,10 +26,11 @@ static void		_server_wnplayer(void *data, void *arg)
 }
 
 bool			server_will_notify_player(const t_server *serv,
-					  fd_set *wfd)
+						  fd_set *wfd, int *max_fd)
 {
   t_list	*list;
 
+  (void)max_fd;
   list = serv && serv->io && serv->io->out
     ? serv->io->out : NULL;
   if (list)

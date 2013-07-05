@@ -5,11 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-<<<<<<< HEAD
-** Last update Fri Jul  5 12:00:29 2013 julien fortin
-=======
-** Last update Fri Jul  5 10:54:42 2013 louaze_j
->>>>>>> 3a91f9e714aed69cfdca71805d621237781b7934
+** Last update Fri Jul  5 17:52:34 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -90,7 +86,7 @@ bool		server_players_actions(const t_server *serv, fd_set *rfd)
 	  if (!player->socket)
 	    puts("NULL player->socket");
 	  if (!FD_ISSET(player->socket->_socket, rfd))
-	    printf("!FD_ISSET: %d %p\n", player->id, player);
+	    printf("!FD_ISSET: %d fd=%d\t %p\n", player->id, player->socket->_socket, player);
 	  else
 	    {
 	      puts("ISSET!");
