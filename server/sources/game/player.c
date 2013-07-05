@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Fri Jul  5 09:40:18 2013 louaze_j
+** Last update Fri Jul  5 09:48:48 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -45,6 +45,7 @@ static void	init_actions(t_player *new_player)
   _broadcast(new_player);
   _connect_nbr(new_player);
   _deport(new_player);
+  _fork(new_player);
 }
 
 t_player	*create_player(const t_socket *socket)

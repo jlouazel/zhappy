@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Thu Jul  4 21:40:38 2013 julien fortin
+** Last update Fri Jul  5 10:54:42 2013 louaze_j
 */
 
 #include	<sys/select.h>
@@ -76,6 +76,7 @@ bool		server_players_actions(const t_server *serv, fd_set *wfd)
 	  if (player && player->socket && FD_ISSET(player->socket->_socket, wfd))
 	    _server_treat_actions_for_player(serv, player);
 	}
+      list = list->next;
     }
   return (true);
 }

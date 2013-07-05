@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jun 24 18:24:47 2013 julien fortin
-** Last update Fri Jun 28 18:46:48 2013 louaze_j
+** Last update Fri Jul  5 10:58:20 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -53,7 +53,7 @@ static bool	switch_on_cases_othrs(t_options *opts,
       if (is_an_integer(optarg, av, flag) == false)
 	return (false);
       if (flag == 'p')
-	opts->y = atoi(optarg);
+	opts->port = atoi(optarg);
       else if (flag == 'x')
 	opts->x = atoi(optarg);
       else if (flag == 'y')
