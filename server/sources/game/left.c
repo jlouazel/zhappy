@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jun 28 16:49:57 2013 louaze_j
-** Last update Fri Jun 28 16:50:44 2013 louaze_j
+** Last update Wed Jul  3 23:49:27 2013 louaze_j
 */
 
 #include	"player.h"
@@ -23,16 +23,18 @@ static void	look_in_good_direction(t_player *player)
 }
 
 static
-const char	*gauche(t_player *player)
+const char	*left(t_player *player, const t_server *server, void *arg)
 {
+  (void)server;
+  (void)arg;
   look_in_good_direction(player);
   return (NULL);
 }
 
-void		_gauche(t_player *player)
+void		_left(t_player *player)
 {
   if (player)
     {
-      player->gauche = &gauche;
+      player->left = &left;
     }
 }

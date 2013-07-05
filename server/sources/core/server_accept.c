@@ -5,9 +5,10 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Tue Jul  2 14:17:16 2013 julien fortin
+** Last update Fri Jul  5 10:55:22 2013 louaze_j
 */
 
+#include	<stdio.h>
 #include	<sys/select.h>
 #include	"lib_std.h"
 #include	"player.h"
@@ -25,6 +26,7 @@ static bool		_server_accept_player(const t_server *serv,
 	list->push_back(&list, (void*)create_player(client));
       else
 	((t_game*)serv->game)->players = new_list((void*)create_player(client));
+      printf("NEW CLIENT!\n");
       return (true);
     }
   return (false);

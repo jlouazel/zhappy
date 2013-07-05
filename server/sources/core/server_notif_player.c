@@ -5,10 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Tue Jul  2 14:07:21 2013 julien fortin
+** Last update Thu Jul  4 21:40:53 2013 julien fortin
 */
 
 #include	"server.h"
+#include	"player.h"
 
 static void	_server_wnplayer(void *data, void *arg)
 {
@@ -54,14 +55,16 @@ static void		_send_data(void *data, void *arg)
 
 static void		_notify_foreach_player(void *data, void *arg)
 {
+  fd_set	*wfd;
   t_list	*msg;
   t_player	*player;
 
-  (void)arg;
-  if (data)
+  if (data && arg)
     {
+      wfd = (fd_set*)arg;
       player = (t_player*)data;
-      if ((msg = player->io && player->io->out ? player->io->out : NULL))
+      if ((msg = player->io && player->io->out ? player->io->out : NULL)
+	  && player->socket && FD_ISSET(player->socket->_socket, wfd))
 	{
 	  msg->foreach(msg, &_send_data, player);
 	  ((t_io*)player->io)->out = delete_list(msg, NULL);
@@ -69,13 +72,13 @@ static void		_notify_foreach_player(void *data, void *arg)
     }
 }
 
-bool		server_notify_player(const t_server *serv)
+bool		server_notify_player(const t_server *serv, fd_set *wfd)
 {
   t_list	*list;
 
   if ((list = serv && serv->io ? serv->io->out : NULL))
     {
-      list->foreach(list, &_notify_foreach_player, NULL);
+      list->foreach(list, &_notify_foreach_player, wfd);
       ((t_io*)serv->io)->out = delete_list(list, NULL);
     }
   return (true);
