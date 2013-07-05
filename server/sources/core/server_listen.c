@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 10:09:16 2013 julien fortin
-** Last update Thu Jul  4 21:40:13 2013 julien fortin
+** Last update Fri Jul  5 11:49:12 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -13,7 +13,9 @@
 #include	"server.h"
 #include	"player.h"
 
-bool		server_listen_player(const t_server *serv, fd_set *wfd)
+#include	<stdio.h>
+
+bool		server_listen_player(const t_server *serv, fd_set *rfd)
 {
   t_list	*clients;
 
@@ -22,7 +24,10 @@ bool		server_listen_player(const t_server *serv, fd_set *wfd)
   while (clients)
     {
       if (clients->data && ((t_player*)clients->data)->socket)
-	FD_SET(((t_player*)clients->data)->socket->_socket, wfd);
+	{
+	  printf("playerID:%d %p\n", ((t_player*)clients->data)->id, ((t_player*)clients->data));
+	  FD_SET(((t_player*)clients->data)->socket->_socket, rfd);
+	}
       clients = clients->next;
     }
   return (true);

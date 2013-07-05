@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Fri Jul  5 01:35:00 2013 louaze_j
+** Last update Fri Jul  5 11:33:05 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -35,7 +35,7 @@ void		server_accept(const t_server *server, const fd_set *rfd)
 {
   t_socket      *client;
 
-  if (FD_ISSET(server->socket->_socket, rfd))
+  if (server && server->socket && FD_ISSET(server->socket->_socket, rfd))
     {
       if ((client = server->socket->accept(server->socket)))
         _server_accept_player(server, client);

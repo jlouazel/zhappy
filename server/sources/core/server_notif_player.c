@@ -5,13 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Thu Jul  4 21:40:53 2013 julien fortin
+** Last update Fri Jul  5 11:07:31 2013 julien fortin
 */
 
 #include	"server.h"
 #include	"player.h"
 
-static void	_server_wnplayer(void *data, void *arg)
+static void		_server_wnplayer(void *data, void *arg)
 {
   t_player	*player;
   fd_set	*wfd;
@@ -25,7 +25,7 @@ static void	_server_wnplayer(void *data, void *arg)
     }
 }
 
-bool		server_will_notify_player(const t_server *serv,
+bool			server_will_notify_player(const t_server *serv,
 					  fd_set *wfd)
 {
   t_list	*list;
