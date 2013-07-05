@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Thu Jul  4 00:34:50 2013 louaze_j
+## Last update Fri Jul  5 05:15:24 2013 louaze_j
 ##
 
 CC			= gcc
@@ -19,7 +19,7 @@ CFLAGS			+= -I ./includes/game/
 CFLAGS			+= -I ./includes/lib/
 CFLAGS			+= -msse -msse2 -msse3 -mmmx -m3dnow -O3 -fomit-frame-pointer -frerun-loop-opt -fgcse  -g3
 
-LDFLAGS			=
+LDFLAGS			= -lm
 
 NAME			= zhappy
 

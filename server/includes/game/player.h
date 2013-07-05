@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Fri Jul  5 01:34:01 2013 louaze_j
+** Last update Fri Jul  5 06:24:36 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -17,6 +17,11 @@
 #include	"lib_socket.h"
 #include	"edirections.h"
 #include	"server_data_io.h"
+
+#define	LVL_I(l)	(2 * l + 1)
+#define	MY_ABS(x)	((x < 0) ? -x : x)
+#define	ABS_X(x, w)	((x < 0) ? (w - MY_ABS(x)) : MY_ABS(x) % w)
+#define	ABS_Y(y, h)	((y < 0) ? (h - MY_ABS(y)) : MY_ABS(y) % h)
 
 #define DEFAULT_PID     0
 #define DEFAULT_LVL     1
