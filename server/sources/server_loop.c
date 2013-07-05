@@ -6,7 +6,7 @@
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
 <<<<<<< HEAD
-** Last update Fri Jul  5 07:01:26 2013 louaze_j
+** Last update Fri Jul  5 09:12:08 2013 louaze_j
 =======
 <<<<<<< HEAD
 ** Last update Wed Jul  3 15:25:30 2013 julien fortin
@@ -56,7 +56,7 @@ static int	_server_action(const t_server *server,
   server_notify_player(server, wfd);
   return (EXIT_SUCCESS);
 }
-#include "str_directions.h"
+/* #include "str_directions.h" */
 #include <unistd.h>
 int	server_loop(const t_server *server)
 {
@@ -66,19 +66,19 @@ int	server_loop(const t_server *server)
   fd_set		wfd;
   int			max_fd;
   t_player		*pl = create_player(NULL, server);
-  t_player		*pl2 = create_player(NULL, server);
-
-  pl->x = 5;
-  pl->y = 5;
-  pl2->x = 5;
-  pl2->y = 5;
-  printf("%d - %d\n", server->game->world->width, server->game->world->height);
-  printf("1) %d - %d\n", pl->x, pl->y);
-  printf("2) %d - %d\n", pl2->x, pl2->y);
-  printf("%s\n", string_directions[pl->direction]);
-  pl->deport(pl, server, pl2);
-  printf("1) %d - %d\n", pl->x, pl->y);
-  printf("2) %d - %d\n", pl2->x, pl2->y);
+  //  t_player		*pl2 = create_player(NULL, server);
+  (void)pl;
+  /* pl->x = 5; */
+  /* pl->y = 5; */
+  /* pl2->x = 5; */
+  /* pl2->y = 5; */
+  /* printf("%d - %d\n", server->game->world->width, server->game->world->height); */
+  /* printf("1) %d - %d\n", pl->x, pl->y); */
+  /* printf("2) %d - %d\n", pl2->x, pl2->y); */
+  /* printf("%s\n", string_directions[pl->direction]); */
+  /* pl->deport(pl, server, pl2); */
+  /* printf("1) %d - %d\n", pl->x, pl->y); */
+  /* printf("2) %d - %d\n", pl2->x, pl2->y); */
   /* pl->broadcast(pl, server, pl2); */
   /* pl->inventory(pl, server, NULL); */
   /* printf("x = %d - y = %d\n", pl->x, pl->y); */
