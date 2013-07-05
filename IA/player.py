@@ -15,7 +15,7 @@ class case:
         self._phiras = 0
         self._thystame = 0
         self._nourriture = 0
-        self._probabilities = 100
+        self._probabilities = 0
 
     def reset(self):
         self._linemate = 0
@@ -65,8 +65,7 @@ class case:
         print "}",
 
     def reduceProbabilities(self):
-        if self._probabilities > 0:
-            self._probabilities = self._probabilities - 2
+        self._probabilities = self._probabilities - 2
 
 class inventaire:
     def __init__(self):
@@ -462,13 +461,32 @@ class player:
                 self._map[i]._nourriture -= 1
             j = j + 1
 
+    def goToUnknow(self):
+        j = 0
+        x = 0
+        y = 0
+        nb = 100000
+        while j < self._lenMapY - 1:
+            i = 0
+            while i < self._lenMapX - 1:
+                tmp = math.fabs(self._posX - i) + math.fabs(self._posY - j)
+                tmp2 = self._lenMapX * j + i
+                if tmp < nb and self._map[tmp2]._probabilities <= 0:
+                    x = i
+                    y = j
+                    nb = tmp
+                i = i + 1
+            j = j + 1
+        if nb != 100000:
+            self.deplacementAbsolut(x, y)
+        else:
+            self.avance()
+        self.voir()
+
     def findGoodMove(self):
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
-            if (tab[0] == -1 or tab[1] == -1):
-                 self.avance()
-                 self.voir()
-            else:
+            if (tab[0] != -1 and tab[1] != -1):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
         else:
             self.takeObject()
@@ -477,10 +495,9 @@ class player:
         elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0):
             self.moveToAction()
         else:
-            self.avance()
-            self.voir()
+            self.goToUnknow()
             self.decideCaseToGo()
-        self.inventaire()
+        self.reduceProbabilities()
 
     def treatOk(self, trame):
         if trame == "ok" or trame == "ko":
