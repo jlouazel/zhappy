@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Fri Jul  5 18:09:40 2013 julien fortin
+** Last update Fri Jul  5 18:24:41 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -55,7 +55,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
       if (serv && serv->cmd &&
 	  (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, data)) >= 0)
 	if (serv->cmd->cmd[index])
-	  if ((data = serv->cmd->cmd[index](serv, data))) //player en param
+	  if ((data = serv->cmd->cmd[index](player, serv, (void*)data))) //player en param
 	    {
 	      if (player->io && player->io->out)
 		player->io->out->push_back((t_list**)&player->io->out, (void*)data);
