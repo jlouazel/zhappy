@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Fri Jul  5 01:36:55 2013 louaze_j
+** Last update Fri Jul  5 09:40:18 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -16,13 +16,13 @@
 #include	"list.h"
 #include	"eressources.h"
 
-static void	init_attr(t_player *new_player, const t_socket *socket,
-			  const t_server *server)
+static void	init_attr(t_player *new_player, const t_socket *socket)
 {
   static unsigned int	id = DEFAULT_PID;
 
-  new_player->x = rand() % server->game->world->width;
-  new_player->y = rand() % server->game->world->height;
+  new_player->egg = true;
+  /* new_player->x = rand() % server->game->world->width; */
+  /* new_player->y = rand() % server->game->world->height; */
   new_player->id = id;
   new_player->level = DEFAULT_LVL;
   new_player->direction = rand() % 4;
@@ -47,14 +47,14 @@ static void	init_actions(t_player *new_player)
   _deport(new_player);
 }
 
-t_player	*create_player(const t_socket *socket, const t_server *server)
+t_player	*create_player(const t_socket *socket)
 {
   t_player	*new_player;
 
   new_player = xcalloc(1, sizeof(*new_player));
   if (!new_player)
     return (NULL);
-  init_attr(new_player, socket, server);
+  init_attr(new_player, socket);
   init_actions(new_player);
   /**/
   printf("Player %u : I'm alive !\n", new_player->id);

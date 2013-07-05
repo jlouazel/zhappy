@@ -5,12 +5,13 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Fri Jul  5 06:24:36 2013 louaze_j
+** Last update Fri Jul  5 09:40:30 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
 #define __PLAYERS_H__
 
+#include	<stdbool.h>
 #include	"list.h"
 #include	"team.h"
 #include	"server.h"
@@ -37,6 +38,7 @@ typedef struct  s_player
   int			x;
   int			y;
   unsigned int		id;
+  bool			egg;
   t_team		*team;
   unsigned int		level;
   unsigned char		status;
@@ -59,7 +61,7 @@ typedef struct  s_player
   const char    *(*connect_nbr)(struct s_player *, const t_server *, void *);
 } t_player;
 
-t_player        *create_player(const t_socket *, const t_server *);
+t_player        *create_player(const t_socket *);
 
 void            delete_player(t_player *);
 

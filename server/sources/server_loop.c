@@ -6,7 +6,7 @@
 **
 ** Started on  Tue Jun  4 03:50:35 2013 julien fortin
 <<<<<<< HEAD
-** Last update Fri Jul  5 09:12:08 2013 louaze_j
+** Last update Fri Jul  5 09:40:52 2013 louaze_j
 =======
 <<<<<<< HEAD
 ** Last update Wed Jul  3 15:25:30 2013 julien fortin
@@ -65,7 +65,7 @@ int	server_loop(const t_server *server)
   fd_set		rfd;
   fd_set		wfd;
   int			max_fd;
-  t_player		*pl = create_player(NULL, server);
+  t_player		*pl = create_player(NULL);
   //  t_player		*pl2 = create_player(NULL, server);
   (void)pl;
   /* pl->x = 5; */
