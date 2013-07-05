@@ -1,11 +1,11 @@
 /*
 ** put.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Wed Jul  3 18:58:04 2013 louaze_j
-** Last update Wed Jul  3 23:50:14 2013 louaze_j
+** Last update Fri Jul  5 19:05:39 2013 julien fortin
 */
 
 #include	"world.h"
@@ -14,8 +14,7 @@
 #include	"lib_strings.h"
 #include	"str_ressources.h"
 
-static
-const char	*put(t_player *player, const t_server *server, void *arg)
+const char	*_player_put(t_player *player, const t_server *server, void *arg)
 {
   t_square	*sq;
   e_ressource	type;
@@ -39,12 +38,4 @@ const char	*put(t_player *player, const t_server *server, void *arg)
       type++;
     }
   return ("KO\n");
-}
-
-void		_put(t_player *player)
-{
-  if (player)
-    {
-      player->put = &put;
-    }
 }

@@ -5,13 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jun 21 16:29:14 2013 julien fortin
-** Last update Fri Jul  5 18:24:07 2013 julien fortin
+** Last update Fri Jul  5 18:27:32 2013 julien fortin
 */
 
 #ifndef	__SERVER_DATA_CMD_H__
 #define	__SERVER_DATA_CMD_H__
 
-#define	SERVER_CMD_NB	0
+#define	SERVER_CMD_NB	11
 
 typedef struct s_server t_server;
 

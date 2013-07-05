@@ -1,17 +1,16 @@
 /*
 ** fork.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Fri Jul  5 09:46:29 2013 louaze_j
-** Last update Fri Jul  5 11:29:44 2013 louaze_j
+** Last update Fri Jul  5 19:06:57 2013 julien fortin
 */
 
 #include	"player.h"
 
-static
-const char	*pfork(t_player *player, const t_server *server, void *arg)
+const char	*_player_fork(t_player *player, const t_server *server, void *arg)
 {
   t_team	*team;
   t_player	*egg;
@@ -29,12 +28,3 @@ const char	*pfork(t_player *player, const t_server *server, void *arg)
     }
   return ("OK\n");
 }
-
-void		_fork(t_player *player)
-{
-  if (player)
-    {
-      player->pfork = &pfork;
-    }
-}
-

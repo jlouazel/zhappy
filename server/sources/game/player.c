@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Fri Jul  5 11:55:38 2013 louaze_j
+** Last update Fri Jul  5 19:03:30 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -33,21 +33,6 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   id++;
 }
 
-static void	init_actions(t_player *new_player)
-{
-  _advance(new_player);
-  _right(new_player);
-  _left(new_player);
-  _see(new_player);
-  _inventory(new_player);
-  _take(new_player);
-  _put(new_player);
-  _broadcast(new_player);
-  _connect_nbr(new_player);
-  _deport(new_player);
-  _fork(new_player);
-}
-
 t_player	*create_player(const t_socket *socket)
 {
   t_player	*new_player;
@@ -56,7 +41,6 @@ t_player	*create_player(const t_socket *socket)
   if (!new_player)
     return (NULL);
   init_attr(new_player, socket);
-  init_actions(new_player);
   /**/
   printf("Player %u : I'm alive !\n", new_player->id);
   /**/
