@@ -30,7 +30,6 @@ class case:
     def set(self, tab):
         i = 0
         while (i < tab.__len__()):
-            print tab[i]
             if (tab[i] == "linemate" or tab[i] == "linemate}"):
                 self._linemate += 1
             if (tab[i] == "deraumere" or tab[i] == "deraumere}"):
@@ -189,7 +188,6 @@ class player:
             self._posX = self.myAbsolute(self._posX - 1, self._lenMapX)
 
     def goUp(self):
-        print "go Up"
         while self._orientation != 0:
             if (self._orientation == 1):
                 self.turnLeft()
@@ -198,7 +196,6 @@ class player:
         self.avance()
 
     def goDown(self):
-        print "go Down"
         while self._orientation != 2:
             if (self._orientation == 3):
                 self.turnLeft()
@@ -207,7 +204,6 @@ class player:
         self.avance()
 
     def goLeft(self):
-        print "go Left"
         while self._orientation != 3:
             if (self._orientation == 0):
                 self.turnLeft()
@@ -216,7 +212,6 @@ class player:
         self.avance()
 
     def goRight(self):
-        print "go Right"
         while self._orientation != 1:
             if (self._orientation == 2):
                 self.turnLeft()
@@ -291,10 +286,10 @@ class player:
             tab[i] = tab[i].split(' ')
             self._inventaire.modifie(tab[i][0], int(tab[i][1]))
             i = i + 1
+        self._inventaire.aff()
 
     def prendreObject(self, Object):
         toSend = "prend " + Object + "\n"
-        print "prendre ", Object
         self._socket.send(toSend)
         self._queue.put(toSend)
         time.sleep(0.05)
@@ -316,8 +311,6 @@ class player:
                 i = i + 1
             j = j + 1
         if nb != 100000:
-            print "Find food at x = ", x, " y = ", y
-            #            self._action.setMove(x, y, self._action._PossibleAction._nourriture, emergency)
             return [x, y]
         return [-1, -1]
 
@@ -374,7 +367,7 @@ class player:
         if (self._posX != x):
             x1 = self.myAbsolute(self._posX - x, self._lenMapX)
             x2 = self.myAbsolute(x - self._posX, self._lenMapX)
-            if (x1 < x2): # Pourquoi pas obtimiser en regardant l'orientation du personnage.
+            if (x1 < x2):
                 self.goLeft()
             else:
                 self.goRight()
@@ -398,10 +391,8 @@ class player:
         y = self._posY
         to_return = []
         while (y != self._action._y):
-            print "lalal1"
             x = self._posX
             while (x != self._action._x):
-                print "lalal2 : x = ", x, " y = ", y, " actionX = ", self._action._define
                 to_return.append([x, y])
                 if left == 1:
                     x = self.myAbsolute(x - 1, self._lenMapX)
@@ -422,8 +413,6 @@ class player:
         return 0
 
     def moveToAction(self):
-        #Ici definir le mouvement pour chercher l'objectif numero 2 si il est sur le passage ou s'il faut faire un petit detour
-        print "I move to action"
         if self._action._emergency == 3:
             self.deplacementAbsolut(self._action._x , self._action._y)
         else:
@@ -431,11 +420,8 @@ class player:
             x2 = self.myAbsolute(self._action._x - self._posX, self._lenMapX)
             y1 = self.myAbsolute(self._posY - self._action._y, self._lenMapY)
             y2 = self.myAbsolute(self._action._y - self._posY, self._lenMapY)
-            print "Creat Area :"
             area = self.createArea(x1, x2, y1, y2)
-            print "finished to Creat Area :"
             tab = self.findStone("linemate")
-            print "finished find stone"
             if (self.checkIfTabBelowToTab(area, tab) == 1):
                 self.deplacementAbsolut(tab[0], tab[1])
             else:
@@ -494,10 +480,10 @@ class player:
             self.avance()
             self.voir()
             self.decideCaseToGo()
+        self.inventaire()
 
     def treatOk(self, trame):
         if trame == "ok" or trame == "ko":
             tmp = self._queue.get()
             if tmp.split(' ')[0] == "prend" and trame == "ok":
                 self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
-        print "nouriture = ", self._inventaire._nourriture
