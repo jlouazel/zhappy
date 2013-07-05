@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Tue Jul  2 00:19:42 2013 julien fortin
+** Last update Fri Jul  5 11:25:45 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -33,6 +33,7 @@ static void	init_attr(t_team *new_team, char *name)
   static unsigned int	id = DEFAULT_TID;
 
   new_team->id = id;
+  new_team->eggs = 1;
   new_team->name = name;
   new_team->members = NULL;
   new_team->nb_members = 0;

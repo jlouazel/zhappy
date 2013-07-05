@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Fri Jul  5 09:48:48 2013 louaze_j
+** Last update Fri Jul  5 11:55:38 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -25,7 +25,7 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   /* new_player->y = rand() % server->game->world->height; */
   new_player->id = id;
   new_player->level = DEFAULT_LVL;
-  new_player->direction = rand() % 4;
+  /* new_player->direction = rand() % 4; */
   new_player->socket = socket;
   new_player->status = PLAYER_NOT_ALLOWED;
   new_player->io = init_server_io();
