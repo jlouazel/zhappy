@@ -28,7 +28,7 @@ host = options.host
 
 connexion.connect((host, int(port)))
 
-myPlayer = player(10, 10, connexion, teamName)
+myPlayer = player(connexion, teamName)
 inputs = [connexion]
 outputs = []
 timeout = 0.1

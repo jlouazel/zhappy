@@ -18,15 +18,14 @@ class player:
             self._map.append(case())
             i = i + 1
 
-    def __init__(self, lenMapX, lenMapY, socket, team):
+    def __init__(self, socket, team):
         self._posX = 0
         self._posY = 0
-        self._lenMapX = lenMapX
-        self._lenMapY = lenMapY
+        self._lenMapX = 0
+        self._lenMapY = 0
         self._socket = socket
         self._orientation = 0
         self._map = []
-        self._createMap()
         self._team = team
         self._inventaire = inventaire()
         self._action = action()
@@ -37,6 +36,15 @@ class player:
     def connect(self):
         self._socket.send(self._team + "\n")
         time.sleep(0.05)
+        answer = self._socket.recv(1000)
+        answer = answer.split('\n')
+        self._numClient = int(answer[1])
+        answer = answer[2].split(' ')
+        self._lenMapX = int(answer[0])
+        self._lenMapY = int(answer[1])
+        self._createMap()
+        self.inventaire()
+        self.fork()
 
     def myAbsolute(self, nb, opt):
         if (nb >= 0):
@@ -155,6 +163,9 @@ class player:
             if (i % self._lenMapX == 0):
                 print ""
 
+    def fork(self):
+        self._socket.send("fork\n")
+
     def reduceProbabilities(self):
         i = 0
         while i < self._map.__len__():
@@ -174,7 +185,6 @@ class player:
             tab[i] = tab[i].split(' ')
             self._inventaire.modifie(tab[i][0], int(tab[i][1]))
             i = i + 1
-        self._inventaire.aff()
 
     def prendreObject(self, Object):
         toSend = "prend " + Object + "\n"
@@ -345,7 +355,6 @@ class player:
             if (self._map[tmp]._nourriture > 0):
                 self._map[tmp]._nourriture -= 1
         self._action._define = -1
-
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
         j = 0
@@ -450,7 +459,7 @@ class player:
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
             if (self._map[i]._linemate >= myNeed._linemate and self._map[i]._deraumere >= myNeed._deraumere and self._map[i]._sibur >= myNeed._sibur and self._map[i]._mendiane >= myNeed._mendiane and self._map[i]._phiras >= myNeed._phiras and self._map[i]._thystame >= myNeed._thystame):
                 self.incantation()
-                self._lvl = 2 #provisoir
+#                self._lvl = 2 #provisoir
                 return False
             else:
                 #if Il manque des objects :
@@ -487,7 +496,9 @@ class player:
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
                 if tmp.split(' ')[0] == "pose" and trame == "ok":
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
-        # traitement de reception de broadcast trame = "message X,txt"                    
+        # traitement de reception de broadcast trame = "message X,txt"
+        elif trame[0:6] == "niveau":
+            self._lvl = self._lvl + 1
         elif trame[0:7] == "message":
         	direction = trame[8:9]
        		msg = base64.b64decode(trame[10:len(trame)+1])
