@@ -33,10 +33,15 @@ class player:
         self._queue = Queue.Queue()
         self._elevation = elevation()
         self._lvl = 1
+        self._next_id = 0
+        self._current_id = 1
 
     def connect(self):
         self._socket.send(self._team + "\n")
         time.sleep(0.05)
+
+    def broadcast(self, msg)
+    	self._socket.send(msg)
 
     def myAbsolute(self, nb, opt):
         if (nb >= 0):
@@ -454,6 +459,7 @@ class player:
                 return False
             else:
                 if True:
+                	self.broadcast("I" + self. + self._lvl)
     	            #if Il manque des personnes brodcast Incantation
 	                self.voir()
 	            elif True:
@@ -502,6 +508,8 @@ class player:
         		# exemple I012
                 incantation_id = msg[1:3]
                 incantation_lvl = msg[3:4]
+                if self._current_id != incantation_id
+	                self.next_id = self._next_id + 1
             elif msg[0:1] == "B":
             	# besoin de ressources pour une incantation
             	# exemple B01nJnLnDnSnMnPnT
