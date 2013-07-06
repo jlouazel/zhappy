@@ -108,7 +108,6 @@ class player:
 
     def incantation(self):
         self._socket.send("incantation\n")
-        print "INCATATION !!!!!!!!!!!!!!!!"
 
     def _treatCase(self, tab, i):
         tmp = 0
@@ -182,8 +181,7 @@ class player:
         time.sleep(0.05)
 
     def poserObject(self, Object):
-        toSend = "pose" + Object + "\n"
-        print "JE POSE UN OBJECT QUI EST : ", Object, " !!!!!!"
+        toSend = "pose " + Object + "\n"
         self._socket.send(toSend)
         self._queue.put(toSend)
         time.sleep(0.05)
@@ -445,7 +443,6 @@ class player:
     def putObjectIncantation(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-#        print "Need put object"
         if (self._map[i]._linemate < myNeed._linemate):
             self.poserObject("linemate")
         if (self._map[i]._deraumere < myNeed._deraumere):
@@ -477,7 +474,6 @@ class player:
         return False
 
     def findGoodMove(self):
-#        print "Find Good move"
         elevationPossible = False
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
