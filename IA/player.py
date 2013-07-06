@@ -453,10 +453,12 @@ class player:
                 self._lvl = 2 #provisoir
                 return False
             else:
-                #if Il manque des objects :
-                self.putObjectIncantation()
-                #elif Il manque des personnes brodcast Incantation
-                self.voir()
+                if True:
+    	            #if Il manque des personnes brodcast Incantation
+	                self.voir()
+	            elif True:
+                	#elif Il manque des objects :
+                	self.putObjectIncantation()
                 return True
         return False
 
