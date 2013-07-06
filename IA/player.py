@@ -4,6 +4,8 @@ import time
 import cmath
 import math
 import Queue
+import base64
+
 from action import *
 from elevation import *
 from case import *
@@ -500,3 +502,9 @@ class player:
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
                 if tmp.split(' ')[0] == "pose" and trame == "ok":
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
+# traitement de reception de broadcast "message X,txt"                    
+        else
+        	if trame[0:7] == "message"
+        		direction = trame[8:9]
+        		msg = base64.b64decode(trame[10:len(trame)+1])
+        		print msg
