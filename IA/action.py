@@ -10,8 +10,8 @@ class   defineAction:
         self._mendiane = 4
         self._phiras = 5
         self._thystame = 6
-        self._incatation = 7
-        self._incatationEnnemy = 8
+        self._incantation = 7
+        self._incantationEnnemy = 8
 
 class   action:
     def __init__(self):
@@ -19,10 +19,12 @@ class   action:
         self._x = 0
         self._y = 0
         self._PossibleAction = defineAction()
+        self._tabPossibleAction = ["nourriture", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame", "incantation", "incantationEnnemy"];
         self._firstAction = self._PossibleAction._undifined
-        self._secondAction = [self._PossibleAction._undifined]
-        self._thirdAction = [self._PossibleAction._undifined]
-        self._emergency = 1 # 1 = importance basse action 1, 2 et 3 seront executer en parallele du deplacement. 2 = importance moyenne seulement l'action 1 et 2 seront executer. 3 = importance haute seulement l'acion 1.
+        self._secondAction = []
+        self._thirdAction = []
+        self._emergency = 1
+# 1 = importance basse action 1, 2 et 3 seront executer en parallele du deplacement. 2 = importance moyenne seulement l'action 1 et 2 seront executer. 3 = importance haute seulement l'acion 1.
 
     def setMove(self, x, y, action1, emergency):
         self._define = 0
@@ -38,13 +40,17 @@ class   action:
         i = 0
         while i < self._secondAction.__len__():
             if self._secondAction[i] == toDel:
+                i = -1
                 self._secondAction.remove(self._secondAction[i])
+            i = i + 1
 
     def addThirdAction(self, thirdAction):
-        self._thirdAction.append(thirdAction)
+        if thirdAction in self._thirdAction == False:
+            self._thirdAction.append(thirdAction)
 
     def delThirdAction(self, toDel):
         i = 0
         while i < self._thirdAction.__len__():
             if self._thirdAction[i] == toDel:
                 self._thirdAction.remove(self._thirdAction[i])
+            i = i + 1

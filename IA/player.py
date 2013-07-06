@@ -5,6 +5,7 @@ import cmath
 import math
 import Queue
 from action import *
+from elevation import *
 
 class case:
     def __init__(self):
@@ -109,6 +110,23 @@ class inventaire:
         if (string == "nourriture"):
             self._nourriture += 1
 
+    def delOne(self, string):
+        print "String = [", string, "] POUYAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        if (string == "linemate"):
+            self._linemate -= 1
+        if (string == "deraumere"):
+            self._deraumere -= 1
+        if (string == "sibur"):
+            self._sibur -= 1
+        if (string == "mendiane"):
+            self._mendiane -= 1
+        if (string == "phiras"):
+            self._phiras -= 1
+        if (string == "thystame"):
+            self._thystame -= 1
+        if (string == "nourriture"):
+            self._nourriture -= 1
+
     def aff(self):
         print "{",
         if self._linemate >= 1:
@@ -147,6 +165,8 @@ class player:
         self._inventaire = inventaire()
         self._action = action()
         self._queue = Queue.Queue()
+        self._elevation = elevation()
+        self._lvl = 1
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -222,6 +242,10 @@ class player:
         self._socket.send("voir\n")
         time.sleep(0.05)
 
+    def incantation(self):
+        self._socket.send("incantation\n")
+        print "INCATATION !!!!!!!!!!!!!!!!"
+
     def _treatCase(self, tab, i):
         tmp = 0
         x = 0
@@ -293,6 +317,13 @@ class player:
         self._queue.put(toSend)
         time.sleep(0.05)
 
+    def poserObject(self, Object):
+        toSend = "pose" + Object + "\n"
+        print "JE POSE UN OBJECT QUI EST : ", Object, " !!!!!!"
+        self._socket.send(toSend)
+        self._queue.put(toSend)
+        time.sleep(0.05)
+
     def findFood(self, emergency):
         j = 0
         x = 0
@@ -350,6 +381,13 @@ class player:
             return [x, y]
         return [-1, -1]
 
+    def CompareTwoPos(self, Pos1, Pos2):
+        tmp = math.fabs(self._posX - Pos1[0]) + math.fabs(self._posY - Pos1[1])
+        tmp2 = math.fabs(self._posX - Pos2[0]) + math.fabs(self._posY - Pos2[1])
+        if tmp < tmp2:
+            return True
+        return False
+
     def decideCaseToGo(self):
         tab = self.findFood(3)
         if tab[0] != -1 and tab[1] != -1:
@@ -359,8 +397,6 @@ class player:
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
             elif (self._inventaire._nourriture < 150):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 1)
-        if (self._inventaire._nourriture < 15):
-            self._action.addSecondAction(self._action._PossibleAction._linemate)
 
     def deplacementAbsolut(self, x, y):
         if (self._posX != x):
@@ -411,24 +447,38 @@ class player:
             i = i + 1
         return 0
 
+    def choseStoneToFind(self, area):
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = 0
+        res = [10000, 10000]
+        while i < self._action._secondAction.__len__():
+            tab = self.findStone(self._action._secondAction[i])
+            if (self.checkIfTabBelowToTab(area, tab) == 1 and self.CompareTwoPos(tab, res) == True):
+                res[0] = tab[0]
+                res[1] = tab[1]
+            i = i + 1
+        return res
+
     def moveToAction(self):
         if self._action._emergency == 3:
+#            print "find food only"
             self.deplacementAbsolut(self._action._x , self._action._y)
         else:
+#            print "Find stone too"
             x1 = self.myAbsolute(self._posX - self._action._x, self._lenMapX)
             x2 = self.myAbsolute(self._action._x - self._posX, self._lenMapX)
             y1 = self.myAbsolute(self._posY - self._action._y, self._lenMapY)
             y2 = self.myAbsolute(self._action._y - self._posY, self._lenMapY)
             area = self.createArea(x1, x2, y1, y2)
-            tab = self.findStone("linemate")
-            if (self.checkIfTabBelowToTab(area, tab) == 1):
+            tab = self.choseStoneToFind(area)
+            if (tab[0] != 10000):
                 self.deplacementAbsolut(tab[0], tab[1])
             else:
                 self.deplacementAbsolut(self._action._x, self._action._y)
 
     def takeObjectif(self):
-        if self._action._firstAction == self._action._PossibleAction._nourriture:
-            self.prendreObject("nourriture")
+        if self._action._firstAction >= self._action._PossibleAction._nourriture and self._action._firstAction <= self._action._PossibleAction._thystame:
+            self.prendreObject(self._action._tabPossibleAction[self._action._firstAction])
             tmp = self._lenMapX * self._posY + self._posX
             if (self._map[tmp]._nourriture > 0):
                 self._map[tmp]._nourriture -= 1
@@ -438,7 +488,8 @@ class player:
         i = self._lenMapX * self._posY + self._posX
         j = 0
         while j < self._action._secondAction.__len__():
-            if (self._action._secondAction[j] == self._action._PossibleAction._linemate and self._map[i]._linemate > 0):
+            if (self._action._secondAction[j] == self._action._PossibleAction._linemate and self._map[i]._linemate > 0
+):
                 self.prendreObject("linemate")
                 self._map[i]._linemate -= 1
             elif (self._action._secondAction[j] == self._action._PossibleAction._deraumere and self._map[i]._deraumere > 0):
@@ -483,24 +534,109 @@ class player:
             self.avance()
         self.voir()
 
+    def decideSecondAction(self):
+        myNeed = self._elevation.getNeed(self._lvl)
+        if (self._inventaire._linemate < myNeed._linemate):
+#            print "Need Linemate"
+            self._action.addSecondAction(self._action._PossibleAction._linemate)
+        else:
+#            print "Don't Need Linemate"
+            self._action.delSeconAction(self._action._PossibleAction._linemate)
+
+        if (self._inventaire._deraumere < myNeed._deraumere):
+ #           print "Need deraumere"
+            self._action.addSecondAction(self._action._PossibleAction._deraumere)
+        else:
+  #          print "Don't Need deraumere"
+            self._action.delSeconAction(self._action._PossibleAction._deraumere)
+
+        if (self._inventaire._sibur < myNeed._sibur):
+   #         print "Need sibur"
+            self._action.addSecondAction(self._action._PossibleAction._sibur)
+        else:
+    #        print "Don't Need sibur"
+            self._action.delSeconAction(self._action._PossibleAction._sibur)
+
+        if (self._inventaire._mendiane < myNeed._mendiane):
+     #       print "Need mendiane"
+            self._action.addSecondAction(self._action._PossibleAction._mendiane)
+        else:
+      #      print "Don't Need mendiane"
+            self._action.delSeconAction(self._action._PossibleAction._mendiane)
+
+        if (self._inventaire._phiras < myNeed._phiras):
+       #     print "Need phiras"
+            self._action.addSecondAction(self._action._PossibleAction._phiras)
+        else:
+        #    print "Don't Need phiras"
+            self._action.delSeconAction(self._action._PossibleAction._phiras)
+
+        if (self._inventaire._thystame < myNeed._thystame):
+         #   print "Need thustame"
+            self._action.addSecondAction(self._action._PossibleAction._thystame)
+        else:
+          #  print "Don't Need thustame"
+            self._action.delSeconAction(self._action._PossibleAction._thystame)
+
+    def putObjectIncantation(self):
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = self._lenMapX * self._posY + self._posX
+#        print "Need put object"
+        if (self._map[i]._linemate < myNeed._linemate):
+            self.poserObject("linemate")
+        if (self._map[i]._deraumere < myNeed._deraumere):
+            self.poserObject("deraumere")
+        if (self._map[i]._sibur < myNeed._sibur):
+            self.poserObject("sibur")
+        if (self._map[i]._mendiane < myNeed._mendiane):
+            self.poserObject("mendiane")
+        if (self._map[i]._phiras < myNeed._phiras):
+            self.poserObject("phiras")
+        if (self._map[i]._thystame < myNeed._thystame):
+            self.poserObject("thystame")
+
+    def incantIfPossible(self):
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = self._lenMapX * self._posY + self._posX
+#        print "I have : ", self._inventaire._linemate, " linemate and I need : ", myNeed._linemate
+        if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
+#            print "It's possible to incant"
+            if (self._map[i]._linemate >= myNeed._linemate and self._map[i]._deraumere >= myNeed._deraumere and self._map[i]._sibur >= myNeed._sibur and self._map[i]._mendiane >= myNeed._mendiane and self._map[i]._phiras >= myNeed._phiras and self._map[i]._thystame >= myNeed._thystame):
+#                print "Map linemate = ", self._map[i]._linemate, " need linemate = ", myNeed._linemate
+                self.incantation()
+                self._lvl = 2 #provisoir
+                return False
+            else:
+                self.putObjectIncantation()
+                self.voir()
+                return True
+        return False
+
     def findGoodMove(self):
+#        print "Find Good move"
+        elevationPossible = False
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
             if (tab[0] != -1 and tab[1] != -1):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
-        else:
+        elif self._action._emergency != 3:
             self.takeObject()
+            elevationPossible = self.incantIfPossible()
+        self.decideSecondAction()
         if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
             self.takeObjectif()
-        elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0):
+        elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False):
             self.moveToAction()
-        else:
+        elif elevationPossible == False:
             self.goToUnknow()
             self.decideCaseToGo()
         self.reduceProbabilities()
 
     def treatOk(self, trame):
         if trame == "ok" or trame == "ko":
-            tmp = self._queue.get()
-            if tmp.split(' ')[0] == "prend" and trame == "ok":
-                self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
+            if self._queue.empty() != True:
+                tmp = self._queue.get()
+                if tmp.split(' ')[0] == "prend" and trame == "ok":
+                    self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
+                if tmp.split(' ')[0] == "pose" and trame == "ok":
+                    self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
