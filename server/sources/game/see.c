@@ -1,11 +1,11 @@
 /*
 ** see.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Fri Jul  5 06:24:13 2013 louaze_j
+** Last update Fri Jul  5 19:05:16 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -14,8 +14,7 @@
 #include	"ressources.h"
 #include	"rel_positions.h"
 
-static
-const char	*see(t_player *player, const t_server *server, void *arg)
+const char	*_player_see(t_player *player, const t_server *server, void *arg)
 {
   unsigned int		i;
   unsigned int		index;
@@ -50,12 +49,4 @@ const char	*see(t_player *player, const t_server *server, void *arg)
     }
   printf("}\n");
   return (NULL);
-}
-
-void		_see(t_player *player)
-{
-  if (player)
-    {
-      player->see = &see;
-    }
 }

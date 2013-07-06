@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Fri Jul  5 10:54:42 2013 louaze_j
+** Last update Fri Jul  5 18:24:41 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -14,6 +14,8 @@
 #include	"lib_strings.h"
 #include	"server.h"
 #include	"player.h"
+
+#include	<stdio.h>
 
 static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
 {
@@ -49,10 +51,11 @@ static void	_server_treat_actions_for_player(const t_server *serv,
       //Extraire tout le contenu de la socket et apres decouper au \n pour voir
       // si ya plusieurs commandes;
       data = player->socket->read(player->socket, 424242);
+      printf("[GET:%s:%d] %s<\n", player->socket->_client->_ip, player->socket->_port, data);
       if (serv && serv->cmd &&
 	  (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, data)) >= 0)
 	if (serv->cmd->cmd[index])
-	  if ((data = serv->cmd->cmd[index](serv, data)))
+	  if ((data = serv->cmd->cmd[index](player, serv, (void*)data))) //player en param
 	    {
 	      if (player->io && player->io->out)
 		player->io->out->push_back((t_list**)&player->io->out, (void*)data);
@@ -62,7 +65,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
     }
 }
 
-bool		server_players_actions(const t_server *serv, fd_set *wfd)
+bool		server_players_actions(const t_server *serv, fd_set *rfd)
 {
   t_list	*list;
   t_player	*player;
@@ -73,7 +76,7 @@ bool		server_players_actions(const t_server *serv, fd_set *wfd)
       if (list->data)
 	{
 	  player = (t_player*)list->data;
-	  if (player && player->socket && FD_ISSET(player->socket->_socket, wfd))
+	  if (player && player->socket && FD_ISSET(player->socket->_socket, rfd))
 	    _server_treat_actions_for_player(serv, player);
 	}
       list = list->next;

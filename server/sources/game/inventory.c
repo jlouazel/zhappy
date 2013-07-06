@@ -1,11 +1,11 @@
 /*
 ** inventory.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Wed Jul  3 18:36:33 2013 louaze_j
-** Last update Thu Jul  4 01:13:06 2013 louaze_j
+** Last update Fri Jul  5 19:05:25 2013 julien fortin
 */
 
 #define		_GNU_SOURCE
@@ -18,8 +18,7 @@
 
 #include <string.h>
 
-static
-const char *	inventory(t_player *player, const t_server *server, void *arg)
+const char *	_player_inventory(t_player *player, const t_server *server, void *arg)
 {
   e_ressource		type;
 
@@ -36,12 +35,4 @@ const char *	inventory(t_player *player, const t_server *server, void *arg)
     }
   printf("}\n");
   return (NULL);
-}
-
-void		_inventory(t_player *player)
-{
-  if (player)
-    {
-      player->inventory = &inventory;
-    }
 }

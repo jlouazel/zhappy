@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Fri Jul  5 09:50:48 2013 louaze_j
+** Last update Fri Jul  5 18:39:22 2013 julien fortin
 */
 
 #ifndef __PLAYERS_H__
@@ -65,16 +65,16 @@ t_player        *create_player(const t_socket *);
 
 void            delete_player(t_player *);
 
-void		_advance(t_player *);
-void		_right(t_player *);
-void		_left(t_player *);
-void		_see(t_player *);
-void		_inventory(t_player *);
-void		_take(t_player *);
-void		_put(t_player *);
-void		_broadcast(t_player *);
-void		_connect_nbr(t_player *);
-void		_deport(t_player *);
-void		_fork(t_player *);
+const char	*_player_advance(t_player*, const t_server*, void*);
+const char	*_player_right(t_player*, const t_server*, void*);
+const char	*_player_left(t_player*, const t_server*, void*);
+const char	*_player_see(t_player*, const t_server*, void*);
+const char	*_player_inventory(t_player*, const t_server*, void*);
+const char	*_player_take(t_player*, const t_server*, void*);
+const char	*_player_put(t_player*, const t_server*, void*);
+const char	*_player_broadcast(t_player*, const t_server*, void*);
+const char	*_player_connect_nbr(t_player*, const t_server*, void*);
+const char	*_player_deport(t_player*, const t_server*, void*);
+const char	*_player_fork(t_player*, const t_server*, void*);
 
 #endif

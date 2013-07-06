@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Fri Jul  5 09:49:01 2013 louaze_j
+## Last update Fri Jul  5 14:26:46 2013 louaze_j
 ##
 
 CC			= gcc
@@ -46,6 +46,7 @@ UNIX_DIR		= unix/
 SRCS			= $(SRCS_DIR)main.c \
 			$(SRCS_DIR)run.c \
 			$(SRCS_DIR)server_loop.c \
+			$(SRCS_DIR)server_log.c \
 
 SRCS_INIT       	= $(SRCS_DIR)$(INIT_DIR)init_server.c \
 			$(SRCS_DIR)$(INIT_DIR)init_server_cmd.c \
