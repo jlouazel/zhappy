@@ -487,32 +487,27 @@ class player:
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
                 if tmp.split(' ')[0] == "pose" and trame == "ok":
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
-<<<<<<< HEAD
-# traitement de reception de broadcast trame = "message X,txt"                    
-        elif trame[0:7] == "message"
-=======
-        # traitement de reception de broadcast "message X,txt"
+        # traitement de reception de broadcast trame = "message X,txt"                    
         elif trame[0:7] == "message":
->>>>>>> 9d285d915a99b3f5ed982b4af052e268cd2ab582
         	direction = trame[8:9]
        		msg = base64.b64decode(trame[10:len(trame)+1])
        		print msg
         	if msg[0:1] == "IE":
-                    print ""
-                    # Incantation ennemie        	
+        		# Incantation ennemie
+	        	print ""
         	elif msg[0:1] == "I":
-                    # declaration d'une Incantation
-                    # exemple I012
-                    incantation_id = msg[1:3]
-                    incantation_lvl = msg[3:4]
-                elif msg[0:1] == "B":
-                    # besoin de ressources pour une incantation
-                    # exemple B01nJnLnDnSnMnPnT
-                    incantation_id = msg[1:3]
-                    nb_p = msg[3:4]
-                    nb_l = msg[5:6]
-                    nb_d = msg[7:8]
-                    nb_s = msg[9:10]
-                    nb_m = msg[11:12]
-                    nb_p = msg[13:14]
-                    nb_t = msg[15:16]
+        		# declaration d'une Incantation
+        		# exemple I012
+                incantation_id = msg[1:3]
+                incantation_lvl = msg[3:4]
+            elif msg[0:1] == "B":
+            	# besoin de ressources pour une incantation
+            	# exemple B01nJnLnDnSnMnPnT
+                incantation_id = msg[1:3]
+                nb_p = msg[3:4]
+                nb_l = msg[5:6]
+                nb_d = msg[7:8]
+                nb_s = msg[9:10]
+                nb_m = msg[11:12]
+                nb_p = msg[13:14]
+                nb_t = msg[15:16]
