@@ -4,6 +4,7 @@ import select
 import socket
 import time
 import sys
+from optparse import OptionParser
 from player import *
 
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
