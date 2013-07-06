@@ -399,45 +399,33 @@ class player:
     def decideSecondAction(self):
         myNeed = self._elevation.getNeed(self._lvl)
         if (self._inventaire._linemate < myNeed._linemate):
-#            print "Need Linemate"
             self._action.addSecondAction(self._action._PossibleAction._linemate)
         else:
-#            print "Don't Need Linemate"
             self._action.delSeconAction(self._action._PossibleAction._linemate)
 
         if (self._inventaire._deraumere < myNeed._deraumere):
- #           print "Need deraumere"
             self._action.addSecondAction(self._action._PossibleAction._deraumere)
         else:
-  #          print "Don't Need deraumere"
             self._action.delSeconAction(self._action._PossibleAction._deraumere)
 
         if (self._inventaire._sibur < myNeed._sibur):
-   #         print "Need sibur"
             self._action.addSecondAction(self._action._PossibleAction._sibur)
         else:
-    #        print "Don't Need sibur"
             self._action.delSeconAction(self._action._PossibleAction._sibur)
 
         if (self._inventaire._mendiane < myNeed._mendiane):
-     #       print "Need mendiane"
             self._action.addSecondAction(self._action._PossibleAction._mendiane)
         else:
-      #      print "Don't Need mendiane"
             self._action.delSeconAction(self._action._PossibleAction._mendiane)
 
         if (self._inventaire._phiras < myNeed._phiras):
-       #     print "Need phiras"
             self._action.addSecondAction(self._action._PossibleAction._phiras)
         else:
-        #    print "Don't Need phiras"
             self._action.delSeconAction(self._action._PossibleAction._phiras)
 
         if (self._inventaire._thystame < myNeed._thystame):
-         #   print "Need thustame"
             self._action.addSecondAction(self._action._PossibleAction._thystame)
         else:
-          #  print "Don't Need thustame"
             self._action.delSeconAction(self._action._PossibleAction._thystame)
 
     def putObjectIncantation(self):
@@ -459,16 +447,15 @@ class player:
     def incantIfPossible(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-#        print "I have : ", self._inventaire._linemate, " linemate and I need : ", myNeed._linemate
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
-#            print "It's possible to incant"
             if (self._map[i]._linemate >= myNeed._linemate and self._map[i]._deraumere >= myNeed._deraumere and self._map[i]._sibur >= myNeed._sibur and self._map[i]._mendiane >= myNeed._mendiane and self._map[i]._phiras >= myNeed._phiras and self._map[i]._thystame >= myNeed._thystame):
-#                print "Map linemate = ", self._map[i]._linemate, " need linemate = ", myNeed._linemate
                 self.incantation()
                 self._lvl = 2 #provisoir
                 return False
             else:
+                #if Il manque des objects :
                 self.putObjectIncantation()
+                #elif Il manque des personnes brodcast Incantation
                 self.voir()
                 return True
         return False
@@ -500,3 +487,4 @@ class player:
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
                 if tmp.split(' ')[0] == "pose" and trame == "ok":
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
+        # treat le broadcast que le serveur nous envois.
