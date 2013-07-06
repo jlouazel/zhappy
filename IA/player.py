@@ -498,16 +498,16 @@ class player:
         	elif msg[0:1] == "I":
         		# declaration d'une Incantation
         		# exemple I012
-                incantation_id = msg[1:3]
-                incantation_lvl = msg[3:4]
-            elif msg[0:1] == "B":
-            	# besoin de ressources pour une incantation
-            	# exemple B01nJnLnDnSnMnPnT
-                incantation_id = msg[1:3]
-                nb_p = msg[3:4]
-                nb_l = msg[5:6]
-                nb_d = msg[7:8]
-                nb_s = msg[9:10]
-                nb_m = msg[11:12]
-                nb_p = msg[13:14]
-                nb_t = msg[15:16]
+                    incantation_id = msg[1:3]
+                    incantation_lvl = msg[3:4]
+                elif msg[0:1] == "B":
+                    # besoin de ressources pour une incantation
+                    # exemple B01nJnLnDnSnMnPnT
+                    incantation_id = msg[1:3]
+                    nb_p = msg[3:4]
+                    nb_l = msg[5:6]
+                    nb_d = msg[7:8]
+                    nb_s = msg[9:10]
+                    nb_m = msg[11:12]
+                    nb_p = msg[13:14]
+                    nb_t = msg[15:16]
