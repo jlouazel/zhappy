@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sun Jul  7 18:21:55 2013 julien fortin
+** Last update Sun Jul  7 18:41:57 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -42,19 +42,25 @@ static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
 static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
 					     const char *cmd)
 {
+  int		i;
   int		index;
 
   printf("[GET:%s:%d]:%s<\n", player->socket->_client->_ip, player->socket->_port, cmd);
   if (serv && serv->cmd &&
       (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, cmd)) >= 0)
     if (serv->cmd->cmd[index])
-      if ((cmd = serv->cmd->cmd[index](player, serv, (void*)cmd)))
-	{
-	  if (player->io && player->io->out)
-	    player->io->out->push_back((t_list**)&player->io->out, (void*)cmd);
-	  else if (player->io)
-	    ((t_io*)player->io)->out = new_list((void*)cmd);
-	}
+      {
+	i = find_first_of(cmd, ' ');
+	if ((cmd = serv->cmd->cmd[index](player, serv,
+					 (void*)epur_begin_str
+					 (deconst_cast(i > 0 ? cmd + i : cmd), " \t"))))
+	  {
+	    if (player->io && player->io->out)
+	      player->io->out->push_back((t_list**)&player->io->out, (void*)cmd);
+	    else if (player->io)
+	      ((t_io*)player->io)->out = new_list((void*)cmd);
+	  }
+      }
 }
 
 static t_list	*_server_extract_data_packet(char *data,
@@ -97,7 +103,9 @@ static void	_server_treat_actions_for_player(const t_server *serv,
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     {
-      list = _server_extract_data_packet(replace_char(player->socket->read(player->socket, 424242), '\r', ' '), NULL, NULL);
+      list = _server_extract_data_packet
+	(replace_char(player->socket->read
+		      (player->socket, 424242), '\r', ' '), NULL, NULL);
       puts("##################+");
       while (list)
 	{
