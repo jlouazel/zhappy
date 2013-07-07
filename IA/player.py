@@ -68,7 +68,7 @@ class player:
         self._orientation = (self._orientation + 1) % 4
 
     def avance(self):
-        print "avance"
+        #print "avance"
         self._socket.send("avance\n")
         self._queue.put("avance\n")
         time.sleep(0.05)
@@ -146,7 +146,7 @@ class player:
             tmpy = (self.myAbsolute(self._posY - x, self._lenMapY)) % self._lenMapY
             tmpx = (self.myAbsolute(self._posX - y, self._lenMapX)) % self._lenMapX
         i = self._lenMapX * tmpy + tmpx
-        self._map[i].reset();
+        self._map[i].reset()
         self._map[i].set(tab)
 
     def changeMapVoir(self, answer):
@@ -410,18 +410,24 @@ class player:
     def decideSecondAction(self):
         myNeed = self._elevation.getNeed(self._lvl)
         if (self._inventaire._linemate < myNeed._linemate):
+            #print "add linemate"
             self._action.addSecondAction(self._action._PossibleAction._linemate)
         else:
+            #print "del linemate"
             self._action.delSeconAction(self._action._PossibleAction._linemate)
 
         if (self._inventaire._deraumere < myNeed._deraumere):
+            #print "add deraumere"
             self._action.addSecondAction(self._action._PossibleAction._deraumere)
         else:
+            #print "del deraumere"
             self._action.delSeconAction(self._action._PossibleAction._deraumere)
 
         if (self._inventaire._sibur < myNeed._sibur):
+            #print "add sibur"
             self._action.addSecondAction(self._action._PossibleAction._sibur)
         else:
+            #print "del sibur"
             self._action.delSeconAction(self._action._PossibleAction._sibur)
 
         if (self._inventaire._mendiane < myNeed._mendiane):
@@ -477,17 +483,17 @@ class player:
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame):
                 self.incantation()
-                print "elevation"
+                #print "elevation"
                 return False
             elif (self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame):
                 #if Il manque des objects :
-                print "I can't move."
+                #print "I can't move."
                 self.putObjectIncantation()
                 #elif Il manque des personnes brodcast Incantation
                 self.voir()
                 return True
             elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
-                print "I can't move."
+                #print "I can't move."
                 self.takeObjectIncantation()
                 self.voir()
                 return True
@@ -495,7 +501,7 @@ class player:
 
     def findGoodMove(self):
         elevationPossible = False
-#        self._action.affSecondAction()
+        #self._action.affSecondAction()
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
             if (tab[0] != -1 and tab[1] != -1):
@@ -514,7 +520,6 @@ class player:
         self.reduceProbabilities()
 
     def treatOk(self, trame):
-#        print trame
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
                 tmp = self._queue.get()

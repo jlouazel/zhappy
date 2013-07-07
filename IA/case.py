@@ -9,6 +9,7 @@ class case:
         self._phiras = 0
         self._thystame = 0
         self._nourriture = 0
+        self._players = 0
         self._probabilities = 0
 
     def reset(self):
@@ -19,6 +20,7 @@ class case:
         self._phiras = 0
         self._thystame = 0
         self._nourriture = 0
+        self._players = 0
         self._probabilities = 100
 
     def set(self, tab):
@@ -38,6 +40,8 @@ class case:
                 self._thystame += 1
             if (tab[i] == "nourriture" or tab[i] == "nourriture}"):
                 self._nourriture += 1
+            if (tab[i] == "joueur" or tab[i] == "joueur}"):
+                self._players += 1
             i = i + 1
 
     def aff(self):
@@ -54,6 +58,8 @@ class case:
             print "phiras, ",
         if self._thystame >= 1:
             print "thystame, ",
+        if self._players >= 1:
+            print "players, "
         if self._nourriture >= 1:
             print "nourriture",
         print "}",
