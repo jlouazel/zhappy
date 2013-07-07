@@ -1,19 +1,11 @@
 /*
-** server_loop.c for zhappy in /home/fortin_j/tek2/projects/zappy/fortin_j/server
-**
-** Made by julien fortin
-** Login   <fortin_j@epitech.net>
-**
-** Started on  Tue Jun  4 03:50:35 2013 julien fortin
-<<<<<<< HEAD
-** Last update Fri Jul  5 17:52:52 2013 julien fortin
-=======
-<<<<<<< HEAD
-** Last update Wed Jul  3 15:25:30 2013 julien fortin
-=======
-** Last update Wed Jul  3 23:53:27 2013 louaze_j
->>>>>>> e7e9f9b10b68c4ddc90f6ce03838e38d97063e6c
->>>>>>> e9fd51fd031ad594a5df0fc512cc5bb34f78eae8
+** server_loop.c for zhappy in /home/louaze_j
+** 
+** Made by louaze_j
+** Login   <louaze_j@epitech.net>
+** 
+** Started on  Sun Jul  7 15:42:45 2013 louaze_j
+** Last update Sun Jul  7 16:57:13 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -57,6 +49,7 @@ static int	_server_action(const t_server *server,
   return (EXIT_SUCCESS);
 }
 
+#include <unistd.h>
 int	server_loop(const t_server *server)
 {
   static int		fail_select = 0;
@@ -65,6 +58,7 @@ int	server_loop(const t_server *server)
   fd_set		wfd;
   int			max_fd;
 
+  sleep(1);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
     {

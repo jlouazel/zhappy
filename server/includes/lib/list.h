@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun 25 17:02:03 2013 julien fortin
-** Last update Mon Jul  1 23:32:09 2013 julien fortin
+** Last update Sun Jul  7 18:03:44 2013 louaze_j
 */
 
 #ifndef	__STDLIST_H__
@@ -26,6 +26,7 @@ typedef struct	s_list
   void		*(*at)(const struct s_list*, size_t);
   void		*(*pop_front)(struct s_list**);
   void		*(*pop_back)(struct s_list**);
+  void		*(*erase)(struct s_list**, void *);
   bool		(*push_back)(struct s_list**, void*);
   bool		(*push_front)(struct s_list**, void*);
   size_t	(*size)(const struct s_list*);

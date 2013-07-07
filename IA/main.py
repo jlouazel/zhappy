@@ -28,7 +28,7 @@ host = options.host
 
 connexion.connect((host, int(port)))
 
-myPlayer = player(10, 10, connexion, teamName)
+myPlayer = player(connexion, teamName)
 inputs = [connexion]
 outputs = []
 timeout = 0.1
@@ -45,6 +45,7 @@ while 42 :
         for s in inputready:
             if s == connexion:
                 answer = connexion.recv(1000)
+#                print "[", answer, "]"
                 if (len(answer) == 0):
                     print "Server Disconnected"
                     sys.exit()

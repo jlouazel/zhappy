@@ -5,13 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Fri Jul  5 18:24:41 2013 julien fortin
+** Last update Sun Jul  7 18:04:28 2013 julien fortin
 */
 
 #include	<sys/select.h>
 #include	<string.h>
-#include	"lib_std.h"
 #include	"lib_strings.h"
+#include	"lib_std.h"
 #include	"server.h"
 #include	"player.h"
 
@@ -39,29 +39,73 @@ static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
   return (-1);
 }
 
+static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
+					     const char *cmd)
+{
+  int		index;
+
+  printf("[GET:%s:%d] %s<\n", player->socket->_client->_ip, player->socket->_port, cmd);
+  if (serv && serv->cmd &&
+      (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, cmd)) >= 0)
+    if (serv->cmd->cmd[index])
+      if ((cmd = serv->cmd->cmd[index](player, serv, (void*)cmd)))
+	{
+	  if (player->io && player->io->out)
+	    player->io->out->push_back((t_list**)&player->io->out, (void*)cmd);
+	  else if (player->io)
+	    ((t_io*)player->io)->out = new_list((void*)cmd);
+	}
+}
+
+static t_list	*_server_extract_data_packet(char *data,
+					     char *new,
+					     t_list *list)
+{
+  static char	*packet = NULL;
+  int		index;
+
+  while (data && (data = epur_begin_str(data, " \t"))
+	 && data[0] && my_strlen(data) > 0)
+    {
+      if ((index = find_first_of(data, '\n')) < 0)
+	{
+	  packet = packet ? my_concat(packet, data, NULL) : my_strdup(data);
+	  data = NULL;
+	}
+      else
+	{
+	  new = my_strndup(data, 0, index);
+	  if (packet)
+	    {
+	      new = my_concat(packet, new, NULL);
+	      packet = NULL;
+	    }
+	  (list ? (list->push_back(&list, (void*)new))
+	   : (void)(list = new_list((void*)new)));
+	  data = epur_begin_str(data + index, "\n");
+	}
+    }
+  return (list);
+}
+
+
 static void	_server_treat_actions_for_player(const t_server *serv,
 						 t_player *player)
 {
-  const char	*data;
-  int		index;
+  t_list	*list;
 
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     {
-      //Extraire tout le contenu de la socket et apres decouper au \n pour voir
-      // si ya plusieurs commandes;
-      data = player->socket->read(player->socket, 424242);
-      printf("[GET:%s:%d] %s<\n", player->socket->_client->_ip, player->socket->_port, data);
-      if (serv && serv->cmd &&
-	  (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, data)) >= 0)
-	if (serv->cmd->cmd[index])
-	  if ((data = serv->cmd->cmd[index](player, serv, (void*)data))) //player en param
-	    {
-	      if (player->io && player->io->out)
-		player->io->out->push_back((t_list**)&player->io->out, (void*)data);
-	      else if (player->io)
-		((t_io*)player->io)->out = new_list((void*)data);
-	    }
+      list = _server_extract_data_packet(player->socket->read(player->socket, 424242), NULL, NULL);
+      puts("##################+");
+      while (list)
+	{
+	  if (list->data)
+	    _server_treat_cmd_for_player(serv, player, (const char*)list->data);
+	  list = list->next;
+	}
+      puts("##################-");
     }
 }
 

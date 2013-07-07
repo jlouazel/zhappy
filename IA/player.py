@@ -21,15 +21,14 @@ class player:
             self._map.append(case())
             i = i + 1
 
-    def __init__(self, lenMapX, lenMapY, socket, team):
+    def __init__(self, socket, team):
         self._posX = 0
         self._posY = 0
-        self._lenMapX = lenMapX
-        self._lenMapY = lenMapY
+        self._lenMapX = 0
+        self._lenMapY = 0
         self._socket = socket
         self._orientation = 0
         self._map = []
-        self._createMap()
         self._team = team
         self._inventaire = inventaire()
         self._action = action()
@@ -41,6 +40,15 @@ class player:
     def connect(self):
         self._socket.send(self._team + "\n")
         time.sleep(0.05)
+        answer = self._socket.recv(1000)
+        answer = answer.split('\n')
+        self._numClient = int(answer[1])
+        answer = answer[2].split(' ')
+        self._lenMapX = int(answer[0])
+        self._lenMapY = int(answer[1])
+        self._createMap()
+        self.inventaire()
+        self.fork()
 
     def broadcast(self, msg)
     	self._socket.send(msg)
@@ -67,6 +75,7 @@ class player:
         self._orientation = (self._orientation + 1) % 4
 
     def avance(self):
+        print "avance"
         self._socket.send("avance\n")
         self._queue.put("avance\n")
         time.sleep(0.05)
@@ -117,6 +126,7 @@ class player:
 
     def incantation(self):
         self._socket.send("incantation\n")
+        self._queue.put("incantation\n")
 
     def _treatCase(self, tab, i):
         tmp = 0
@@ -162,6 +172,9 @@ class player:
             if (i % self._lenMapX == 0):
                 print ""
 
+    def fork(self):
+        self._socket.send("fork\n")
+
     def reduceProbabilities(self):
         i = 0
         while i < self._map.__len__():
@@ -181,7 +194,6 @@ class player:
             tab[i] = tab[i].split(' ')
             self._inventaire.modifie(tab[i][0], int(tab[i][1]))
             i = i + 1
-        self._inventaire.aff()
 
     def prendreObject(self, Object):
         toSend = "prend " + Object + "\n"
@@ -352,7 +364,6 @@ class player:
             if (self._map[tmp]._nourriture > 0):
                 self._map[tmp]._nourriture -= 1
         self._action._define = -1
-
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
         j = 0
@@ -451,6 +462,7 @@ class player:
         if (self._map[i]._thystame < myNeed._thystame):
             self.poserObject("thystame")
 
+<<<<<<< HEAD
 # a modifier : pu de check d'inventaire, incantation en 3 etapes : on annonce l'incantation si y'a rien a notre niveau dans la queue d'incantation, on stock l'id de notre incantation dans notre queue, puis on broadcast des demandes de "besoin"
     def incantIfPossible(self):
         myNeed = self._elevation.getNeed(self._lvl)
@@ -468,10 +480,49 @@ class player:
         else:
         	# broadcast besoin
         	print ""
+=======
+    def takeObjectIncantation(self):
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = self._lenMapX * self._posY + self._posX
+        if (self._map[i]._linemate > myNeed._linemate):
+            self.prendreObject("linemate")
+        if (self._map[i]._deraumere > myNeed._deraumere):
+            self.prendreObject("deraumere")
+        if (self._map[i]._sibur > myNeed._sibur):
+            self.prendreObject("sibur")
+        if (self._map[i]._mendiane > myNeed._mendiane):
+            self.prendreObject("mendiane")
+        if (self._map[i]._phiras > myNeed._phiras):
+            self.prendreObject("phiras")
+        if (self._map[i]._thystame > myNeed._thystame):
+            self.prendreObject("thystame")
+
+    def incantIfPossible(self):
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = self._lenMapX * self._posY + self._posX
+        if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
+            if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame):
+                self.incantation()
+                print "elevation"
+                return False
+            elif (self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame):
+                #if Il manque des objects :
+                print "I can't move."
+                self.putObjectIncantation()
+                #elif Il manque des personnes brodcast Incantation
+                self.voir()
+                return True
+            elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
+                print "I can't move."
+                self.takeObjectIncantation()
+                self.voir()
+                return True
+>>>>>>> a36ebcd3564011d045ef9bd246579c151c8bcf44
         return False
 
     def findGoodMove(self):
         elevationPossible = False
+#        self._action.affSecondAction()
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
             if (tab[0] != -1 and tab[1] != -1):
@@ -490,6 +541,7 @@ class player:
         self.reduceProbabilities()
 
     def treatOk(self, trame):
+#        print trame
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
                 tmp = self._queue.get()
@@ -497,7 +549,11 @@ class player:
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
                 if tmp.split(' ')[0] == "pose" and trame == "ok":
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
-        # traitement de reception de broadcast trame = "message X,txt"                    
+        # traitement de reception de broadcast trame = "message X,txt"
+        elif trame[0:6] == "niveau":
+            print "I up"
+            self._lvl = self._lvl + 1
+            self._queue.get()
         elif trame[0:7] == "message":
         	direction = trame[8:9]
        		msg = base64.b64decode(trame[10:len(trame)+1])
