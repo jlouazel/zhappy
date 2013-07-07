@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sun Jul  7 14:55:09 2013 louaze_j
+** Last update Sun Jul  7 16:56:14 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -47,8 +47,9 @@ t_player	*create_player(const t_socket *socket)
   return (new_player);
 }
 
-void		delete_player(t_player *player)
+void		delete_player(const t_server *server, t_player *player)
 {
+  (void)server;
   if (player)
     {
       /**/

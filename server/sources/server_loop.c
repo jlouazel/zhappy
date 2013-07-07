@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
-** Last update Sun Jul  7 15:42:46 2013 louaze_j
+** Last update Sun Jul  7 16:57:13 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -49,6 +49,7 @@ static int	_server_action(const t_server *server,
   return (EXIT_SUCCESS);
 }
 
+#include <unistd.h>
 int	server_loop(const t_server *server)
 {
   static int		fail_select = 0;
@@ -57,6 +58,7 @@ int	server_loop(const t_server *server)
   fd_set		wfd;
   int			max_fd;
 
+  sleep(1);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
     {
