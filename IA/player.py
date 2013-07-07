@@ -5,11 +5,14 @@ import cmath
 import math
 import Queue
 import base64
+import collections
 
 from action import *
 from elevation import *
 from case import *
 from inventaire import *
+
+defaultdict = collections.defaultdict
 
 class player:
     def _createMap(self):
@@ -32,6 +35,7 @@ class player:
         self._queue = Queue.Queue()
         self._elevation = elevation()
         self._lvl = 1
+        self._processing = defaultdict(int)
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -45,6 +49,9 @@ class player:
         self._createMap()
         self.inventaire()
         self.fork()
+
+    def broadcast(self, msg)
+    	self._socket.send(msg)
 
     def myAbsolute(self, nb, opt):
         if (nb >= 0):
@@ -455,6 +462,24 @@ class player:
         if (self._map[i]._thystame < myNeed._thystame):
             self.poserObject("thystame")
 
+# a modifier : pu de check d'inventaire, incantation en 3 etapes : on annonce l'incantation si y'a rien a notre niveau dans la queue d'incantation, on stock l'id de notre incantation dans notre queue, puis on broadcast des demandes de "besoin"
+    def incantIfPossible(self):
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = self._lenMapX * self._posY + self._posX
+        self.voir()
+        time.sleep(0.05)
+        if (self._map[i]._players == myNeed._joueur)
+        	if (self._map[i]._linemate >= myNeed._linemate and self._map[i]._deraumere >= myNeed._deraumere and self._map[i]._sibur >= myNeed._sibur and self._map[i]._mendiane >= myNeed._mendiane and self._map[i]._phiras >= myNeed._phiras and self._map[i]._thystame >= myNeed._thystame):
+                self.incantation()
+                self._lvl = 2 #provisoir
+                return True
+            else:
+               	self.putObjectIncantation()
+                return True
+        else:
+        	# broadcast besoin
+        	print ""
+
     def takeObjectIncantation(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
@@ -470,28 +495,6 @@ class player:
             self.prendreObject("phiras")
         if (self._map[i]._thystame > myNeed._thystame):
             self.prendreObject("thystame")
-
-    def incantIfPossible(self):
-        myNeed = self._elevation.getNeed(self._lvl)
-        i = self._lenMapX * self._posY + self._posX
-        if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
-            if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame):
-                self.incantation()
-                print "elevation"
-                return False
-            elif (self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame):
-                #if Il manque des objects :
-                print "I can't move."
-                self.putObjectIncantation()
-                #elif Il manque des personnes brodcast Incantation
-                self.voir()
-                return True
-            elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
-                print "I can't move."
-                self.takeObjectIncantation()
-                self.voir()
-                return True
-        return False
 
     def findGoodMove(self):
         elevationPossible = False
@@ -531,22 +534,27 @@ class player:
         	direction = trame[8:9]
        		msg = base64.b64decode(trame[10:len(trame)+1])
        		print msg
-        	if msg[0:1] == "IE":
+        	if msg[0:2] == "IE":
         		# Incantation ennemie
 	        	print ""
+	        elif msg [0:2] == "IT":
+	        	incantation_id = msg[2:4]
+	        	del self._processing[incantation_id]
         	elif msg[0:1] == "I":
         		# declaration d'une Incantation
         		# exemple I012
-                    incantation_id = msg[1:3]
-                    incantation_lvl = msg[3:4]
-                elif msg[0:1] == "B":
-                    # besoin de ressources pour une incantation
-                    # exemple B01nJnLnDnSnMnPnT
-                    incantation_id = msg[1:3]
-                    nb_p = msg[3:4]
-                    nb_l = msg[5:6]
-                    nb_d = msg[7:8]
-                    nb_s = msg[9:10]
-                    nb_m = msg[11:12]
-                    nb_p = msg[13:14]
-                    nb_t = msg[15:16]
+                incantation_id = msg[1:3]
+                incantation_lvl = msg[3:4]
+                self._processing[incantation_id] = incantation_lvl
+            elif msg[0:1] == "B":
+            	# besoin de ressources pour une incantation
+            	# exemple B01nJnLnDnSnMnPnT
+                incantation_id = msg[1:3]
+                incantation_lvl = self._processing[incantation_id]
+                nb_p = msg[3:4]
+                nb_l = msg[5:6]
+                nb_d = msg[7:8]
+                nb_s = msg[9:10]
+                nb_m = msg[11:12]
+                nb_p = msg[13:14]
+                nb_t = msg[15:16]

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun 25 17:02:03 2013 julien fortin
-** Last update Sun Jul  7 18:03:44 2013 louaze_j
+** Last update Sun Jul  7 18:14:58 2013 louaze_j
 */
 
 #ifndef	__STDLIST_H__
