@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Fri Jul  5 14:26:46 2013 louaze_j
+## Last update Sun Jul  7 16:57:03 2013 julien fortin
 ##
 
 CC			= gcc
@@ -108,6 +108,7 @@ LIB_SRCS		+= $(LIB_DIR)$(UNIX_DIR)dup.c \
 LIB_SRCS		+= $(LIB_DIR)$(STR_DIR)find.c \
 			$(LIB_DIR)$(STR_DIR)cmp.c \
 			$(LIB_DIR)$(STR_DIR)concat.c \
+			$(LIB_DIR)$(STR_DIR)epur.c \
 			$(LIB_DIR)$(STR_DIR)string_dup.c \
 			$(LIB_DIR)$(STR_DIR)string_len.c \
 

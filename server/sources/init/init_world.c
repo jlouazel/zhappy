@@ -5,46 +5,20 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Tue Jul  2 10:25:55 2013 louaze_j
-** Last update Fri Jul  5 15:57:36 2013 louaze_j
+** Last update Sun Jul  7 16:15:18 2013 louaze_j
 */
 
 #include	<stdio.h>
 
 #include	<stdbool.h>
 #include	<strings.h>
-#include	"log.h"
 #include	"world.h"
 #include	"square.h"
 #include	"player.h"
 #include	"lib_std.h"
 #include	"ressources.h"
 #include	"server_data_options.h"
-
-static void	log_map(double cnt, double tot)
-{
-  int		i;
-  int		percent;
-  static bool	done = false;
-
-  if (done == false)
-    {
-      printf("\033[%d;%dH", 3, 0);
-      printf("Building map: [");
-      printf("\033[%d;%dH", 3, 116);
-      printf("]\n");
-      done = true;
-    }
-  i = 0;
-  percent = ((cnt / tot) * 100);
-  while (i != percent)
-    {
-      printf("\033[%d;%dH", 3, i + 16);
-      printf("#");
-      i++;
-    }
-  printf("\033[%d;%dH", 3, 118);
-  printf("%d%%\n", percent);
-}
+#include	"log.h"
 
 static bool	place_ressources(t_world *world)
 {
@@ -74,27 +48,26 @@ static bool	place_ressources(t_world *world)
 
 static t_list	*create_world(const t_options *options)
 {
-  unsigned int	x;
-  unsigned int	y;
+  int		x;
+  int		y;
   t_list	*squares;
 
-  x = 0;
-  y = 0;
+  x = options->x - 1;
+  y = options->y - 1;
   squares = NULL;
-  server_login();
-  while (y != options->y)
+  while (y >= 0)
     {
-      x = 0;
-      while (x != options->x)
+      x = options->x - 1;;
+      while (x >= 0)
 	{
 	  if (!squares)
 	    squares = new_list(new_square(x, y));
 	  else
-	    squares->push_back(&squares, new_square(x, y));
-	  x++;
-	  log_map(x + y * options->x, options->x * options->y);
+	    squares->push_front(&squares, new_square(x, y));
+	  x--;
+	  //	  log_map(x + y * options->x, options->x * options->y);
 	}
-      y++;
+      y--;
     }
   return (squares);
 }
