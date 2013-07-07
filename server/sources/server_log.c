@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Sun Jul  7 14:30:48 2013 louaze_j
+** Last update Sun Jul  7 16:44:56 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -40,14 +40,14 @@ void		log_map(double cnt, double tot)
       printf("]\n");
       done = true;
     }
-  i = 0;
   percent = ((cnt / tot) * 100);
-  while (i != percent)
+  i = percent;
+  while (100 - i != 0)
     {
-      printf("\033[%d;%dH", 3, i + 16);
+      printf("\033[%d;%dH", 3, 100 - (i + 16));
       printf("#");
-      i++;
+      percent--;
     }
   printf("\033[%d;%dH", 3, 118);
-  printf("%d%%\n", percent);
+  printf("%d%%\n", percent - 100);
 }

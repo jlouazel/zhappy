@@ -5,11 +5,14 @@ import cmath
 import math
 import Queue
 import base64
+import collections
 
 from action import *
 from elevation import *
 from case import *
 from inventaire import *
+
+defaultdict = collections.defaultdict
 
 class player:
     def _createMap(self):
@@ -32,6 +35,7 @@ class player:
         self._queue = Queue.Queue()
         self._elevation = elevation()
         self._lvl = 1
+        self._processing = defaultdict(int)
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -45,6 +49,9 @@ class player:
         self._createMap()
         self.inventaire()
         self.fork()
+
+    def broadcast(self, msg):
+    	self._socket.send(msg)
 
     def myAbsolute(self, nb, opt):
         if (nb >= 0):
@@ -489,7 +496,6 @@ class player:
                 #if Il manque des objects :
                 #print "I can't move."
                 self.putObjectIncantation()
-                #elif Il manque des personnes brodcast Incantation
                 self.voir()
                 return True
             elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
@@ -497,6 +503,8 @@ class player:
                 self.takeObjectIncantation()
                 self.voir()
                 return True
+            #elif Il manque des personnes brodcast Incantation
+            
         return False
 
     def findGoodMove(self):
@@ -533,25 +541,30 @@ class player:
             self._lvl = self._lvl + 1
             self._queue.get()
         elif trame[0:7] == "message":
-        	direction = trame[8:9]
-       		msg = base64.b64decode(trame[10:len(trame)+1])
-       		print msg
-        	if msg[0:1] == "IE":
-        		# Incantation ennemie
-	        	print ""
-        	elif msg[0:1] == "I":
-        		# declaration d'une Incantation
-        		# exemple I012
-                    incantation_id = msg[1:3]
-                    incantation_lvl = msg[3:4]
-                elif msg[0:1] == "B":
-                    # besoin de ressources pour une incantation
-                    # exemple B01nJnLnDnSnMnPnT
-                    incantation_id = msg[1:3]
-                    nb_p = msg[3:4]
-                    nb_l = msg[5:6]
-                    nb_d = msg[7:8]
-                    nb_s = msg[9:10]
-                    nb_m = msg[11:12]
-                    nb_p = msg[13:14]
-                    nb_t = msg[15:16]
+            direction = trame[8:9]
+            msg = base64.b64decode(trame[10:len(trame)+1])
+            print msg
+            if msg[0:2] == "IE":
+                # Incantation ennemie
+                print ""
+            elif msg [0:2] == "IT":
+                incantation_id = msg[2:4]
+                del self._processing[incantation_id]
+            elif msg[0:1] == "I":
+                # declaration d'une Incantation
+                # exemple I012
+                incantation_id = msg[1:3]
+                incantation_lvl = msg[3:4]
+                self._processing[incantation_id] = incantation_lvl
+            elif msg[0:1] == "B":
+            	# besoin de ressources pour une incantation
+            	# exemple B01nJnLnDnSnMnPnT
+                incantation_id = msg[1:3]
+                incantation_lvl = self._processing[incantation_id]
+                nb_p = msg[3:4]
+                nb_l = msg[5:6]
+                nb_d = msg[7:8]
+                nb_s = msg[9:10]
+                nb_m = msg[11:12]
+                nb_p = msg[13:14]
+                nb_t = msg[15:16]
