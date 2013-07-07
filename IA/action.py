@@ -40,9 +40,18 @@ class   action:
         i = 0
         while i < self._secondAction.__len__():
             if self._secondAction[i] == toDel:
-                i = -1
+                i = 0
                 self._secondAction.remove(self._secondAction[i])
+            else:
+                i = i + 1
+
+    def affSecondAction(self):
+        i = 0
+        print "["
+        while i < self._secondAction.__len__():
+            print self._tabPossibleAction[self._secondAction[i]], " "
             i = i + 1
+        print "]"
 
     def addThirdAction(self, thirdAction):
         if thirdAction in self._thirdAction == False:
