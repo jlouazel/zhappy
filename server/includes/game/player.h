@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Fri Jul  5 18:39:22 2013 julien fortin
+** Last update Sun Jul  7 16:53:04 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -62,8 +62,7 @@ typedef struct  s_player
 } t_player;
 
 t_player        *create_player(const t_socket *);
-
-void            delete_player(t_player *);
+void            delete_player(const t_server *, t_player *);
 
 const char	*_player_advance(t_player*, const t_server*, void*);
 const char	*_player_right(t_player*, const t_server*, void*);

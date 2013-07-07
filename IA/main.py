@@ -45,6 +45,7 @@ while 42 :
         for s in inputready:
             if s == connexion:
                 answer = connexion.recv(1000)
+#                print "[", answer, "]"
                 if (len(answer) == 0):
                     print "Server Disconnected"
                     sys.exit()
