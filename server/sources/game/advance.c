@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 17:32:06 2013 louaze_j
-** Last update Fri Jul  5 19:09:30 2013 julien fortin
+** Last update Sun Jul  7 18:37:07 2013 louaze_j
 */
 
 #include	"player.h"
@@ -36,6 +36,8 @@ const char	*_player_advance(t_player *player, const t_server *server, void *arg)
 {
   puts("COUCOU JADANCECECE");
   (void)arg;
+  printf("%d-%d\n", player->x, player->y);
   modify_coors(player, server->game->world);
+  printf("%d-%d\n", player->x, player->y);
   return ("OK\n");
 }

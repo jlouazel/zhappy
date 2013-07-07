@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Sun Jul  7 18:26:34 2013 louaze_j
+** Last update Mon Jul  8 01:40:03 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -28,16 +28,20 @@ static void	see_player(t_player *player, const t_server *server, int x, int y)
     }
 }
 
+#include "str_directions.h"
 const char	*_player_see(t_player *player, const t_server *server, void *arg)
 {
-  unsigned int		i;
-  unsigned int		index;
-  e_ressource		type;
-  t_square		*sq;
+  int		x;
+  int		y;
+  unsigned int	i;
+  t_square	*sq;
+  e_ressource	type;
+  unsigned int	index;
 
   i = 0;
   (void)arg;
   index = 0;
+  printf("%s\n", string_directions[player->direction]);
   while (i <= player->level)
     index += LVL_I(i++);
   i = 0;
@@ -45,15 +49,16 @@ const char	*_player_see(t_player *player, const t_server *server, void *arg)
   while (i < index)
     {
       type = 0;
-      see_player(player, server, ABS_X(vision[player->direction][i][0], server->game->world->width), ABS_Y(vision[player->direction][i][1], server->game->world->height));
+      x = player->x + vision[player->direction][i][0];
+      y = player->y + vision[player->direction][i][1];
+      printf("\n%d-%d\n", ABS_X(x, server->game->world->width), ABS_Y(y, server->game->world->height));
+      see_player(player, server, ABS_X(x, server->game->world->width), ABS_Y(y, server->game->world->height));
       sq = server->game->world->map->at(server->game->world->map,
-		       POS_LIST(ABS_X(vision[player->direction][i][0],
-				      server->game->world->width),
-				ABS_Y(vision[player->direction][i][1],
-				      server->game->world->height), server->game->world->width));
+					POS_LIST(ABS_X(x, server->game->world->width),
+						 ABS_Y(y, server->game->world->height), server->game->world->width));
       while (type != EMPTY)
 	{
-	  if (sq->content[type] != 0)
+	  if (sq && sq->content[type] != 0)
 	    printf(" %s", get_str(type));
 	  type++;
 	}
