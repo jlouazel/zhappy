@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:55:06 2013 louaze_j
-** Last update Fri Jul  5 19:05:32 2013 julien fortin
+** Last update Sun Jul  7 18:43:11 2013 julien fortin
 */
 
 #include	"world.h"
