@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Sun Jul  7 17:55:18 2013 louaze_j
+** Last update Sun Jul  7 18:26:34 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -19,10 +19,13 @@ static void	see_player(t_player *player, const t_server *server, int x, int y)
 
   tmp = server->game->players;
   while (tmp)
-    if ((t_player *)tmp->data != player &&
-	((t_player *)tmp->data)->x == x &&
-	((t_player *)tmp->data)->y == y)
-      printf(" player");
+    {
+      if ((t_player *)tmp->data != player &&
+	  ((t_player *)tmp->data)->x == x &&
+	  ((t_player *)tmp->data)->y == y)
+	printf(" player");
+      tmp = tmp->next;
+    }
 }
 
 const char	*_player_see(t_player *player, const t_server *server, void *arg)
