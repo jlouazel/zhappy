@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Fri Jul  5 19:03:30 2013 julien fortin
+** Last update Sun Jul  7 14:55:09 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -21,8 +21,8 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   static unsigned int	id = DEFAULT_PID;
 
   new_player->egg = true;
-  /* new_player->x = rand() % server->game->world->width; */
-  /* new_player->y = rand() % server->game->world->height; */
+  new_player->x = 0;
+  new_player->y = 0;
   new_player->id = id;
   new_player->level = DEFAULT_LVL;
   /* new_player->direction = rand() % 4; */
