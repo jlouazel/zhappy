@@ -493,7 +493,7 @@ class player:
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and self._map[i]._players >= myNeed._joueur):
                 self.incantation()
                 return False
-            # sinon si y'a pas assez de pierres par terre
+            # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
             elif (self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame and self._map[i]._players >= myNeed._joueur):
                 self.putObjectIncantation()
                 self.voir()
