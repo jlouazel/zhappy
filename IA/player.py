@@ -31,8 +31,7 @@ class player:
         self._queue = Queue.Queue()
         self._elevation = elevation()
         self._lvl = 1
-        self._processing = defaultdict(int)
-        self._nourritureMinimal = 15
+        self._nourritureMinimal = 20
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -48,7 +47,8 @@ class player:
         self.fork()
 
     def broadcast(self, msg):
-    	self._socket.send(msg)
+    	self._socket.send("broadcast " + msg + "\n")
+        self._queue.put("broadcast")
     	time.sleep(0.05)
 
     def myAbsolute(self, nb, opt):
@@ -357,13 +357,15 @@ class player:
                 self.deplacementAbsolut(self._action._x, self._action._y)
 
     def takeObjectif(self):
+        self._action._define = -1
         if self._action._firstAction >= self._action._PossibleAction._nourriture and self._action._firstAction <= self._action._PossibleAction._thystame:
             self.prendreObject(self._action._tabPossibleAction[self._action._firstAction])
             tmp = self._lenMapX * self._posY + self._posX
-            if (self._map[tmp]._nourriture > 0):
+            if (self._action._firstAction == self._action._PossibleAction._nourriture and self._map[tmp]._nourriture > 0):
                 self._map[tmp]._nourriture -= 1
-        self._action._define = -1
-        
+        elif (self._action._firstAction == self._action._PossibleAction._incantation):
+            self._action._define = 0
+
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
         j = 0
@@ -483,33 +485,32 @@ class player:
         i = self._lenMapX * self._posY + self._posX
         # si y'a assez ou plus de pierres sur la map + inventaire pour l'incantation
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame):
-        	if (self._processing):
             # si y'a pile ce qu'il faut par terre (pierres + joueurs)
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and self._map[i]._players >= myNeed._joueur):
                 self._action.initSecondAction()
-            	print "J'incante"
+            	#print "J'incante"
                 self.incantation()
                 time.sleep(2)
                 return False
             # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
             elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and self._map[i]._players >= myNeed._joueur):
-            	print "Je pose mon bordel"
+            	#print "Je pose mon bordel"
                 self.putObjectIncantation()
                 self.voir()
                 self._nourritureMinimal = 5
                 return True
             # sinon si y'a de pierres trop par terre
             elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
-            	print "Je prend ce qu'il y a en trop"
+            	#print "Je prend ce qu'il y a en trop"
                 self.takeObjectIncantation()
                 self.voir()
                 self._nourritureMinimal = 5
                 return True
             # si y'a pas assez de joueurs
             elif (self._map[i]._players < myNeed._joueur):
-            	print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
+            	#print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
             	# exemple B1nJnLnDnSnMnPnT,X,Y
-            	msg = "B", self._lvl, myNeed._joueur, "J",myNeed._linemate, "L",myNeed._deraumere, "D",myNeed._sibur, "S",myNeed._mendiane, "M",myNeed._phiras, "P",myNeed._thystame, "T", ",", self._posX, ",", self._posY
+            	msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
             	print "je diffuse" + msg
             	self.broadcast(msg)
                 self.voir()
@@ -519,7 +520,7 @@ class player:
 
     def findGoodMove(self):
         elevationPossible = False
-        self._action.affSecondAction()
+#        self._action.affSecondAction()
         if (self._inventaire._nourriture < self._nourritureMinimal):
             tab = self.findFood(3)
             if (tab[0] != -1 and tab[1] != -1):
@@ -550,17 +551,17 @@ class player:
                     #print "C;est confirme je pose : ", tmp.split(' ')[1].split('\n')[0]
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
         elif trame[0:6] == "niveau":
-            print "I up"
+            #print "I up"
             self._lvl = self._lvl + 1
             self._queue.get()
             self.inventaire()
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:7] == "message":
             direction = trame[8:9]
-            print msg
+            msg = trame[10:]
             if msg[0:2] == "IE":
                 # Incantation ennemie
-                print ""
+                print "IE"
             elif msg[0:1] == "B":
             	# besoin de ressources pour une incantation
             	# exemple B1nJnLnDnSnMnPnT,X,Y
@@ -576,5 +577,6 @@ class player:
                 x = msg.split(',')[1]
                 y = msg.split(',')[2]
                 if (self._lvl == lvl or nb_p > 0 or nb_l > 0 or nb_d > 0 or nb_s > 0 or nb_m > 0 or nb_p > 0 or nb_t > 0):
-                	print "J'arrive en " + x + "," + y
-                	self.deplacementAbsolut(x, y)
+                    print "J'arrive en " + x + "," + y
+                    self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 2)
+                    self._action.addSecondAction(self._action._PossibleAction._nourriture)
