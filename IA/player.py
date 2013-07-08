@@ -491,8 +491,10 @@ class player:
         	if (self._processing):
             # si y'a pile ce qu'il faut par terre (pierres + joueurs)
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and self._map[i]._players >= myNeed._joueur):
+                self._action.initSecondAction()
             	print "J'incante"
                 self.incantation()
+                time.sleep(2)
                 return False
             # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
             elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and self._map[i]._players >= myNeed._joueur):
@@ -507,12 +509,18 @@ class player:
                 self.voir()
                 return True
             # si y'a pas assez de joueurs
+<<<<<<< HEAD
             elif (self._map[i]._players <= myNeed._joueur):
             	print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
             	# exemple B1nJnLnDnSnMnPnT,X,Y
             	msg = "B", self._lvl, myNeed._joueur, "J",myNeed._linemate, "L",myNeed._deraumere, "D",myNeed._sibur, "S",myNeed._mendiane, "M",myNeed._phiras, "P",myNeed._thystame, "T", ",", self._posX, ",", self._posY
             	print "je diffuse" + msg
             	self.broadcast(msg)
+=======
+            elif (self._map[i]._players < myNeed._joueur):
+            	print "j'ai besoin de ", myNeed._joueur, " il y a ", self._map[i]._players, " joueurs presents"
+                self.voir()
+>>>>>>> a333e7e8fd2c4760b1fe3b4a8a3da163896cec42
             	return True
         return False
 
@@ -535,6 +543,7 @@ class player:
             self.goToUnknow()
             self.decideCaseToGo()
         self.reduceProbabilities()
+        self.inventaire()
 
     def treatOk(self, trame):
         if trame == "ok" or trame == "ko":

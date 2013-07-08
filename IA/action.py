@@ -33,6 +33,9 @@ class   action:
         self._firstAction = action1
         self._emergency = emergency
 
+    def initSecondAction(self):
+        self._secondAction = []
+
     def addSecondAction(self, secondAction):
         i = 0
         flag = False
