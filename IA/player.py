@@ -506,7 +506,7 @@ class player:
                 self.voir()
                 return True
             # si y'a pas assez de joueurs
-            elif (self._map[i]._players < myNeed._joueur):
+            elif (self._map[i]._players <= myNeed._joueur):
             	print "Pas assez de joueurs -> broadcast"
             	return True
         return False
