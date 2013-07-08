@@ -509,18 +509,13 @@ class player:
                 self.voir()
                 return True
             # si y'a pas assez de joueurs
-<<<<<<< HEAD
-            elif (self._map[i]._players <= myNeed._joueur):
+            elif (self._map[i]._players < myNeed._joueur):
             	print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
             	# exemple B1nJnLnDnSnMnPnT,X,Y
             	msg = "B", self._lvl, myNeed._joueur, "J",myNeed._linemate, "L",myNeed._deraumere, "D",myNeed._sibur, "S",myNeed._mendiane, "M",myNeed._phiras, "P",myNeed._thystame, "T", ",", self._posX, ",", self._posY
             	print "je diffuse" + msg
             	self.broadcast(msg)
-=======
-            elif (self._map[i]._players < myNeed._joueur):
-            	print "j'ai besoin de ", myNeed._joueur, " il y a ", self._map[i]._players, " joueurs presents"
                 self.voir()
->>>>>>> a333e7e8fd2c4760b1fe3b4a8a3da163896cec42
             	return True
         return False
 
