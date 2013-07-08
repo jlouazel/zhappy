@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 19:00:15 2013 louaze_j
-** Last update Fri Jul  5 19:05:50 2013 julien fortin
+** Last update Mon Jul  8 11:08:31 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -72,8 +72,10 @@ e_direction	get_direction(t_player *src, const t_server *server,
 
 const char	*_player_broadcast(t_player *player, const t_server *server, void *arg)
 {
+  if (!player->is_allowed(player))
+    return (NULL);
   printf("Player %u receive a broadcast from %s\n", ((t_player *)arg)->id, string_directions[get_direction(player, server,
-						 (t_player *)arg)]);
+													   (t_player *)arg)]);
   printf("BroBroBroDDDCast !!!\n");
   return (NULL);
 }

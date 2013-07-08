@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Fri Jul  5 11:25:45 2013 louaze_j
+** Last update Mon Jul  8 11:12:57 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -20,6 +20,7 @@ static void	add_player(t_team *team, t_player *player)
   if (player)
     {
       player->status = PLAYER_ALLOWED;
+      player->team = team;
       if (team->members == NULL)
 	team->members = new_list(player);
       else

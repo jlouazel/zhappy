@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Mon Jul  8 01:13:25 2013 louaze_j
+** Last update Mon Jul  8 11:07:13 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -15,6 +15,11 @@
 #include	"player.h"
 #include	"list.h"
 #include	"eressources.h"
+
+static bool	_player_is_allowed(const t_player *player)
+{
+  return (player->status != PLAYER_NOT_ALLOWED && player->team);
+}
 
 static void	init_attr(t_player *new_player, const t_socket *socket)
 {
@@ -30,6 +35,7 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   new_player->status = PLAYER_NOT_ALLOWED;
   new_player->io = init_server_io();
   new_player->inventory_tab[FOOD] = 10;
+  new_player->is_allowed = &_player_is_allowed;
   id++;
 }
 
@@ -37,8 +43,7 @@ t_player	*create_player(const t_socket *socket)
 {
   t_player	*new_player;
 
-  new_player = xcalloc(1, sizeof(*new_player));
-  if (!new_player)
+  if (!(new_player = xcalloc(1, sizeof(*new_player))))
     return (NULL);
   init_attr(new_player, socket);
   /**/
@@ -47,7 +52,7 @@ t_player	*create_player(const t_socket *socket)
   return (new_player);
 }
 
-void		delete_player(const t_server *server, t_player *player)
+void		delete_player(t_player *player, const t_server *server)
 {
   (void)server;
   if (player)

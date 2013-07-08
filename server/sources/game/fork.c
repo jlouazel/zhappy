@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul  5 09:46:29 2013 louaze_j
-** Last update Fri Jul  5 19:06:57 2013 julien fortin
+** Last update Mon Jul  8 11:10:09 2013 julien fortin
 */
 
 #include	"player.h"
@@ -16,6 +16,8 @@ const char	*_player_fork(t_player *player, const t_server *server, void *arg)
   t_player	*egg;
   t_list	*pls;
 
+  if (!player->is_allowed(player))
+    return (NULL);
   team = player->team;
   pls = server->game->players;
   (void)arg;

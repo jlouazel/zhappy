@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:33:07 2013 louaze_j
-** Last update Fri Jul  5 19:06:49 2013 julien fortin
+** Last update Mon Jul  8 11:09:59 2013 julien fortin
 */
 
 #include	"player.h"
@@ -30,6 +30,8 @@ const char	*_player_deport(t_player *player, const t_server *server, void *arg)
   int		y;
   t_player	*dest;
 
+  if (!player->is_allowed(player))
+    return (NULL);
   dest = (t_player *)arg;
   x = dest->x;
   y = dest->y;

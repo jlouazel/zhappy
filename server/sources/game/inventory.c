@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:36:33 2013 louaze_j
-** Last update Fri Jul  5 19:05:25 2013 julien fortin
+** Last update Mon Jul  8 11:10:30 2013 julien fortin
 */
 
 #define		_GNU_SOURCE
@@ -22,6 +22,8 @@ const char *	_player_inventory(t_player *player, const t_server *server, void *a
 {
   e_ressource		type;
 
+  if (!player->is_allowed(player))
+    return (NULL);
   (void)server;
   (void)arg;
   type = 0;

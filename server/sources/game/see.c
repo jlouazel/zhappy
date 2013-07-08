@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Mon Jul  8 01:40:03 2013 louaze_j
+** Last update Mon Jul  8 11:12:00 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -38,6 +38,8 @@ const char	*_player_see(t_player *player, const t_server *server, void *arg)
   e_ressource	type;
   unsigned int	index;
 
+  if (!player->is_allowed(player))
+    return (NULL);
   i = 0;
   (void)arg;
   index = 0;

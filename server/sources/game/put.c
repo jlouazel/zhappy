@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:58:04 2013 louaze_j
-** Last update Fri Jul  5 19:05:39 2013 julien fortin
+** Last update Mon Jul  8 11:11:18 2013 julien fortin
 */
 
 #include	"world.h"
@@ -19,6 +19,8 @@ const char	*_player_put(t_player *player, const t_server *server, void *arg)
   t_square	*sq;
   e_ressource	type;
 
+  if (!player->is_allowed(player))
+    return (NULL);
   type = 0;
   sq = server->game->world->map->at(server->game->world->map,
 		      POS_LIST(player->x, player->y, server->game->world->width));

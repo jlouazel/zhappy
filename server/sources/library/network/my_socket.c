@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Apr  1 16:13:08 2013 julien fortin
-** Last update Wed Jun 19 16:09:03 2013 julien fortin
+** Last update Mon Jul  8 10:42:23 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -40,8 +40,10 @@ char		*_socket_read(const t_socket *this, size_t size)
   char                  buffer[size];
   int                   result;
 
+  if (!this)
+    return (NULL);
   bzero(buffer, size);
-  result = read(this->_socket, buffer, size - 1);
+  result = read(this->_socket, buffer, size > 0 ? size - 1 : 0);
   if (result < 0)
     {
       perror("read");
