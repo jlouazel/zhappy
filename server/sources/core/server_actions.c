@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sun Jul  7 18:41:57 2013 julien fortin
+** Last update Sun Jul  7 19:18:30 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -52,8 +52,9 @@ static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
       {
 	i = find_first_of(cmd, ' ');
 	if ((cmd = serv->cmd->cmd[index](player, serv,
-					 (void*)epur_begin_str
-					 (deconst_cast(i > 0 ? cmd + i : cmd), " \t"))))
+					 (void*)epur_end_str
+					 (epur_begin_str
+					  (deconst_cast(i > 0 ? cmd + i : cmd), " \t"), " \t"))))
 	  {
 	    if (player->io && player->io->out)
 	      player->io->out->push_back((t_list**)&player->io->out, (void*)cmd);

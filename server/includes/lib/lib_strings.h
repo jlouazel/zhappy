@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Apr  5 11:27:50 2013 julien fortin
-** Last update Sun Jul  7 18:23:32 2013 julien fortin
+** Last update Sun Jul  7 18:46:54 2013 julien fortin
 */
 
 #ifndef	__LIBMY_C_STRING_H__
@@ -23,6 +23,7 @@ int	find_first_of(const char *, char);
 
 char	*replace_char(char *, char, char);
 char	*epur_begin_str(char *, const char *);
+char	*epur_end_str(char *, const char *);
 char    *my_strdup(const char *);
 char    *my_strndup(const char *, int, int);
 char	*my_strcat(const char *, const char *);
