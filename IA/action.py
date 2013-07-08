@@ -34,7 +34,14 @@ class   action:
         self._emergency = emergency
 
     def addSecondAction(self, secondAction):
-        self._secondAction.append(secondAction)
+        i = 0
+        flag = False
+        while i < self._secondAction.__len__():
+            if self._secondAction[i] == secondAction:
+                flag = True
+            i = i + 1
+        if flag != True:
+            self._secondAction.append(secondAction)
 
     def delSeconAction(self, toDel):
         i = 0

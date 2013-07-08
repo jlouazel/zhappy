@@ -202,10 +202,11 @@ class player:
         time.sleep(0.05)
 
     def poserObject(self, Object):
-        toSend = "pose " + Object + "\n"
-        self._socket.send(toSend)
-        self._queue.put(toSend)
-        time.sleep(0.05)
+        if self._inventaire.howMany(Object) > 0:
+            toSend = "pose " + Object + "\n"
+            self._socket.send(toSend)
+            self._queue.put(toSend)
+            time.sleep(0.05)
 
     def findFood(self, emergency):
         j = 0
@@ -416,6 +417,7 @@ class player:
 
     def decideSecondAction(self):
         myNeed = self._elevation.getNeed(self._lvl)
+        #print "myNeed of linemate = ", myNeed._linemate, "In my inventaire : ", self._inventaire._linemate
         if (self._inventaire._linemate < myNeed._linemate):
             #print "add linemate"
             self._action.addSecondAction(self._action._PossibleAction._linemate)
@@ -490,7 +492,6 @@ class player:
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._lvl == 1):
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame):
                 self.incantation()
-                #print "elevation"
                 return False
             elif (self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame):
                 #if Il manque des objects :
@@ -509,7 +510,7 @@ class player:
 
     def findGoodMove(self):
         elevationPossible = False
-        #self._action.affSecondAction()
+        self._action.affSecondAction()
         if (self._inventaire._nourriture < 5):
             tab = self.findFood(3)
             if (tab[0] != -1 and tab[1] != -1):
@@ -531,15 +532,18 @@ class player:
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
                 tmp = self._queue.get()
+                #print tmp
                 if tmp.split(' ')[0] == "prend" and trame == "ok":
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
                 if tmp.split(' ')[0] == "pose" and trame == "ok":
+                    #print "C;est confirme je pose : ", tmp.split(' ')[1].split('\n')[0]
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:6] == "niveau":
             print "I up"
             self._lvl = self._lvl + 1
             self._queue.get()
+            self.inventaire()
         elif trame[0:7] == "message":
             direction = trame[8:9]
             msg = base64.b64decode(trame[10:len(trame)+1])
