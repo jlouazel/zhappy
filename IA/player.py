@@ -550,6 +550,8 @@ class player:
             self._lvl = self._lvl + 1
             self._queue.get()
             self.inventaire()
+            # broadcast que l'incantation est finie
+            print "Je dis aux autres que mon incantation est finie"
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:7] == "message":
             direction = trame[8:9]
