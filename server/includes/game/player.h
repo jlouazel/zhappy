@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Mon Jul  8 11:05:57 2013 julien fortin
+** Last update Mon Jul  8 15:13:57 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__

@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Mon Jul  8 10:52:18 2013 julien fortin
+## Last update Mon Jul  8 17:08:37 2013 louaze_j
 ##
 
 CC			= gcc
@@ -54,6 +54,7 @@ SRCS_INIT       	= $(SRCS_DIR)$(INIT_DIR)init_server.c \
 			$(SRCS_DIR)$(INIT_DIR)init_server_options.c \
 			$(SRCS_DIR)$(INIT_DIR)init_game.c \
 			$(SRCS_DIR)$(INIT_DIR)init_world.c \
+			$(SRCS_DIR)$(INIT_DIR)init_ig.c \
 
 SRCS_DEST        	= $(SRCS_DIR)$(DEST_DIR)server_destroy.c \
 			$(SRCS_DIR)$(DEST_DIR)server_destroy_cmd.c \
@@ -82,6 +83,9 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)connect_nbr.c \
 			$(SRCS_DIR)$(GAME_DIR)deport.c \
 			$(SRCS_DIR)$(GAME_DIR)fork.c \
+			$(SRCS_DIR)$(GAME_DIR)msz.c \
+			$(SRCS_DIR)$(GAME_DIR)bct.c \
+			$(SRCS_DIR)$(GAME_DIR)mct.c \
 
 #
 #library
