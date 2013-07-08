@@ -4,15 +4,11 @@ import time
 import cmath
 import math
 import Queue
-import base64
-import collections
 
 from action import *
 from elevation import *
 from case import *
 from inventaire import *
-
-defaultdict = collections.defaultdict
 
 class player:
     def _createMap(self):
@@ -53,6 +49,7 @@ class player:
 
     def broadcast(self, msg):
     	self._socket.send(msg)
+    	time.sleep(0.05)
 
     def myAbsolute(self, nb, opt):
         if (nb >= 0):
@@ -366,6 +363,7 @@ class player:
             if (self._map[tmp]._nourriture > 0):
                 self._map[tmp]._nourriture -= 1
         self._action._define = -1
+        
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
         j = 0
@@ -485,6 +483,7 @@ class player:
         i = self._lenMapX * self._posY + self._posX
         # si y'a assez ou plus de pierres sur la map + inventaire pour l'incantation
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame):
+        	if (self._processing):
             # si y'a pile ce qu'il faut par terre (pierres + joueurs)
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and self._map[i]._players >= myNeed._joueur):
                 self._action.initSecondAction()
@@ -508,7 +507,11 @@ class player:
                 return True
             # si y'a pas assez de joueurs
             elif (self._map[i]._players < myNeed._joueur):
-            	print "j'ai besoin de ", myNeed._joueur, " il y a ", self._map[i]._players, " joueurs presents"
+            	print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
+            	# exemple B1nJnLnDnSnMnPnT,X,Y
+            	msg = "B", self._lvl, myNeed._joueur, "J",myNeed._linemate, "L",myNeed._deraumere, "D",myNeed._sibur, "S",myNeed._mendiane, "M",myNeed._phiras, "P",myNeed._thystame, "T", ",", self._posX, ",", self._posY
+            	print "je diffuse" + msg
+            	self.broadcast(msg)
                 self.voir()
                 self._nourritureMinimal = 5
             	return True
@@ -551,34 +554,27 @@ class player:
             self._lvl = self._lvl + 1
             self._queue.get()
             self.inventaire()
-            # broadcast que l'incantation est finie
-            print "Je dis aux autres que mon incantation est finie"
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:7] == "message":
             direction = trame[8:9]
-            msg = base64.b64decode(trame[10:len(trame)+1])
             print msg
             if msg[0:2] == "IE":
                 # Incantation ennemie
                 print ""
-            elif msg [0:2] == "IT":
-                incantation_id = msg[2:4]
-                del self._processing[incantation_id]
-            elif msg[0:1] == "I":
-                # declaration d'une Incantation
-                # exemple I012
-                incantation_id = msg[1:3]
-                incantation_lvl = msg[3:4]
-                self._processing[incantation_id] = incantation_lvl
             elif msg[0:1] == "B":
             	# besoin de ressources pour une incantation
-            	# exemple B01nJnLnDnSnMnPnT
-                incantation_id = msg[1:3]
-                incantation_lvl = self._processing[incantation_id]
-                nb_p = msg[3:4]
-                nb_l = msg[5:6]
-                nb_d = msg[7:8]
-                nb_s = msg[9:10]
-                nb_m = msg[11:12]
-                nb_p = msg[13:14]
-                nb_t = msg[15:16]
+            	# exemple B1nJnLnDnSnMnPnT,X,Y
+            	need = msg.split(',')[0]
+            	lvl = need[1:2]
+                nb_p = need[2:3]
+                nb_l = need[4:5]
+                nb_d = need[6:7]
+                nb_s = need[8:9]
+                nb_m = need[10:11]
+                nb_p = need[12:13]
+                nb_t = need[14:15]
+                x = msg.split(',')[1]
+                y = msg.split(',')[2]
+                if (self._lvl == lvl or nb_p > 0 or nb_l > 0 or nb_d > 0 or nb_s > 0 or nb_m > 0 or nb_p > 0 or nb_t > 0):
+                	print "J'arrive en " + x + "," + y
+                	self.deplacementAbsolut(x, y)
