@@ -473,17 +473,17 @@ class player:
     def takeObjectIncantation(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-        if (self._map[i]._linemate > myNeed._linemate):
+        if (self._map[i]._linemate > myNeed._linemate and myNeed._linemate != 0):
             self.prendreObject("linemate")
-        if (self._map[i]._deraumere > myNeed._deraumere):
+        if (self._map[i]._deraumere > myNeed._deraumere and myNeed._deraumere != 0):
             self.prendreObject("deraumere")
-        if (self._map[i]._sibur > myNeed._sibur):
+        if (self._map[i]._sibur > myNeed._sibur and myNeed._sibur != 0):
             self.prendreObject("sibur")
-        if (self._map[i]._mendiane > myNeed._mendiane):
+        if (self._map[i]._mendiane > myNeed._mendiane and myNeed._mendiane != 0):
             self.prendreObject("mendiane")
-        if (self._map[i]._phiras > myNeed._phiras):
+        if (self._map[i]._phiras > myNeed._phiras and myNeed._phiras != 0):
             self.prendreObject("phiras")
-        if (self._map[i]._thystame > myNeed._thystame):
+        if (self._map[i]._thystame > myNeed._thystame and myNeed._thystame != 0):
             self.prendreObject("thystame")
 
     def incantIfPossible(self):
@@ -493,7 +493,10 @@ class player:
         if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame):
             # si y'a pile ce qu'il faut par terre (pierres + joueurs)
             if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and self._map[i]._players >= myNeed._joueur):
+                self._action.initSecondAction()
+                print "incantation"
                 self.incantation()
+                time.sleep(2)
                 return False
             # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
             elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and self._map[i]._players >= myNeed._joueur):
@@ -506,7 +509,7 @@ class player:
                 self.voir()
                 return True
             # si y'a pas assez de joueurs
-            elif (self._map[i]._players <= myNeed._joueur):
+            elif (self._map[i]._players < myNeed._joueur):
             	print "Pas assez de joueurs -> broadcast"
             	return True
         return False
