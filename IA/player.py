@@ -507,6 +507,7 @@ class player:
                 return True
             # si y'a pas assez de joueurs
             elif (self._map[i]._players <= myNeed._joueur):
+            	print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
             	print "Pas assez de joueurs -> broadcast"
             	return True
         return False
