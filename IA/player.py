@@ -36,6 +36,7 @@ class player:
         self._elevation = elevation()
         self._lvl = 1
         self._processing = defaultdict(int)
+        self._nourritureMinimal = 15
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -275,9 +276,9 @@ class player:
     def decideCaseToGo(self):
         tab = self.findFood(3)
         if tab[0] != -1 and tab[1] != -1:
-            if (self._inventaire._nourriture < 5):
+            if (self._inventaire._nourriture < self._nourritureMinimal):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
-            elif (self._inventaire._nourriture < 100):
+            elif (self._inventaire._nourriture < 50):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
             elif (self._inventaire._nourriture < 150):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 1)
@@ -417,26 +418,19 @@ class player:
 
     def decideSecondAction(self):
         myNeed = self._elevation.getNeed(self._lvl)
-        #print "myNeed of linemate = ", myNeed._linemate, "In my inventaire : ", self._inventaire._linemate
         if (self._inventaire._linemate < myNeed._linemate):
-            #print "add linemate"
             self._action.addSecondAction(self._action._PossibleAction._linemate)
         else:
-            #print "del linemate"
             self._action.delSeconAction(self._action._PossibleAction._linemate)
 
         if (self._inventaire._deraumere < myNeed._deraumere):
-            #print "add deraumere"
             self._action.addSecondAction(self._action._PossibleAction._deraumere)
         else:
-            #print "del deraumere"
             self._action.delSeconAction(self._action._PossibleAction._deraumere)
 
         if (self._inventaire._sibur < myNeed._sibur):
-            #print "add sibur"
             self._action.addSecondAction(self._action._PossibleAction._sibur)
         else:
-            #print "del sibur"
             self._action.delSeconAction(self._action._PossibleAction._sibur)
 
         if (self._inventaire._mendiane < myNeed._mendiane):
@@ -503,27 +497,31 @@ class player:
             	print "Je pose mon bordel"
                 self.putObjectIncantation()
                 self.voir()
+                self._nourritureMinimal = 5
                 return True
             # sinon si y'a de pierres trop par terre
             elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
             	print "Je prend ce qu'il y a en trop"
                 self.takeObjectIncantation()
                 self.voir()
+                self._nourritureMinimal = 5
                 return True
             # si y'a pas assez de joueurs
             elif (self._map[i]._players < myNeed._joueur):
             	print "j'ai besoin de ", myNeed._joueur, " il y a ", self._map[i]._players, " joueurs presents"
                 self.voir()
+                self._nourritureMinimal = 5
             	return True
         return False
 
     def findGoodMove(self):
         elevationPossible = False
         self._action.affSecondAction()
-        if (self._inventaire._nourriture < 5):
+        if (self._inventaire._nourriture < self._nourritureMinimal):
             tab = self.findFood(3)
             if (tab[0] != -1 and tab[1] != -1):
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
+            self._nourritureMinimal = 20
         elif self._action._emergency != 3:
             self.takeObject()
             elevationPossible = self.incantIfPossible()
