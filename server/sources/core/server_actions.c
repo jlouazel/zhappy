@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Mon Jul  8 10:58:01 2013 julien fortin
+** Last update Mon Jul  8 12:27:51 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -55,12 +55,7 @@ static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
 					 (void*)epur_end_str
 					 (epur_begin_str
 					  (deconst_cast(i > 0 ? cmd + i : cmd), " \t"), " \t"))))
-	  {
-	    if (player->io && player->io->out)
-	      player->io->out->push_back((t_list**)&player->io->out, (void*)cmd);
-	    else if (player->io)
-	      ((t_io*)player->io)->out = new_list((void*)cmd);
-	  }
+	  player->notify(player, cmd);
       }
 }
 

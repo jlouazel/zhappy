@@ -5,7 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
+<<<<<<< HEAD
 ** Last update Mon Jul  8 15:59:01 2013 louaze_j
+=======
+** Last update Mon Jul  8 12:27:28 2013 julien fortin
+>>>>>>> 3066dd62253e7cd3866725ad525c4fc4b08c62ac
 */
 
 #include	<stdio.h>
@@ -19,6 +23,16 @@
 static bool	_player_is_allowed(const t_player *player)
 {
   return (player->status != PLAYER_NOT_ALLOWED && player->team);
+}
+
+static void	_player_notify(t_player *player, const char *data)
+{
+  if (!player)
+    return ;
+  if (player->io && player->io->out)
+    player->io->out->push_back((t_list**)&player->io->out, (void*)data);
+  else if (player->io)
+    ((t_io*)player->io)->out = new_list((void*)data);
 }
 
 static void	init_attr(t_player *new_player, const t_socket *socket)
@@ -36,6 +50,7 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   new_player->io = init_server_io();
   new_player->inventory_tab[FOOD] = 10;
   new_player->is_allowed = &_player_is_allowed;
+  new_player->notify = &_player_notify;
   id++;
 }
 

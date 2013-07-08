@@ -58,6 +58,22 @@ class inventaire:
         if (string == "nourriture"):
             self._nourriture -= 1
 
+    def howMany(self, string):
+        if (string == "linemate"):
+            return self._linemate
+        if (string == "deraumere"):
+            return self._deraumere
+        if (string == "sibur"):
+            return self._sibur
+        if (string == "mendiane"):
+            return self._mendiane
+        if (string == "phiras"):
+            return self._phiras
+        if (string == "thystame"):
+            return self._thystame
+        if (string == "nourriture"):
+            return self._nourriture
+
     def aff(self):
         print "{",
         if self._linemate >= 1:

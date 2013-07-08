@@ -5,11 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-<<<<<<< HEAD
-** Last update Fri Jul  5 11:33:05 2013 julien fortin
-=======
-** Last update Fri Jul  5 10:55:22 2013 louaze_j
->>>>>>> 3a91f9e714aed69cfdca71805d621237781b7934
+** Last update Mon Jul  8 12:25:14 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -21,16 +17,18 @@
 static bool		_server_accept_player(const t_server *serv,
 					      const t_socket *client)
 {
+  t_player	*player;
   t_list	*list;
 
   if (serv && serv->game && client && client->is_valid(deconst_cast(client)))
     {
       list = serv->game->players;
+      player = create_player(client);
       if (list && list->size(list))
-	list->push_back(&list, (void*)create_player(client));
+	list->push_back(&list, (void*)player);
       else
-	((t_game*)serv->game)->players = new_list((void*)create_player(client));
-      printf("NEW CLIENT!\n");
+	((t_game*)serv->game)->players = new_list((void*)player);
+      // notufy player BIENVENUE
       return (true);
     }
   return (false);
