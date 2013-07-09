@@ -32,6 +32,7 @@ class player:
         self._elevation = elevation()
         self._lvl = 1
         self._nourritureMinimal = 20
+        self._incomming = 0
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -556,6 +557,7 @@ class player:
             self._lvl = self._lvl + 1
             self._queue.get()
             self.inventaire()
+            self._incomming = 0
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:7] == "message":
             direction = trame[8:9]
@@ -581,7 +583,11 @@ class player:
                     print "J'arrive en " + x + "," + y
                     self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 2)
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
+                    self.broadcast("Incomming")
             elif msg[0:4] == "Ping":
             	self.broadcast("Pong," + direction)
             elif msg[0:4] == "Pong":
             	other_direction = int(msg.split(',')[1])
+            elif msg[0:9] == "Incomming"
+            	self._incomming += 1
+            	print "Il y a " + str(self._incomming) + " personnes qui viennent m'aider a evoluer"
