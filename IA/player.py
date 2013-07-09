@@ -514,6 +514,7 @@ class player:
             	# exemple B1nJnLnDnSnMnPnT,X,Y
             	msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
             	print "je diffuse" + msg
+            	self._incomming = 0
             	self.broadcast(msg)
                 self.voir()
                 self._nourritureMinimal = 5
