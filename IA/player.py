@@ -42,6 +42,7 @@ class player:
         answer = answer[2].split(' ')
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
+        self.broadcast("Ping")
         self._createMap()
         self.inventaire()
         self.fork()
@@ -580,3 +581,5 @@ class player:
                     print "J'arrive en " + x + "," + y
                     self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 2)
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
+            elif msg[0:4] == "Ping"
+            	self.broadcast("Pong," + direction)
