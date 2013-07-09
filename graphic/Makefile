@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ## 
 ## Started on  Tue Jul  9 01:12:19 2013 louaze_j
-## Last update Tue Jul  9 16:57:11 2013 louaze_j
+## Last update Tue Jul  9 19:13:23 2013 julien fortin
 ##
 
 CC			= g++
@@ -14,7 +14,7 @@ RM			= rm -f
 
 CPPFLAGS		+= -W -Wall -Wextra -Werror
 CPPFLAGS		+= -I ./includes/
-CPPFLAGS		+= -I ../server/includes/lib/
+CPPFLAGS		+= -I ../server/includes/lib/ -L. ./libmy_c.so
 
 LDFLAGS			=
 
@@ -31,7 +31,7 @@ OBJS			= $(SRCS:.cpp=.o)
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) -L. ./libmy_c.so
 
 clean:
 			$(RM) $(OBJS)
