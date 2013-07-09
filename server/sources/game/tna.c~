@@ -1,0 +1,11 @@
+/*
+** tna.c for zhappy in /home/louaze_j
+** 
+** Made by louaze_j
+** Login   <louaze_j@epitech.net>
+** 
+** Started on  Tue Jul  9 18:20:10 2013 louaze_j
+** Last update Tue Jul  9 18:20:20 2013 louaze_j
+*/
+
+#include	"graphical.h"
