@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Mon Jul  8 17:20:23 2013 louaze_j
+** Last update Tue Jul  9 18:23:16 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -19,10 +19,10 @@ typedef struct	s_graphical
   const t_io		*io;
   const t_socket	*socket;
 
-  const char	*(*msz)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *); // NOK
-  const char	*(*mct)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*tna)(struct s_graphical *, const t_server *); // NOK
+  const char	*(*msz)(struct s_graphical *, const t_server *);
+  const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *);
+  const char	*(*mct)(struct s_graphical *, const t_server *);
+  const char	*(*tna)(struct s_graphical *, const t_server *, void *); // NOK
   const char	*(*pnw)(struct s_graphical *, const t_server *); // NOK
   const char	*(*ppo)(struct s_graphical *, const t_server *); // NOK
   const char	*(*plv)(struct s_graphical *, const t_server *); // NOK
