@@ -5,11 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ## 
 ## Started on  Tue Jul  9 01:12:19 2013 louaze_j
-<<<<<<< HEAD
-## Last update Tue Jul  9 19:05:12 2013 louaze_j
-=======
-## Last update Tue Jul  9 19:13:23 2013 julien fortin
->>>>>>> fa4e6e55257009e5f645dc85d01a39fc060bb945
+## Last update Tue Jul  9 23:25:28 2013 louaze_j
 ##
 
 CC			= g++
@@ -18,14 +14,9 @@ RM			= rm -f
 
 CPPFLAGS		+= -W -Wall -Wextra -Werror
 CPPFLAGS		+= -I ./includes/
-<<<<<<< HEAD
 CPPFLAGS		+= -I ../server/includes/lib/
-CPPFLAGS		+= -L ./libmy_c_.so
-=======
-CPPFLAGS		+= -I ../server/includes/lib/ -L. ./libmy_c.so
->>>>>>> fa4e6e55257009e5f645dc85d01a39fc060bb945
 
-LDFLAGS			= -L ./libmy_c_.so
+LDFLAGS			= -L. ./libmy_c.so
 
 NAME			= graphic
 SRCS_DIR		= sources/
@@ -40,7 +31,7 @@ OBJS			= $(SRCS:.cpp=.o)
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) -L. ./libmy_c.so
+			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 clean:
 			$(RM) $(OBJS)
