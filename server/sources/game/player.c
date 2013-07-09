@@ -5,16 +5,17 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Mon Jul  8 12:27:28 2013 julien fortin
+** Last update Mon Jul  8 12:39:19 2013 julien fortin
 */
 
-#include	<stdio.h>
 #include	<stdlib.h>
 #include	"server.h"
 #include	"lib_std.h"
 #include	"player.h"
 #include	"list.h"
 #include	"eressources.h"
+
+#include	<stdio.h>
 
 static bool	_player_is_allowed(const t_player *player)
 {

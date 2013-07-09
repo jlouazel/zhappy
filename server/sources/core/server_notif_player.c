@@ -5,11 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Fri Jul  5 18:06:19 2013 julien fortin
+** Last update Mon Jul  8 12:40:18 2013 julien fortin
 */
 
 #include	"server.h"
 #include	"player.h"
+
+#include<stdio.h>
 
 bool			server_will_notify_player(const t_server *serv,
 						  fd_set *wfd, int *max_fd)
@@ -76,6 +78,7 @@ bool		server_notify_player(const t_server *serv, fd_set *wfd)
 
   if ((list = serv && serv->io ? serv->io->out : NULL))
     {
+      puts("coucou");
       list->foreach(list, &_notify_foreach_player, wfd);
       ((t_io*)serv->io)->out = delete_list(list, NULL);
     }
