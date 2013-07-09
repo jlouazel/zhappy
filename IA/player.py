@@ -588,7 +588,7 @@ class player:
                     print "J'arrive en " + x + "," + y
                     self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 3)
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
-            elif msg[0:4] == "Ping"
+            elif msg[0:4] == "Ping":
             	self.broadcast("Pong," + direction)
-            elif msg[0:4] == "Pong"
+            elif msg[0:4] == "Pong":
             	other_direction = int(msg.split(',')[1])
