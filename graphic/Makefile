@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ## 
 ## Started on  Tue Jul  9 01:12:19 2013 louaze_j
-## Last update Tue Jul  9 16:57:11 2013 louaze_j
+## Last update Tue Jul  9 19:05:12 2013 louaze_j
 ##
 
 CC			= g++
@@ -15,8 +15,9 @@ RM			= rm -f
 CPPFLAGS		+= -W -Wall -Wextra -Werror
 CPPFLAGS		+= -I ./includes/
 CPPFLAGS		+= -I ../server/includes/lib/
+CPPFLAGS		+= -L ./libmy_c_.so
 
-LDFLAGS			=
+LDFLAGS			= -L ./libmy_c_.so
 
 NAME			= graphic
 SRCS_DIR		= sources/

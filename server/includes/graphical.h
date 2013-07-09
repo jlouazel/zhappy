@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Tue Jul  9 18:23:16 2013 louaze_j
+** Last update Tue Jul  9 19:03:12 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -22,7 +22,7 @@ typedef struct	s_graphical
   const char	*(*msz)(struct s_graphical *, const t_server *);
   const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *);
   const char	*(*mct)(struct s_graphical *, const t_server *);
-  const char	*(*tna)(struct s_graphical *, const t_server *, void *); // NOK
+  const char	*(*tna)(struct s_graphical *, const t_server *, void *);
   const char	*(*pnw)(struct s_graphical *, const t_server *); // NOK
   const char	*(*ppo)(struct s_graphical *, const t_server *); // NOK
   const char	*(*plv)(struct s_graphical *, const t_server *); // NOK
@@ -52,7 +52,7 @@ t_graphical	*new_graphical_client(const t_socket *);
 void		_msz(t_graphical *);
 void		_bct(t_graphical *);
 void		_mct(t_graphical *);
-/* void	_tna(t_graphical *);  */
+void		_tna(t_graphical *);
 /* void	_pnw(t_graphical *);  */
 /* void	_ppo(t_graphical *);  */
 /* void	_plv(t_graphical *);  */
