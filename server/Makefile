@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Tue Jul  9 02:14:51 2013 louaze_j
+## Last update Tue Jul  9 11:14:33 2013 louaze_j
 ##
 
 CC			= gcc
@@ -34,7 +34,7 @@ CORE_DIR		= core/
 GAME_DIR		= game/
 TEAMS_DIR		= teams/
 
-LIB_DIR			= ../library/
+LIB_DIR			= $(SRCS_DIR)library/
 LIST_DIR		= list/
 ERR_DIR			= errors/
 NTW_DIR			= network/
