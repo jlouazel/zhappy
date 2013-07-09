@@ -6,19 +6,24 @@
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
 <<<<<<< HEAD
+** Last update Mon Jul  8 12:39:19 2013 julien fortin
+=======
+<<<<<<< HEAD
 ** Last update Mon Jul  8 15:59:01 2013 louaze_j
 =======
 ** Last update Mon Jul  8 12:27:28 2013 julien fortin
 >>>>>>> 3066dd62253e7cd3866725ad525c4fc4b08c62ac
+>>>>>>> 75dd803e3b04e8e902a6acce42f16617637dddb3
 */
 
-#include	<stdio.h>
 #include	<stdlib.h>
 #include	"server.h"
 #include	"lib_std.h"
 #include	"player.h"
 #include	"list.h"
 #include	"eressources.h"
+
+#include	<stdio.h>
 
 static bool	_player_is_allowed(const t_player *player)
 {
