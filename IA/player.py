@@ -296,6 +296,9 @@ class player:
             else:
                 self.goDown()
 
+    def setMyOrientation(self, OrientationRecu, OrientationEmi):
+        RealOrientationRecu = myAbsolute(OrientationEmi - 4, 8)
+
     def createArea(self, x1, x2, y1, y2):
         if x1 < x2:
             left = 1
@@ -364,6 +367,7 @@ class player:
             if (self._action._firstAction == self._action._PossibleAction._nourriture and self._map[tmp]._nourriture > 0):
                 self._map[tmp]._nourriture -= 1
         elif (self._action._firstAction == self._action._PossibleAction._incantation):
+            print "Incantation amie arive sur place"
             self._action._define = 0
 
     def takeObject(self):
@@ -531,10 +535,13 @@ class player:
             elevationPossible = self.incantIfPossible()
         self.decideSecondAction()
         if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
+            print "take Objectif"
             self.takeObjectif()
         elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False):
+            print "move to Objectif"
             self.moveToAction()
         elif elevationPossible == False:
+            print "Go to Unknow"
             self.goToUnknow()
             self.decideCaseToGo()
         self.reduceProbabilities()
@@ -578,5 +585,5 @@ class player:
                 y = msg.split(',')[2]
                 if (self._lvl == lvl or nb_p > 0 or nb_l > 0 or nb_d > 0 or nb_s > 0 or nb_m > 0 or nb_p > 0 or nb_t > 0):
                     print "J'arrive en " + x + "," + y
-                    self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 2)
+                    self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 3)
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
