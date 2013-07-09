@@ -5,7 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
+<<<<<<< HEAD
+** Last update Mon Jul  8 15:59:01 2013 louaze_j
+=======
 ** Last update Mon Jul  8 12:27:28 2013 julien fortin
+>>>>>>> 3066dd62253e7cd3866725ad525c4fc4b08c62ac
 */
 
 #include	<stdio.h>
@@ -65,10 +69,14 @@ t_player	*create_player(const t_socket *socket)
 
 void		delete_player(t_player *player, const t_server *server)
 {
+  t_list	*list;
+
   (void)server;
   if (player)
     {
       /**/
+      list = server->game->players;
+      list->erase(&list, player);
       printf("Player %u is dead..\n", player->id);
       /**/
       player->socket = delete_socket(player->socket);
