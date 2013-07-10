@@ -11,6 +11,7 @@ class   defineAction:
         self._phiras = 5
         self._thystame = 6
         self._incantation = 7
+        self._declancherIncantation = 7
         self._incantationEnnemy = 8
 
 class   action:
