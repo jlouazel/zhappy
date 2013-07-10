@@ -58,10 +58,10 @@ class case:
             print "phiras, ",
         if self._thystame >= 1:
             print "thystame, ",
-        if self._players >= 1:
-            print "players, "
-        if self._nourriture >= 1:
-            print "nourriture",
+#        if self._players >= 1:
+ #           print "players, ",
+#        if self._nourriture >= 1:
+#            print "nourriture",
         print "}",
 
     def reduceProbabilities(self):
