@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Wed Jul 10 10:53:55 2013 julien fortin
+** Last update Wed Jul 10 21:49:38 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -48,15 +48,23 @@ static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
   printf("[GET:%s:%d]:%s<\n", player->socket->_client->_ip, player->socket->_port, cmd);
   if (serv && serv->cmd &&
       (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, cmd)) >= 0)
-    if (serv->cmd->cmd[index])
-      {
-	i = find_first_of(cmd, ' ');
-	if ((cmd = serv->cmd->cmd[index](player, serv,
-					 (void*)epur_end_str
-					 (epur_begin_str
-					  (deconst_cast(i > 0 ? cmd + i : cmd), " \t"), " \t"))))
-	  player->notify(player, cmd);
-      }
+    {
+      if (serv->cmd->cmd[index])
+	{
+	  i = find_first_of(cmd, ' ');
+	  if ((cmd = serv->cmd->cmd[index](player, serv,
+					   (void*)epur_end_str
+					   (epur_begin_str
+					    (deconst_cast(i > 0 ? cmd + i : cmd), " \t\n"), " \t\n"))))
+	    player->notify(player, cmd);
+	}
+    }
+  else if (index < 0 && player && !player->is_allowed(player))
+    server_get_auth_from_player(serv,
+				player,
+				epur_end_str
+				(epur_begin_str
+				 (deconst_cast(cmd), " \t\n"), " \t\n"));
 }
 
 static t_list	*_server_extract_data_packet(char *data,

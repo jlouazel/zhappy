@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
 <<<<<<< HEAD
-** Last update Mon Jul  8 15:13:57 2013 louaze_j
+** Last update Wed Jul 10 18:25:11 2013 julien fortin
 =======
 ** Last update Mon Jul  8 12:25:55 2013 julien fortin
 >>>>>>> 3066dd62253e7cd3866725ad525c4fc4b08c62ac
@@ -32,8 +32,7 @@
 #define DEFAULT_LVL     1
 #define DEFAULT_LIFE    10
 
-#define	PLAYER_ALLOWED		42
-#define	PLAYER_NOT_ALLOWED	0
+typedef enum { PLAYER_STATUS_ALLOW, PLAYER_STATUS_NOT_ALLOW } t_status;
 
 typedef struct s_team t_team;
 
@@ -44,8 +43,8 @@ typedef struct  s_player
   unsigned int		id;
   bool			egg;
   t_team		*team;
+  t_status		status;
   unsigned int		level;
-  unsigned char		status;
   e_direction		direction;
   unsigned int		inventory_tab[7];
 
