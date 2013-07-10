@@ -381,7 +381,7 @@ class player:
         elif (self._action._firstAction == self._action._PossibleAction._incantation):
             print "Incantation amie je suis arive sur place ", self._posX, " ", self._posY
             self._action._define = 0
-            #Envois du message je suis ici avec pos X et Y
+            self.broadcast("A"+str(self._posX)+"/"+str(self._posY))
 
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
@@ -634,5 +634,7 @@ class player:
             elif msg[0:9] == "Incomming":
             	self._incomming += 1
             	print "Il y a " + str(self._incomming) + " personnes qui viennent m'aider a evoluer"
-            #elif msg qui reconnait un message qui dis je suis arrive a la position
+            elif msg[0:1] == "A":
+            	coordX = msg[1:].split('/')[0]
+            	coordY = msg[1:].split('/')[1]
 
