@@ -633,3 +633,5 @@ class player:
             elif msg[0:9] == "Incomming":
             	self._incomming += 1
             	print "Il y a " + str(self._incomming) + " personnes qui viennent m'aider a evoluer"
+            #elif msg qui reconnait un message qui dis je suis arrive
+
