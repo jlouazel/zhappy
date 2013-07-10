@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jun 25 17:12:46 2013 julien fortin
-** Last update Mon Jul  1 23:33:48 2013 julien fortin
+** Last update Wed Jul 10 11:45:08 2013 julien fortin
 */
 
 #include	"lib_std.h"
@@ -48,6 +48,7 @@ t_list		*new_list(void *data)
 
   if (!(list = xcalloc(1, sizeof(*list))))
     return (NULL);
+  list->next = NULL;
   list->data = data;
   list->size = &list_size;
   list->iterator = &list_iterator;
@@ -66,13 +67,13 @@ t_list		*delete_list(t_list *list, void (*foo)(void*))
   while (list)
     {
       if (tmp)
-	tmp = xfree((void**)&tmp, sizeof(*list));
+	tmp = xfree((void**)&tmp, sizeof(*tmp));
       tmp = list;
       if (foo)
 	foo(list->data);
       list = list->next;
     }
   if (tmp)
-    tmp = xfree((void**)&tmp, sizeof(*list));
+    tmp = xfree((void**)&tmp, sizeof(*tmp));
   return (NULL);
 }

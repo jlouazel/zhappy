@@ -4,3 +4,7 @@ fonctions bienvenu
 empecher le client de faire des commandes s'il n'est pas accepte (bienvenu &co)
 
 verifier l'histoirede pas plus de 10 msg pour un client
+
+
+
+Quand une socket quit/pete, il ne faut pas delete_player. Il faut laissedr l'ia mourrir et une fois que le joueur est vraiment mort "IG", faire un deleteplayer. Mais juste en attendant on fait un delete_socket.

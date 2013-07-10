@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
-** Last update Mon Jul  8 10:49:05 2013 julien fortin
+** Last update Wed Jul 10 20:23:28 2013 julien fortin
 */
 
 #ifndef	__SERVERZAPPY_H__
@@ -40,6 +40,7 @@ bool		server_listen_connection_queue(const t_server*, fd_set*);
 bool            server_listen_player(const t_server *, fd_set *, int*);
 bool            server_will_notify_player(const t_server *, fd_set *, int*);
 bool		server_notify_player(const t_server *, fd_set*);
+bool            server_get_auth_from_player(const t_server *, t_player *, const char *);
 
 void		server_accept(const t_server*, const fd_set*);
 

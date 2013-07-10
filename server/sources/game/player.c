@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
 <<<<<<< HEAD
-** Last update Tue Jul  9 21:21:26 2013 julien fortin
+** Last update Wed Jul 10 18:26:11 2013 julien fortin
 =======
 <<<<<<< HEAD
 ** Last update Mon Jul  8 15:59:01 2013 louaze_j
@@ -27,7 +27,7 @@
 
 static bool	_player_is_allowed(const t_player *player)
 {
-  return (player->status != PLAYER_NOT_ALLOWED && player->team);
+  return (player->status != PLAYER_STATUS_NOT_ALLOW && player->team);
 }
 
 static void	_player_notify(t_player *player, const char *data)
@@ -51,7 +51,7 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   new_player->level = DEFAULT_LVL;
   new_player->direction = rand() % 4;
   new_player->socket = socket;
-  new_player->status = PLAYER_NOT_ALLOWED;
+  new_player->status = PLAYER_STATUS_NOT_ALLOW;
   new_player->io = init_server_io();
   new_player->inventory_tab[FOOD] = 10;
   new_player->is_allowed = &_player_is_allowed;
@@ -83,6 +83,12 @@ void		delete_player(t_player *player, const t_server *server)
       list = server->game->players;
       if (list)
       	list->erase(&list, player);
+      ((t_game*)server->game)->players = list;
+      // erase de la liste des joueurs de l'equipe. et rajoute un oeuf au compteur.
+      // player->team = player->team->remove_player(player->team, player); renvoi NULL;
+      /* list = player->team && player->team->members ? player->team->members : NULL; */
+      /* if (list) */
+      /* 	list->erase(&list, player); */
       printf("Player %u is dead..\n", player->id);
       /**/
       player->socket = delete_socket(player->socket);

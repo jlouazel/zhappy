@@ -5,13 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Tue Jul  9 21:27:36 2013 julien fortin
+** Last update Wed Jul 10 14:29:44 2013 julien fortin
 */
 
 #include	"server.h"
 #include	"player.h"
-
-#include<stdio.h>
 
 bool			server_will_notify_player(const t_server *serv,
 						  fd_set *wfd, int *max_fd)
