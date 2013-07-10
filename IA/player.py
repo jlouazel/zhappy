@@ -31,14 +31,9 @@ class player:
         self._queue = Queue.Queue()
         self._elevation = elevation()
         self._lvl = 1
-<<<<<<< HEAD
         self._nourritureMinimal = 15
         self._ping = True
         self._test = 0
-=======
-        self._nourritureMinimal = 20
-        self._incomming = 0
->>>>>>> d4e41fdfd7667cb0b93f1af2f3629e38a46c6f5d
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -532,12 +527,8 @@ class player:
             	#print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
             	# exemple B1nJnLnDnSnMnPnT,X,Y
             	msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
-<<<<<<< HEAD
-                #print "je diffuse" + msg
-=======
             	print "je diffuse" + msg
             	self._incomming = 0
->>>>>>> d4e41fdfd7667cb0b93f1af2f3629e38a46c6f5d
             	self.broadcast(msg)
                 self.voir()
                 self._nourritureMinimal = 10
@@ -629,24 +620,16 @@ class player:
                 #if (self._lvl == lvl and (nb_p > 0 or nb_l > 0 or nb_d > 0 or nb_s > 0 or nb_m > 0 or nb_p > 0 or nb_t > 0)):
                 if self._lvl == int(lvl):
                     print "J'arrive en " + x + "," + y
-<<<<<<< HEAD
                     self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 3)
                     self._nourritureMinimal = 10
-=======
-                    self._action.setMove(int(x), int(y), self._action._PossibleAction._incantation, 2)
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
-                    self.broadcast("Incomming")
->>>>>>> d4e41fdfd7667cb0b93f1af2f3629e38a46c6f5d
             elif msg[0:4] == "Ping":
             	self.broadcast("Pong," + direction)
             elif msg[0:4] == "Pong" and self._ping == True:
                 self._test = 100
             	other_direction = int(msg.split(',')[1])
-<<<<<<< HEAD
                 self.setMyOrientation(int(direction), other_direction)
                 self._ping = False
-=======
-            elif msg[0:9] == "Incomming"
+            elif msg[0:9] == "Incomming":
             	self._incomming += 1
             	print "Il y a " + str(self._incomming) + " personnes qui viennent m'aider a evoluer"
->>>>>>> d4e41fdfd7667cb0b93f1af2f3629e38a46c6f5d
