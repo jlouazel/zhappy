@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jun 24 18:24:47 2013 julien fortin
-** Last update Tue Jul  9 14:08:44 2013 louaze_j
+** Last update Wed Jul 10 10:41:55 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -16,6 +16,12 @@
 #include	"lib_std.h"
 #include	"server.h"
 #include	"lib_errs.h"
+
+/*
+
+fprintf(stderr, "usage: %s [[[-p port] -p port] ...] [-x world_x] [-y world_y] [-c max_clients] [-t speed] -n team_name_1 team_name_2 ...\n", av[0]);
+
+*/
 
 static bool	is_empty(char *str, const char **av, int flag)
 {

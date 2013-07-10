@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Mon Jul  8 12:27:51 2013 julien fortin
+** Last update Wed Jul 10 10:53:55 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -117,18 +117,20 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 bool		server_players_actions(const t_server *serv, fd_set *rfd)
 {
   t_list	*list;
+  t_list	*tmp;
   t_player	*player;
 
   list = serv && serv->game && serv->game->players ? serv->game->players : NULL;
   while (list)
     {
+      tmp = list->next;
       if (list->data)
 	{
 	  player = (t_player*)list->data;
 	  if (player && player->socket && FD_ISSET(player->socket->_socket, rfd))
 	    _server_treat_actions_for_player(serv, player);
 	}
-      list = list->next;
+      list = tmp;
     }
   return (true);
 }

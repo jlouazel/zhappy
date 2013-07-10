@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
 <<<<<<< HEAD
-** Last update Mon Jul  8 12:39:19 2013 julien fortin
+** Last update Tue Jul  9 21:21:26 2013 julien fortin
 =======
 <<<<<<< HEAD
 ** Last update Mon Jul  8 15:59:01 2013 louaze_j
@@ -81,7 +81,8 @@ void		delete_player(t_player *player, const t_server *server)
     {
       /**/
       list = server->game->players;
-      list->erase(&list, player);
+      if (list)
+      	list->erase(&list, player);
       printf("Player %u is dead..\n", player->id);
       /**/
       player->socket = delete_socket(player->socket);

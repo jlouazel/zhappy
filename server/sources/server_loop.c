@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
-** Last update Mon Jul  8 17:12:04 2013 louaze_j
+** Last update Tue Jul  9 19:56:19 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -47,8 +47,6 @@ static int	_server_action(const t_server *server,
   return (EXIT_SUCCESS);
 }
 
-#include "graphical.h"
-
 int	server_loop(const t_server *server)
 {
   static int		fail_select = 0;
@@ -57,9 +55,6 @@ int	server_loop(const t_server *server)
   fd_set		wfd;
   int			max_fd;
 
-  t_graphical *g = new_graphical_client(NULL);
-
-  g->mct(g, server);
   max_fd = _init_select_serv(server, &rfd, &wfd, &timeout);
   if ((select(max_fd + 1, &rfd, &wfd, NULL, &timeout)) < 0)
     {

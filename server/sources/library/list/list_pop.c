@@ -5,13 +5,12 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed Jun 26 17:32:30 2013 julien fortin
-** Last update Sun Jul  7 18:04:55 2013 louaze_j
+** Last update Wed Jul 10 10:57:03 2013 julien fortin
 */
 
 #include	<stdlib.h>
 #include	"lib_std.h"
 #include	"list.h"
-
 
 static void	*list_pop_front(t_list **list)
 {
@@ -24,7 +23,7 @@ static void	*list_pop_front(t_list **list)
       tmp = *list;
       data = (*list)->data;
       *list = (*list)->next;
-      tmp = xfree((void**)&tmp, sizeof(*tmp));
+      tmp = xfree((void**)&tmp, 0);
     }
   return (data);
 }
@@ -55,23 +54,29 @@ static void	*list_pop_back(t_list **list)
 
 static void	*list_erase(t_list **list, void *elem)
 {
+  t_list	*prev;
   t_list	*tmp;
-  t_list	*tmp2;
+  void		*data;
 
+  if (!list || !*list || !elem)
+    return (NULL);
   tmp = *list;
-  if (tmp->data == elem)
-    return (list_pop_front(list));
-  while (tmp && tmp->next)
+  prev = NULL;
+  while (tmp)
     {
-      if (tmp->next->data == elem)
+      if (tmp->data && tmp->data == elem)
 	{
-	  tmp2 = tmp;
-	  tmp2->next = tmp2->next->next;
-	  tmp = xfree((void**)&tmp, sizeof(*tmp));
+	  data = tmp->next;
+	  if (!prev)
+	    return (tmp->pop_front(list));
+	  prev->next = tmp->next;
+	  xfree((void**)&tmp, 0);
+	  return (data);
 	}
+      prev = tmp;
       tmp = tmp->next;
     }
-  return (*list);
+  return (NULL);
 }
 
 void		init_list_pop(t_list *list)
