@@ -5,7 +5,7 @@
 // Login   <louaze_j@epitech.net>
 // 
 // Started on  Tue Jul  9 01:57:32 2013 louaze_j
-// Last update Tue Jul  9 02:03:24 2013 louaze_j
+// Last update Wed Jul 10 11:44:53 2013 louaze_j
 //
 
 #include	"Square.hh"
@@ -20,4 +20,19 @@ Square::Square(int x, int y)
 
 Square::~Square()
 {
+}
+
+int	Square::getX() const
+{
+  return this->_x;
+}
+
+int	Square::getY() const
+{
+  return this->_y;
+}
+
+std::vector<int> & Square::getContent()
+{
+  return this->_content;
 }
