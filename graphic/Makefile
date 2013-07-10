@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ## 
 ## Started on  Tue Jul  9 01:12:19 2013 louaze_j
-## Last update Tue Jul  9 02:08:17 2013 louaze_j
+## Last update Tue Jul  9 23:25:28 2013 louaze_j
 ##
 
 CC			= g++
@@ -13,16 +13,18 @@ CC			= g++
 RM			= rm -f
 
 CPPFLAGS		+= -W -Wall -Wextra -Werror
-CPPFLAGS		+= -I ./includes
+CPPFLAGS		+= -I ./includes/
+CPPFLAGS		+= -I ../server/includes/lib/
 
-LDFLAGS			=
+LDFLAGS			= -L. ./libmy_c.so
 
 NAME			= graphic
 SRCS_DIR		= sources/
 
 SRCS			= $(SRCS_DIR)main.cpp \
 			$(SRCS_DIR)World.cpp \
-			$(SRCS_DIR)Square.cpp
+			$(SRCS_DIR)Square.cpp \
+			$(SRCS_DIR)Graphic.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 

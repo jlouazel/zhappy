@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Mon Jul  8 12:25:14 2013 julien fortin
+** Last update Tue Jul  9 21:22:02 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -24,12 +24,13 @@ static bool		_server_accept_player(const t_server *serv,
     {
       list = serv->game->players;
       player = create_player(client);
-      if (list && list->size(list))
+      if (player && list && list->size(list))
 	list->push_back(&list, (void*)player);
-      else
+      else if (player)
 	((t_game*)serv->game)->players = new_list((void*)player);
-      // notufy player BIENVENUE
-      return (true);
+      if (player)
+	player->notify(player, "BIENVENUE\n");
+      return (player ? true : false);
     }
   return (false);
 }

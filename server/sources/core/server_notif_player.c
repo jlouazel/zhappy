@@ -5,11 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Fri Jul  5 18:06:19 2013 julien fortin
+** Last update Tue Jul  9 21:27:36 2013 julien fortin
 */
 
 #include	"server.h"
 #include	"player.h"
+
+#include<stdio.h>
 
 bool			server_will_notify_player(const t_server *serv,
 						  fd_set *wfd, int *max_fd)
@@ -17,8 +19,8 @@ bool			server_will_notify_player(const t_server *serv,
   t_list	*list;
   t_player	*player;
 
-  list = serv && serv->io && serv->io->out
-    ? serv->io->out : NULL;
+  list = serv && serv->game && serv->game->players
+    ? serv->game->players : NULL;
   while (list)
     {
       if (list->data)
@@ -31,6 +33,7 @@ bool			server_will_notify_player(const t_server *serv,
 		*max_fd = player->socket->_socket;
 	    }
 	}
+      list = list->next;
     }
   if (list)
     return (true);
@@ -74,10 +77,12 @@ bool		server_notify_player(const t_server *serv, fd_set *wfd)
 {
   t_list	*list;
 
-  if ((list = serv && serv->io ? serv->io->out : NULL))
+  if ((list = serv && serv->game && serv->game->players ?
+       serv->game->players : NULL))
     {
-      list->foreach(list, &_notify_foreach_player, wfd);
-      ((t_io*)serv->io)->out = delete_list(list, NULL);
+      if (list->foreach)
+	list->foreach(list, &_notify_foreach_player, wfd);
+      //((t_io*)serv->io)->out = delete_list(list, NULL);
     }
   return (true);
 }

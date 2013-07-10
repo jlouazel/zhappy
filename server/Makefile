@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Tue Jul  9 11:14:33 2013 louaze_j
+## Last update Tue Jul  9 18:22:43 2013 louaze_j
 ##
 
 CC			= gcc
@@ -85,6 +85,7 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)msz.c \
 			$(SRCS_DIR)$(GAME_DIR)bct.c \
 			$(SRCS_DIR)$(GAME_DIR)mct.c \
+			$(SRCS_DIR)$(GAME_DIR)tna.c \
 
 #
 #library
