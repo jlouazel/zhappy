@@ -38,6 +38,7 @@ class player:
         self._mustIncante = True
         self._test1 = False
         self._test2 = 0
+        self._leveling = False
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -516,10 +517,9 @@ class player:
                 if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
                     self._action.initSecondAction()
             	#print "J'incante"
+            		self._leveling = True
                     self.incantation()
                     print "Incantation"
-                    time.sleep(4)
-                    print "Incantation Fini"
                     self._incomming = 0
                     return False
             # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
@@ -551,44 +551,48 @@ class player:
         return False
 
     def findGoodMove(self):
+	    if (self._queue.qsize() > 6 or self._leveling == True):
+	    	time.sleep(0.5)
+	    else:
 #        self._ping = False
-        self._test2 += 1
-        print self._test2
-        if self._test2 < 40:
-            elevationPossible = False
-            if (self._inventaire._nourriture < self._nourritureMinimal):
-                tab = self.findFood(3)
-                if (tab[0] != -1 and tab[1] != -1):
-                    self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
-                    self._nourritureMinimal = 15
-            elif self._action._emergency != 3:
-                self.takeObject()
-                elevationPossible = self.incantIfPossible()
-                self.decideSecondAction()
-            if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
-          #print "take Objectif"
-                self.takeObjectif()
-            elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False):
-                print "move to Objectif"
-                self.moveToAction()
-            elif elevationPossible == False:
-         #print "Go to Unknow"
-                self.goToUnknow()
-                self.decideCaseToGo()
-            self.reduceProbabilities()
-            self.inventaire()
-      #self.affMap()
-          #print ""
-        else:
-            if (self._posX != 1 or self._posY != 1) and self._test1 == False:
-                print "go pos 1 1"
-                self.deplacementAbsolut(1, 1)
-            else:
-                print "Je suis arrive."
+	        self._test2 += 1
+	        print self._test2
+	        if self._test2 < 40:
+	            elevationPossible = False
+	            if (self._inventaire._nourriture < self._nourritureMinimal):
+	                tab = self.findFood(3)
+	                if (tab[0] != -1 and tab[1] != -1):
+	                    self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
+	                    self._nourritureMinimal = 15
+	            elif self._action._emergency != 3:
+	                self.takeObject()
+	                elevationPossible = self.incantIfPossible()
+	                self.decideSecondAction()
+	            if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
+	          #print "take Objectif"
+	                self.takeObjectif()
+	            elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False):
+	                print "move to Objectif"
+	                self.moveToAction()
+	            elif elevationPossible == False:
+	         #print "Go to Unknow"
+	                self.goToUnknow()
+	                self.decideCaseToGo()
+	            self.reduceProbabilities()
+	            self.inventaire()
+	      #self.affMap()
+	          #print ""
+	        else:
+	            if (self._posX != 1 or self._posY != 1) and self._test1 == False:
+	                print "go pos 1 1"
+	                self.deplacementAbsolut(1, 1)
+	            else:
+	                print "Je suis arrive."
 
     def treatOk(self, trame):
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
+            	self._leveling = False
                 tmp = self._queue.get()
                 if tmp.split(' ')[0] == "prend" and trame == "ok":
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
@@ -613,6 +617,7 @@ class player:
                     self._orientation = (self._orientation + 1) % 4
         elif trame[0:6] == "niveau":
             #print "I up"
+            self._leveling = False
             self._lvl = self._lvl + 1
             self._queue.get()
             self.inventaire()
