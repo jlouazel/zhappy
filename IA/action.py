@@ -20,7 +20,7 @@ class   action:
         self._x = 0
         self._y = 0
         self._PossibleAction = defineAction()
-        self._tabPossibleAction = ["nourriture", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame", "incantation", "incantationEnnemy"];
+        self._tabPossibleAction = ["nourriture", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame", "incantation", "declancherIncantation", "incantationEnnemy"];
         self._firstAction = self._PossibleAction._undifined
         self._secondAction = []
         self._thirdAction = []
