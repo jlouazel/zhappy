@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Thu Jul 11 15:59:52 2013 julien fortin
+** Last update Thu Jul 11 18:21:27 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -103,6 +103,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 						 t_player *player)
 {
   t_list	*list;
+  unsigned int	i;
 
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
@@ -112,10 +113,17 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 			  (player->socket, 424242), '\r', ' '), NULL, NULL)))
 	server_disconnect_player(player);
       puts("##################+");
+      i = 0;
       while (list)
 	{
 	  if (list->data)
-	    _server_treat_cmd_for_player(serv, player, (const char*)list->data);
+	    {
+	      if (i > 9)
+		player->notify(player, "ko\n");
+	      else
+		_server_treat_cmd_for_player(serv, player, (const char*)list->data);
+	      i++;
+	    }
 	  list = list->next;
 	}
       puts("##################-");
