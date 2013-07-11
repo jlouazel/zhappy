@@ -1,48 +1,48 @@
-##
-## Makefile for zhappy in /home/louaze_j
-## 
-## Made by louaze_j
-## Login   <louaze_j@epitech.net>
-## 
-## Started on  Tue Jul  9 01:12:19 2013 louaze_j
-## Last update Wed Jul 10 14:14:32 2013 louaze_j
-##
+CC          = g++
 
-CC			= g++
+RM          = rm -f
 
-RM			= rm -f
+NAME		= zappyVisu
 
-CPPFLAGS		+= -W -Wall -Wextra -g3
-CPPFLAGS		+= -I ./includes/
-CPPFLAGS		+= -I ./libmy_c/includes/
+#CPPFLAGS	+= -W -Wall -Wextra -O2
 
-LDFLAGS			= -L. ./libmy_c/libmy_c.so
+CPPFLAGS	+= -I ./inc/
+CPPFLAGS	+= -I ./network/includes/
+CPPFLAGS	+= -I ./network/libmy_c/includes/
 
-NAME			= graphic
-SRCS_DIR		= sources/
+CPPFLAGS	+= -I /usr/include/OGRE/
+CPPFLAGS	+= -I /usr/include/ois/
+CPPFLAGS	+= -O3
 
-SRCS			= $(SRCS_DIR)main.cpp \
-			$(SRCS_DIR)World.cpp \
-			$(SRCS_DIR)Square.cpp \
-			$(SRCS_DIR)Graphic.cpp \
-			$(SRCS_DIR)Parser.cpp \
-			$(SRCS_DIR)Treatment.cpp \
-			$(SRCS_DIR)Teams.cpp \
-			$(SRCS_DIR)Players.cpp
+LDFLAGS		+= -lOgreMain -lOIS
+LDFLAGS	        += -L. ./network/libmy_c/libmy_c.so
 
-OBJS			= $(SRCS:.cpp=.o)
+SRC_DIR		= src/
+SRCNETWORK_DIR	= network/sources/
 
-all:			$(NAME)
+SRCS		= $(SRC_DIR)BaseApplication.cpp \
+		$(SRC_DIR)TutorialApplication.cpp \
+		$(SRCNETWORK_DIR)Graphic.cpp \
+		$(SRCNETWORK_DIR)Parser.cpp \
+		$(SRCNETWORK_DIR)Players.cpp \
+		$(SRCNETWORK_DIR)Square.cpp \
+		$(SRCNETWORK_DIR)Teams.cpp \
+		$(SRCNETWORK_DIR)Treatment.cpp \
+		$(SRCNETWORK_DIR)World.cpp
 
-$(NAME):		$(OBJS)
-			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+OBJS		= $(SRCS:.cpp=.o) \
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS)
+		$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 clean:
-			$(RM) $(OBJS)
+		$(RM) $(OBJS)
 
-fclean:			clean
-			$(RM) $(NAME)
+fclean:		clean
+		$(RM) $(NAME)
 
-re:			fclean all
+re:		fclean all
 
-.PHONY:			all clean fclean
+.PHONY:		all clean fclean

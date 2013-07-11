@@ -1,0 +1,131 @@
+material Homer_black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture black.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Homer_blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture blue.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Homer_brown
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture brown.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Homer_white
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture white.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Homer_yellow
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture yellow.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material lambert12
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+             cull_hardware none
+             cull_software none
+
+			texture_unit
+			{
+				texture donut.tga
+			}
+		}
+
+	}
+
+}

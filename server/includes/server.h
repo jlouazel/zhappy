@@ -5,7 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
+<<<<<<< HEAD
+** Last update Thu Jul 11 15:44:59 2013 louaze_j
+=======
 ** Last update Thu Jul 11 16:00:59 2013 julien fortin
+>>>>>>> ad25151838df947b61426937bba16c95ecaf08e6
 */
 
 #ifndef	__SERVERZAPPY_H__

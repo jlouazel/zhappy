@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Thu Jul 11 14:27:35 2013 louaze_j
+** Last update Thu Jul 11 19:20:31 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -14,7 +14,6 @@
 
 void		server_conf(t_server *server)
 {
-  printf("Listening on port %d...\n", server->options->port);
   printf("Configuration : Max(%d) WorldX(%d) WorldY(%d) T(%d)\n",
 	 server->options->nb_max_clients,
 	 server->options->x,
@@ -26,24 +25,24 @@ void		log_map(double cnt, double tot)
 {
   int		i;
   int		percent;
-  static bool	done = false;
+  int		percent2;
 
-  if (done == false)
-    {
-      printf("\033[%d;%dH", 3, 0);
-      printf("Building map: [");
-      printf("\033[%d;%dH", 3, 116);
-      printf("]\n");
-      done = true;
-    }
+  printf("\033[32m\rGenerating world : [\033[32m");
   percent = ((cnt / tot) * 100);
-  i = percent;
-  while (100 - i != 0)
+  percent2 = percent;
+  i = 100 - percent;
+  while (percent >= 0)
     {
-      printf("\033[%d;%dH", 3, 100 - (i + 16));
-      printf("#");
+      printf("\033[32m#\033[0m");
       percent--;
+      fflush(NULL);
     }
-  printf("\033[%d;%dH", 3, 118);
-  printf("%d%%\n", percent - 100);
+  while (i > 0)
+    {
+      printf("\033[31m#\033[0m");
+      /* printf(" "); */
+      fflush(NULL);
+      i--;
+    }
+  printf("\033[32m] %d%%\033[0m", percent2);
 }

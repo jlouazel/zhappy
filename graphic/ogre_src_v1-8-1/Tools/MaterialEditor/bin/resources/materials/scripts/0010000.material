@@ -1,0 +1,11 @@
+material pasted__lambert7SG
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}

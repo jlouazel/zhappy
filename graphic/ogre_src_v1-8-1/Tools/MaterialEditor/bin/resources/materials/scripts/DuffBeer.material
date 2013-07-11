@@ -1,0 +1,42 @@
+material DuffDessus
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture duffUp.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material DuffEtiquette
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture duff.tga
+				transform 1.0001 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1
+			}
+		}
+
+	}
+
+}

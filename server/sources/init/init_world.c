@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Tue Jul  2 10:25:55 2013 louaze_j
-** Last update Thu Jul 11 14:28:48 2013 louaze_j
+** Last update Thu Jul 11 19:19:40 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -67,6 +67,8 @@ static t_list	*create_world(const t_options *options)
 	  x--;
 	}
       y--;
+      log_map((options->x * options->y) - (x + y * options->x),
+	      options->x * options->y);
     }
   return (squares);
 }

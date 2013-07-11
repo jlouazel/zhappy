@@ -1,0 +1,107 @@
+material Maggie_black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture black.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Maggie_blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture blue.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Maggie_orange
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture orange.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Maggie_white
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture white.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Maggie_yellow
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture yellow.tga
+			}
+		}
+
+	}
+
+}
