@@ -1,0 +1,69 @@
+material lambert2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+			diffuse 0 0 1 1
+		}
+
+	}
+
+}
+
+
+
+material lambert3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+			diffuse 0.964954 1 0 1
+		}
+
+	}
+
+}
+
+
+
+material lambert5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+			diffuse 0 1 0 1
+		}
+
+	}
+
+}
+
+
+
+material lambert6
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+			diffuse 1 0 0 1
+		}
+
+	}
+
+}

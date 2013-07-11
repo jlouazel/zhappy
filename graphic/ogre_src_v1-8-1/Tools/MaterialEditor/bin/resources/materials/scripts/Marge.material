@@ -1,0 +1,129 @@
+material Marge_black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture black.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Marge_blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture blueMarge.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Marge_green
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture green.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Marge_red
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture red.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Marge_white
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture white.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Marge_yellow
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture yellow.tga
+			}
+		}
+
+	}
+
+}

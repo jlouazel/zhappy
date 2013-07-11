@@ -1,0 +1,217 @@
+material Krusty_black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture black.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture blue.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_green
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture greenKrustyHair.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_green2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture greenKrusty.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_purple
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture purple.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_red
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture red.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_white
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture white.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_yellow
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture whiteKrustyFace.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Krusty_yellowArms
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture yellow.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material lambert11
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture krustyBeard.tga
+			}
+		}
+
+	}
+
+}

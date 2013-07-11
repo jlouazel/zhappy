@@ -1,0 +1,17 @@
+material lambert3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1 ambient 0.8 0.8 0.8                        diffuse 0.8 0.8 0.8                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture blue.tga
+			}
+		}
+
+	}
+
+}
