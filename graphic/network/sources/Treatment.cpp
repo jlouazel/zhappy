@@ -5,7 +5,7 @@
 // Login   <louaze_j@epitech.net>
 // 
 // Started on  Wed Jul 10 02:14:07 2013 louaze_j
-// Last update Wed Jul 10 23:39:21 2013 louaze_j
+// Last update Fri Jul 12 00:31:57 2013 louaze_j
 //
 //
 
@@ -72,6 +72,13 @@ static void	pnw(GraphicClient * client, std::vector<std::string> const & line)
   client->getPlayers().insert(std::make_pair(player->getId(), player));
 }
 
+static void	ppo(GraphicClient * client, std::vector<std::string> const & line))
+{
+  client->getPlayers()[atoi(line[1])]->setX(atoi(line[2]));
+  client->getPlayers()[atoi(line[1])]->setY(atoi(line[3]));
+  client->getPlayers()[atoi(line[1])]->setDirection(atoi(line[4]));
+}
+
 void		parseRead(GraphicClient * client, std::string const & line)
 {
   // std::cout << line << std::endl;
@@ -124,6 +131,7 @@ void		parseRead(GraphicClient * client, std::string const & line)
       pnw(client, parsedLine);
       break;
     case 4:
+      ppo(client, parsedLine);
       break;
     case 5:
       break;

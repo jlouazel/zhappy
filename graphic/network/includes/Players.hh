@@ -5,7 +5,7 @@
 // Login   <louaze_j@epitech.net>
 // 
 // Started on  Wed Jul 10 12:19:52 2013 louaze_j
-// Last update Wed Jul 10 18:28:33 2013 louaze_j
+// Last update Fri Jul 12 00:29:20 2013 louaze_j
 //
 
 #include <string>
@@ -31,4 +31,8 @@ public:
   int			getLvl() const;
   std::string const &	getTeamName() const;
   eDirections		getDirection() const;
+
+  void			setX(int);
+  void			setY(int);
+  void			setDirection(eDirections);
 };

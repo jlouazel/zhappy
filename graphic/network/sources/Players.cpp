@@ -53,3 +53,18 @@ int		Players::getY() const
 {
   return this->_y;
 }
+
+void			setX(int x)
+{
+  this->_x = x;
+}
+
+void			setY(int y)
+{
+  this->_y = y;
+}
+
+void			setDirection(eDirections dir)
+{
+  this->_direction = dir;
+}
