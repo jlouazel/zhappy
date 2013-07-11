@@ -1,0 +1,49 @@
+material Donut
+{
+	technique
+	{
+		pass
+		{
+                        ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+             cull_hardware none
+             cull_software none
+
+			texture_unit
+			{
+				texture donutEmpty.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Sky
+{
+	technique
+	{
+		pass
+		{
+		            lighting off
+ 
+             ambient 1 1 1 1
+             diffuse 1 1 1 1
+             specular 0 0 0 0 
+             emissive 0 0 0
+   	     cull_hardware none
+      	     cull_software none 
+             depth_write on
+
+			texture_unit
+			{
+				texture sky.tga
+			}
+		}
+
+	}
+
+}

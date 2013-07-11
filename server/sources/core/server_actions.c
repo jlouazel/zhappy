@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Wed Jul 10 21:49:38 2013 julien fortin
+** Last update Thu Jul 11 15:59:52 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -110,7 +110,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
       if (!(list = _server_extract_data_packet
 	    (replace_char(player->socket->read
 			  (player->socket, 424242), '\r', ' '), NULL, NULL)))
-	server_disconnect_player(serv, player);
+	server_disconnect_player(player);
       puts("##################+");
       while (list)
 	{

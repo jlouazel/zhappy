@@ -1,0 +1,20 @@
+#include "ExampleFrameListener.h"
+
+class InputListener : public ExampleFrameListener
+{
+public:
+  InputListener(RenderWindow* win, Camera* cam, SceneManager *sceneMgr, bool bufferedKeys = false, bool bufferedMouse = false, bool bufferedJoy = false );
+  virtual bool frameRenderingQueued(const FrameEvent& evt);
+ 
+private:
+  Ogre::SceneManager *mSceneMgr;
+ 
+  bool mToucheAppuyee;
+ 
+  Ogre::Real mMouvement;
+  Ogre::Real mVitesse;
+  Ogre::Real mVitesseRotation;
+ 
+  Ogre::Radian mRotationX;
+  Ogre::Radian mRotationY;
+};

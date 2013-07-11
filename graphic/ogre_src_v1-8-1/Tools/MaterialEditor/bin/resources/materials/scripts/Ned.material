@@ -1,0 +1,151 @@
+material Ned_black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture black.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Ned_brown
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture brown.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Ned_green
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture greenNed.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Ned_grey
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture grey.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Ned_pink
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture pink.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Ned_white
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture white.tga
+			}
+		}
+
+	}
+
+}
+
+
+
+material Ned_yellow
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture yellow.tga
+			}
+		}
+
+	}
+
+}
