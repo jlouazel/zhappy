@@ -203,7 +203,7 @@ class player:
         i = 0
         while (i < tab.__len__()):
             tab[i] = tab[i].split(' ')
-            if tab[i].__len__() >= 2:
+            if tab[i].__len__() >= 2 and tab[i][1] != '':
                 self._inventaire.modifie(tab[i][0], int(tab[i][1]))
             i = i + 1
 
@@ -517,7 +517,7 @@ class player:
                 if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
                     self._action.initSecondAction()
             	#print "J'incante"
-            		self._leveling = True
+                    self._leveling = True
                     self.incantation()
                     print "Incantation"
                     self._incomming = 0
@@ -551,13 +551,14 @@ class player:
         return False
 
     def findGoodMove(self):
-	    if (self._queue.qsize() > 6 or self._leveling == True):
+	    if (self._queue.qsize() > 4 or self._leveling == True):
+                print "Je sleep !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	    	time.sleep(0.5)
 	    else:
 #        self._ping = False
 	        self._test2 += 1
 	        print self._test2
-	        if self._test2 < 40:
+	        if self._test2 < 20:
 	            elevationPossible = False
 	            if (self._inventaire._nourriture < self._nourritureMinimal):
 	                tab = self.findFood(3)
@@ -571,15 +572,15 @@ class player:
 	            if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
 	          #print "take Objectif"
 	                self.takeObjectif()
-	            elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False):
-	                print "move to Objectif"
-	                self.moveToAction()
-	            elif elevationPossible == False:
+	            elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False and self._leveling == False):
+                        print "move to Objectif"
+                        self.moveToAction()
+                    elif elevationPossible == False and self._leveling == False:
 	         #print "Go to Unknow"
-	                self.goToUnknow()
-	                self.decideCaseToGo()
-	            self.reduceProbabilities()
-	            self.inventaire()
+                        self.goToUnknow()
+                        self.decideCaseToGo()
+                        self.reduceProbabilities()
+                        self.inventaire()
 	      #self.affMap()
 	          #print ""
 	        else:
@@ -590,6 +591,10 @@ class player:
 	                print "Je suis arrive."
 
     def treatOk(self, trame):
+        if trame[0:9] == "elevation":
+            print "Elevation EN cour ! "
+        if trame[0:6] == "niveau":
+            print "niveau up"
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
             	self._leveling = False
@@ -619,7 +624,8 @@ class player:
             #print "I up"
             self._leveling = False
             self._lvl = self._lvl + 1
-            self._queue.get()
+            tmp = self._queue.get()
+            print "LVL up : message is : ", tmp
             self.inventaire()
             self._incomming = 0
         # traitement de reception de broadcast trame = "message X,txt"
