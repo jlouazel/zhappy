@@ -1,2 +1,0 @@
-#!/bin/sh
-find . -type f -name "*.material" -exec sed -i "s/pass\n{\n                }/pass\n                {\n                        ambient 0.8 0.8 0.8\n                        diffuse 0.8 0.8 0.8\n                        specular 1 1 1 8\n\n                        texture_unit\n                        {\n                                texture white.tga\n                        }\n                }/g" {} \;
