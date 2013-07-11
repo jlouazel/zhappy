@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Wed Jul 10 22:54:41 2013 julien fortin
+** Last update Thu Jul 11 14:29:35 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -76,7 +76,6 @@ t_team		*create_team(char *name)
   if (!new_team)
     return (NULL);
   init_attr(new_team, name);
-  printf("Team %s : I'm awake !\n", new_team->name);
   return (new_team);
 }
 

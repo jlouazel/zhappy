@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jun 24 18:24:47 2013 julien fortin
-** Last update Wed Jul 10 10:41:55 2013 julien fortin
+** Last update Thu Jul 11 14:50:33 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -115,6 +115,7 @@ const t_options	*init_server_options(int ac, const char **av)
   opts->y = DEFAULT_Y;
   opts->prog_name = deconst_cast(av[0]);
   opts->time = DEFAULT_TIME;
+  opts->nb_max_clients = DEFAULT_NB_PL;
   while ((flag = getopt(ac, deconst_cast(av), "p:x:y:n:c:t:")) > 0)
     if (switch_on_cases(opts, flag, av) == false)
       return (NULL);
