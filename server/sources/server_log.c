@@ -5,25 +5,21 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Sun Jul  7 16:44:56 2013 louaze_j
+** Last update Thu Jul 11 14:27:35 2013 louaze_j
 */
 
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	"server.h"
 
-void		server_login()
+void		server_conf(t_server *server)
 {
-  static int	i = 0;
-
-  if (i == 0)
-    {
-      system("clear");
-      printf("Starting server...\n");
-    }
-  else if (i == 1)
-    printf("Server is ready...\n");
-  i++;
+  printf("Listening on port %d...\n", server->options->port);
+  printf("Configuration : Max(%d) WorldX(%d) WorldY(%d) T(%d)\n",
+	 server->options->nb_max_clients,
+	 server->options->x,
+	 server->options->y,
+	 server->options->time);
 }
 
 void		log_map(double cnt, double tot)

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 04:16:18 2013 julien fortin
-** Last update Sun Jul  7 14:54:54 2013 louaze_j
+** Last update Thu Jul 11 14:28:11 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -18,7 +18,6 @@ const t_cmd	*init_server_cmd()
 {
   t_cmd	*cmd;
 
-  printf("Init commands... ");
   if (!(cmd = xcalloc(1, sizeof(*cmd))))
     return (NULL);
   cmd->name[0] = "avance";
@@ -45,6 +44,5 @@ const t_cmd	*init_server_cmd()
   cmd->cmd[9] = &_player_deport;
   cmd->cmd[10] = &_player_fork;
   cmd->cmd[11] = NULL;
-  printf("Done\n");
   return (cmd);
 }
