@@ -5,15 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 10:09:16 2013 julien fortin
-** Last update Fri Jul  5 18:06:54 2013 julien fortin
+** Last update Thu Jul 11 10:46:12 2013 julien fortin
 */
 
 #include	<stdlib.h>
 #include	<sys/select.h>
 #include	"server.h"
 #include	"player.h"
-
-#include	<stdio.h>
 
 bool		server_listen_player(const t_server *serv, fd_set *rfd, int *max_fd)
 {

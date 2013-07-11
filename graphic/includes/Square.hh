@@ -5,7 +5,7 @@
 // Login   <louaze_j@epitech.net>
 // 
 // Started on  Tue Jul  9 01:39:00 2013 louaze_j
-// Last update Tue Jul  9 02:01:21 2013 louaze_j
+// Last update Wed Jul 10 11:44:58 2013 louaze_j
 //
 
 #ifndef	__SQUARE_HH__
@@ -22,6 +22,10 @@ private:
 public:
   Square(int, int);
   ~Square();
+
+  int getX() const;
+  int getY() const;
+  std::vector<int> & getContent();
 };
 
 #endif

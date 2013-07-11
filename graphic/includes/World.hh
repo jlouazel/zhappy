@@ -5,7 +5,7 @@
 // Login   <louaze_j@epitech.net>
 // 
 // Started on  Tue Jul  9 01:35:31 2013 louaze_j
-// Last update Tue Jul  9 01:49:15 2013 louaze_j
+// Last update Wed Jul 10 10:55:37 2013 louaze_j
 //
 
 #ifndef	__WORLD_HH__
@@ -23,6 +23,10 @@ private:
 public:
   World(int, int);
   ~World();
+
+  int	getWidth() const;
+  int	getHeight() const;
+  std::vector<Square *> const & getMap() const;
 };
 
 #endif

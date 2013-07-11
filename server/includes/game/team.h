@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:36:54 2013 louaze_j
-** Last update Fri Jul  5 11:25:20 2013 louaze_j
+** Last update Wed Jul 10 22:28:55 2013 julien fortin
 */
 
 #ifndef	__TEAMS_H__
@@ -13,6 +13,7 @@
 
 #include "list.h"
 
+typedef struct s_server	t_server;
 typedef struct s_player	t_player;
 
 #define	DEFAULT_TID	0
@@ -25,7 +26,8 @@ typedef struct s_team
   unsigned int	eggs;
   unsigned int	nb_members;
 
-  void		(*add_player)(struct s_team *, t_player *);
+  bool		(*add_player)(struct s_team *, const t_server *, t_player *);
+  void		(*remove_player)(struct s_team *, t_player *); // La fonction ne doit pas free l'elemt
 } t_team;
 
 t_team	*create_team(char *);
