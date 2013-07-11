@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
-** Last update Wed Jul 10 20:23:28 2013 julien fortin
+** Last update Thu Jul 11 15:44:59 2013 louaze_j
 */
 
 #ifndef	__SERVERZAPPY_H__
