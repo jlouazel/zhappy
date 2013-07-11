@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Thu Jul 11 17:38:01 2013 louaze_j
+** Last update Thu Jul 11 19:00:53 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -29,20 +29,14 @@ void		log_map(double cnt, double tot)
 
   if (done == false)
     {
-      printf("\033[%d;%dH", 3, 0);
       printf("Building map: [");
-      printf("\033[%d;%dH", 3, 116);
-      printf("]\n");
       done = true;
     }
   percent = ((cnt / tot) * 100);
   i = percent;
   while (100 - i != 0)
     {
-      printf("\033[%d;%dH", 3, 100 - (i + 16));
       printf("#");
       percent--;
     }
-  printf("\033[%d;%dH", 3, 118);
-  printf("%d%%\n", percent - 100);
 }

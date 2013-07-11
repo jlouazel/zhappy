@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 03:59:56 2013 julien fortin
-** Last update Thu Jul 11 17:46:00 2013 louaze_j
+** Last update Thu Jul 11 18:50:13 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -20,16 +20,17 @@ static bool	log_conf(t_server *server)
 {
   t_list	*tmp;
 
-  printf("Configuration : Max(%d) WorldX(%d) WorldY(%d) T(%d)\n",
+  printf("\033[32mConfiguration : Max(%d) WorldX(%d) WorldY(%d) T(%d)\n",
 	 server->options->nb_max_clients,
 	 server->options->x,
 	 server->options->y,
 	 server->options->time);
-  printf("Team :\n");
+  printf("Team :\n\033[0m");
   tmp = server->options->teams_name;
   while (tmp)
     {
-      printf("\tName(%s)\n", (char *)tmp->data);
+      printf("\033[32m\tName(%s) Max(%d)\n\033[0m", (char *)tmp->data,
+	     server->options->nb_max_clients);
       tmp = tmp->next;
     }
   return (true);

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jun 24 18:24:47 2013 julien fortin
-** Last update Thu Jul 11 17:28:53 2013 louaze_j
+** Last update Thu Jul 11 18:48:31 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -120,6 +120,6 @@ const t_options	*init_server_options(int ac, const char **av)
   while ((flag = getopt(ac, deconst_cast(av), "p:x:y:n:c:t:")) > 0)
     if (switch_on_cases(opts, flag, av) == false)
       return (NULL);
-  printf("Listening on port %d...\n", opts->port);
+  printf("\033[32mListening on port %d...\n\033[0m", opts->port);
   return (opts);
 }

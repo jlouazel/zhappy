@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Tue Jul  2 10:25:55 2013 louaze_j
-** Last update Thu Jul 11 14:28:48 2013 louaze_j
+** Last update Thu Jul 11 19:03:11 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -55,6 +55,7 @@ static t_list	*create_world(const t_options *options)
   x = options->x - 1;
   y = options->y - 1;
   squares = NULL;
+  printf("\033[32mGenerating world...\033[0m");
   while (y >= 0)
     {
       x = options->x - 1;;
@@ -68,6 +69,7 @@ static t_list	*create_world(const t_options *options)
 	}
       y--;
     }
+  printf("\033[32mdone\n\033[0m");
   return (squares);
 }
 
