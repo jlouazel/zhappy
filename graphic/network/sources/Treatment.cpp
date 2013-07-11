@@ -72,11 +72,11 @@ static void	pnw(GraphicClient * client, std::vector<std::string> const & line)
   client->getPlayers().insert(std::make_pair(player->getId(), player));
 }
 
-static void	ppo(GraphicClient * client, std::vector<std::string> const & line))
+static void	ppo(GraphicClient * client, std::vector<std::string> const & line)
 {
-  client->getPlayers()[atoi(line[1])]->setX(atoi(line[2]));
-  client->getPlayers()[atoi(line[1])]->setY(atoi(line[3]));
-  client->getPlayers()[atoi(line[1])]->setDirection(atoi(line[4]));
+  client->getPlayers()[atoi(line[1].c_str())]->setX(atoi(line[2].c_str()));
+  client->getPlayers()[atoi(line[1].c_str())]->setY(atoi(line[3].c_str()));
+  client->getPlayers()[atoi(line[1].c_str())]->setDirection((eDirections)atoi(line[4].c_str()));
 }
 
 void		parseRead(GraphicClient * client, std::string const & line)

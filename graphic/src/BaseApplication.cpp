@@ -354,7 +354,7 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 		scale = sqrt(scale);                                                                          
 		scale *= (sin((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
 		squareNode->setScale(scale, scale, scale);
-	      }                                                   
+	      }
 	    if ((*it)->getContent()[FOOD])
 	      {
 		Ogre::Entity* mesh = mSceneMgr->createEntity("Entity2_" + toString((*it)->getX()) + "_" + toString((*it)->getY()), "Food.mesh");

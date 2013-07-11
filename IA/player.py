@@ -517,7 +517,7 @@ class player:
                 if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
                     self._action.initSecondAction()
             	#print "J'incante"
-            		self._leveling = True
+                    self._leveling = True
                     self.incantation()
                     print "Incantation"
                     self._incomming = 0
