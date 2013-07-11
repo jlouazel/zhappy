@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Thu Jul 11 19:00:53 2013 louaze_j
+** Last update Thu Jul 11 19:20:31 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -25,18 +25,24 @@ void		log_map(double cnt, double tot)
 {
   int		i;
   int		percent;
-  static bool	done = false;
+  int		percent2;
 
-  if (done == false)
-    {
-      printf("Building map: [");
-      done = true;
-    }
+  printf("\033[32m\rGenerating world : [\033[32m");
   percent = ((cnt / tot) * 100);
-  i = percent;
-  while (100 - i != 0)
+  percent2 = percent;
+  i = 100 - percent;
+  while (percent >= 0)
     {
-      printf("#");
+      printf("\033[32m#\033[0m");
       percent--;
+      fflush(NULL);
     }
+  while (i > 0)
+    {
+      printf("\033[31m#\033[0m");
+      /* printf(" "); */
+      fflush(NULL);
+      i--;
+    }
+  printf("\033[32m] %d%%\033[0m", percent2);
 }
