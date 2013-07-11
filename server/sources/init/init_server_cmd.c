@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 04:16:18 2013 julien fortin
-** Last update Thu Jul 11 14:28:11 2013 louaze_j
+** Last update Thu Jul 11 19:13:07 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -14,12 +14,8 @@
 #include	"player.h"
 #include	"server.h"
 
-const t_cmd	*init_server_cmd()
+static void	_init_server_cmd_name(t_cmd *cmd)
 {
-  t_cmd	*cmd;
-
-  if (!(cmd = xcalloc(1, sizeof(*cmd))))
-    return (NULL);
   cmd->name[0] = "avance";
   cmd->name[1] = "droite";
   cmd->name[2] = "gauche";
@@ -32,6 +28,26 @@ const t_cmd	*init_server_cmd()
   cmd->name[9] = "expluse";
   cmd->name[10] = "fork";
   cmd->name[11] = NULL;
+}
+
+static void	_init_server_cmd_time(t_cmd *cmd)
+{
+  cmd->time[0] = 7;
+  cmd->time[1] = 7;
+  cmd->time[2] = 7;
+  cmd->time[3] = 7;
+  cmd->time[4] = 1;
+  cmd->time[5] = 7;
+  cmd->time[6] = 7;
+  cmd->time[7] = 7;
+  cmd->time[8] = 0;
+  cmd->time[9] = 7;
+  cmd->time[10] = 42;
+  cmd->time[11] = 0;
+}
+
+static void	_init_server_cmd_fun(t_cmd *cmd)
+{
   cmd->cmd[0] = &_player_advance;
   cmd->cmd[1] = &_player_right;
   cmd->cmd[2] = &_player_left;
@@ -44,5 +60,16 @@ const t_cmd	*init_server_cmd()
   cmd->cmd[9] = &_player_deport;
   cmd->cmd[10] = &_player_fork;
   cmd->cmd[11] = NULL;
+}
+
+const t_cmd	*init_server_cmd()
+{
+  t_cmd	*cmd;
+
+  if (!(cmd = xcalloc(1, sizeof(*cmd))))
+    return (NULL);
+  _init_server_cmd_name(cmd);
+  _init_server_cmd_time(cmd);
+  _init_server_cmd_fun(cmd);
   return (cmd);
 }

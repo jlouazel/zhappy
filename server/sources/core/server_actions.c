@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Thu Jul 11 18:21:27 2013 julien fortin
+** Last update Thu Jul 11 22:56:44 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -56,7 +56,7 @@ static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
 					   (void*)epur_end_str
 					   (epur_begin_str
 					    (deconst_cast(i > 0 ? cmd + i : cmd), " \t\n"), " \t\n"))))
-	    player->notify(player, cmd);
+	    player->notify(player, serv, cmd, serv->cmd->time[index]);
 	}
     }
   else if (index < 0 && player && !player->is_allowed(player))
@@ -118,8 +118,10 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 	{
 	  if (list->data)
 	    {
-	      if (i > 9)
-		player->notify(player, "ko\n");
+	      if (i < 10)
+		i = player->io->out ? player->io->out->size(player->io->out) : 0;
+	      if (i >= 10)
+		player->notify(player, serv, "ko\n", 0);
 	      else
 		_server_treat_cmd_for_player(serv, player, (const char*)list->data);
 	      i++;

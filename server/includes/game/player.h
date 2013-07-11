@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
 <<<<<<< HEAD
-** Last update Wed Jul 10 18:25:11 2013 julien fortin
+** Last update Thu Jul 11 21:14:17 2013 julien fortin
 =======
 ** Last update Mon Jul  8 12:25:55 2013 julien fortin
 >>>>>>> 3066dd62253e7cd3866725ad525c4fc4b08c62ac
@@ -31,6 +31,10 @@
 #define DEFAULT_PID     0
 #define DEFAULT_LVL     1
 #define DEFAULT_LIFE    10
+#define DEFAULT_X       50
+#define DEFAULT_Y       50
+#define DEFAULT_TIME    100
+#define DEFAULT_NB_PL   1
 
 typedef enum { PLAYER_STATUS_ALLOW, PLAYER_STATUS_NOT_ALLOW } t_status;
 
@@ -52,7 +56,7 @@ typedef struct  s_player
   const t_socket	*socket;
 
   bool		(*is_allowed)(const struct s_player*);
-  void		(*notify)(struct s_player*, const char*);
+  void		(*notify)(struct s_player*, const t_server *, const char*, int);
   const char    *(*advance)(struct s_player *, const t_server *, void *);
   const char    *(*right)(struct s_player *, const t_server *, void *);
   const char    *(*left)(struct s_player *, const t_server *, void *);
