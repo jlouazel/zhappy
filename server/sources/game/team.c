@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Thu Jul 11 14:29:35 2013 louaze_j
+** Last update Thu Jul 11 19:15:25 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -47,7 +47,7 @@ static bool	team_add_player(t_team *team,
 	       team->eggs,
 	       serv->game->world->width,
 	       serv->game->world->height);
-      player->notify(player, msg);
+      player->notify(player, serv, msg, 0);
       printf("New player in team: %s\n", team->name);
       return (true);
     }

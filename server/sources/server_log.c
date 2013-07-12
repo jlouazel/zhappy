@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Thu Jul 11 19:20:31 2013 louaze_j
+** Last update Fri Jul 12 01:06:56 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -41,8 +41,8 @@ void		log_map(double cnt, double tot)
     {
       printf("\033[31m#\033[0m");
       /* printf(" "); */
-      fflush(NULL);
       i--;
+      fflush(NULL);
     }
   printf("\033[32m] %d%%\033[0m", percent2);
 }

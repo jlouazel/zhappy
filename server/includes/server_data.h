@@ -5,16 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu May  2 11:04:21 2013 julien fortin
-** Last update Thu Jul 11 14:50:26 2013 louaze_j
+** Last update Thu Jul 11 21:14:13 2013 julien fortin
 */
 
 #ifndef	__SERVER_DATA_H__
 #define	__SERVER_DATA_H__
-
-#define DEFAULT_X	50
-#define	DEFAULT_Y	50
-#define	DEFAULT_TIME	100
-#define	DEFAULT_NB_PL	1
 
 #include	"lib_socket.h"
 #include	"server_data_options.h"

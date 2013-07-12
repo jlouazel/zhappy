@@ -5,11 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Wed Jul 10 14:29:44 2013 julien fortin
+** Last update Thu Jul 11 22:57:24 2013 julien fortin
 */
 
 #include	"server.h"
 #include	"player.h"
+#include	<stdio.h>
+#include	<time.h>
 
 bool			server_will_notify_player(const t_server *serv,
 						  fd_set *wfd, int *max_fd)
@@ -38,49 +40,49 @@ bool			server_will_notify_player(const t_server *serv,
   return false;
 }
 
-static void		_send_data(void *data, void *arg)
+static void		_notify_foreach_player(t_player *player,
+					       const t_server *serv)
 {
-  const char	*msg;
-  t_player	*player;
+  t_list	*list;
+  t_list	*tmp;
+  t_data	*data;
 
-  if (data && arg)
+  list = player->io ? player->io->out : NULL;
+  while (list)
     {
-      msg = (const char*)data;
-      player = (t_player*)arg;
-      if (player->socket)
-	player->socket->write(player->socket, msg);
-    }
-}
-
-static void		_notify_foreach_player(void *data, void *arg)
-{
-  fd_set	*wfd;
-  t_list	*msg;
-  t_player	*player;
-
-  if (data && arg)
-    {
-      wfd = (fd_set*)arg;
-      player = (t_player*)data;
-      if ((msg = player->io && player->io->out ? player->io->out : NULL)
-	  && player->socket && FD_ISSET(player->socket->_socket, wfd))
+      tmp = list->next;
+      if (list->data)
 	{
-	  msg->foreach(msg, &_send_data, player);
-	  ((t_io*)player->io)->out = delete_list(msg, NULL);
+	  data = (t_data*)list->data;
+	  if (data->time < 0.01
+	      || data->time < (time(NULL) * (serv && serv->options ? serv->options->time : DEFAULT_TIME)))
+	    {
+	      player->socket->write(player->socket, data->data);
+	      player->io->out->erase(&((t_io*)player->io)->out, list->data);
+	    }
 	}
+      list = tmp;
     }
 }
 
 bool		server_notify_player(const t_server *serv, fd_set *wfd)
 {
   t_list	*list;
+  t_player	*player;
 
   if ((list = serv && serv->game && serv->game->players ?
        serv->game->players : NULL))
     {
-      if (list->foreach)
-	list->foreach(list, &_notify_foreach_player, wfd);
-      //((t_io*)serv->io)->out = delete_list(list, NULL);
+      while (list)
+	{
+	  if (list->data)
+	    {
+	      player = (t_player*)list->data;
+	      if (player->socket && FD_ISSET(player->socket->_socket, wfd))
+		_notify_foreach_player(player, serv);
+	    }
+	  list = list->next;
+	}
     }
   return (true);
 }
