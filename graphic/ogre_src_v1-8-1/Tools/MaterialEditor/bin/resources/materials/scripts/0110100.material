@@ -1,10 +1,32 @@
+material Food_green
+{
+	technique
+	{
+		pass
+		{
+			                        ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture greenNed.tga
+			}
+		}
+
+	}
+
+}
+
+
+
 material lambert4
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.8 0.8 0.8
+			                        ambient 0.8 0.8 0.8
                         diffuse 0.8 0.8 0.8
                         specular 1 1 1 8
 
@@ -26,7 +48,7 @@ material lambert8
 	{
 		pass
 		{
-			ambient 0.8 0.8 0.8
+			                        ambient 0.8 0.8 0.8
                         diffuse 0.8 0.8 0.8
                         specular 1 1 1 8
 
@@ -34,20 +56,6 @@ material lambert8
 			{
 				texture orange.tga
 			}
-		}
-
-	}
-
-}
-
-
-
-material pasted__lambert7SG
-{
-	technique
-	{
-		pass
-		{
 		}
 
 	}

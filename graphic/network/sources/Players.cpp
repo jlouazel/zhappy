@@ -14,6 +14,7 @@ Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eD
   : _x(x),
     _y(y),
     _id(id),
+    _node(0),
     _level(lvl),
     _teamName(teamName),
     _direction(dir)
@@ -22,6 +23,11 @@ Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eD
 
 Players::~Players()
 {
+  std::cout << "JE MEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUURS" << std::endl;
+  if (this->_node)
+    {
+      this->_node->getCreator()->destroySceneNode(this->_node);
+    }
 }
 
 int	Players::getId() const
@@ -54,17 +60,32 @@ int		Players::getY() const
   return this->_y;
 }
 
-void			setX(int x)
+Ogre::SceneNode		*Players::getNode() const
+{
+  return this->_node;
+}
+
+void			Players::setX(int x)
 {
   this->_x = x;
 }
 
-void			setY(int y)
+void			Players::setY(int y)
 {
   this->_y = y;
 }
 
-void			setDirection(eDirections dir)
+void			Players::setDirection(eDirections dir)
 {
   this->_direction = dir;
+}
+
+void			Players::setLvl(int l)
+{
+  this->_level = l;
+}
+
+void			Players::setNode(Ogre::SceneNode *n)
+{
+  this->_node = n;
 }

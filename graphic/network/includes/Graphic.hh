@@ -16,6 +16,9 @@
 #include <string>
 #include "Teams.hh"
 #include "World.hh"
+#include "Selecter.hh"
+
+#define         RELATIV_POS(x, y, width)        ((x) + (y) * width)
 
 extern "C"
 {
@@ -32,6 +35,7 @@ private:
   t_socket const		*_socket;
   std::map<int, Players *>	_players;
   int				_timeUnit;
+  Selecter			*_selecter;
 
   public:
   GraphicClient();
@@ -43,6 +47,7 @@ private:
   void	setSocket(t_socket const *);
   void	setTimeUnit(int);
   void	setReady(bool);
+  void	setSelecter(Selecter *);
 
   std::list<Teams *> &		getTeams();
   std::map<int, Players *> &	getPlayers();
@@ -52,6 +57,7 @@ private:
   t_socket const *		getSocket() const;
   int				getTimeUnit() const;
   bool				isReady() const;
+  Selecter *			getSelecter() const;
 
   std::string const	readOnServer() const;
   bool			writeOnServer(std::string const &) const;

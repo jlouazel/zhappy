@@ -1,4 +1,4 @@
-material Food_green
+material Selecter_black
 {
 	technique
 	{
@@ -10,7 +10,7 @@ material Food_green
 
 			texture_unit
 			{
-				texture greenNed.tga
+				texture black.tga
 			}
 		}
 
