@@ -5,11 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-<<<<<<< HEAD
-## Last update Fri Jul 12 21:15:10 2013 julien fortin
-=======
-## Last update Fri Jul 12 21:14:49 2013 louaze_j
->>>>>>> 2d2daa984843f7e557a311dee37ca96d8a1f420a
+## Last update Fri Jul 12 21:17:38 2013 julien fortin
 ##
 
 CC			= gcc
