@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Thu Jul 11 22:51:21 2013 julien fortin
+** Last update Fri Jul 12 23:10:30 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -13,6 +13,7 @@
 #include	"lib_std.h"
 #include	"lib_strings.h"
 #include	"player.h"
+#include	"graphical.h"
 #include	"server.h"
 
 static bool		_server_accept_player(const t_server *serv,
@@ -30,7 +31,7 @@ static bool		_server_accept_player(const t_server *serv,
       else if (player)
 	((t_game*)serv->game)->players = new_list((void*)player);
       if (player)
-	player->notify(player, serv, "BIENVENUE\n", 0);
+	player->notify(player, "BIENVENUE\n");
       return (player ? true : false);
     }
   return (false);
@@ -47,6 +48,24 @@ void		server_accept(const t_server *server, const fd_set *rfd)
     }
 }
 
+void		_server_get_new_graphic(const t_server *serv, t_player *player)
+{
+  const t_socket	*socket;
+  t_graphical		*graph;
+
+  socket = player->socket;
+  player->socket = NULL;
+  delete_player(player, serv);
+  if (serv && serv->game && (graph = new_graphical_client(socket)))
+    {
+      if (serv->game->graphicals)
+	((t_game*)serv->game)->graphicals->push_back
+	  ((t_list**)&serv->game->graphicals, (void*)graph);
+      else
+	((t_game*)serv->game)->graphicals = new_list((void*)graph);
+    }
+}
+
 bool            server_get_auth_from_player(const t_server *serv,
                                             t_player *player,
                                             const char *data)
@@ -55,6 +74,7 @@ bool            server_get_auth_from_player(const t_server *serv,
 
   if (!my_strcmp("GRAPHIC", data))
     {
+      _server_get_new_graphic(serv, player);
       return (true);
     }
   else if ((list = serv && serv->game && serv->game->teams ? serv->game->teams : NULL))

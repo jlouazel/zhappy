@@ -13,12 +13,30 @@
 Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eDirections dir)
   : _x(x),
     _y(y),
+    _oldx(x),
+    _oldy(y),
     _id(id),
     _node(0),
     _level(lvl),
     _teamName(teamName),
     _direction(dir)
 {
+  switch (this->_direction)
+    {
+    case UP:
+      this->_realDirection = M_PI;
+      break;
+    case DOWN:
+      this->_realDirection = 0;
+      break;
+    case LEFT:
+      this->_realDirection = 3 * M_PI / 2;
+      break;
+    case RIGHT:
+      this->_realDirection = M_PI / 2;
+      break;
+    }
+  this->_oldDirection = _realDirection;
 }
 
 Players::~Players()
@@ -49,6 +67,16 @@ eDirections	Players::getDirection() const
   return this->_direction;
 }
 
+float		Players::getOldDirection() const
+{
+  return this->_oldDirection;
+}
+
+float		Players::getRealDirection() const
+{
+  return this->_realDirection;
+}
+
 int		Players::getX() const
 {
   return this->_x;
@@ -57,6 +85,16 @@ int		Players::getX() const
 int		Players::getY() const
 {
   return this->_y;
+}
+
+float		Players::getOldX() const
+{
+  return this->_oldx;
+}
+
+float		Players::getOldY() const
+{
+  return this->_oldy;
 }
 
 Ogre::SceneNode		*Players::getNode() const
@@ -74,9 +112,49 @@ void			Players::setY(int y)
   this->_y = y;
 }
 
+void			Players::setOldX(float x)
+{
+  this->_oldx = x;
+}
+
+void			Players::setOldY(float y)
+{
+  this->_oldy = y;
+}
+
+void			Players::setOldDirection(float d)
+{
+  this->_oldDirection = d;
+}
+
+void			Players::setRealDirection(float d)
+{
+  this->_realDirection = d;
+}
+
 void			Players::setDirection(eDirections dir)
 {
   this->_direction = dir;
+  switch (this->_direction)
+    {
+    case UP:
+      this->_realDirection = M_PI;
+      break;
+    case DOWN:
+      this->_realDirection = 0;
+      break;
+    case LEFT:
+      this->_realDirection = 3 * M_PI / 2;
+      break;
+    case RIGHT:
+      this->_realDirection = M_PI / 2;
+      break;
+    }
+}
+
+void			Players::setLvl(int l)
+{
+  this->_level = l;
 }
 
 void			Players::setNode(Ogre::SceneNode *n)

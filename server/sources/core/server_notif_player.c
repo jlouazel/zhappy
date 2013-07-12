@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Thu Jul 11 22:57:24 2013 julien fortin
+** Last update Fri Jul 12 21:01:00 2013 julien fortin
 */
 
 #include	"server.h"
@@ -40,28 +40,20 @@ bool			server_will_notify_player(const t_server *serv,
   return false;
 }
 
-static void		_notify_foreach_player(t_player *player,
-					       const t_server *serv)
+static void		_notify_foreach_player(t_player *player)
 {
   t_list	*list;
-  t_list	*tmp;
-  t_data	*data;
+  const char	*data;
 
   list = player->io ? player->io->out : NULL;
   while (list)
     {
-      tmp = list->next;
       if (list->data)
 	{
-	  data = (t_data*)list->data;
-	  if (data->time < 0.01
-	      || data->time < (time(NULL) * (serv && serv->options ? serv->options->time : DEFAULT_TIME)))
-	    {
-	      player->socket->write(player->socket, data->data);
-	      player->io->out->erase(&((t_io*)player->io)->out, list->data);
-	    }
+	  data = (const char*)list->data;
+	  player->socket->write(player->socket, data);
 	}
-      list = tmp;
+      list = list->next;
     }
 }
 
@@ -79,7 +71,11 @@ bool		server_notify_player(const t_server *serv, fd_set *wfd)
 	    {
 	      player = (t_player*)list->data;
 	      if (player->socket && FD_ISSET(player->socket->_socket, wfd))
-		_notify_foreach_player(player, serv);
+		{
+		  _notify_foreach_player(player);
+		  if (player->io->out)
+		    ((t_io*)player->io)->out = delete_list(player->io->out, NULL);
+		}
 	    }
 	  list = list->next;
 	}

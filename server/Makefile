@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Tue Jul  9 18:22:43 2013 louaze_j
+## Last update Fri Jul 12 23:34:32 2013 julien fortin
 ##
 
 CC			= gcc
@@ -63,8 +63,11 @@ SRCS_DEST        	= $(SRCS_DIR)$(DEST_DIR)server_destroy.c \
 CORE_SRCS		= $(SRCS_DIR)$(CORE_DIR)server_accept.c \
 			$(SRCS_DIR)$(CORE_DIR)server_listen.c \
 			$(SRCS_DIR)$(CORE_DIR)server_disconnect.c \
+			$(SRCS_DIR)$(CORE_DIR)server_extract.c \
+			$(SRCS_DIR)$(CORE_DIR)server_exec.c \
                         $(SRCS_DIR)$(CORE_DIR)server_actions.c \
 			$(SRCS_DIR)$(CORE_DIR)server_notif_player.c \
+			$(SRCS_DIR)$(CORE_DIR)server_notif_graph.c \
 
 #sources/game
 GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
@@ -86,6 +89,13 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)bct.c \
 			$(SRCS_DIR)$(GAME_DIR)mct.c \
 			$(SRCS_DIR)$(GAME_DIR)tna.c \
+			$(SRCS_DIR)$(GAME_DIR)pnw.c \
+			$(SRCS_DIR)$(GAME_DIR)ppo.c \
+			$(SRCS_DIR)$(GAME_DIR)plv.c \
+			$(SRCS_DIR)$(GAME_DIR)pin.c \
+			$(SRCS_DIR)$(GAME_DIR)pex.c \
+			$(SRCS_DIR)$(GAME_DIR)pbc.c \
+
 
 #
 #library

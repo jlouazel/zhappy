@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jun 21 16:29:14 2013 julien fortin
-** Last update Thu Jul 11 19:13:43 2013 julien fortin
+** Last update Fri Jul 12 20:18:27 2013 julien fortin
 */
 
 #ifndef	__SERVER_DATA_CMD_H__
@@ -19,7 +19,7 @@ typedef struct s_server t_server;
 
 typedef struct  s_cmd
 {
-  int		time[SERVER_CMD_NB + 1];
+  double	time[SERVER_CMD_NB + 1];
   const char	*name[SERVER_CMD_NB + 1];
   const char	*(*cmd[SERVER_CMD_NB + 1])(t_player *,
 					   const t_server *,

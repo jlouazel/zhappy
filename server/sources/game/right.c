@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:23:05 2013 louaze_j
-** Last update Mon Jul  8 11:11:43 2013 julien fortin
+** Last update Fri Jul 12 23:38:52 2013 louaze_j
 */
 
 #include	"player.h"
@@ -29,5 +29,5 @@ const char	*_player_right(t_player *player, const t_server *server, void *arg)
   (void)server;
   (void)arg;
   look_in_good_direction(player);
-  return (NULL);
+  return ("OK\n");
 }

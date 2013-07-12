@@ -5,12 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 10:09:16 2013 julien fortin
-** Last update Thu Jul 11 10:46:12 2013 julien fortin
+** Last update Fri Jul 12 23:20:31 2013 julien fortin
 */
 
 #include	<stdlib.h>
 #include	<sys/select.h>
 #include	"server.h"
+#include	"graphical.h"
 #include	"player.h"
 
 bool		server_listen_player(const t_server *serv, fd_set *rfd, int *max_fd)
@@ -28,6 +29,24 @@ bool		server_listen_player(const t_server *serv, fd_set *rfd, int *max_fd)
 	    *max_fd = ((t_player*)clients->data)->socket->_socket;
 	}
       clients = clients->next;
+    }
+  return (true);
+}
+
+bool		server_listen_graph(const t_server *serv, fd_set *rfd, int *max_fd)
+{
+  t_list	*list;
+
+  list = serv && serv->game ? serv->game->graphicals : NULL;
+  while (list)
+    {
+      if (list->data && ((t_graphical*)list->data)->socket)
+	{
+	  FD_SET(((t_graphical*)list->data)->socket->_socket, rfd);
+	  if (*max_fd < ((t_graphical*)list->data)->socket->_socket)
+	    *max_fd = ((t_graphical*)list->data)->socket->_socket;
+	}
+      list = list->next;
     }
   return (true);
 }
