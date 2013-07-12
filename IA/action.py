@@ -13,6 +13,7 @@ class   defineAction:
         self._incantation = 7
         self._declancherIncantation = 7
         self._incantationEnnemy = 8
+        self._waitIncante = 8
 
 class   action:
     def __init__(self):
@@ -20,7 +21,7 @@ class   action:
         self._x = 0
         self._y = 0
         self._PossibleAction = defineAction()
-        self._tabPossibleAction = ["nourriture", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame", "incantation", "declancherIncantation", "incantationEnnemy"];
+        self._tabPossibleAction = ["nourriture", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame", "incantation", "declancherIncantation", "incantationEnnemy", "waitIncante"];
         self._firstAction = self._PossibleAction._undifined
         self._secondAction = []
         self._thirdAction = []
