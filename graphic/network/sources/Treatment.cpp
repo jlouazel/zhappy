@@ -25,9 +25,15 @@ static void	msz(GraphicClient * client, std::vector<std::string> const & line)
 
 static void	bct(GraphicClient * client, std::vector<std::string> const & line)
 {
+  static int	count = 0;
   int	x = atoi(line[1].c_str());
   int	y = atoi(line[2].c_str());
 
+  if (count > client->getWorld()->getHeight() * client->getWorld()->getWidth() + 1)
+    {
+      std::cout << "Server is busy... Exiting." << std::endl;
+      exit(0);
+    }
   if (client->getWorld())
     {
       Square *square = client->getWorld()->getMap()[RELATIV_POS(x, y, client->getWorld()->getWidth())];
@@ -42,6 +48,8 @@ static void	bct(GraphicClient * client, std::vector<std::string> const & line)
 	  square->getContent()[THYSTAME] = atoi(line[9].c_str());
 	  if (square->getX() == client->getWorld()->getWidth() - 1 && square->getY() == client->getWorld()->getHeight() - 1)
 	    client->setReady(true);
+	  if (!client->isReady())
+	    count++;
 	}
     }
 }

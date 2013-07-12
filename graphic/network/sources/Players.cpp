@@ -21,6 +21,22 @@ Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eD
     _teamName(teamName),
     _direction(dir)
 {
+  switch (this->_direction)
+    {
+    case UP:
+      this->_realDirection = M_PI;
+      break;
+    case DOWN:
+      this->_realDirection = 0;
+      break;
+    case LEFT:
+      this->_realDirection = 3 * M_PI / 2;
+      break;
+    case RIGHT:
+      this->_realDirection = M_PI / 2;
+      break;
+    }
+  this->_oldDirection = _realDirection;
 }
 
 Players::~Players()
@@ -50,6 +66,16 @@ std::string const & Players::getTeamName() const
 eDirections	Players::getDirection() const
 {
   return this->_direction;
+}
+
+float		Players::getOldDirection() const
+{
+  return this->_oldDirection;
+}
+
+float		Players::getRealDirection() const
+{
+  return this->_realDirection;
 }
 
 int		Players::getX() const
@@ -97,9 +123,42 @@ void			Players::setOldY(float y)
   this->_oldy = y;
 }
 
+<<<<<<< HEAD
+=======
+void			Players::setOldDirection(float d)
+{
+  this->_oldDirection = d;
+}
+
+void			Players::setRealDirection(float d)
+{
+  this->_realDirection = d;
+}
+
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
 void			Players::setDirection(eDirections dir)
 {
   this->_direction = dir;
+  switch (this->_direction)
+    {
+    case UP:
+      this->_realDirection = M_PI;
+      break;
+    case DOWN:
+      this->_realDirection = 0;
+      break;
+    case LEFT:
+      this->_realDirection = 3 * M_PI / 2;
+      break;
+    case RIGHT:
+      this->_realDirection = M_PI / 2;
+      break;
+    }
+}
+
+void			Players::setLvl(int l)
+{
+  this->_level = l;
 }
 
 void			Players::setLvl(int l)
