@@ -5,7 +5,7 @@
 // Login   <louaze_j@epitech.net>
 // 
 // Started on  Tue Jul  9 01:39:00 2013 louaze_j
-// Last update Wed Jul 10 11:44:58 2013 louaze_j
+// Last update Fri Jul 12 15:16:40 2013 louaze_j
 //
 
 #ifndef	__SQUARE_HH__
