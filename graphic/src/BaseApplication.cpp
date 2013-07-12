@@ -23,6 +23,7 @@ This source file is part of the
 #include "Graphic.hh"
 #include "Treatment.hh"
 #include "eRessources.hh"
+#include "Players.hh"
 
 extern GraphicClient *client;
 
@@ -273,7 +274,32 @@ static std::string toString(int number)
   return ss.str();
 }
 
+static void DestroyAllAttachedMovableObjects( Ogre::SceneNode* i_pSceneNode )
+{
+  if ( !i_pSceneNode )
+    return;
+
+  // Destroy all the attached objects
+  Ogre::SceneNode::ObjectIterator itObject = i_pSceneNode->getAttachedObjectIterator();
+
+  while ( itObject.hasMoreElements() )
+    {
+      MovableObject* pObject = static_cast<MovableObject*>(itObject.getNext());
+      i_pSceneNode->getCreator()->destroyMovableObject( pObject );
+    }
+
+  // Recurse to child SceneNodes
+  Ogre::SceneNode::ChildNodeIterator itChild = i_pSceneNode->getChildIterator();
+
+  while ( itChild.hasMoreElements() )
+    {
+      SceneNode* pChildNode = static_cast<SceneNode*>(itChild.getNext());
+      DestroyAllAttachedMovableObjects(pChildNode);
+    }
+}
+
 //-------------------------------------------------------------------------------------
+
 bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
     if(mWindow->isClosed())
@@ -291,7 +317,7 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
     mTrayMgr->frameRenderingQueued(evt);
 
     if (!mTrayMgr->isDialogVisible())
-    {
+      {
         mCameraMan->frameRenderingQueued(evt);   // if dialog isn't up, then update the camera
         // if (mDetailsPanel->isVisible())   // if details panel is visible, then update its contents
         // {
@@ -303,97 +329,101 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
         //     mDetailsPanel->setParamValue(6, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().y));
         //     mDetailsPanel->setParamValue(7, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().z));
         // }
-    }
+      }
 
     for (std::vector<Square *>::const_iterator it = client->getWorld()->getMap().begin(); it != client->getWorld()->getMap().end(); ++it)
       {
-	if (mSceneMgr->hasSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY())))
+	std::string meshToAttach = "0";
+	if ((*it)->getContent()[LINEMATE])
+	  meshToAttach += "1";
+	else
+	  meshToAttach += "0";
+	if ((*it)->getContent()[DERAUMERE])
+	  meshToAttach += "1";
+	else
+	  meshToAttach += "0";
+	if ((*it)->getContent()[SIBUR])
+	  meshToAttach += "1";
+	else
+	  meshToAttach += "0";
+	if ((*it)->getContent()[MENDIANE])
+	  meshToAttach += "1";
+	else
+	  meshToAttach += "0";
+	if ((*it)->getContent()[PHIRAS])
+	  meshToAttach += "1";
+	else
+	  meshToAttach += "0";
+	if ((*it)->getContent()[THYSTAME])
+	  meshToAttach += "1";
+	else
+	  meshToAttach += "0";
+	meshToAttach += ".mesh";
+	Ogre::SceneNode* squareNode;
+	if (!mSceneMgr->hasSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY())))
 	  {
-	    ;
+	    squareNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY()));
+	    squareNode->setPosition(sin((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
+	    squareNode->yaw(Ogre::Radian((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()));
+	    squareNode->pitch(Ogre::Radian((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()));
+	    squareNode->translate(0, 365, 0, Ogre::Node::TS_LOCAL);
+	    float   scale;
+	    scale = 1000.0 / static_cast<float>(client->getWorld()->getWidth() * client->getWorld()->getHeight()) ;
+	    scale = sqrt(scale);                                                                          
+	    scale *= (sin((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
+	    squareNode->setScale(scale, scale, scale);
 	  }
 	else
 	  {
-	    std::string meshToAttach = "0";
-	    if ((*it)->getContent()[LINEMATE])
-	      meshToAttach += "1";
-	    else
-	      meshToAttach += "0";
-	    if ((*it)->getContent()[DERAUMERE])
-	      meshToAttach += "1";
-	    else
-	      meshToAttach += "0";
-	    if ((*it)->getContent()[SIBUR])
-	      meshToAttach += "1";
-	    else
-	      meshToAttach += "0";
-	    if ((*it)->getContent()[MENDIANE])
-	      meshToAttach += "1";
-	    else
-	      meshToAttach += "0";
-	    if ((*it)->getContent()[PHIRAS])
-	      meshToAttach += "1";
-	    else
-	      meshToAttach += "0";
-	    if ((*it)->getContent()[THYSTAME])
-	      meshToAttach += "1";
-	    else
-	      meshToAttach += "0";
-	    meshToAttach += ".mesh";
-	    Ogre::SceneNode* squareNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY()));
-	    if (meshToAttach != "0000000.mesh")
-	      {
-		//		std::cout << meshToAttach << std::endl;
-		Ogre::Entity* mesh = mSceneMgr->createEntity("Entity_" + toString((*it)->getX()) + "_" + toString((*it)->getY()), meshToAttach);
-		squareNode->attachObject(mesh);
-		squareNode->setPosition(sin((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
-		squareNode->yaw(Ogre::Radian((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()));
-		squareNode->pitch(Ogre::Radian((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()));
-		squareNode->translate(0, 365, 0, Ogre::Node::TS_LOCAL);
-		float   scale;                                                                                
-		scale = 1000.0 / static_cast<float>(client->getWorld()->getWidth() * client->getWorld()->getHeight()) ;
-		scale = sqrt(scale);                                                                          
-		scale *= (sin((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
-		squareNode->setScale(scale, scale, scale);
-	      }
-	    if ((*it)->getContent()[FOOD])
-	      {
-		Ogre::Entity* mesh = mSceneMgr->createEntity("Entity2_" + toString((*it)->getX()) + "_" + toString((*it)->getY()), "Food.mesh");
-		squareNode->attachObject(mesh);		    
-	      }
+	    squareNode = mSceneMgr->getSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY()));
+	    //	    squareNode->detachAllObjects();
+	    DestroyAllAttachedMovableObjects(squareNode);	    
 	  }
+	if (meshToAttach != "0000000.mesh")
+	  {
+	    //		std::cout << meshToAttach << std::endl;
+	    Ogre::Entity* mesh = mSceneMgr->createEntity(meshToAttach);
+	    squareNode->attachObject(mesh);
+	  }                          
+	//	std::cout << (*it)->getContent()[FOOD] << std::endl;
+	if ((*it)->getContent()[FOOD])
+	  {
+	    Ogre::Entity* mesh = mSceneMgr->createEntity("Food.mesh");
+	    squareNode->attachObject(mesh);		    
+	  }	
       }
 
-    // Ogre::SceneNode* currentNode = mSceneMgr->getSceneNode("Node_0_0");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_1_1");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_2_2");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_3_3");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_4_4");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_5_5");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_6_6");
-    // currentNode->pitch(Ogre::Radian(0.1));
-    // currentNode = mSceneMgr->getSceneNode("Node_7_7");
-    // currentNode->pitch(Ogre::Radian(0.1));
+    std::cout << "LOL1" << std::endl;
 
-    // Ogre::RenderTarget::FrameStats stats = mWindow->getStatistics();
-    // std::cout << 20 - stats.lastFPS << std::endl;
-    // if (stats.lastFPS == 0)
-    //   stats.lastFPS == 25;
-    // if (stats.lastFPS < 20)
-    //   this->farDistance -= pow(20 - stats.lastFPS, 3) / 10;
-    // if (stats.lastFPS > 25)
-    //   this->farDistance += pow(stats.lastFPS - 25, 2) / 10;
-    // if (farDistance <= 0)
-    //   farDistance = 10;
-    // if (farDistance >= 20000)
-    //   farDistance = 20000;
-    // std::cout << "lol" << this->farDistance << std::endl;
-    // mCamera->setFarClipDistance(this->farDistance);
+    for (std::map<int, Players * >::iterator it = client->getPlayers().begin(); it != client->getPlayers().end(); ++it)
+      {
+	Ogre::SceneNode* playerNode;
+	int i = it->first;
+	Players *p = it->second;
+	std::cout << i <<  " : x : " << p->getX() << "; y = " << p->getY() << std::endl;
+	if (p->getNode() == 0)
+	  {
+	    playerNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Player_" + toString(i));
+	    p->setNode(playerNode);
+	    Ogre::Entity* mesh = mSceneMgr->createEntity("Krusty.mesh");
+	    playerNode->attachObject(mesh);
+	  }
+	else
+	  playerNode = p->getNode();
+	playerNode->resetToInitialState();
+	playerNode->setPosition(sin(p->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos(p->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
+	playerNode->yaw(Ogre::Radian(p->getX() * 2 * M_PI / client->getWorld()->getWidth()));
+	playerNode->pitch(Ogre::Radian(p->getY() * 2 * M_PI / client->getWorld()->getHeight()));
+	playerNode->translate(0, 365, 0, Ogre::Node::TS_LOCAL);
+	float   scale;
+	scale = 1000.0 / static_cast<float>(client->getWorld()->getWidth() * client->getWorld()->getHeight()) ;
+	scale = sqrt(scale);                                                                          
+	scale *= (sin(p->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
+	playerNode->setScale(scale, scale, scale);
+      }
+
+    std::cout << "LOL2" << std::endl;
+
     return true;
 }
 

@@ -18,20 +18,23 @@ This source file is part of the
 #define __TutorialApplication_h_
 
 #include "BaseApplication.h"
+#include <string>
+#include <map>
 
 class TutorialApplication : public BaseApplication
 {
 public:
-    TutorialApplication(void);
-    virtual ~TutorialApplication(void);
+  TutorialApplication(void);
+  virtual ~TutorialApplication(void);
 
-    Ogre::RenderWindow * getWindow(void) { return mWindow; }
-    Ogre::Timer * getTimer(void) { return mTimer; }
-    OIS::Mouse * getMouse(void) { return mMouse; }
-    OIS::Keyboard * getKeyboard(void) { return mKeyboard; }
+  Ogre::RenderWindow * getWindow(void) { return mWindow; }
+  Ogre::Timer * getTimer(void) { return mTimer; }
+  OIS::Mouse * getMouse(void) { return mMouse; }
+  OIS::Keyboard * getKeyboard(void) { return mKeyboard; }
 protected:
-    virtual void createScene(void);
-    Ogre::Timer *mTimer;
+  virtual void createScene(void);
+  Ogre::Timer *mTimer;
+  std::map<std::string, Ogre::Entity * >	meshes;
 };
 
 #endif // #ifndef __TutorialApplication_h_

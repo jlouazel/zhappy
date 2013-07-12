@@ -58,8 +58,12 @@ static void	tna(GraphicClient * client, std::vector<std::string> const & line)
   client->getTeams().push_back(new Teams(line[1]));
 }
 
+
+#include <unistd.h>
 static void	pnw(GraphicClient * client, std::vector<std::string> const & line)
 {
+  std::string sys = "echo \"pnw " + line[1] +  "\n\" >> log";
+  system(sys.c_str());
   Players	*player = new Players(atoi(line[2].c_str()),
 				      atoi(line[3].c_str()),
 				      atoi(line[1].c_str()),
@@ -79,9 +83,46 @@ static void	ppo(GraphicClient * client, std::vector<std::string> const & line)
   client->getPlayers()[atoi(line[1].c_str())]->setDirection((eDirections)atoi(line[4].c_str()));
 }
 
+static void	pdi(GraphicClient * client, std::vector<std::string> const & line)
+{
+  std::string	teamName;
+  int		id = atoi(line[1].c_str());
+
+  std::cout << "1" << std::endl;
+  std::cout << ">>>>>>>>>>>>>>>>>>" << id << std::endl;  
+  if (client->getPlayers().empty() == false && client->getPlayers()[id])
+    {
+      teamName = client->getPlayers()[id]->getTeamName();
+      std::cout << "2" << std::endl;
+      for (std::list<Teams *>::iterator it  = client->getTeams().begin(); it != client->getTeams().end(); ++it)
+	{
+	  std::cout << "3" << std::endl;
+	  if ((*it)->getName() == teamName)
+	    {
+	      std::cout << "4" << std::endl;
+	      for (std::list<Players *>::iterator it2 = (*it)->getMembers().begin(); it2 != (*it)->getMembers().end(); ++it2)
+		{
+		  std::cout << "5" << std::endl;
+		  if ((*it2)->getId() == id)
+		    {
+		      std::cout << "6" << std::endl;
+		      it2 = (*it)->getMembers().erase(it2);
+		    }
+		}
+	    }
+	}
+    }
+  else
+    std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>VIDE" << std::endl;
+  std::cout << "7" << std::endl;
+  client->getPlayers().erase(atoi(line[1].c_str()));
+  std::cout << "8" << std::endl;
+  //  exit(0);
+}
+
 void		parseRead(GraphicClient * client, std::string const & line)
 {
-  // std::cout << line << std::endl;
+  std::cout << line << std::endl;
   std::map<int, std::string>	functions;
   functions[0] = "msz";
   functions[1] = "bct";
@@ -152,6 +193,7 @@ void		parseRead(GraphicClient * client, std::string const & line)
     case 13:
       break;
     case 14:
+      pdi(client, parsedLine);
       break;
     case 15:
       break;

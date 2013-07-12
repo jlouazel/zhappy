@@ -1,16 +1,16 @@
-material lambert4
+material lambert1
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.8 0.8 0.8
+			                        ambient 0.8 0.8 0.8
                         diffuse 0.8 0.8 0.8
                         specular 1 1 1 8
 
 			texture_unit
 			{
-				texture white.tga
+				texture greenNed.tga
 			}
 		}
 
@@ -20,12 +20,20 @@ material lambert4
 
 
 
-material pasted__lambert7SG
+material lambert4
 {
 	technique
 	{
 		pass
 		{
+			                        ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+
+			texture_unit
+			{
+				texture white.tga
+			}
 		}
 
 	}

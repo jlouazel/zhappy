@@ -1,641 +1,395 @@
-01:17:39: Creating resource group General
-01:17:39: Creating resource group Internal
-01:17:39: Creating resource group Autodetect
-01:17:39: SceneManagerFactory for type 'DefaultSceneManager' registered.
-01:17:39: Registering ResourceManager for type Material
-01:17:39: Registering ResourceManager for type Mesh
-01:17:39: Registering ResourceManager for type Skeleton
-01:17:39: MovableObjectFactory for type 'ParticleSystem' registered.
-01:17:39: OverlayElementFactory for type Panel registered.
-01:17:39: OverlayElementFactory for type BorderPanel registered.
-01:17:39: OverlayElementFactory for type TextArea registered.
-01:17:39: Registering ResourceManager for type Font
-01:17:39: ArchiveFactory for archive type FileSystem registered.
-01:17:39: ArchiveFactory for archive type Zip registered.
-01:17:39: DDS codec registering
-01:17:39: FreeImage version: 3.15.1
-01:17:39: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
-01:17:39: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,3fr,arw,bay,bmq,cap,cine,cr2,crw,cs1,dc2,dcr,drf,dsc,dng,erf,fff,ia,iiq,k25,kc2,kdc,mdc,mef,mos,mrw,nef,nrw,orf,pef,ptx,pxn,qtk,raf,raw,rdc,rw2,rwl,rwz,sr2,srf,sti
-01:17:39: Registering ResourceManager for type HighLevelGpuProgram
-01:17:39: Registering ResourceManager for type Compositor
-01:17:39: MovableObjectFactory for type 'Entity' registered.
-01:17:39: MovableObjectFactory for type 'Light' registered.
-01:17:39: MovableObjectFactory for type 'BillboardSet' registered.
-01:17:39: MovableObjectFactory for type 'ManualObject' registered.
-01:17:39: MovableObjectFactory for type 'BillboardChain' registered.
-01:17:39: MovableObjectFactory for type 'RibbonTrail' registered.
-01:17:39: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/RenderSystem_GL.so
-01:17:39: Installing plugin: GL RenderSystem
-01:17:39: OpenGL Rendering Subsystem created.
-01:17:40: Plugin successfully installed
-01:17:40: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_ParticleFX.so
-01:17:40: Installing plugin: ParticleFX
-01:17:40: Particle Emitter Type 'Point' registered
-01:17:40: Particle Emitter Type 'Box' registered
-01:17:40: Particle Emitter Type 'Ellipsoid' registered
-01:17:40: Particle Emitter Type 'Cylinder' registered
-01:17:40: Particle Emitter Type 'Ring' registered
-01:17:40: Particle Emitter Type 'HollowEllipsoid' registered
-01:17:40: Particle Affector Type 'LinearForce' registered
-01:17:40: Particle Affector Type 'ColourFader' registered
-01:17:40: Particle Affector Type 'ColourFader2' registered
-01:17:40: Particle Affector Type 'ColourImage' registered
-01:17:40: Particle Affector Type 'ColourInterpolator' registered
-01:17:40: Particle Affector Type 'Scaler' registered
-01:17:40: Particle Affector Type 'Rotator' registered
-01:17:40: Particle Affector Type 'DirectionRandomiser' registered
-01:17:40: Particle Affector Type 'DeflectorPlane' registered
-01:17:40: Plugin successfully installed
-01:17:40: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_BSPSceneManager.so
-01:17:40: Installing plugin: BSP Scene Manager
-01:17:40: Plugin successfully installed
-01:17:40: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_OctreeSceneManager.so
-01:17:40: Installing plugin: Octree & Terrain Scene Manager
-01:17:40: Plugin successfully installed
-01:17:40: *-*-* OGRE Initialising
-01:17:40: *-*-* Version 1.7.4 (Cthugha)
-01:17:40: Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources' of type 'FileSystem' to resource group 'General'
-01:17:40: Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials' of type 'FileSystem' to resource group 'General'
-01:17:40: Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/scripts' of type 'FileSystem' to resource group 'General'
-01:17:40: Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/textures' of type 'FileSystem' to resource group 'General'
-01:17:40: Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/models' of type 'FileSystem' to resource group 'General'
-01:17:40: Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Samples/Common/include/' of type 'FileSystem' to resource group 'General'
-01:17:40: Added resource location './Zips/SdkTrays.zip' of type 'Zip' to resource group 'General'
-01:17:54: CPU Identifier & Features
-01:17:54: -------------------------
-01:17:54:  *   CPU ID: GenuineIntel: Intel(R) Core(TM) i5 CPU       M 560  @ 2.67GHz
-01:17:54:  *      SSE: yes
-01:17:54:  *     SSE2: yes
-01:17:54:  *     SSE3: yes
-01:17:54:  *      MMX: yes
-01:17:54:  *   MMXEXT: yes
-01:17:54:  *    3DNOW: no
-01:17:54:  * 3DNOWEXT: no
-01:17:54:  *     CMOV: yes
-01:17:54:  *      TSC: yes
-01:17:54:  *      FPU: yes
-01:17:54:  *      PRO: yes
-01:17:54:  *       HT: no
-01:17:54: -------------------------
-01:17:54: ******************************
+11:54:41: Creating resource group General
+11:54:41: Creating resource group Internal
+11:54:41: Creating resource group Autodetect
+11:54:41: SceneManagerFactory for type 'DefaultSceneManager' registered.
+11:54:41: Registering ResourceManager for type Material
+11:54:41: Registering ResourceManager for type Mesh
+11:54:41: Registering ResourceManager for type Skeleton
+11:54:41: MovableObjectFactory for type 'ParticleSystem' registered.
+11:54:41: OverlayElementFactory for type Panel registered.
+11:54:41: OverlayElementFactory for type BorderPanel registered.
+11:54:41: OverlayElementFactory for type TextArea registered.
+11:54:41: Registering ResourceManager for type Font
+11:54:41: ArchiveFactory for archive type FileSystem registered.
+11:54:41: ArchiveFactory for archive type Zip registered.
+11:54:41: DDS codec registering
+11:54:41: FreeImage version: 3.15.1
+11:54:41: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+11:54:41: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,3fr,arw,bay,bmq,cap,cine,cr2,crw,cs1,dc2,dcr,drf,dsc,dng,erf,fff,ia,iiq,k25,kc2,kdc,mdc,mef,mos,mrw,nef,nrw,orf,pef,ptx,pxn,qtk,raf,raw,rdc,rw2,rwl,rwz,sr2,srf,sti
+11:54:41: Registering ResourceManager for type HighLevelGpuProgram
+11:54:41: Registering ResourceManager for type Compositor
+11:54:41: MovableObjectFactory for type 'Entity' registered.
+11:54:41: MovableObjectFactory for type 'Light' registered.
+11:54:41: MovableObjectFactory for type 'BillboardSet' registered.
+11:54:41: MovableObjectFactory for type 'ManualObject' registered.
+11:54:41: MovableObjectFactory for type 'BillboardChain' registered.
+11:54:41: MovableObjectFactory for type 'RibbonTrail' registered.
+11:54:41: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/RenderSystem_GL.so
+11:54:41: Installing plugin: GL RenderSystem
+11:54:41: OpenGL Rendering Subsystem created.
+11:54:42: Plugin successfully installed
+11:54:42: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_ParticleFX.so
+11:54:42: Installing plugin: ParticleFX
+11:54:42: Particle Emitter Type 'Point' registered
+11:54:42: Particle Emitter Type 'Box' registered
+11:54:42: Particle Emitter Type 'Ellipsoid' registered
+11:54:42: Particle Emitter Type 'Cylinder' registered
+11:54:42: Particle Emitter Type 'Ring' registered
+11:54:42: Particle Emitter Type 'HollowEllipsoid' registered
+11:54:42: Particle Affector Type 'LinearForce' registered
+11:54:42: Particle Affector Type 'ColourFader' registered
+11:54:42: Particle Affector Type 'ColourFader2' registered
+11:54:42: Particle Affector Type 'ColourImage' registered
+11:54:42: Particle Affector Type 'ColourInterpolator' registered
+11:54:42: Particle Affector Type 'Scaler' registered
+11:54:42: Particle Affector Type 'Rotator' registered
+11:54:42: Particle Affector Type 'DirectionRandomiser' registered
+11:54:42: Particle Affector Type 'DeflectorPlane' registered
+11:54:42: Plugin successfully installed
+11:54:42: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_BSPSceneManager.so
+11:54:42: Installing plugin: BSP Scene Manager
+11:54:42: Plugin successfully installed
+11:54:42: Loading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_OctreeSceneManager.so
+11:54:42: Installing plugin: Octree & Terrain Scene Manager
+11:54:42: Plugin successfully installed
+11:54:42: *-*-* OGRE Initialising
+11:54:42: *-*-* Version 1.7.4 (Cthugha)
+11:54:42: Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources' of type 'FileSystem' to resource group 'General'
+11:54:42: Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials' of type 'FileSystem' to resource group 'General'
+11:54:42: Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/scripts' of type 'FileSystem' to resource group 'General'
+11:54:42: Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/textures' of type 'FileSystem' to resource group 'General'
+11:54:42: Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/models' of type 'FileSystem' to resource group 'General'
+11:54:42: Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Samples/Common/include/' of type 'FileSystem' to resource group 'General'
+11:54:42: Added resource location './Zips/SdkTrays.zip' of type 'Zip' to resource group 'General'
+11:54:46: CPU Identifier & Features
+11:54:46: -------------------------
+11:54:46:  *   CPU ID: GenuineIntel: Intel(R) Core(TM) i5 CPU       M 560  @ 2.67GHz
+11:54:46:  *      SSE: yes
+11:54:46:  *     SSE2: yes
+11:54:46:  *     SSE3: yes
+11:54:46:  *      MMX: yes
+11:54:46:  *   MMXEXT: yes
+11:54:46:  *    3DNOW: no
+11:54:46:  * 3DNOWEXT: no
+11:54:46:  *     CMOV: yes
+11:54:46:  *      TSC: yes
+11:54:46:  *      FPU: yes
+11:54:46:  *      PRO: yes
+11:54:46:  *       HT: no
+11:54:46: -------------------------
+11:54:46: ******************************
 *** Starting GLX Subsystem ***
 ******************************
-01:17:54: GLRenderSystem::_createRenderWindow "TutorialApplication Render Window", 1280x1024 windowed  miscParams: FSAA=0 displayFrequency=60 MHz gamma=No vsync=Yes 
-01:17:54: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource GLX_icon.png in resource group General or any other group. in ResourceGroupManager::openResource at /build/buildd/ogre-1.7.4/OgreMain/src/OgreResourceGroupManager.cpp (line 753)
-01:17:54: GLXWindow::create used FBConfigID = 165
-01:17:54: GL_VERSION = 3.0 Mesa 9.0.3
-01:17:54: GL_VENDOR = nouveau
-01:17:54: GL_RENDERER = Gallium 0.4 on NVA5
-01:17:54: GL_EXTENSIONS = GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod GL_ARB_framebuffer_sRGB GL_ARB_multitexture GL_EXT_framebuffer_sRGB GL_IBM_multimode_draw_arrays GL_IBM_texture_mirrored_repeat GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_transpose_matrix GL_EXT_blend_func_separate GL_EXT_fog_coord GL_EXT_multi_draw_arrays GL_EXT_secondary_color GL_EXT_texture_env_add GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias GL_INGR_blend_func_separate GL_NV_blend_square GL_NV_light_max_exponent GL_NV_texgen_reflection GL_NV_texture_env_combine4 GL_S3_s3tc GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp GL_ARB_texture_compression GL_EXT_framebuffer_object GL_EXT_texture_compression_s3tc GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_MESA_window_pos GL_NV_packed_depth_stencil GL_NV_texture_rectangle GL_ARB_depth_texture GL_ARB_occlusion_query GL_ARB_shadow GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_window_pos GL_EXT_stencil_two_side GL_EXT_texture_cube_map GL_NV_depth_clamp GL_NV_fog_distance GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs GL_EXT_stencil_wrap GL_MESA_pack_invert GL_NV_primitive_restart GL_ARB_depth_clamp GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100 GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate GL_OES_read_format GL_ARB_color_buffer_float GL_ARB_pixel_buffer_object GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle GL_ATI_texture_compression_3dc GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_mirror_clamp GL_EXT_texture_rectangle GL_EXT_texture_sRGB GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_packed_depth_stencil GL_ARB_vertex_array_object GL_ATI_separate_stencil GL_ATI_texture_mirror_once GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_gpu_program_parameters GL_EXT_texture_array GL_EXT_texture_compression_latc GL_EXT_texture_integer GL_EXT_texture_sRGB_decode GL_EXT_timer_query GL_OES_EGL_image GL_MESA_texture_array GL_ARB_copy_buffer GL_ARB_depth_buffer_float GL_ARB_draw_instanced GL_ARB_half_float_vertex GL_ARB_instanced_arrays GL_ARB_map_buffer_range GL_ARB_texture_rg GL_ARB_texture_swizzle GL_ARB_vertex_array_bgra GL_EXT_separate_shader_objects GL_EXT_texture_swizzle GL_EXT_vertex_array_bgra GL_NV_conditional_render GL_AMD_conservative_depth GL_AMD_draw_buffers_blend GL_ARB_ES2_compatibility GL_ARB_blend_func_extended GL_ARB_debug_output GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_explicit_attrib_location GL_ARB_fragment_coord_conventions GL_ARB_provoking_vertex GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_shader_texture_lod GL_EXT_provoking_vertex GL_EXT_texture_snorm GL_MESA_texture_signed_rgba GL_NV_texture_barrier GL_ARB_robustness GL_ARB_shader_bit_encoding GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_base_instance GL_ARB_conservative_depth GL_ARB_texture_storage GL_ARB_transform_feedback_instanced GL_EXT_transform_feedback GL_ARB_invalidate_subdata 
-01:17:54: Supported GLX extensions: GLX_ARB_create_context GLX_ARB_create_context_profile GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_import_context GLX_EXT_visual_info GLX_EXT_visual_rating GLX_EXT_create_context_es2_profile GLX_MESA_copy_sub_buffer GLX_MESA_multithread_makecurrent GLX_MESA_swap_control GLX_OML_swap_method GLX_OML_sync_control GLX_SGI_make_current_read GLX_SGI_swap_control GLX_SGI_video_sync GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_EXT_texture_from_pixmap GLX_INTEL_swap_event 
-01:17:54: ***************************
-01:17:54: *** GL Renderer Started ***
-01:17:54: ***************************
-01:17:54: Registering ResourceManager for type GpuProgram
-01:17:54: GLSL support detected
-01:17:54: GL: Using GL_EXT_framebuffer_object for rendering to textures (best)
-01:17:54: FBO PF_UNKNOWN depth/stencil support: D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_L8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_L16 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_A8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_A1R5G5B5 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_R8G8B8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_B8G8R8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_A8R8G8B8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_B8G8R8A8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_A2R10G10B10 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_A2B10G10R10 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_FLOAT16_RGB depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_FLOAT16_RGBA depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_FLOAT32_RGB depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_FLOAT32_RGBA depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_X8R8G8B8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_X8B8G8R8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_SHORT_RGBA depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_FLOAT16_R depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_FLOAT32_R depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: FBO PF_SHORT_RGB depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
-01:17:54: [GL] : Valid FBO targets PF_UNKNOWN PF_L8 PF_L16 PF_A8 PF_A1R5G5B5 PF_R8G8B8 PF_B8G8R8 PF_A8R8G8B8 PF_B8G8R8A8 PF_A2R10G10B10 PF_A2B10G10R10 PF_FLOAT16_RGB PF_FLOAT16_RGBA PF_FLOAT32_RGB PF_FLOAT32_RGBA PF_X8R8G8B8 PF_X8B8G8R8 PF_SHORT_RGBA PF_FLOAT16_R PF_FLOAT32_R PF_SHORT_RGB 
-01:17:54: RenderSystem capabilities
-01:17:54: -------------------------
-01:17:54: RenderSystem Name: OpenGL Rendering Subsystem
-01:17:54: GPU Vendor: unknown
-01:17:54: Device Name: Gallium 0.4 on NVA5
-01:17:54: Driver Version: 3.0.0.0
-01:17:54:  * Fixed function pipeline: yes
-01:17:54:  * Hardware generation of mipmaps: yes
-01:17:54:  * Texture blending: yes
-01:17:54:  * Anisotropic texture filtering: yes
-01:17:54:  * Dot product texture operation: yes
-01:17:54:  * Cube mapping: yes
-01:17:54:  * Hardware stencil buffer: yes
-01:17:54:    - Stencil depth: 8
-01:17:54:    - Two sided stencil support: yes
-01:17:54:    - Wrap stencil values: yes
-01:17:54:  * Hardware vertex / index buffers: yes
-01:17:54:  * Vertex programs: yes
-01:17:54:  * Number of floating-point constants for vertex programs: 4096
-01:17:54:  * Number of integer constants for vertex programs: 0
-01:17:54:  * Number of boolean constants for vertex programs: 0
-01:17:54:  * Fragment programs: yes
-01:17:54:  * Number of floating-point constants for fragment programs: 4096
-01:17:54:  * Number of integer constants for fragment programs: 0
-01:17:54:  * Number of boolean constants for fragment programs: 0
-01:17:54:  * Geometry programs: no
-01:17:54:  * Number of floating-point constants for geometry programs: 0
-01:17:54:  * Number of integer constants for geometry programs: 0
-01:17:54:  * Number of boolean constants for geometry programs: 0
-01:17:54:  * Supported Shader Profiles: arbfp1 arbvp1 glsl
-01:17:54:  * Texture Compression: yes
-01:17:54:    - DXT: yes
-01:17:54:    - VTC: no
-01:17:54:    - PVRTC: no
-01:17:54:  * Scissor Rectangle: yes
-01:17:54:  * Hardware Occlusion Query: yes
-01:17:54:  * User clip planes: yes
-01:17:54:  * VET_UBYTE4 vertex element type: yes
-01:17:54:  * Infinite far plane projection: yes
-01:17:54:  * Hardware render-to-texture: yes
-01:17:54:  * Floating point textures: yes
-01:17:54:  * Non-power-of-two textures: yes
-01:17:54:  * Volume textures: yes
-01:17:54:  * Multiple Render Targets: 8
-01:17:54:    - With different bit depths: yes
-01:17:54:  * Point Sprites: yes
-01:17:54:  * Extended point parameters: yes
-01:17:54:  * Max Point Size: 64
-01:17:54:  * Vertex texture fetch: yes
-01:17:54:  * Number of world matrices: 0
-01:17:54:  * Number of texture units: 16
-01:17:54:  * Stencil buffer depth: 8
-01:17:54:  * Number of vertex blend matrices: 0
-01:17:54:    - Max vertex textures: 16
-01:17:54:    - Vertex textures shared: yes
-01:17:54:  * Render to Vertex Buffer : no
-01:17:54:  * GL 1.5 without VBO workaround: no
-01:17:54:  * Frame Buffer objects: yes
-01:17:54:  * Frame Buffer objects (ARB extension): no
-01:17:54:  * Frame Buffer objects (ATI extension): no
-01:17:54:  * PBuffer support: yes
-01:17:54:  * GL 1.5 without HW-occlusion workaround: no
-01:17:54: Registering ResourceManager for type Texture
-01:17:54: DefaultWorkQueue('Root') initialising on thread 0x1898310.
-01:17:54: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19f94e0 starting.
-01:17:54: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19ec4f0 starting.
-01:17:54: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19ec800 starting.
-01:17:54: Particle Renderer Type 'billboard' registered
-01:17:54: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19ecb10 starting.
-01:17:54: SceneManagerFactory for type 'BspSceneManager' registered.
-01:17:54: Registering ResourceManager for type BspLevel
-01:17:54: SceneManagerFactory for type 'OctreeSceneManager' registered.
-01:17:54: SceneManagerFactory for type 'TerrainSceneManager' registered.
-01:17:54: Parsing scripts for resource group Autodetect
-01:17:54: Finished parsing scripts for resource group Autodetect
-01:17:54: Parsing scripts for resource group General
-01:17:54: Parsing script 0111101.material
-01:17:54: Compiler error: fewer parameters expected in 0111101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111101.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111101.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111101.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script Stone3.material
-01:17:54: Compiler error: fewer parameters expected in Stone3.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script DuffBeerDead.material
-01:17:54: Compiler error: fewer parameters expected in DuffBeerDead.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in DuffBeerDead.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010011.material
-01:17:54: Compiler error: fewer parameters expected in 0010011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0010011.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Bart.material
-01:17:54: Compiler error: fewer parameters expected in Bart.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Bart.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Bart.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Bart.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Bart.material(87): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Bart.material(107): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Bart.material(127): ambient must have at most 4 parameters
-01:17:54: Parsing script 0000111.material
-01:17:54: Compiler error: fewer parameters expected in 0000111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0000111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0000111.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0100101.material
-01:17:54: Compiler error: fewer parameters expected in 0100101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100101.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100101.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0000001.material
-01:17:54: Compiler error: fewer parameters expected in 0000001.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script Ogre.material
-01:17:54: Parsing script 0011110.material
-01:17:54: Compiler error: fewer parameters expected in 0011110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011110.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011110.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001000.material
-01:17:54: Compiler error: fewer parameters expected in 0001000.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001111.material
-01:17:54: Compiler error: fewer parameters expected in 0001111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001111.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001111.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001100.material
-01:17:54: Compiler error: fewer parameters expected in 0001100.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001100.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110000.material
-01:17:54: Compiler error: fewer parameters expected in 0110000.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script Homer.material
-01:17:54: Compiler error: fewer parameters expected in Homer.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Homer.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Homer.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Homer.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Homer.material(87): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Homer.material(107): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001011.material
-01:17:54: Compiler error: fewer parameters expected in 0001011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001011.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001011.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011010.material
-01:17:54: Compiler error: fewer parameters expected in 0011010.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011010.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Stone1.material
-01:17:54: Compiler error: fewer parameters expected in Stone1.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0100110.material
-01:17:54: Compiler error: fewer parameters expected in 0100110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100110.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100110.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script homer_lambert3SG.material
-01:17:54: Parsing script 0000110.material
-01:17:54: Compiler error: fewer parameters expected in 0000110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0000110.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111110.material
-01:17:54: Compiler error: fewer parameters expected in 0111110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111110.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111110.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111110.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010000.material
-01:17:54: Parsing script 0101100.material
-01:17:54: Compiler error: fewer parameters expected in 0101100.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101100.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101100.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script Test.material
-01:17:54: Compiler error: fewer parameters expected in Test.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Test.material(23): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Test.material(39): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Test.material(55): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110010.material
-01:17:54: Compiler error: fewer parameters expected in 0110010.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110010.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101111.material
-01:17:54: Compiler error: fewer parameters expected in 0101111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101111.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101111.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101111.material(87): ambient must have at most 4 parameters
-01:17:54: Parsing script 0000101.material
-01:17:54: Compiler error: fewer parameters expected in 0000101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0000101.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111100.material
-01:17:54: Compiler error: fewer parameters expected in 0111100.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111100.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111100.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111001.material
-01:17:54: Compiler error: fewer parameters expected in 0111001.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111001.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111001.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111010.material
-01:17:54: Compiler error: fewer parameters expected in 0111010.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111010.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111010.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script lambert3SG.material
-01:17:54: Parsing script 0001001.material
-01:17:54: Compiler error: fewer parameters expected in 0001001.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001001.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Stone4.material
-01:17:54: Compiler error: fewer parameters expected in Stone4.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0000011.material
-01:17:54: Compiler error: fewer parameters expected in 0000011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0000011.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Krusty.material
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(87): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(107): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(127): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(147): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(167): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Krusty.material(187): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101010.material
-01:17:54: Compiler error: fewer parameters expected in 0101010.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101010.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101010.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script Ned.material
-01:17:54: Compiler error: fewer parameters expected in Ned.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Ned.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Ned.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Ned.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Ned.material(87): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Ned.material(107): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Ned.material(127): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110101.material
-01:17:54: Compiler error: fewer parameters expected in 0110101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110101.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110101.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script Maggie.material
-01:17:54: Compiler error: fewer parameters expected in Maggie.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Maggie.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Maggie.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Maggie.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Maggie.material(87): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010110.material
-01:17:54: Compiler error: fewer parameters expected in 0010110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0010110.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script lambert4SG.material
-01:17:54: Parsing script 0100001.material
-01:17:54: Compiler error: fewer parameters expected in 0100001.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100001.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010001.material
-01:17:54: Compiler error: fewer parameters expected in 0010001.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script UntitledScene.material
-01:17:54: Parsing script 0110100.material
-01:17:54: Compiler error: fewer parameters expected in 0110100.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110100.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script lambert6SG.material
-01:17:54: Parsing script 0100010.material
-01:17:54: Compiler error: fewer parameters expected in 0100010.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100010.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Marge.material
-01:17:54: Compiler error: fewer parameters expected in Marge.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Marge.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Marge.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Marge.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Marge.material(87): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Marge.material(107): ambient must have at most 4 parameters
-01:17:54: Parsing script 0100111.material
-01:17:54: Compiler error: fewer parameters expected in 0100111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100111.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100111.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010111.material
-01:17:54: Compiler error: fewer parameters expected in 0010111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0010111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0010111.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001101.material
-01:17:54: Compiler error: fewer parameters expected in 0001101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001101.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001101.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010100.material
-01:17:54: Compiler error: fewer parameters expected in 0010100.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111011.material
-01:17:54: Compiler error: fewer parameters expected in 0111011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111011.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111011.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111011.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010101.material
-01:17:54: Compiler error: fewer parameters expected in 0010101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0010101.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0100000.material
-01:17:54: Compiler error: fewer parameters expected in 0100000.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110111.material
-01:17:54: Compiler error: fewer parameters expected in 0110111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110111.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110111.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101110.material
-01:17:54: Compiler error: fewer parameters expected in 0101110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101110.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101110.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101110.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110001.material
-01:17:54: Compiler error: fewer parameters expected in 0110001.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110001.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script lambert5SG.material
-01:17:54: Parsing script 0100011.material
-01:17:54: Compiler error: fewer parameters expected in 0100011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100011.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100011.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011000.material
-01:17:54: Compiler error: fewer parameters expected in 0011000.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011111.material
-01:17:54: Compiler error: fewer parameters expected in 0011111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011111.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011111.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script Stone5.material
-01:17:54: Compiler error: fewer parameters expected in Stone5.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011101.material
-01:17:54: Compiler error: fewer parameters expected in 0011101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011101.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011101.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001010.material
-01:17:54: Compiler error: fewer parameters expected in 0001010.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001010.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Stone2.material
-01:17:54: Compiler error: fewer parameters expected in Stone2.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011011.material
-01:17:54: Compiler error: fewer parameters expected in 0011011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011011.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011011.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script LevelUp.material
-01:17:54: Compiler error: fewer parameters expected in LevelUp.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101000.material
-01:17:54: Compiler error: fewer parameters expected in 0101000.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101000.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Stone6.material
-01:17:54: Compiler error: fewer parameters expected in Stone6.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110110.material
-01:17:54: Compiler error: fewer parameters expected in 0110110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110110.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110110.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111000.material
-01:17:54: Compiler error: fewer parameters expected in 0111000.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111000.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011100.material
-01:17:54: Compiler error: fewer parameters expected in 0011100.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011100.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0011001.material
-01:17:54: Compiler error: fewer parameters expected in 0011001.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0011001.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script Food.material
-01:17:54: Compiler error: fewer parameters expected in Food.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0111111.material
-01:17:54: Compiler error: fewer parameters expected in 0111111.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111111.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111111.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111111.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0111111.material(87): ambient must have at most 4 parameters
-01:17:54: Parsing script 0010010.material
-01:17:54: Compiler error: fewer parameters expected in 0010010.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script Donut.material
-01:17:54: Compiler error: fewer parameters expected in Donut.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script Lisa.material
-01:17:54: Compiler error: fewer parameters expected in Lisa.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Lisa.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Lisa.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Lisa.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101101.material
-01:17:54: Compiler error: fewer parameters expected in 0101101.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101101.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101101.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101101.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script 0000100.material
-01:17:54: Compiler error: fewer parameters expected in 0000100.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0000010.material
-01:17:54: Compiler error: fewer parameters expected in 0000010.material(7): ambient must have at most 4 parameters
-01:17:54: Parsing script 0100100.material
-01:17:54: Compiler error: fewer parameters expected in 0100100.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0100100.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101011.material
-01:17:54: Compiler error: fewer parameters expected in 0101011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101011.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101011.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101011.material(67): ambient must have at most 4 parameters
-01:17:54: Parsing script DuffBeer.material
-01:17:54: Compiler error: fewer parameters expected in DuffBeer.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in DuffBeer.material(27): ambient must have at most 4 parameters
-01:17:54: Parsing script 0101001.material
-01:17:54: Compiler error: fewer parameters expected in 0101001.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101001.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0101001.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0110011.material
-01:17:54: Compiler error: fewer parameters expected in 0110011.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110011.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0110011.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script 0001110.material
-01:17:54: Compiler error: fewer parameters expected in 0001110.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001110.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in 0001110.material(47): ambient must have at most 4 parameters
-01:17:54: Parsing script homer_lambert7SG.material
-01:17:54: Parsing script Abraham.material
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(7): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(27): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(47): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(67): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(87): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(107): ambient must have at most 4 parameters
-01:17:54: Compiler error: fewer parameters expected in Abraham.material(127): ambient must have at most 4 parameters
-01:17:54: Parsing script SdkTrays.material
-01:17:54: Parsing script SdkTrays.fontdef
-01:17:54: Parsing script SdkTrays.overlay
-01:17:54: Bad element attribute line: '# you can offset the image to change the cursor "hotspot"' for element SdkTrays/Cursor in overlay 
-01:17:54: Texture: sdk_cursor.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_tray.png: Loading 1 faces(PF_A8R8G8B8,64x64x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x64x1.
-01:17:54: Texture: sdk_button_up.png: Loading 1 faces(PF_A8R8G8B8,128x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x32x1.
-01:17:54: Texture: sdk_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_mini_tray.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_track.png: Loading 1 faces(PF_A8R8G8B8,16x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x32x1.
-01:17:54: Texture: sdk_handle.png: Loading 1 faces(PF_A8R8G8B8,16x16x1) with 4 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x16x1.
-01:17:54: Texture: sdk_mini_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_label.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_separator.png: Loading 1 faces(PF_A8R8G8B8,64x16x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x16x1.
-01:17:54: Texture: sdk_logo.png: Loading 1 faces(PF_A8R8G8B8,128x64x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x64x1.
-01:17:54: Texture: sdk_shade.png: Loading 1 faces(PF_A8R8G8B8,64x48x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x48x1.
-01:17:54: Texture: sdk_frame.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_mini_text_box_over.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-01:17:54: Texture: sdk_pulse.png: Loading 1 faces(PF_R8G8B8,8x1x1) with 3 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,8x1x1.
-01:17:54: Finished parsing scripts for resource group General
-01:17:54: Parsing scripts for resource group Internal
-01:17:54: Finished parsing scripts for resource group Internal
-01:17:54: Mesh: Loading Donut.mesh.
-01:17:54: Texture: donutEmpty.tga: Loading 1 faces(PF_R8G8B8,600x293x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,600x293x1.
-01:17:54: Texture: sky.tga: Loading 1 faces(PF_R8G8B8,1663x1060x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1663x1060x1.
-01:17:54: *** Initializing OIS ***
-01:17:54: Font SdkTrays/Captionusing texture size 512x256
-01:17:54: Info: Freetype returned null for character 160 in font SdkTrays/Caption
-01:17:54: Texture: SdkTrays/CaptionTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
-01:17:54: Font SdkTrays/Valueusing texture size 512x256
-01:17:54: Info: Freetype returned null for character 127 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 128 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 129 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 130 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 131 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 132 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 133 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 134 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 135 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 136 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 137 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 138 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 139 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 140 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 141 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 142 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 143 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 144 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 145 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 146 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 147 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 148 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 149 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 150 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 151 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 152 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 153 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 154 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 155 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 156 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 157 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 158 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 159 in font SdkTrays/Value
-01:17:54: Info: Freetype returned null for character 160 in font SdkTrays/Value
-01:17:54: Texture: SdkTrays/ValueTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
-01:17:54: Mesh: Loading 0110000.mesh.
-01:17:54: Texture: white.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-01:17:54: Mesh: Loading 0000001.mesh.
-01:17:54: Texture: blue.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-01:17:54: Mesh: Loading 0001100.mesh.
-01:17:54: Texture: orange.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-01:17:54: Texture: yellow.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-01:17:54: Mesh: Loading 0100000.mesh.
-01:17:54: Mesh: Loading 0000010.mesh.
-01:17:54: Texture: red.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-01:17:54: Mesh: Loading 0010000.mesh.
-01:17:54: Mesh: Loading 0010100.mesh.
-01:17:54: Mesh: Loading 0000100.mesh.
-01:17:54: Mesh: Loading 0001000.mesh.
-01:17:54: Mesh: Loading 0010010.mesh.
-01:17:54: Mesh: Loading 0100100.mesh.
-01:17:54: Mesh: Loading 0110101.mesh.
-01:17:54: Mesh: Loading 0110010.mesh.
-01:17:54: Mesh: Loading 0101110.mesh.
-01:17:54: Mesh: Loading 0101000.mesh.
-01:17:54: Mesh: Loading 0011000.mesh.
-01:17:54: Mesh: Loading 0000110.mesh.
-01:17:54: Mesh: Loading 0000101.mesh.
-01:17:54: Mesh: Loading 0001010.mesh.
-01:17:54: Mesh: Loading 0100010.mesh.
-01:17:54: Mesh: Loading 0111000.mesh.
-01:17:54: Mesh: Loading 0111100.mesh.
-01:17:54: Mesh: Loading 0100110.mesh.
-01:17:54: Mesh: Loading 0101100.mesh.
-01:17:54: Mesh: Loading 0011100.mesh.
-01:17:54: Mesh: Loading 0001001.mesh.
-01:17:54: Mesh: Loading 0100001.mesh.
-01:18:10: DefaultWorkQueue('Root') shutting down on thread 0x1898310.
-01:18:10: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19f94e0 stopped.
-01:18:10: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19ec4f0 stopped.
-01:18:10: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19ec800 stopped.
-01:18:10: DefaultWorkQueue('Root')::WorkerFunc - thread 0x19ecb10 stopped.
-01:18:10: Unregistering ResourceManager for type BspLevel
-01:18:10: *-*-* OGRE Shutdown
-01:18:10: Unregistering ResourceManager for type Compositor
-01:18:10: Unregistering ResourceManager for type Font
-01:18:10: Unregistering ResourceManager for type Skeleton
-01:18:10: Unregistering ResourceManager for type Mesh
-01:18:10: Unregistering ResourceManager for type HighLevelGpuProgram
-01:18:10: Uninstalling plugin: Octree & Terrain Scene Manager
-01:18:10: Plugin successfully uninstalled
-01:18:10: Unloading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_OctreeSceneManager.so
-01:18:10: Uninstalling plugin: BSP Scene Manager
-01:18:10: Plugin successfully uninstalled
-01:18:10: Unloading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_BSPSceneManager.so
-01:18:10: Uninstalling plugin: ParticleFX
-01:18:10: Plugin successfully uninstalled
-01:18:10: Unloading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/Plugin_ParticleFX.so
-01:18:10: Uninstalling plugin: GL RenderSystem
-01:18:10: Unregistering ResourceManager for type GpuProgram
-01:18:10: ******************************
-*** Stopping GLX Subsystem ***
-******************************
-01:18:10: Unregistering ResourceManager for type Texture
-01:18:10: Plugin successfully uninstalled
-01:18:10: Unloading library /usr/lib/x86_64-linux-gnu/OGRE-1.7.4/RenderSystem_GL.so
-01:18:10: Unregistering ResourceManager for type Material
+11:54:46: GLRenderSystem::_createRenderWindow "TutorialApplication Render Window", 1280x1024 windowed  miscParams: FSAA=0 displayFrequency=60 MHz gamma=No vsync=Yes 
+11:54:46: OGRE EXCEPTION(6:FileNotFoundException): Cannot locate resource GLX_icon.png in resource group General or any other group. in ResourceGroupManager::openResource at /build/buildd/ogre-1.7.4/OgreMain/src/OgreResourceGroupManager.cpp (line 753)
+11:54:46: GLXWindow::create used FBConfigID = 165
+11:54:46: GL_VERSION = 3.0 Mesa 9.0.3
+11:54:46: GL_VENDOR = nouveau
+11:54:46: GL_RENDERER = Gallium 0.4 on NVA5
+11:54:46: GL_EXTENSIONS = GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod GL_ARB_framebuffer_sRGB GL_ARB_multitexture GL_EXT_framebuffer_sRGB GL_IBM_multimode_draw_arrays GL_IBM_texture_mirrored_repeat GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_transpose_matrix GL_EXT_blend_func_separate GL_EXT_fog_coord GL_EXT_multi_draw_arrays GL_EXT_secondary_color GL_EXT_texture_env_add GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias GL_INGR_blend_func_separate GL_NV_blend_square GL_NV_light_max_exponent GL_NV_texgen_reflection GL_NV_texture_env_combine4 GL_S3_s3tc GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp GL_ARB_texture_compression GL_EXT_framebuffer_object GL_EXT_texture_compression_s3tc GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_MESA_window_pos GL_NV_packed_depth_stencil GL_NV_texture_rectangle GL_ARB_depth_texture GL_ARB_occlusion_query GL_ARB_shadow GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_window_pos GL_EXT_stencil_two_side GL_EXT_texture_cube_map GL_NV_depth_clamp GL_NV_fog_distance GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs GL_EXT_stencil_wrap GL_MESA_pack_invert GL_NV_primitive_restart GL_ARB_depth_clamp GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100 GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate GL_OES_read_format GL_ARB_color_buffer_float GL_ARB_pixel_buffer_object GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle GL_ATI_texture_compression_3dc GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_mirror_clamp GL_EXT_texture_rectangle GL_EXT_texture_sRGB GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_packed_depth_stencil GL_ARB_vertex_array_object GL_ATI_separate_stencil GL_ATI_texture_mirror_once GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_gpu_program_parameters GL_EXT_texture_array GL_EXT_texture_compression_latc GL_EXT_texture_integer GL_EXT_texture_sRGB_decode GL_EXT_timer_query GL_OES_EGL_image GL_MESA_texture_array GL_ARB_copy_buffer GL_ARB_depth_buffer_float GL_ARB_draw_instanced GL_ARB_half_float_vertex GL_ARB_instanced_arrays GL_ARB_map_buffer_range GL_ARB_texture_rg GL_ARB_texture_swizzle GL_ARB_vertex_array_bgra GL_EXT_separate_shader_objects GL_EXT_texture_swizzle GL_EXT_vertex_array_bgra GL_NV_conditional_render GL_AMD_conservative_depth GL_AMD_draw_buffers_blend GL_ARB_ES2_compatibility GL_ARB_blend_func_extended GL_ARB_debug_output GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_explicit_attrib_location GL_ARB_fragment_coord_conventions GL_ARB_provoking_vertex GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_shader_texture_lod GL_EXT_provoking_vertex GL_EXT_texture_snorm GL_MESA_texture_signed_rgba GL_NV_texture_barrier GL_ARB_robustness GL_ARB_shader_bit_encoding GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_base_instance GL_ARB_conservative_depth GL_ARB_texture_storage GL_ARB_transform_feedback_instanced GL_EXT_transform_feedback GL_ARB_invalidate_subdata 
+11:54:46: Supported GLX extensions: GLX_ARB_create_context GLX_ARB_create_context_profile GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_import_context GLX_EXT_visual_info GLX_EXT_visual_rating GLX_EXT_create_context_es2_profile GLX_MESA_copy_sub_buffer GLX_MESA_multithread_makecurrent GLX_MESA_swap_control GLX_OML_swap_method GLX_OML_sync_control GLX_SGI_make_current_read GLX_SGI_swap_control GLX_SGI_video_sync GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_EXT_texture_from_pixmap GLX_INTEL_swap_event 
+11:54:46: ***************************
+11:54:46: *** GL Renderer Started ***
+11:54:46: ***************************
+11:54:46: Registering ResourceManager for type GpuProgram
+11:54:46: GLSL support detected
+11:54:46: GL: Using GL_EXT_framebuffer_object for rendering to textures (best)
+11:54:46: FBO PF_UNKNOWN depth/stencil support: D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_L8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_L16 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_A8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_A1R5G5B5 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_R8G8B8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_B8G8R8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_A8R8G8B8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_B8G8R8A8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_A2R10G10B10 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_A2B10G10R10 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_FLOAT16_RGB depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_FLOAT16_RGBA depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_FLOAT32_RGB depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_FLOAT32_RGBA depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_X8R8G8B8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_X8B8G8R8 depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_SHORT_RGBA depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_FLOAT16_R depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_FLOAT32_R depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: FBO PF_SHORT_RGB depth/stencil support: D0S0 D0S1 D0S4 D0S8 D0S16 D16S0 D24S0 D32S0 Packed-D24S8 
+11:54:46: [GL] : Valid FBO targets PF_UNKNOWN PF_L8 PF_L16 PF_A8 PF_A1R5G5B5 PF_R8G8B8 PF_B8G8R8 PF_A8R8G8B8 PF_B8G8R8A8 PF_A2R10G10B10 PF_A2B10G10R10 PF_FLOAT16_RGB PF_FLOAT16_RGBA PF_FLOAT32_RGB PF_FLOAT32_RGBA PF_X8R8G8B8 PF_X8B8G8R8 PF_SHORT_RGBA PF_FLOAT16_R PF_FLOAT32_R PF_SHORT_RGB 
+11:54:46: RenderSystem capabilities
+11:54:46: -------------------------
+11:54:46: RenderSystem Name: OpenGL Rendering Subsystem
+11:54:46: GPU Vendor: unknown
+11:54:46: Device Name: Gallium 0.4 on NVA5
+11:54:46: Driver Version: 3.0.0.0
+11:54:46:  * Fixed function pipeline: yes
+11:54:46:  * Hardware generation of mipmaps: yes
+11:54:46:  * Texture blending: yes
+11:54:46:  * Anisotropic texture filtering: yes
+11:54:46:  * Dot product texture operation: yes
+11:54:46:  * Cube mapping: yes
+11:54:46:  * Hardware stencil buffer: yes
+11:54:46:    - Stencil depth: 8
+11:54:46:    - Two sided stencil support: yes
+11:54:46:    - Wrap stencil values: yes
+11:54:46:  * Hardware vertex / index buffers: yes
+11:54:46:  * Vertex programs: yes
+11:54:46:  * Number of floating-point constants for vertex programs: 4096
+11:54:46:  * Number of integer constants for vertex programs: 0
+11:54:46:  * Number of boolean constants for vertex programs: 0
+11:54:46:  * Fragment programs: yes
+11:54:46:  * Number of floating-point constants for fragment programs: 4096
+11:54:46:  * Number of integer constants for fragment programs: 0
+11:54:46:  * Number of boolean constants for fragment programs: 0
+11:54:46:  * Geometry programs: no
+11:54:46:  * Number of floating-point constants for geometry programs: 0
+11:54:46:  * Number of integer constants for geometry programs: 0
+11:54:46:  * Number of boolean constants for geometry programs: 0
+11:54:46:  * Supported Shader Profiles: arbfp1 arbvp1 glsl
+11:54:46:  * Texture Compression: yes
+11:54:46:    - DXT: yes
+11:54:46:    - VTC: no
+11:54:46:    - PVRTC: no
+11:54:46:  * Scissor Rectangle: yes
+11:54:46:  * Hardware Occlusion Query: yes
+11:54:46:  * User clip planes: yes
+11:54:46:  * VET_UBYTE4 vertex element type: yes
+11:54:46:  * Infinite far plane projection: yes
+11:54:46:  * Hardware render-to-texture: yes
+11:54:46:  * Floating point textures: yes
+11:54:46:  * Non-power-of-two textures: yes
+11:54:46:  * Volume textures: yes
+11:54:46:  * Multiple Render Targets: 8
+11:54:46:    - With different bit depths: yes
+11:54:46:  * Point Sprites: yes
+11:54:46:  * Extended point parameters: yes
+11:54:46:  * Max Point Size: 64
+11:54:46:  * Vertex texture fetch: yes
+11:54:46:  * Number of world matrices: 0
+11:54:46:  * Number of texture units: 16
+11:54:46:  * Stencil buffer depth: 8
+11:54:46:  * Number of vertex blend matrices: 0
+11:54:46:    - Max vertex textures: 16
+11:54:46:    - Vertex textures shared: yes
+11:54:46:  * Render to Vertex Buffer : no
+11:54:46:  * GL 1.5 without VBO workaround: no
+11:54:46:  * Frame Buffer objects: yes
+11:54:46:  * Frame Buffer objects (ARB extension): no
+11:54:46:  * Frame Buffer objects (ATI extension): no
+11:54:46:  * PBuffer support: yes
+11:54:46:  * GL 1.5 without HW-occlusion workaround: no
+11:54:46: Registering ResourceManager for type Texture
+11:54:46: DefaultWorkQueue('Root') initialising on thread 0x1d11310.
+11:54:46: DefaultWorkQueue('Root')::WorkerFunc - thread 0x1d92860 starting.
+11:54:46: DefaultWorkQueue('Root')::WorkerFunc - thread 0x1e72c90 starting.
+11:54:46: DefaultWorkQueue('Root')::WorkerFunc - thread 0x1e656c0 starting.
+11:54:46: Particle Renderer Type 'billboard' registered
+11:54:46: SceneManagerFactory for type 'BspSceneManager' registered.
+11:54:46: Registering ResourceManager for type BspLevel
+11:54:46: SceneManagerFactory for type 'OctreeSceneManager' registered.
+11:54:46: SceneManagerFactory for type 'TerrainSceneManager' registered.
+11:54:46: Parsing scripts for resource group Autodetect
+11:54:46: Finished parsing scripts for resource group Autodetect
+11:54:46: Parsing scripts for resource group General
+11:54:46: DefaultWorkQueue('Root')::WorkerFunc - thread 0x1e659d0 starting.
+11:54:46: Parsing script 0111101.material
+11:54:46: Parsing script Stone3.material
+11:54:46: Parsing script DuffBeerDead.material
+11:54:46: Parsing script 0010011.material
+11:54:46: Parsing script Bart.material
+11:54:46: Parsing script 0000111.material
+11:54:46: Parsing script 0100101.material
+11:54:46: Parsing script 0000001.material
+11:54:46: Parsing script Ogre.material
+11:54:46: Parsing script 0011110.material
+11:54:46: Parsing script 0001000.material
+11:54:46: Parsing script 0001111.material
+11:54:46: Parsing script 0001100.material
+11:54:46: Parsing script 0110000.material
+11:54:46: Parsing script Homer.material
+11:54:46: Parsing script 0001011.material
+11:54:46: Parsing script 0011010.material
+11:54:46: Parsing script Stone1.material
+11:54:46: Parsing script 0100110.material
+11:54:46: Parsing script homer_lambert3SG.material
+11:54:46: Parsing script 0000110.material
+11:54:46: Parsing script 0111110.material
+11:54:46: Parsing script 0010000.material
+11:54:46: Parsing script 0101100.material
+11:54:46: Parsing script Test.material
+11:54:46: Parsing script 0110010.material
+11:54:46: Parsing script 0101111.material
+11:54:46: Parsing script 0000101.material
+11:54:46: Parsing script 0111100.material
+11:54:46: Parsing script 0111001.material
+11:54:46: Parsing script 0111010.material
+11:54:46: Parsing script lambert3SG.material
+11:54:46: Parsing script 0001001.material
+11:54:46: Parsing script Stone4.material
+11:54:46: Parsing script 0000011.material
+11:54:46: Parsing script Krusty.material
+11:54:46: Parsing script 0101010.material
+11:54:46: Parsing script Ned.material
+11:54:46: Parsing script 0110101.material
+11:54:46: Parsing script Maggie.material
+11:54:46: Parsing script 0010110.material
+11:54:46: Parsing script lambert4SG.material
+11:54:46: Parsing script 0100001.material
+11:54:46: Parsing script 0010001.material
+11:54:46: Parsing script UntitledScene.material
+11:54:46: Parsing script 0110100.material
+11:54:46: Parsing script lambert6SG.material
+11:54:46: Parsing script 0100010.material
+11:54:46: Parsing script Marge.material
+11:54:46: Parsing script 0100111.material
+11:54:46: Parsing script 0010111.material
+11:54:46: Parsing script 0001101.material
+11:54:46: Parsing script 0010100.material
+11:54:46: Parsing script 0111011.material
+11:54:46: Parsing script 0010101.material
+11:54:46: Parsing script 0100000.material
+11:54:46: Parsing script 0110111.material
+11:54:46: Parsing script 0101110.material
+11:54:46: Parsing script 0110001.material
+11:54:46: Parsing script lambert5SG.material
+11:54:46: Parsing script 0100011.material
+11:54:46: Parsing script 0011000.material
+11:54:46: Parsing script 0011111.material
+11:54:46: Parsing script Stone5.material
+11:54:46: Parsing script 0011101.material
+11:54:46: Parsing script 0001010.material
+11:54:46: Parsing script Stone2.material
+11:54:46: Parsing script 0011011.material
+11:54:46: Parsing script LevelUp.material
+11:54:46: Parsing script 0101000.material
+11:54:46: Parsing script Stone6.material
+11:54:46: Parsing script 0110110.material
+11:54:46: Parsing script 0111000.material
+11:54:46: Parsing script 0011100.material
+11:54:46: Parsing script 0011001.material
+11:54:46: Parsing script Food.material
+11:54:46: Parsing script 0111111.material
+11:54:46: Parsing script 0010010.material
+11:54:46: Parsing script Selecter.material
+11:54:46: Parsing script Donut.material
+11:54:46: Parsing script Lisa.material
+11:54:46: Parsing script 0101101.material
+11:54:46: Parsing script 0000100.material
+11:54:46: Parsing script 0000010.material
+11:54:46: Parsing script 0100100.material
+11:54:46: Parsing script 0101011.material
+11:54:46: Parsing script DuffBeer.material
+11:54:46: Parsing script 0101001.material
+11:54:46: Parsing script 0110011.material
+11:54:46: Parsing script 0001110.material
+11:54:46: Parsing script homer_lambert7SG.material
+11:54:46: Parsing script Abraham.material
+11:54:46: Parsing script SdkTrays.material
+11:54:46: Parsing script SdkTrays.fontdef
+11:54:46: Parsing script SdkTrays.overlay
+11:54:46: Bad element attribute line: '# you can offset the image to change the cursor "hotspot"' for element SdkTrays/Cursor in overlay 
+11:54:46: Texture: sdk_cursor.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_tray.png: Loading 1 faces(PF_A8R8G8B8,64x64x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x64x1.
+11:54:46: Texture: sdk_button_up.png: Loading 1 faces(PF_A8R8G8B8,128x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x32x1.
+11:54:46: Texture: sdk_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_mini_tray.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_track.png: Loading 1 faces(PF_A8R8G8B8,16x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x32x1.
+11:54:46: Texture: sdk_handle.png: Loading 1 faces(PF_A8R8G8B8,16x16x1) with 4 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x16x1.
+11:54:46: Texture: sdk_mini_text_box.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_label.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_separator.png: Loading 1 faces(PF_A8R8G8B8,64x16x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x16x1.
+11:54:46: Texture: sdk_logo.png: Loading 1 faces(PF_A8R8G8B8,128x64x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x64x1.
+11:54:46: Texture: sdk_shade.png: Loading 1 faces(PF_A8R8G8B8,64x48x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,64x48x1.
+11:54:46: Texture: sdk_frame.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_mini_text_box_over.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+11:54:46: Texture: sdk_pulse.png: Loading 1 faces(PF_R8G8B8,8x1x1) with 3 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,8x1x1.
+11:54:46: Finished parsing scripts for resource group General
+11:54:46: Parsing scripts for resource group Internal
+11:54:46: Finished parsing scripts for resource group Internal
+11:54:46: Mesh: Loading Donut.mesh.
+11:54:46: Texture: donutEmpty.tga: Loading 1 faces(PF_R8G8B8,600x293x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,600x293x1.
+11:54:46: Texture: sky.tga: Loading 1 faces(PF_R8G8B8,1663x1060x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1663x1060x1.
+11:54:46: *** Initializing OIS ***
+11:54:46: Font SdkTrays/Captionusing texture size 512x256
+11:54:46: Info: Freetype returned null for character 160 in font SdkTrays/Caption
+11:54:46: Texture: SdkTrays/CaptionTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
+11:54:46: Font SdkTrays/Valueusing texture size 512x256
+11:54:46: Info: Freetype returned null for character 127 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 128 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 129 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 130 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 131 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 132 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 133 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 134 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 135 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 136 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 137 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 138 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 139 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 140 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 141 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 142 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 143 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 144 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 145 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 146 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 147 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 148 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 149 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 150 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 151 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 152 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 153 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 154 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 155 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 156 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 157 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 158 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 159 in font SdkTrays/Value
+11:54:46: Info: Freetype returned null for character 160 in font SdkTrays/Value
+11:54:46: Texture: SdkTrays/ValueTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
+11:54:46: Mesh: Loading 0000010.mesh.
+11:54:46: Texture: red.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:46: Mesh: Loading 0110100.mesh.
+11:54:46: Texture: white.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:46: Texture: orange.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:46: Texture: greenNed.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:46: Mesh: Loading 0000100.mesh.
+11:54:46: Mesh: Loading 0000001.mesh.
+11:54:46: Texture: blue.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:46: Mesh: Loading 0001000.mesh.
+11:54:46: Texture: yellow.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:46: Mesh: Loading 0100000.mesh.
+11:54:46: Mesh: Loading 0010000.mesh.
+11:54:46: Mesh: Loading 0100010.mesh.
+11:54:46: Mesh: Loading 0110000.mesh.
+11:54:46: Mesh: Loading 0011010.mesh.
+11:54:46: Mesh: Loading 0011000.mesh.
+11:54:46: Mesh: Loading 0001001.mesh.
+11:54:46: Mesh: Loading 0111000.mesh.
+11:54:46: Mesh: Loading 0001100.mesh.
+11:54:46: Mesh: Loading 0101000.mesh.
+11:54:46: Mesh: Loading 0100100.mesh.
+11:54:46: Mesh: Loading 0000110.mesh.
+11:54:46: Mesh: Loading 0101010.mesh.
+11:54:46: Mesh: Loading 0110010.mesh.
+11:54:46: Mesh: Loading 0010001.mesh.
+11:54:46: Mesh: Loading 0011100.mesh.
+11:54:46: Mesh: Loading 0010100.mesh.
+11:54:46: Mesh: Loading 0010010.mesh.
+11:54:46: Mesh: Loading 0001010.mesh.
+11:54:46: Mesh: Loading 0001110.mesh.
+11:54:46: Mesh: Loading 0000101.mesh.
+11:54:46: Mesh: Loading 0000011.mesh.
+11:54:46: Mesh: Loading 0100110.mesh.
+11:54:46: Mesh: Loading 0110110.mesh.
+11:54:47: Mesh: Loading Food.mesh.
+11:54:47: Texture: cream.tga: Loading 1 faces(PF_R8G8B8,262x196x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,262x196x1.
+11:54:54: Mesh: Loading Krusty.mesh.
+11:54:54: Texture: greenKrusty.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:54: Texture: purple.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:54: Texture: krustyBeard.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:54: Texture: whiteKrustyFace.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:54: Texture: greenKrustyHair.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+11:54:54: Texture: black.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
