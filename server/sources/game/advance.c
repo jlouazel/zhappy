@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 17:32:06 2013 louaze_j
-** Last update Mon Jul  8 11:05:26 2013 julien fortin
+** Last update Fri Jul 12 20:53:58 2013 louaze_j
 */
 
 #include	"player.h"
@@ -34,10 +34,9 @@ static void	modify_coors(t_player *player, t_world *world)
 
 const char	*_player_advance(t_player *player, const t_server *server, void *arg)
 {
+  (void)arg;
   if (!player->is_allowed(player))
     return (NULL);
-  puts("COUCOU JADANCECECE");
-  (void)arg;
   printf("%d-%d\n", player->x, player->y);
   modify_coors(player, server->game->world);
   printf("%d-%d\n", player->x, player->y);
