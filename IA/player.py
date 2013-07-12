@@ -36,7 +36,7 @@ class player:
         self._toIncanteX = -1
         self._toIncanteY = -1
         self._mustIncante = True
-        self._test1 = False
+        self._test1 = 0
         self._test2 = 0
         self._leveling = False
 
@@ -70,16 +70,11 @@ class player:
         self._socket.send("gauche\n")
         self._queue.put("gauche\n")
         time.sleep(0.1)
-#        if (self._orientation == 0):
-#            self._orientation = 3
-#        else :
-#            self._orientation = self._orientation - 1
 
     def turnRight(self):
         self._socket.send("droite\n")
         self._queue.put("droite\n")
         time.sleep(0.1)
-#        self._orientation = (self._orientation + 1) % 4
 
     def avance(self):
         #print "avance"
@@ -88,7 +83,6 @@ class player:
         time.sleep(0.1)
 
     def goUp(self):
-#       while self._orientation != 0:
         if (self._orientation == 1):
             self.turnLeft()
         elif (self._orientation == 2):
@@ -311,11 +305,12 @@ class player:
                 self.goDown()
 
     def setMyOrientation(self, OrientationRecu, OrientationEmi):
-        print "Je set mon orientation !"
+        print "Je set mon orientation avec La mienne = ", OrientationRecu, " La sienne = ", OrientationEmi
         RealOrientationRecu = self.myAbsolute(OrientationEmi - 4 - 1, 8) + 1
         self._orientation = self.myAbsolute(((RealOrientationRecu - OrientationRecu) / 2), 4) % 4
-        if (self._orientation != 3 and self._orientation != 1):
-            self._orientation = self.myAbsolute(self._orientation - 2, 4)
+#        self._orientation = self.myAbsolute(self._orientation - 1, 4)
+        if (self._orientation == 3 or self._orientation == 1):
+            self._orientation = (self._orientation + 2) % 4
         print self._orientation
 
     def createArea(self, x1, x2, y1, y2):
@@ -551,44 +546,30 @@ class player:
         return False
 
     def findGoodMove(self):
-	    if (self._queue.qsize() > 4 or self._leveling == True):
-                print "Je sleep !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	    	time.sleep(0.5)
-	    else:
-#        self._ping = False
-	        self._test2 += 1
-	        print self._test2
-	        if self._test2 < 20:
-	            elevationPossible = False
-	            if (self._inventaire._nourriture < self._nourritureMinimal):
-	                tab = self.findFood(3)
-	                if (tab[0] != -1 and tab[1] != -1):
-	                    self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
-	                    self._nourritureMinimal = 15
-	            elif self._action._emergency != 3:
-	                self.takeObject()
-	                elevationPossible = self.incantIfPossible()
-	                self.decideSecondAction()
-	            if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
-	          #print "take Objectif"
-	                self.takeObjectif()
-	            elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False and self._leveling == False):
-                        print "move to Objectif"
-                        self.moveToAction()
-                    elif elevationPossible == False and self._leveling == False:
-	         #print "Go to Unknow"
-                        self.goToUnknow()
-                        self.decideCaseToGo()
-                        self.reduceProbabilities()
-                        self.inventaire()
-	      #self.affMap()
-	          #print ""
-	        else:
-	            if (self._posX != 1 or self._posY != 1) and self._test1 == False:
-	                print "go pos 1 1"
-	                self.deplacementAbsolut(1, 1)
-	            else:
-	                print "Je suis arrive."
+        self._ping = False
+        if (self._queue.qsize() > 4 or self._leveling == True):
+            time.sleep(0.5)
+        else:
+            elevationPossible = False
+            if (self._inventaire._nourriture < self._nourritureMinimal):
+                tab = self.findFood(3)
+                if (tab[0] != -1 and tab[1] != -1):
+                    self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
+                    self._nourritureMinimal = 15
+            elif self._action._emergency != 3:
+                self.takeObject()
+                elevationPossible = self.incantIfPossible()
+                self.decideSecondAction()
+            if (self._posX == self._action._x and self._posY == self._action._y and self._action._define == 0):
+                self.takeObjectif()
+            elif ((self._posX != self._action._x or self._posY != self._action._y) and self._action._define == 0 and elevationPossible == False and self._leveling == False):
+                self.moveToAction()
+            elif elevationPossible == False and self._leveling == False:
+                self.goToUnknow()
+                self.decideCaseToGo()
+                self.reduceProbabilities()
+                self.inventaire()
+#        self.voir()
 
     def treatOk(self, trame):
         if trame[0:9] == "elevation":
@@ -658,7 +639,7 @@ class player:
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
                     self.broadcast("Incomming")
             elif msg[0:4] == "Ping":
-            	self.broadcast("Pong," + direction)
+            	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8))
             elif msg[0:4] == "Pong" and self._ping == True:
             	other_direction = int(msg.split(',')[1])
                 self.setMyOrientation(int(direction), other_direction)
@@ -679,3 +660,4 @@ class player:
                     self._action.setMove(int(coordX), int(coordY), self._action._PossibleAction._declancherIncantation, 3)
                     self._nourritureMinimal = 5
                 self._mustIncante = True
+
