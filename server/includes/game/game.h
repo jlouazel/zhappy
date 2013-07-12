@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jun 26 08:50:52 2013 louaze_j
-** Last update Fri Jun 28 16:38:35 2013 louaze_j
+** Last update Fri Jul 12 23:05:27 2013 julien fortin
 */
 
 #ifndef	__GAME_H__
@@ -20,6 +20,7 @@ typedef struct s_game
   t_list	*connection_queue;
   t_list	*teams;
   t_list	*players;
+  t_list	*graphicals;
   t_world	*world;
   unsigned int	max_players_by_team;
 } t_game;

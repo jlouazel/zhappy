@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Fri Jul 12 21:17:38 2013 julien fortin
+## Last update Fri Jul 12 23:34:32 2013 julien fortin
 ##
 
 CC			= gcc
@@ -67,6 +67,7 @@ CORE_SRCS		= $(SRCS_DIR)$(CORE_DIR)server_accept.c \
 			$(SRCS_DIR)$(CORE_DIR)server_exec.c \
                         $(SRCS_DIR)$(CORE_DIR)server_actions.c \
 			$(SRCS_DIR)$(CORE_DIR)server_notif_player.c \
+			$(SRCS_DIR)$(CORE_DIR)server_notif_graph.c \
 
 #sources/game
 GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
