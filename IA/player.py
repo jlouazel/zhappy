@@ -36,9 +36,8 @@ class player:
         self._toIncanteX = -1
         self._toIncanteY = -1
         self._mustIncante = True
-        self._test1 = 0
-        self._test2 = 0
         self._leveling = False
+        self._wantIncante = False
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -383,6 +382,7 @@ class player:
         elif (self._action._firstAction == self._action._PossibleAction._incantation):
             print "Incantation amie je suis arive sur place ", self._posX, " ", self._posY
             self._action._define = 0
+            self._action.setMove(self._posX, self._posY, self._action._PossibleAction._waitIncante, 3)
             self.broadcast("A:"+str(self._posX)+"/"+str(self._posY))
         elif (self._action._firstAction == self._action._PossibleAction._declancherIncantation):
             print "I can incate now !"
@@ -517,30 +517,31 @@ class player:
                     print "Incantation"
                     self._incomming = 0
                     return False
-            # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
+                # sinon si y'a pas assez de pierres par terre mais y'a assez de joueurs
                 elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
             	#print "Je pose mon bordel"
                     self.putObjectIncantation()
                     self.voir()
                     self._nourritureMinimal = 10
                     return True
-            # sinon si y'a de pierres trop par terre
+                # sinon si y'a de pierres trop par terre
                 elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
             	#print "Je prend ce qu'il y a en trop"
                     self.takeObjectIncantation()
                     self.voir()
                     self._nourritureMinimal = 10
                     return True
-            # si y'a pas assez de joueurs
+                # si y'a pas assez de joueurs
                 elif (self._map[i]._players < myNeed._joueur and self._incomming == 0):
             	#print "j'ai besoin de " + myNeed._joueur + " il y a " + self._map[i]._players + " joueurs presents"
-            	# exemple B1nJnLnDnSnMnPnT,X,Y
+                    # exemple B1nJnLnDnSnMnPnT,X,Y
                     msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
                     print "je diffuse" + msg
                     self._incomming = 0
                     self.broadcast(msg)
                     self.voir()
-                #self._nourritureMinimal = 15
+                    self._nourritureMinimal = 10
+                    self._wantIncante = True
                     print "Need help ", self._posX, " - ", self._posY
                     return True
         return False
@@ -568,14 +569,10 @@ class player:
                 self.goToUnknow()
                 self.decideCaseToGo()
                 self.reduceProbabilities()
-                self.inventaire()
+            self.inventaire()
 #        self.voir()
 
     def treatOk(self, trame):
-        if trame[0:9] == "elevation":
-            print "Elevation EN cour ! "
-        if trame[0:6] == "niveau":
-            print "niveau up"
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
             	self._leveling = False
@@ -604,11 +601,14 @@ class player:
         elif trame[0:6] == "niveau":
             #print "I up"
             self._leveling = False
+            self._wantIncante = False
             self._lvl = self._lvl + 1
             tmp = self._queue.get()
-            print "LVL up : message is : ", tmp
+            print "LVL up, message is : ", tmp
             self.inventaire()
             self._incomming = 0
+            self.goToUnknow()
+            self.decideCaseToGo()
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:7] == "message":
             direction = trame[8:9]
@@ -638,26 +638,26 @@ class player:
                     self._nourritureMinimal = 5
                     self._action.addSecondAction(self._action._PossibleAction._nourriture)
                     self.broadcast("Incomming")
+                    self._wantIncante = False
             elif msg[0:4] == "Ping":
             	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8))
             elif msg[0:4] == "Pong" and self._ping == True:
             	other_direction = int(msg.split(',')[1])
                 self.setMyOrientation(int(direction), other_direction)
                 self._ping = False
-            elif msg[0:9] == "Incomming":
+            elif msg[0:9] == "Incomming" and self._wantIncante == True:
             	self._incomming += 1
             	print "Il y a " + str(self._incomming) + " personnes qui viennent m'aider a evoluer"
                 self._toIncanteX = self._posX
                 self._toIncanteY = self._posY
                 self._mustIncante = False
-            elif msg[0:1] == "A":
+            elif msg[0:1] == "A" and self._wantIncante == True:
             	msg = msg.split(':')[1]
-            	coordX = msg.split('/')[0]
-            	coordY = msg.split('/')[1]
+                coordX = msg.split('/')[0]
+                coordY = msg.split('/')[1]
                 print "La personne est arrive je vais incanter. en : x = ", coordX, " Y = ", coordY
                 print "And my Coord Are X = ", self._posX, " Y = ", self._posY
                 if int(coordX) == self._toIncanteX and int(coordY) == self._toIncanteY:
                     self._action.setMove(int(coordX), int(coordY), self._action._PossibleAction._declancherIncantation, 3)
                     self._nourritureMinimal = 5
                 self._mustIncante = True
-
