@@ -35,6 +35,10 @@ static std::string toString(int number)
   return ss.str();
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
 static void DestroyAllAttachedMovableObjects( Ogre::SceneNode* i_pSceneNode )
 {
   if ( !i_pSceneNode )
@@ -179,7 +183,11 @@ void BaseApplication::createFrameListener(void)
   Ogre::SceneNode* selecterNode;
   if (client->getSelecter() == 0)
     client->setSelecter(new Selecter(mSceneMgr->getRootSceneNode()->createChildSceneNode("Selecter")));
+<<<<<<< HEAD
+  mDetailsPanel = mTrayMgr->createParamsPanel(OgreBites::TL_NONE, "DetailsPanel", 200, items);
+=======
   mDetailsPanel = mTrayMgr->createParamsPanel(OgreBites::TL_BOTTOMRIGHT, "DetailsPanel", 200, items);
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
   mDetailsPanel->setParamValue(0, toString(client->getSelecter()->getX()) + ", " + toString(client->getSelecter()->getY()));
   mDetailsPanel->setParamValue(1, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[FOOD]));
   mDetailsPanel->setParamValue(2, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[LINEMATE]));
@@ -190,11 +198,14 @@ void BaseApplication::createFrameListener(void)
   mDetailsPanel->setParamValue(7, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[THYSTAME]));
   // mDetailsPanel->hide();
 
+<<<<<<< HEAD
+=======
   Ogre::StringVector items2;
   items2.push_back("Speed");
   mTimePanel = mTrayMgr->createParamsPanel(OgreBites::TL_TOPRIGHT, "TimePanel", 200, items2);
   mTimePanel->setParamValue(0, toString(client->getTimeUnit()));
 
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
   mRoot->addFrameListener(this);
 }
 //-------------------------------------------------------------------------------------
@@ -284,6 +295,49 @@ void BaseApplication::go(void)
 bool BaseApplication::setup(void)
 {
   mRoot = new Ogre::Root(mPluginsCfg);
+<<<<<<< HEAD
+
+  setupResources();
+
+  bool carryOn = configure();
+  if (!carryOn) return false;
+
+  chooseSceneManager();
+  createCamera();
+  createViewports();
+
+  // Set default mipmap level (NB some APIs ignore this)
+  Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+
+  // Create any resource listeners (for loading screens)
+  createResourceListener();
+  // Load resources
+  loadResources();
+
+  // Create the scene
+  createScene();
+
+
+  createFrameListener();
+
+  return true;
+};
+
+//-------------------------------------------------------------------------------------
+
+bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
+{
+  if(mWindow->isClosed())
+    return false;
+
+  if(mShutDown)
+    return false;
+
+  if (!client || !client->getSocket() || !client->getSocket()->is_valid(client->getSocket()))
+    {
+      std::cout << "Connection reset by peer." << std::endl;
+      return (false);
+=======
   setupResources();
   bool carryOn = configure();
 
@@ -406,8 +460,216 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 	  Ogre::Entity* mesh = mSceneMgr->createEntity("Food.mesh");
 	  squareNode->attachObject(mesh);		    
 	}
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
+    }
+  std::string lal = client->readOnServer();
+  //  std::cout << "###################" << lal << std::endl;
+  parseRead(client, lal);
+
+<<<<<<< HEAD
+  //Need to capture/update each device
+  mKeyboard->capture();
+  mMouse->capture();
+
+  mTrayMgr->frameRenderingQueued(evt);
+
+  if (!mTrayMgr->isDialogVisible())
+    {
+      mCameraMan->frameRenderingQueued(evt);   // if dialog isn't up, then update the camera
+      // if (mDetailsPanel->isVisible())   // if details panel is visible, then update its contents
+      // {
+      //     mDetailsPanel->setParamValue(0, Ogre::StringConverter::toString(mCamera->getDerivedPosition().x));
+      //     mDetailsPanel->setParamValue(1, Ogre::StringConverter::toString(mCamera->getDerivedPosition().y));
+      //     mDetailsPanel->setParamValue(2, Ogre::StringConverter::toString(mCamera->getDerivedPosition().z));
+      //     mDetailsPanel->setParamValue(4, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().w));
+      //     mDetailsPanel->setParamValue(5, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().x));
+      //     mDetailsPanel->setParamValue(6, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().y));
+      //     mDetailsPanel->setParamValue(7, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().z));
+      // }
+    }
+    
+  Ogre::SceneNode* selecterNode;
+  if (client->getSelecter() == 0)
+    client->setSelecter(new Selecter(mSceneMgr->getRootSceneNode()->createChildSceneNode("Selecter")));
+  selecterNode = client->getSelecter()->getNode();
+  DestroyAllAttachedMovableObjects(selecterNode);
+  Ogre::Entity* s = mSceneMgr->createEntity("Selecter.mesh");
+  selecterNode->attachObject(s);		    
+  selecterNode->resetToInitialState();
+  selecterNode->setPosition(sin(client->getSelecter()->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos(client->getSelecter()->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
+  selecterNode->yaw(Ogre::Radian(client->getSelecter()->getX() * 2 * M_PI / client->getWorld()->getWidth()));
+  selecterNode->pitch(Ogre::Radian(client->getSelecter()->getY() * 2 * M_PI / client->getWorld()->getHeight()));
+  selecterNode->translate(0, 365, 0, Ogre::Node::TS_LOCAL);
+  float   scale;
+  scale = 1000.0 / static_cast<float>(client->getWorld()->getWidth() * client->getWorld()->getHeight()) ;
+  scale = sqrt(scale);                                                                          
+  scale *= (sin(client->getSelecter()->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
+  selecterNode->setScale(scale, scale, scale);
+  mDetailsPanel->setParamValue(0, toString(client->getSelecter()->getX()) + ", " + toString(client->getSelecter()->getY()));
+  mDetailsPanel->setParamValue(1, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[FOOD]));
+  mDetailsPanel->setParamValue(2, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[LINEMATE]));
+  mDetailsPanel->setParamValue(3, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[DERAUMERE]));
+  mDetailsPanel->setParamValue(4, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[SIBUR]));
+  mDetailsPanel->setParamValue(5, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[MENDIANE]));
+  mDetailsPanel->setParamValue(6, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[PHIRAS]));
+  mDetailsPanel->setParamValue(7, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[THYSTAME]));
+
+  for (std::vector<Square *>::const_iterator it = client->getWorld()->getMap().begin(); it != client->getWorld()->getMap().end(); ++it)
+    {
+      std::string meshToAttach = "0";
+      if ((*it)->getContent()[LINEMATE])
+	meshToAttach += "1";
+      else
+	meshToAttach += "0";
+      if ((*it)->getContent()[DERAUMERE])
+	meshToAttach += "1";
+      else
+	meshToAttach += "0";
+      if ((*it)->getContent()[SIBUR])
+	meshToAttach += "1";
+      else
+	meshToAttach += "0";
+      if ((*it)->getContent()[MENDIANE])
+	meshToAttach += "1";
+      else
+	meshToAttach += "0";
+      if ((*it)->getContent()[PHIRAS])
+	meshToAttach += "1";
+      else
+	meshToAttach += "0";
+      if ((*it)->getContent()[THYSTAME])
+	meshToAttach += "1";
+      else
+	meshToAttach += "0";
+      meshToAttach += ".mesh";
+      Ogre::SceneNode* squareNode;
+      if (!mSceneMgr->hasSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY())))
+	{
+	  squareNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY()));
+	  squareNode->setPosition(sin((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
+	  squareNode->yaw(Ogre::Radian((*it)->getX() * 2 * M_PI / client->getWorld()->getWidth()));
+	  squareNode->pitch(Ogre::Radian((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()));
+	  squareNode->translate(0, 365, 0, Ogre::Node::TS_LOCAL);
+	  float   scale;
+	  scale = 1000.0 / static_cast<float>(client->getWorld()->getWidth() * client->getWorld()->getHeight()) ;
+	  scale = sqrt(scale);                                                                          
+	  scale *= (sin((*it)->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
+	  squareNode->setScale(scale, scale, scale);
+	}
+      else
+	{
+	  squareNode = mSceneMgr->getSceneNode("Square_" + toString((*it)->getX()) + "_" + toString((*it)->getY()));
+	  //	    squareNode->detachAllObjects();
+	  DestroyAllAttachedMovableObjects(squareNode);	    
+	}
+      if (meshToAttach != "0000000.mesh")
+	{
+	  //		std::cout << meshToAttach << std::endl;
+	  Ogre::Entity* mesh = mSceneMgr->createEntity(meshToAttach);
+	  squareNode->attachObject(mesh);
+	}                          
+      //	std::cout << (*it)->getContent()[FOOD] << std::endl;
+      if ((*it)->getContent()[FOOD])
+	{
+	  Ogre::Entity* mesh = mSceneMgr->createEntity("Food.mesh");
+	  squareNode->attachObject(mesh);		    
+	}	
     }
 
+  for (std::map<int, Players * >::iterator it = client->getPlayers().begin(); it != client->getPlayers().end(); ++it)
+    {
+      Ogre::SceneNode* playerNode;
+      int i = it->first;
+      Players *p = it->second;
+      //      std::cout << i <<  " : x : " << p->getX() << "; y = " << p->getY() << "; lvl = " << p->getLvl() << std::endl;
+      Ogre::Entity* mesh;
+      switch (p->getLvl())
+	{
+	case 1:
+	  mesh = mSceneMgr->createEntity("Maggie.mesh");
+	  break;
+	case 2:
+	  mesh = mSceneMgr->createEntity("Lisa.mesh");
+	  break;
+	case 3:
+	  mesh = mSceneMgr->createEntity("Bart.mesh");
+	  break;
+	case 4:
+	  mesh = mSceneMgr->createEntity("Marge.mesh");
+	  break;
+	case 5:
+	  mesh = mSceneMgr->createEntity("Ned.mesh");
+	  break;
+	case 6:
+	  mesh = mSceneMgr->createEntity("Krusty.mesh");
+	  break;
+	case 7:
+	  mesh = mSceneMgr->createEntity("Homer.mesh");
+	  break;
+	case 8:
+	  mesh = mSceneMgr->createEntity("Abraham.mesh");
+	  break;
+	default:
+	  mesh = mSceneMgr->createEntity("Maggie.mesh");
+	  break;
+	}
+      if (p->getNode() == 0)
+	{
+	  playerNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("Player_" + toString(i));
+	  p->setNode(playerNode);
+	}
+      else
+	{
+	  playerNode = p->getNode();
+	  DestroyAllAttachedMovableObjects(playerNode);
+	}
+      playerNode->attachObject(mesh);
+      playerNode->resetToInitialState();
+      playerNode->setPosition(sin(p->getOldX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos(p->getOldX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
+      playerNode->yaw(Ogre::Radian(p->getOldX() * 2 * M_PI / client->getWorld()->getWidth()));
+      playerNode->pitch(Ogre::Radian(p->getOldY() * 2 * M_PI / client->getWorld()->getHeight()));
+      if (p->getOldX() < 0)
+	p->setOldX(p->getOldX() + client->getWorld()->getWidth());
+      if (p->getOldX() > client->getWorld()->getWidth())
+	p->setOldX(p->getOldX() - client->getWorld()->getWidth());
+      if (p->getOldY() < 0)
+	p->setOldY(p->getOldY() + client->getWorld()->getHeight());
+      if (p->getOldY() > client->getWorld()->getHeight())
+	p->setOldY(p->getOldY() - client->getWorld()->getHeight());
+
+      float	timeInterval = (float)client->getTimeUnit() / (7.0 * mWindow->getLastFPS());
+
+      if (p->getX() <= p->getOldX() - timeInterval)
+	p->setOldX(p->getOldX() - timeInterval);
+      else if (p->getX() >= p->getOldX() + timeInterval)
+	p->setOldX(p->getOldX() + timeInterval);
+      else
+	p->setOldX(p->getX());
+      if (p->getY() <= p->getOldY() - timeInterval)
+	p->setOldY(p->getOldY() - timeInterval);
+      else if (p->getY() >= p->getOldY() + timeInterval)
+	p->setOldY(p->getOldY() + timeInterval);
+      else
+	p->setOldY(p->getY());
+
+      std::cout << p->getId() << " : oldX : " << p->getOldX() << "oldY : " << p->getOldY() << std::endl;
+      std::cout << p->getId() << " :    X : " << p->getX() << "   Y : " << p->getY() << std::endl;
+
+      switch (p->getDirection())
+	{
+	case UP:
+	  playerNode->yaw(Ogre::Radian(M_PI));
+	  break;
+	case DOWN:
+	  break;
+	case LEFT:
+	  playerNode->yaw(Ogre::Radian(-M_PI / 2));
+	  break;
+	case RIGHT:
+	  playerNode->yaw(Ogre::Radian(M_PI / 2));
+	  break;
+	}
+=======
   for (std::map<int, Players * >::iterator it = client->getPlayers().begin(); it != client->getPlayers().end(); ++it)
     {
       Ogre::SceneNode* playerNode;
@@ -515,6 +777,7 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
       else
         p->setOldDirection(p->getRealDirection());
 
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
       playerNode->translate(0, 365, 0, Ogre::Node::TS_LOCAL);
       float   scale;
       scale = 1000.0 / static_cast<float>(client->getWorld()->getWidth() * client->getWorld()->getHeight()) ;
@@ -618,6 +881,20 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
   else if (arg.key == OIS::KC_NUMPAD6)
     {
       client->getSelecter()->setX((client->getSelecter()->getX() + 1) % client->getWorld()->getWidth());
+<<<<<<< HEAD
+    }
+  else if (arg.key == OIS::KC_NUMPAD4)
+    {
+      client->getSelecter()->setX(((client->getSelecter()->getX() - 1) + client->getWorld()->getWidth()) % client->getWorld()->getWidth());
+    }
+  else if (arg.key == OIS::KC_NUMPAD2)
+    {
+      client->getSelecter()->setY((client->getSelecter()->getY() + 1) % client->getWorld()->getHeight());
+    }
+  else if (arg.key == OIS::KC_NUMPAD8)
+    {
+      client->getSelecter()->setY(((client->getSelecter()->getY() - 1) + client->getWorld()->getHeight()) % client->getWorld()->getHeight());
+=======
     }
   else if (arg.key == OIS::KC_NUMPAD4)
     {
@@ -640,6 +917,7 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
     {
       if (client->getTimeUnit() > 10)
 	client->writeOnServer("sst " + toString(client->getTimeUnit() - 10) + "\n");
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
     }
 
   mCameraMan->injectKeyDown(arg);

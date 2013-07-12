@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Fri Jul 12 23:10:30 2013 julien fortin
+** Last update Sat Jul 13 00:35:04 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -63,6 +63,10 @@ void		_server_get_new_graphic(const t_server *serv, t_player *player)
 	  ((t_list**)&serv->game->graphicals, (void*)graph);
       else
 	((t_game*)serv->game)->graphicals = new_list((void*)graph);
+      //notif_queue_for_graph(graph, "bct...\);
+      //notif_queue_for_graph(graph, "bct...\);
+      //notif_queue_for_graph(graph, "bct...\);
+      //notif_queue_for_graph(graph, "bct...\);
     }
 }
 

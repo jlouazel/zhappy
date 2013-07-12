@@ -41,6 +41,7 @@ Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eD
 
 Players::~Players()
 {
+  std::cout << "JE MEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUURS" << std::endl;
   if (this->_node)
     {
       this->_node->getCreator()->destroySceneNode(this->_node);
@@ -122,6 +123,8 @@ void			Players::setOldY(float y)
   this->_oldy = y;
 }
 
+<<<<<<< HEAD
+=======
 void			Players::setOldDirection(float d)
 {
   this->_oldDirection = d;
@@ -132,6 +135,7 @@ void			Players::setRealDirection(float d)
   this->_realDirection = d;
 }
 
+>>>>>>> 00fdc835755046f16e29ce136999183f1dfc1b73
 void			Players::setDirection(eDirections dir)
 {
   this->_direction = dir;
@@ -150,6 +154,11 @@ void			Players::setDirection(eDirections dir)
       this->_realDirection = M_PI / 2;
       break;
     }
+}
+
+void			Players::setLvl(int l)
+{
+  this->_level = l;
 }
 
 void			Players::setLvl(int l)
