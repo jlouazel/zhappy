@@ -40,7 +40,7 @@ static void	bct(GraphicClient * client, std::vector<std::string> const & line)
 	  square->getContent()[MENDIANE] = atoi(line[7].c_str());
 	  square->getContent()[PHIRAS] = atoi(line[8].c_str());
 	  square->getContent()[THYSTAME] = atoi(line[9].c_str());
-	  if (square->getX() == client->getWorld()->getWidth() - 1 && square->getX() == client->getWorld()->getHeight() - 1)
+	  if (square->getX() == client->getWorld()->getWidth() - 1 && square->getY() == client->getWorld()->getHeight() - 1)
 	    client->setReady(true);
 	}
     }
@@ -105,17 +105,17 @@ static void	pdi(GraphicClient * client, std::vector<std::string> const & line)
 	    }
 	}
     }
-  else
-    std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>VIDE" << std::endl;
-  std::cout << "7" << std::endl;
+  //  else
+    //    std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>VIDE" << std::endl;
+  //  std::cout << "7" << std::endl;
   client->getPlayers().erase(atoi(line[1].c_str()));
-  std::cout << "8" << std::endl;
+  //  std::cout << "8" << std::endl;
   //  exit(0);
 }
 
 void		parseRead(GraphicClient * client, std::string const & line)
 {
-  std::cout << line << std::endl;
+  //  std::cout << line << std::endl;
   std::map<int, std::string>	functions;
   functions[0] = "msz";
   functions[1] = "bct";

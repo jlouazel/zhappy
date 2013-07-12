@@ -20,6 +20,8 @@ class	Players
 private:
   int			_x;
   int			_y;
+  float			_oldx;
+  float			_oldy;
   int			_id;
   Ogre::SceneNode	*_node;
   int			_level;
@@ -32,6 +34,8 @@ public:
 
   int			getX() const;
   int			getY() const;
+  float			getOldX() const;
+  float			getOldY() const;
   int			getId() const;
   int			getLvl() const;
   Ogre::SceneNode	*getNode() const;
@@ -40,6 +44,8 @@ public:
 
   void			setX(int);
   void			setY(int);
+  void			setOldX(float);
+  void			setOldY(float);
   void			setLvl(int);
   void			setNode(Ogre::SceneNode *);
   void			setDirection(eDirections);
