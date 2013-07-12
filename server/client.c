@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul  7 16:05:19 2013 julien fortin
-** Last update Sun Jul  7 18:03:38 2013 julien fortin
+** Last update Fri Jul 12 19:37:24 2013 julien fortin
 */
 
 #include	<strings.h>
@@ -25,7 +25,6 @@ int	main(int ac, const char **av)
   socket = new_socket(atoi(av[1]), "localhost", SOCK_CLIENT);
   if (socket && socket->is_valid(deconst_cast(socket)))
     {
-      socket->write(socket, "coucou\nje suis\nune\navanc");
       bzero(buff, 4242);
       while ((r = read(0, buff, 4242)) > 0)
 	{

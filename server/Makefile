@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Tue Jul  9 18:22:43 2013 louaze_j
+## Last update Fri Jul 12 16:12:38 2013 julien fortin
 ##
 
 CC			= gcc
@@ -63,6 +63,8 @@ SRCS_DEST        	= $(SRCS_DIR)$(DEST_DIR)server_destroy.c \
 CORE_SRCS		= $(SRCS_DIR)$(CORE_DIR)server_accept.c \
 			$(SRCS_DIR)$(CORE_DIR)server_listen.c \
 			$(SRCS_DIR)$(CORE_DIR)server_disconnect.c \
+			$(SRCS_DIR)$(CORE_DIR)server_extract.c \
+			$(SRCS_DIR)$(CORE_DIR)server_exec.c \
                         $(SRCS_DIR)$(CORE_DIR)server_actions.c \
 			$(SRCS_DIR)$(CORE_DIR)server_notif_player.c \
 

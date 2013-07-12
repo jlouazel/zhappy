@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 04:16:18 2013 julien fortin
-** Last update Thu Jul 11 19:13:07 2013 julien fortin
+** Last update Fri Jul 12 20:19:13 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -32,18 +32,18 @@ static void	_init_server_cmd_name(t_cmd *cmd)
 
 static void	_init_server_cmd_time(t_cmd *cmd)
 {
-  cmd->time[0] = 7;
-  cmd->time[1] = 7;
-  cmd->time[2] = 7;
-  cmd->time[3] = 7;
-  cmd->time[4] = 1;
-  cmd->time[5] = 7;
-  cmd->time[6] = 7;
-  cmd->time[7] = 7;
-  cmd->time[8] = 0;
-  cmd->time[9] = 7;
-  cmd->time[10] = 42;
-  cmd->time[11] = 0;
+  cmd->time[0] = 7.0;
+  cmd->time[1] = 7.0;
+  cmd->time[2] = 7.0;
+  cmd->time[3] = 7.0;
+  cmd->time[4] = 1.0;
+  cmd->time[5] = 7.0;
+  cmd->time[6] = 7.0;
+  cmd->time[7] = 7.0;
+  cmd->time[8] = 0.0;
+  cmd->time[9] = 7.0;
+  cmd->time[10] = 42.0;
+  cmd->time[11] = 0.0;
 }
 
 static void	_init_server_cmd_fun(t_cmd *cmd)

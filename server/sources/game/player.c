@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
 <<<<<<< HEAD
-** Last update Thu Jul 11 22:41:59 2013 julien fortin
+** Last update Fri Jul 12 20:22:48 2013 julien fortin
 =======
 <<<<<<< HEAD
 ** Last update Mon Jul  8 15:59:01 2013 louaze_j
@@ -30,22 +30,10 @@ static bool	_player_is_allowed(const t_player *player)
   return (player->status != PLAYER_STATUS_NOT_ALLOW && player->team);
 }
 
-static void	_player_notify(t_player *player,
-			       const t_server *serv,
-			       const char *msg,
-			       int t)
+static void	_player_notify(t_player *player, const char *data)
 {
-  t_data	*data;
-  unsigned int	div;
-
   if (!player)
     return ;
-  data = xcalloc(1, sizeof(*data));
-  data->time = 0.0;
-  div = serv && serv->options ? serv->options->time : DEFAULT_TIME;
-  if (t > 0 && div > 0)
-    data->time = (GET_CURRENT_TIME(div)) + (t / div);
-  data->data = msg;
   if (player->io && player->io->out)
     player->io->out->push_back((t_list**)&player->io->out, (void*)data);
   else if (player->io)
