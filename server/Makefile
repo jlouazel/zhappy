@@ -5,7 +5,11 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
+<<<<<<< HEAD
 ## Last update Fri Jul 12 16:12:38 2013 julien fortin
+=======
+## Last update Fri Jul 12 17:35:06 2013 louaze_j
+>>>>>>> aae4878bd12e04d28ea724111bbe819690fc6e49
 ##
 
 CC			= gcc
@@ -88,6 +92,13 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)bct.c \
 			$(SRCS_DIR)$(GAME_DIR)mct.c \
 			$(SRCS_DIR)$(GAME_DIR)tna.c \
+			$(SRCS_DIR)$(GAME_DIR)pnw.c \
+			$(SRCS_DIR)$(GAME_DIR)ppo.c \
+			$(SRCS_DIR)$(GAME_DIR)plv.c \
+			$(SRCS_DIR)$(GAME_DIR)pin.c \
+			$(SRCS_DIR)$(GAME_DIR)pex.c \
+			$(SRCS_DIR)$(GAME_DIR)pbc.c \
+
 
 #
 #library

@@ -1,0 +1,21 @@
+material Selecter_black
+{
+	technique
+	{
+		pass
+		{
+                        ambient 0.8 0.8 0.8
+                        diffuse 0.8 0.8 0.8
+                        specular 1 1 1 8
+	            	 cull_hardware none
+        	          cull_software none
+
+			texture_unit
+			{
+				texture black.tga
+			}
+		}
+
+	}
+
+}

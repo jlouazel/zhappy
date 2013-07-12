@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul  5 14:17:30 2013 louaze_j
-** Last update Fri Jul 12 01:06:56 2013 louaze_j
+** Last update Fri Jul 12 18:32:36 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -23,9 +23,9 @@ void		server_conf(t_server *server)
 
 void		log_map(double cnt, double tot)
 {
-  int		i;
-  int		percent;
-  int		percent2;
+  int	i;
+  int	percent;
+  int	percent2;
 
   printf("\033[32m\rGenerating world : [\033[32m");
   percent = ((cnt / tot) * 100);
@@ -34,15 +34,14 @@ void		log_map(double cnt, double tot)
   while (percent >= 0)
     {
       printf("\033[32m#\033[0m");
-      percent--;
       fflush(NULL);
+      percent--;
     }
-  while (i > 0)
+  while (i >= 0)
     {
       printf("\033[31m#\033[0m");
-      /* printf(" "); */
-      i--;
       fflush(NULL);
+      i--;
     }
   printf("\033[32m] %d%%\033[0m", percent2);
 }
