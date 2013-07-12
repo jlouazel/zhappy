@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Wed Jul 10 02:21:07 2013 louaze_j
+** Last update Fri Jul 12 15:11:38 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -23,10 +23,10 @@ typedef struct	s_graphical
   const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *);
   const char	*(*mct)(struct s_graphical *, const t_server *);
   const char	*(*tna)(struct s_graphical *, const t_server *, void *);
-  const char	*(*pnw)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*ppo)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*plv)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pin)(struct s_graphical *, const t_server *); // NOK
+  const char	*(*pnw)(struct s_graphical *, const t_server *, void *);
+  const char	*(*ppo)(struct s_graphical *, const t_server *, void *);
+  const char	*(*plv)(struct s_graphical *, const t_server *, void *);
+  const char	*(*pin)(struct s_graphical *, const t_server *, void *);
   const char	*(*pex)(struct s_graphical *, const t_server *); // NOK
   const char	*(*pbc)(struct s_graphical *, const t_server *); // NOK
   const char	*(*pic)(struct s_graphical *, const t_server *); // NOK
@@ -53,28 +53,28 @@ void		_msz(t_graphical *);
 void		_bct(t_graphical *);
 void		_mct(t_graphical *);
 void		_tna(t_graphical *);
-/* void	_pnw(t_graphical *);  */
-/* void	_ppo(t_graphical *);  */
-/* void	_plv(t_graphical *);  */
-/* void	_pin(t_graphical *);  */
-/* void	_pex(t_graphical *);  */
-/* void	_pbc(t_graphical *);  */
-/* void	_pic(t_graphical *);  */
-/* void	_pie(t_graphical *);  */
-/* void	_pfk(t_graphical *);  */
-/* void	_pdr(t_graphical *);  */
-/* void	_pgt(t_graphical *);  */
-/* void	_pdi(t_graphical *);  */
-/* void	_enw(t_graphical *);  */
-/* void	_eht(t_graphical *);  */
-/* void	_ebo(t_graphical *);  */
-/* void	_edi(t_graphical *);  */
-/* void	_sgt(t_graphical *);  */
-/* void	_sst(t_graphical *);  */
-/* void	_seg(t_graphical *);  */
-/* void	_smg(t_graphical *);  */
-/* void	_suc(t_graphical *);  */
-/* void	_sbp(t_graphical *);  */
+void		_pnw(t_graphical *);
+void		_ppo(t_graphical *);
+void		_plv(t_graphical *);
+void		_pin(t_graphical *);
+/* void		_pex(t_graphical *);  */
+/* void		_pbc(t_graphical *);  */
+/* void		_pic(t_graphical *);  */
+/* void		_pie(t_graphical *);  */
+/* void		_pfk(t_graphical *);  */
+/* void		_pdr(t_graphical *);  */
+/* void		_pgt(t_graphical *);  */
+/* void		_pdi(t_graphical *);  */
+/* void		_enw(t_graphical *);  */
+/* void		_eht(t_graphical *);  */
+/* void		_ebo(t_graphical *);  */
+/* void		_edi(t_graphical *);  */
+/* void		_sgt(t_graphical *);  */
+/* void		_sst(t_graphical *);  */
+/* void		_seg(t_graphical *);  */
+/* void		_smg(t_graphical *);  */
+/* void		_suc(t_graphical *);  */
+/* void		_sbp(t_graphical *);  */
 
 #endif
 
