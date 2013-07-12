@@ -78,7 +78,6 @@ BaseApplication::BaseApplication(void)
     mKeyboard(0)
 {
   this->farDistance = 1000;
-  std::cout << this->farDistance << std::endl;
 }
 
 //-------------------------------------------------------------------------------------
@@ -118,6 +117,7 @@ void BaseApplication::chooseSceneManager(void)
   // Get the SceneManager, in this case a generic one
   mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 }
+
 //-------------------------------------------------------------------------------------
 void BaseApplication::createCamera(void)
 {
@@ -167,6 +167,8 @@ void BaseApplication::createFrameListener(void)
 
   //    create a params panel for displaying sample details
   Ogre::StringVector items;
+  items.push_back("x, y");
+  //  items.push_back("Player(s) on");
   items.push_back("Food");
   items.push_back("Linemate");
   items.push_back("Deraumere");
@@ -179,13 +181,14 @@ void BaseApplication::createFrameListener(void)
   if (client->getSelecter() == 0)
     client->setSelecter(new Selecter(mSceneMgr->getRootSceneNode()->createChildSceneNode("Selecter")));
   mDetailsPanel = mTrayMgr->createParamsPanel(OgreBites::TL_NONE, "DetailsPanel", 200, items);
-  mDetailsPanel->setParamValue(0, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[FOOD]));
-  mDetailsPanel->setParamValue(1, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[LINEMATE]));
-  mDetailsPanel->setParamValue(2, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[DERAUMERE]));
-  mDetailsPanel->setParamValue(3, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[SIBUR]));
-  mDetailsPanel->setParamValue(4, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[MENDIANE]));
-  mDetailsPanel->setParamValue(5, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[PHIRAS]));
-  mDetailsPanel->setParamValue(6, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[THYSTAME]));
+  mDetailsPanel->setParamValue(0, toString(client->getSelecter()->getX()) + ", " + toString(client->getSelecter()->getY()));
+  mDetailsPanel->setParamValue(1, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[FOOD]));
+  mDetailsPanel->setParamValue(2, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[LINEMATE]));
+  mDetailsPanel->setParamValue(3, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[DERAUMERE]));
+  mDetailsPanel->setParamValue(4, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[SIBUR]));
+  mDetailsPanel->setParamValue(5, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[MENDIANE]));
+  mDetailsPanel->setParamValue(6, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[PHIRAS]));
+  mDetailsPanel->setParamValue(7, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[THYSTAME]));
   // mDetailsPanel->hide();
 
   mRoot->addFrameListener(this);
@@ -298,6 +301,7 @@ bool BaseApplication::setup(void)
   // Create the scene
   createScene();
 
+
   createFrameListener();
 
   return true;
@@ -319,9 +323,8 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
       return (false);
     }
   std::string lal = client->readOnServer();
-  std::cout << "###################" << lal << std::endl;
+  //  std::cout << "###################" << lal << std::endl;
   parseRead(client, lal);
-
 
   //Need to capture/update each device
   mKeyboard->capture();
@@ -361,13 +364,14 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
   scale = sqrt(scale);                                                                          
   scale *= (sin(client->getSelecter()->getY() * 2 * M_PI / client->getWorld()->getHeight()) / 5 + 1.5) * 0.4;                                          
   selecterNode->setScale(scale, scale, scale);
-  mDetailsPanel->setParamValue(0, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[FOOD]));
-  mDetailsPanel->setParamValue(1, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[LINEMATE]));
-  mDetailsPanel->setParamValue(2, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[DERAUMERE]));
-  mDetailsPanel->setParamValue(3, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[SIBUR]));
-  mDetailsPanel->setParamValue(4, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[MENDIANE]));
-  mDetailsPanel->setParamValue(5, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[PHIRAS]));
-  mDetailsPanel->setParamValue(6, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[THYSTAME]));
+  mDetailsPanel->setParamValue(0, toString(client->getSelecter()->getX()) + ", " + toString(client->getSelecter()->getY()));
+  mDetailsPanel->setParamValue(1, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[FOOD]));
+  mDetailsPanel->setParamValue(2, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[LINEMATE]));
+  mDetailsPanel->setParamValue(3, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[DERAUMERE]));
+  mDetailsPanel->setParamValue(4, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[SIBUR]));
+  mDetailsPanel->setParamValue(5, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[MENDIANE]));
+  mDetailsPanel->setParamValue(6, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[PHIRAS]));
+  mDetailsPanel->setParamValue(7, toString(client->getWorld()->getMap()[RELATIV_POS(client->getSelecter()->getX(), client->getSelecter()->getY(), client->getWorld()->getWidth())]->getContent()[THYSTAME]));
 
   for (std::vector<Square *>::const_iterator it = client->getWorld()->getMap().begin(); it != client->getWorld()->getMap().end(); ++it)
     {
@@ -436,7 +440,7 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
       Ogre::SceneNode* playerNode;
       int i = it->first;
       Players *p = it->second;
-      std::cout << i <<  " : x : " << p->getX() << "; y = " << p->getY() << "; lvl = " << p->getLvl() << std::endl;
+      //      std::cout << i <<  " : x : " << p->getX() << "; y = " << p->getY() << "; lvl = " << p->getLvl() << std::endl;
       Ogre::Entity* mesh;
       switch (p->getLvl())
 	{
@@ -480,9 +484,36 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 	}
       playerNode->attachObject(mesh);
       playerNode->resetToInitialState();
-      playerNode->setPosition(sin(p->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos(p->getX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
-      playerNode->yaw(Ogre::Radian(p->getX() * 2 * M_PI / client->getWorld()->getWidth()));
-      playerNode->pitch(Ogre::Radian(p->getY() * 2 * M_PI / client->getWorld()->getHeight()));
+      playerNode->setPosition(sin(p->getOldX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON, 0, cos(p->getOldX() * 2 * M_PI / client->getWorld()->getWidth()) * RAYON);
+      playerNode->yaw(Ogre::Radian(p->getOldX() * 2 * M_PI / client->getWorld()->getWidth()));
+      playerNode->pitch(Ogre::Radian(p->getOldY() * 2 * M_PI / client->getWorld()->getHeight()));
+      if (p->getOldX() < 0)
+	p->setOldX(p->getOldX() + client->getWorld()->getWidth());
+      if (p->getOldX() > client->getWorld()->getWidth())
+	p->setOldX(p->getOldX() - client->getWorld()->getWidth());
+      if (p->getOldY() < 0)
+	p->setOldY(p->getOldY() + client->getWorld()->getHeight());
+      if (p->getOldY() > client->getWorld()->getHeight())
+	p->setOldY(p->getOldY() - client->getWorld()->getHeight());
+
+      float	timeInterval = (float)client->getTimeUnit() / (7.0 * mWindow->getLastFPS());
+
+      if (p->getX() <= p->getOldX() - timeInterval)
+	p->setOldX(p->getOldX() - timeInterval);
+      else if (p->getX() >= p->getOldX() + timeInterval)
+	p->setOldX(p->getOldX() + timeInterval);
+      else
+	p->setOldX(p->getX());
+      if (p->getY() <= p->getOldY() - timeInterval)
+	p->setOldY(p->getOldY() - timeInterval);
+      else if (p->getY() >= p->getOldY() + timeInterval)
+	p->setOldY(p->getOldY() + timeInterval);
+      else
+	p->setOldY(p->getY());
+
+      std::cout << p->getId() << " : oldX : " << p->getOldX() << "oldY : " << p->getOldY() << std::endl;
+      std::cout << p->getId() << " :    X : " << p->getX() << "   Y : " << p->getY() << std::endl;
+
       switch (p->getDirection())
 	{
 	case UP:

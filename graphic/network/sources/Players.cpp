@@ -13,6 +13,8 @@
 Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eDirections dir)
   : _x(x),
     _y(y),
+    _oldx(x),
+    _oldy(y),
     _id(id),
     _node(0),
     _level(lvl),
@@ -60,6 +62,16 @@ int		Players::getY() const
   return this->_y;
 }
 
+float		Players::getOldX() const
+{
+  return this->_oldx;
+}
+
+float		Players::getOldY() const
+{
+  return this->_oldy;
+}
+
 Ogre::SceneNode		*Players::getNode() const
 {
   return this->_node;
@@ -73,6 +85,16 @@ void			Players::setX(int x)
 void			Players::setY(int y)
 {
   this->_y = y;
+}
+
+void			Players::setOldX(float x)
+{
+  this->_oldx = x;
+}
+
+void			Players::setOldY(float y)
+{
+  this->_oldy = y;
 }
 
 void			Players::setDirection(eDirections dir)

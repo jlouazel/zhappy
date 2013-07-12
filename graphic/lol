@@ -54,12 +54,12 @@ Installing plugin: Octree & Terrain Scene Manager
 Plugin successfully installed
 *-*-* OGRE Initialising
 *-*-* Version 1.7.4 (Cthugha)
-Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources' of type 'FileSystem' to resource group 'General'
-Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials' of type 'FileSystem' to resource group 'General'
-Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/scripts' of type 'FileSystem' to resource group 'General'
-Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/textures' of type 'FileSystem' to resource group 'General'
-Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/models' of type 'FileSystem' to resource group 'General'
-Added resource location '/home/malleg_a/Zappy/Visu/ogre_src_v1-8-1/Samples/Common/include/' of type 'FileSystem' to resource group 'General'
+Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources' of type 'FileSystem' to resource group 'General'
+Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials' of type 'FileSystem' to resource group 'General'
+Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/scripts' of type 'FileSystem' to resource group 'General'
+Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/materials/textures' of type 'FileSystem' to resource group 'General'
+Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Tools/MaterialEditor/bin/resources/models' of type 'FileSystem' to resource group 'General'
+Added resource location '/home/malleg_a/Zappy/zhappy/graphic/ogre_src_v1-8-1/Samples/Common/include/' of type 'FileSystem' to resource group 'General'
 Added resource location './Zips/SdkTrays.zip' of type 'Zip' to resource group 'General'
 CPU Identifier & Features
 -------------------------
@@ -80,7 +80,7 @@ CPU Identifier & Features
 ******************************
 *** Starting GLX Subsystem ***
 ******************************
-GLRenderSystem::_createRenderWindow "TutorialApplication Render Window", 1280x1024 windowed  miscParams: FSAA=0 displayFrequency=60 MHz gamma=No vsync=Yes 
+GLRenderSystem::_createRenderWindow "TutorialApplication Render Window", 1280x960 windowed  miscParams: FSAA=0 displayFrequency=60 MHz gamma=No vsync=Yes 
 GLXWindow::create used FBConfigID = 165
 GL_VERSION = 3.0 Mesa 9.0.3
 GL_VENDOR = nouveau
@@ -178,12 +178,12 @@ Driver Version: 3.0.0.0
  * PBuffer support: yes
  * GL 1.5 without HW-occlusion workaround: no
 Registering ResourceManager for type Texture
-DefaultWorkQueue('Root') initialising on thread 0x206b310.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x21bf510 starting.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x2169e50 starting.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x21bf820 starting.
+DefaultWorkQueue('Root') initialising on thread 0x1202310.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x1363420 starting.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x13564e0 starting.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x13567f0 starting.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x1356b20 starting.
 Particle Renderer Type 'billboard' registered
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x21bfb30 starting.
 SceneManagerFactory for type 'BspSceneManager' registered.
 Registering ResourceManager for type BspLevel
 SceneManagerFactory for type 'OctreeSceneManager' registered.
@@ -192,325 +192,97 @@ Parsing scripts for resource group Autodetect
 Finished parsing scripts for resource group Autodetect
 Parsing scripts for resource group General
 Parsing script 0111101.material
-Compiler error: fewer parameters expected in 0111101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111101.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111101.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111101.material(67): ambient must have at most 4 parameters
 Parsing script Stone3.material
-Compiler error: fewer parameters expected in Stone3.material(7): ambient must have at most 4 parameters
 Parsing script DuffBeerDead.material
-Compiler error: fewer parameters expected in DuffBeerDead.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in DuffBeerDead.material(27): ambient must have at most 4 parameters
 Parsing script 0010011.material
-Compiler error: fewer parameters expected in 0010011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0010011.material(27): ambient must have at most 4 parameters
 Parsing script Bart.material
-Compiler error: fewer parameters expected in Bart.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Bart.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Bart.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Bart.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Bart.material(87): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Bart.material(107): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Bart.material(127): ambient must have at most 4 parameters
 Parsing script 0000111.material
-Compiler error: fewer parameters expected in 0000111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0000111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0000111.material(47): ambient must have at most 4 parameters
 Parsing script 0100101.material
-Compiler error: fewer parameters expected in 0100101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100101.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100101.material(47): ambient must have at most 4 parameters
 Parsing script 0000001.material
-Compiler error: fewer parameters expected in 0000001.material(7): ambient must have at most 4 parameters
 Parsing script Ogre.material
 Parsing script 0011110.material
-Compiler error: fewer parameters expected in 0011110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011110.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011110.material(47): ambient must have at most 4 parameters
 Parsing script 0001000.material
-Compiler error: fewer parameters expected in 0001000.material(7): ambient must have at most 4 parameters
 Parsing script 0001111.material
-Compiler error: fewer parameters expected in 0001111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001111.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001111.material(67): ambient must have at most 4 parameters
 Parsing script 0001100.material
-Compiler error: fewer parameters expected in 0001100.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001100.material(27): ambient must have at most 4 parameters
 Parsing script 0110000.material
-Compiler error: fewer parameters expected in 0110000.material(7): ambient must have at most 4 parameters
 Parsing script Homer.material
-Compiler error: fewer parameters expected in Homer.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Homer.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Homer.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Homer.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Homer.material(87): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Homer.material(107): ambient must have at most 4 parameters
 Parsing script 0001011.material
-Compiler error: fewer parameters expected in 0001011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001011.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001011.material(47): ambient must have at most 4 parameters
 Parsing script 0011010.material
-Compiler error: fewer parameters expected in 0011010.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011010.material(27): ambient must have at most 4 parameters
 Parsing script Stone1.material
-Compiler error: fewer parameters expected in Stone1.material(7): ambient must have at most 4 parameters
 Parsing script 0100110.material
-Compiler error: fewer parameters expected in 0100110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100110.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100110.material(47): ambient must have at most 4 parameters
 Parsing script homer_lambert3SG.material
 Parsing script 0000110.material
-Compiler error: fewer parameters expected in 0000110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0000110.material(27): ambient must have at most 4 parameters
 Parsing script 0111110.material
-Compiler error: fewer parameters expected in 0111110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111110.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111110.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111110.material(67): ambient must have at most 4 parameters
 Parsing script 0010000.material
 Parsing script 0101100.material
-Compiler error: fewer parameters expected in 0101100.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101100.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101100.material(47): ambient must have at most 4 parameters
 Parsing script Test.material
-Compiler error: fewer parameters expected in Test.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Test.material(23): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Test.material(39): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Test.material(55): ambient must have at most 4 parameters
 Parsing script 0110010.material
-Compiler error: fewer parameters expected in 0110010.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110010.material(27): ambient must have at most 4 parameters
 Parsing script 0101111.material
-Compiler error: fewer parameters expected in 0101111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101111.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101111.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101111.material(87): ambient must have at most 4 parameters
 Parsing script 0000101.material
-Compiler error: fewer parameters expected in 0000101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0000101.material(27): ambient must have at most 4 parameters
 Parsing script 0111100.material
-Compiler error: fewer parameters expected in 0111100.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111100.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111100.material(47): ambient must have at most 4 parameters
 Parsing script 0111001.material
-Compiler error: fewer parameters expected in 0111001.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111001.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111001.material(47): ambient must have at most 4 parameters
 Parsing script 0111010.material
-Compiler error: fewer parameters expected in 0111010.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111010.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111010.material(47): ambient must have at most 4 parameters
 Parsing script lambert3SG.material
 Parsing script 0001001.material
-Compiler error: fewer parameters expected in 0001001.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001001.material(27): ambient must have at most 4 parameters
 Parsing script Stone4.material
-Compiler error: fewer parameters expected in Stone4.material(7): ambient must have at most 4 parameters
 Parsing script 0000011.material
-Compiler error: fewer parameters expected in 0000011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0000011.material(27): ambient must have at most 4 parameters
 Parsing script Krusty.material
-Compiler error: fewer parameters expected in Krusty.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(87): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(107): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(127): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(147): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(167): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Krusty.material(187): ambient must have at most 4 parameters
 Parsing script 0101010.material
-Compiler error: fewer parameters expected in 0101010.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101010.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101010.material(47): ambient must have at most 4 parameters
 Parsing script Ned.material
-Compiler error: fewer parameters expected in Ned.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Ned.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Ned.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Ned.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Ned.material(87): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Ned.material(107): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Ned.material(127): ambient must have at most 4 parameters
 Parsing script 0110101.material
-Compiler error: fewer parameters expected in 0110101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110101.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110101.material(47): ambient must have at most 4 parameters
 Parsing script Maggie.material
-Compiler error: fewer parameters expected in Maggie.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Maggie.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Maggie.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Maggie.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Maggie.material(87): ambient must have at most 4 parameters
 Parsing script 0010110.material
-Compiler error: fewer parameters expected in 0010110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0010110.material(27): ambient must have at most 4 parameters
 Parsing script lambert4SG.material
 Parsing script 0100001.material
-Compiler error: fewer parameters expected in 0100001.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100001.material(27): ambient must have at most 4 parameters
 Parsing script 0010001.material
-Compiler error: fewer parameters expected in 0010001.material(7): ambient must have at most 4 parameters
 Parsing script UntitledScene.material
 Parsing script 0110100.material
-Compiler error: fewer parameters expected in 0110100.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110100.material(27): ambient must have at most 4 parameters
 Parsing script lambert6SG.material
 Parsing script 0100010.material
-Compiler error: fewer parameters expected in 0100010.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100010.material(27): ambient must have at most 4 parameters
 Parsing script Marge.material
-Compiler error: fewer parameters expected in Marge.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Marge.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Marge.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Marge.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Marge.material(87): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Marge.material(107): ambient must have at most 4 parameters
 Parsing script 0100111.material
-Compiler error: fewer parameters expected in 0100111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100111.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100111.material(67): ambient must have at most 4 parameters
 Parsing script 0010111.material
-Compiler error: fewer parameters expected in 0010111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0010111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0010111.material(47): ambient must have at most 4 parameters
 Parsing script 0001101.material
-Compiler error: fewer parameters expected in 0001101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001101.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001101.material(47): ambient must have at most 4 parameters
 Parsing script 0010100.material
-Compiler error: fewer parameters expected in 0010100.material(7): ambient must have at most 4 parameters
 Parsing script 0111011.material
-Compiler error: fewer parameters expected in 0111011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111011.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111011.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111011.material(67): ambient must have at most 4 parameters
 Parsing script 0010101.material
-Compiler error: fewer parameters expected in 0010101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0010101.material(27): ambient must have at most 4 parameters
 Parsing script 0100000.material
-Compiler error: fewer parameters expected in 0100000.material(7): ambient must have at most 4 parameters
 Parsing script 0110111.material
-Compiler error: fewer parameters expected in 0110111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110111.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110111.material(67): ambient must have at most 4 parameters
 Parsing script 0101110.material
-Compiler error: fewer parameters expected in 0101110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101110.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101110.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101110.material(67): ambient must have at most 4 parameters
 Parsing script 0110001.material
-Compiler error: fewer parameters expected in 0110001.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110001.material(27): ambient must have at most 4 parameters
 Parsing script lambert5SG.material
 Parsing script 0100011.material
-Compiler error: fewer parameters expected in 0100011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100011.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100011.material(47): ambient must have at most 4 parameters
 Parsing script 0011000.material
-Compiler error: fewer parameters expected in 0011000.material(7): ambient must have at most 4 parameters
 Parsing script 0011111.material
-Compiler error: fewer parameters expected in 0011111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011111.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011111.material(67): ambient must have at most 4 parameters
 Parsing script Stone5.material
-Compiler error: fewer parameters expected in Stone5.material(7): ambient must have at most 4 parameters
 Parsing script 0011101.material
-Compiler error: fewer parameters expected in 0011101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011101.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011101.material(47): ambient must have at most 4 parameters
 Parsing script 0001010.material
-Compiler error: fewer parameters expected in 0001010.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001010.material(27): ambient must have at most 4 parameters
 Parsing script Stone2.material
-Compiler error: fewer parameters expected in Stone2.material(7): ambient must have at most 4 parameters
 Parsing script 0011011.material
-Compiler error: fewer parameters expected in 0011011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011011.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011011.material(47): ambient must have at most 4 parameters
 Parsing script LevelUp.material
-Compiler error: fewer parameters expected in LevelUp.material(7): ambient must have at most 4 parameters
 Parsing script 0101000.material
-Compiler error: fewer parameters expected in 0101000.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101000.material(27): ambient must have at most 4 parameters
 Parsing script Stone6.material
-Compiler error: fewer parameters expected in Stone6.material(7): ambient must have at most 4 parameters
 Parsing script 0110110.material
-Compiler error: fewer parameters expected in 0110110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110110.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110110.material(47): ambient must have at most 4 parameters
 Parsing script 0111000.material
-Compiler error: fewer parameters expected in 0111000.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111000.material(27): ambient must have at most 4 parameters
 Parsing script 0011100.material
-Compiler error: fewer parameters expected in 0011100.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011100.material(27): ambient must have at most 4 parameters
 Parsing script 0011001.material
-Compiler error: fewer parameters expected in 0011001.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0011001.material(27): ambient must have at most 4 parameters
 Parsing script Food.material
-Compiler error: fewer parameters expected in Food.material(7): ambient must have at most 4 parameters
 Parsing script 0111111.material
-Compiler error: fewer parameters expected in 0111111.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111111.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111111.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111111.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0111111.material(87): ambient must have at most 4 parameters
 Parsing script 0010010.material
-Compiler error: fewer parameters expected in 0010010.material(7): ambient must have at most 4 parameters
+Parsing script Selecter.material
 Parsing script Donut.material
-Compiler error: fewer parameters expected in Donut.material(7): ambient must have at most 4 parameters
 Parsing script Lisa.material
-Compiler error: fewer parameters expected in Lisa.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Lisa.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Lisa.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Lisa.material(67): ambient must have at most 4 parameters
 Parsing script 0101101.material
-Compiler error: fewer parameters expected in 0101101.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101101.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101101.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101101.material(67): ambient must have at most 4 parameters
 Parsing script 0000100.material
-Compiler error: fewer parameters expected in 0000100.material(7): ambient must have at most 4 parameters
 Parsing script 0000010.material
-Compiler error: fewer parameters expected in 0000010.material(7): ambient must have at most 4 parameters
 Parsing script 0100100.material
-Compiler error: fewer parameters expected in 0100100.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0100100.material(27): ambient must have at most 4 parameters
 Parsing script 0101011.material
-Compiler error: fewer parameters expected in 0101011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101011.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101011.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101011.material(67): ambient must have at most 4 parameters
 Parsing script DuffBeer.material
-Compiler error: fewer parameters expected in DuffBeer.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in DuffBeer.material(27): ambient must have at most 4 parameters
 Parsing script 0101001.material
-Compiler error: fewer parameters expected in 0101001.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101001.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0101001.material(47): ambient must have at most 4 parameters
 Parsing script 0110011.material
-Compiler error: fewer parameters expected in 0110011.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110011.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0110011.material(47): ambient must have at most 4 parameters
 Parsing script 0001110.material
-Compiler error: fewer parameters expected in 0001110.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001110.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in 0001110.material(47): ambient must have at most 4 parameters
 Parsing script homer_lambert7SG.material
 Parsing script Abraham.material
-Compiler error: fewer parameters expected in Abraham.material(7): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Abraham.material(27): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Abraham.material(47): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Abraham.material(67): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Abraham.material(87): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Abraham.material(107): ambient must have at most 4 parameters
-Compiler error: fewer parameters expected in Abraham.material(127): ambient must have at most 4 parameters
 Parsing script SdkTrays.material
 Parsing script SdkTrays.fontdef
 Parsing script SdkTrays.overlay
@@ -576,26 +348,47 @@ Info: Freetype returned null for character 158 in font SdkTrays/Value
 Info: Freetype returned null for character 159 in font SdkTrays/Value
 Info: Freetype returned null for character 160 in font SdkTrays/Value
 Texture: SdkTrays/ValueTexture: Loading 1 faces(PF_BYTE_LA,512x256x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x256x1.
+Mesh: Loading Selecter.mesh.
+Texture: black.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+Mesh: Loading 0011010.mesh.
+Texture: red.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+Texture: yellow.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+Texture: greenNed.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
+Mesh: Loading Food.mesh.
+Texture: cream.tga: Loading 1 faces(PF_R8G8B8,262x196x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,262x196x1.
 Mesh: Loading 0110110.mesh.
 Texture: white.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-Texture: red.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
 Texture: orange.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
 Mesh: Loading 0111000.mesh.
-Texture: yellow.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-Mesh: Loading 0110010.mesh.
-Mesh: Loading 0101010.mesh.
-Mesh: Loading 0111010.mesh.
-Mesh: Loading 0111110.mesh.
-Mesh: Loading 0011001.mesh.
+Mesh: Loading 0101111.mesh.
 Texture: blue.tga: Loading 1 faces(PF_R8G8B8,1x1x1) with 1 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1x1x1.
-Mesh: Loading 0111101.mesh.
-Mesh: Loading 0010100.mesh.
+Mesh: Loading 0101010.mesh.
 Mesh: Loading 0001000.mesh.
-DefaultWorkQueue('Root') shutting down on thread 0x206b310.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x21bf510 stopped.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x21bfb30 stopped.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x2169e50 stopped.
-DefaultWorkQueue('Root')::WorkerFunc - thread 0x21bf820 stopped.
+Mesh: Loading 0101000.mesh.
+Mesh: Loading 0010000.mesh.
+Mesh: Loading 0000010.mesh.
+Mesh: Loading 0011110.mesh.
+Mesh: Loading 0011100.mesh.
+Mesh: Loading 0101100.mesh.
+Mesh: Loading 0010101.mesh.
+Mesh: Loading 0111110.mesh.
+Mesh: Loading 0010100.mesh.
+Mesh: Loading 0111010.mesh.
+Mesh: Loading 0100000.mesh.
+Mesh: Loading 0000100.mesh.
+Mesh: Loading 0011000.mesh.
+Mesh: Loading 0110000.mesh.
+Mesh: Loading 0101110.mesh.
+Mesh: Loading 0100100.mesh.
+Mesh: Loading 0001111.mesh.
+Mesh: Loading 0110100.mesh.
+Mesh: Loading 0111100.mesh.
+Mesh: Loading Maggie.mesh.
+DefaultWorkQueue('Root') shutting down on thread 0x1202310.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x1363420 stopped.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x13564e0 stopped.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x13567f0 stopped.
+DefaultWorkQueue('Root')::WorkerFunc - thread 0x1356b20 stopped.
 Unregistering ResourceManager for type BspLevel
 *-*-* OGRE Shutdown
 Unregistering ResourceManager for type Compositor
