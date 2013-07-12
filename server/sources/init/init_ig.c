@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Fri Jul 12 14:59:45 2013 louaze_j
+** Last update Fri Jul 12 15:04:12 2013 louaze_j
 */
 
 #include	"lib_std.h"
@@ -19,7 +19,7 @@ static void	init_attr(t_graphical *new_graph)
   _tna(new_graph); // NOK
   _pnw(new_graph); // NOK
   _ppo(new_graph); // NOK
-  /* _plv(new_graph); // NOK */
+  _plv(new_graph); // NOK
   /* _pin(new_graph); // NOK */
   /* _pex(new_graph); // NOK */
   /* _pbc(new_graph); // NOK */
