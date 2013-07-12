@@ -18,8 +18,6 @@
 
 #include <iostream>
 
-#define		RELATIV_POS(x, y, width)	(x + y * width)
-
 static void	msz(GraphicClient * client, std::vector<std::string> const & line)
 {
   client->setWorld(new World(atoi(line[1].c_str()), atoi(line[2].c_str())));
@@ -58,12 +56,8 @@ static void	tna(GraphicClient * client, std::vector<std::string> const & line)
   client->getTeams().push_back(new Teams(line[1]));
 }
 
-
-#include <unistd.h>
 static void	pnw(GraphicClient * client, std::vector<std::string> const & line)
 {
-  std::string sys = "echo \"pnw " + line[1] +  "\n\" >> log";
-  system(sys.c_str());
   Players	*player = new Players(atoi(line[2].c_str()),
 				      atoi(line[3].c_str()),
 				      atoi(line[1].c_str()),
@@ -83,29 +77,28 @@ static void	ppo(GraphicClient * client, std::vector<std::string> const & line)
   client->getPlayers()[atoi(line[1].c_str())]->setDirection((eDirections)atoi(line[4].c_str()));
 }
 
+static void	plv(GraphicClient * client, std::vector<std::string> const & line)
+{
+  client->getPlayers()[atoi(line[1].c_str())]->setLvl(atoi(line[2].c_str()));
+}
+
 static void	pdi(GraphicClient * client, std::vector<std::string> const & line)
 {
   std::string	teamName;
   int		id = atoi(line[1].c_str());
 
-  std::cout << "1" << std::endl;
-  std::cout << ">>>>>>>>>>>>>>>>>>" << id << std::endl;  
   if (client->getPlayers().empty() == false && client->getPlayers()[id])
     {
       teamName = client->getPlayers()[id]->getTeamName();
-      std::cout << "2" << std::endl;
       for (std::list<Teams *>::iterator it  = client->getTeams().begin(); it != client->getTeams().end(); ++it)
 	{
-	  std::cout << "3" << std::endl;
 	  if ((*it)->getName() == teamName)
 	    {
-	      std::cout << "4" << std::endl;
 	      for (std::list<Players *>::iterator it2 = (*it)->getMembers().begin(); it2 != (*it)->getMembers().end(); ++it2)
 		{
-		  std::cout << "5" << std::endl;
 		  if ((*it2)->getId() == id)
 		    {
-		      std::cout << "6" << std::endl;
+		      delete *it2;
 		      it2 = (*it)->getMembers().erase(it2);
 		    }
 		}
@@ -149,6 +142,7 @@ void		parseRead(GraphicClient * client, std::string const & line)
   functions[22] = "smg";
   functions[23] = "suc";
   functions[24] = "sbp";
+  functions[25] = "Err";
   std::vector<std::string>	parsedLine = Parser::splitString(line, " ");
   int indx = -42;
   for (std::map<int, std::string>::iterator it = functions.begin(); it != functions.end(); ++it)
@@ -175,6 +169,7 @@ void		parseRead(GraphicClient * client, std::string const & line)
       ppo(client, parsedLine);
       break;
     case 5:
+      plv(client, parsedLine);
       break;
     case 6:
       break;
@@ -215,6 +210,12 @@ void		parseRead(GraphicClient * client, std::string const & line)
     case 23:
       break;
     case 24:
+      break;
+    case 25:
+      std::cout << "Connection reset by peer." << std::endl;
+      exit(0);
+      break;
+    default:
       break;
     }
 }

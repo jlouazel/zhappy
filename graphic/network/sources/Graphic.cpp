@@ -12,6 +12,7 @@
 #include	<algorithm>
 #include	<iostream>
 #include	"Graphic.hh"
+#include	"Selecter.hh"
 
 #define		FD_MAX(f1, f2)	((f1 < f2) ? f2 : f1)
 
@@ -22,7 +23,8 @@ GraphicClient::GraphicClient()
     _teams(0),
     _world(0),
     _socket(0),
-    _timeUnit(0)
+    _timeUnit(0),
+    _selecter(0)
 {
 }
 
@@ -88,14 +90,16 @@ std::string const	GraphicClient::readOnServer() const
       FD_ZERO(&rfd);
       FD_SET(this->_socket->_socket, &rfd);
       if (select(this->_socket->_socket + 1, &rfd, 0, 0, &timeout) < 0)
-	return "";
+	return "Err";
       if (FD_ISSET(this->_socket->_socket, &rfd))
 	{
 	  receiv = this->_socket->read(this->_socket);
+	  if (receiv.empty())
+	    return "Err";
 	  return receiv;
 	}
     }
-  return ("NiutNiut");
+  return ("Waiting for response...");
 }
 
 bool		GraphicClient::writeOnServer(std::string const & send) const
@@ -146,4 +150,14 @@ bool		GraphicClient::isReady() const
 void		GraphicClient::setReady(bool r)
 {
   this->_ready = r;
+}
+
+void		GraphicClient::setSelecter(Selecter *s)
+{
+  this->_selecter = s;
+}
+
+Selecter	*GraphicClient::getSelecter() const
+{
+  return this->_selecter;
 }

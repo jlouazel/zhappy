@@ -40,6 +40,7 @@ public:
 
   void			setX(int);
   void			setY(int);
+  void			setLvl(int);
   void			setNode(Ogre::SceneNode *);
   void			setDirection(eDirections);
 };

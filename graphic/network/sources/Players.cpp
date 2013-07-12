@@ -23,6 +23,7 @@ Players::Players(int x, int y, int id, int lvl, std::string const & teamName, eD
 
 Players::~Players()
 {
+  std::cout << "JE MEEEUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUURS" << std::endl;
   if (this->_node)
     {
       this->_node->getCreator()->destroySceneNode(this->_node);
@@ -77,6 +78,11 @@ void			Players::setY(int y)
 void			Players::setDirection(eDirections dir)
 {
   this->_direction = dir;
+}
+
+void			Players::setLvl(int l)
+{
+  this->_level = l;
 }
 
 void			Players::setNode(Ogre::SceneNode *n)

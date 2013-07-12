@@ -28,7 +28,8 @@ SRCS		= $(SRC_DIR)BaseApplication.cpp \
 		$(SRCNETWORK_DIR)Square.cpp \
 		$(SRCNETWORK_DIR)Teams.cpp \
 		$(SRCNETWORK_DIR)Treatment.cpp \
-		$(SRCNETWORK_DIR)World.cpp
+		$(SRCNETWORK_DIR)World.cpp \
+		$(SRCNETWORK_DIR)Selecter.cpp
 
 OBJS		= $(SRCS:.cpp=.o) \
 
