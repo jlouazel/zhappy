@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sat Jul 13 01:33:56 2013 julien fortin
+** Last update Sat Jul 13 14:36:58 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -82,7 +82,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     {
-      list = server_extract_packet(player);
+      list = server_extract_player_packet(player);
       i = 0;
       while (list)
 	{

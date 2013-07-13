@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Sat Jul 13 00:01:15 2013 julien fortin
+** Last update Sat Jul 13 16:38:07 2013 julien fortin
 */
 
 #include	"lib_std.h"
@@ -41,13 +41,15 @@ static void	init_attr(t_graphical *new_graph)
   /* _sbp(new_graph); // NOK */
 }
 
-t_graphical	*new_graphical_client(const t_socket *socket)
+t_graphical	*new_graphical_client(const t_socket *socket, unsigned int id)
 {
   t_graphical	*new_graph;
 
   if (!(new_graph = xcalloc(1, sizeof(*new_graph))))
     return (NULL);
+  new_graph->id = id;
   new_graph->io = init_server_io();
+  new_graph->packet = NULL;
   new_graph->socket = socket;
   init_attr(new_graph);
   return (new_graph);
