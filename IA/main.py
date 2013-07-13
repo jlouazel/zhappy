@@ -53,6 +53,7 @@ while 42 :
                 i = 0
                 while i < tab.__len__():
                     if (tab[i] == "mort\n"):
+                        print "Je suis mort."
                         sys.exit()
                     elif (tab[i][0:2] == "{ "):
                         myPlayer.changeMapVoir(tab[i])
