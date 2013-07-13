@@ -55,6 +55,8 @@ static std::string toString(int number)
 
 void TutorialApplication::createScene(void)
 {
+  this->meshes["Donut.mesh"] = mSceneMgr->createEntity("Donut.mesh");
+
   Ogre::Light* light = mSceneMgr->createLight("MainLight");
   light->setPosition(0.0f, 2000.0f, 0.0f);
   light->setCastShadows(true);
@@ -63,11 +65,10 @@ void TutorialApplication::createScene(void)
   light2->setCastShadows(true);
   mSceneMgr->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 
-  Ogre::Entity* planet = mSceneMgr->createEntity("Planet", "Donut.mesh");
+  Ogre::Entity* planet = this->meshes["Donut.mesh"];
 
   Ogre::SceneNode* planetNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("planetNode");
   planetNode->attachObject(planet);
-
   while (!client->isReady())
     parseRead(client, client->readOnServer());
 }

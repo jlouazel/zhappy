@@ -5,11 +5,12 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Thu Jul 11 22:56:44 2013 julien fortin
+** Last update Fri Jul 12 21:04:38 2013 julien fortin
 */
 
 #include	<sys/select.h>
 #include	<string.h>
+#include	<time.h>
 #include	"lib_strings.h"
 #include	"lib_std.h"
 #include	"server.h"
@@ -39,65 +40,38 @@ static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
   return (-1);
 }
 
-static void	_server_treat_cmd_for_player(const t_server *serv, t_player *player,
-					     const char *cmd)
+static void	_server_treat_cmd_for_player(const t_server *serv,
+					     t_player *player,
+					     char *cmd)
 {
-  int		i;
+  t_data	*data;
   int		index;
+  int		i;
 
-  printf("[GET:%s:%d]:%s<\n", player->socket->_client->_ip, player->socket->_port, cmd);
-  if (serv && serv->cmd &&
-      (index = _server_get_cmd_index(serv && serv->cmd ? serv->cmd : NULL, cmd)) >= 0)
+  cmd = epur_end_str(epur_begin_str(cmd, " \t\n\r"), " \t\n\r");
+  if (((index = _server_get_cmd_index(serv->cmd, cmd)) >= 0)
+    && serv->cmd->cmd[index])
     {
-      if (serv->cmd->cmd[index])
+      if (!(data = xcalloc(1, sizeof(*data))))
 	{
-	  i = find_first_of(cmd, ' ');
-	  if ((cmd = serv->cmd->cmd[index](player, serv,
-					   (void*)epur_end_str
-					   (epur_begin_str
-					    (deconst_cast(i > 0 ? cmd + i : cmd), " \t\n"), " \t\n"))))
-	    player->notify(player, serv, cmd, serv->cmd->time[index]);
+	  player->notify(player, "ko\n");
+	  return ;
 	}
+      data->time = (GET_CURRENT_TIME(serv->options->time))
+	+ (serv->cmd->time[index] / serv->options->time);
+      data->data = cmd + ((i = find_first_of(cmd, ' ')) > 0 ? i : 0);
+      data->foo = serv->cmd->cmd[index];
+      if (player->io && player->io->in)
+	player->io->in->push_back(&((t_io*)player->io)->in, (void*)data);
+      else
+	((t_io*)player->io)->in = new_list((void*)data);
+      // if (elevation etc..)
     }
   else if (index < 0 && player && !player->is_allowed(player))
-    server_get_auth_from_player(serv,
-				player,
-				epur_end_str
-				(epur_begin_str
-				 (deconst_cast(cmd), " \t\n"), " \t\n"));
+    server_get_auth_from_player(serv, player, cmd);
+  else
+    player->notify(player, "ko\n");
 }
-
-static t_list	*_server_extract_data_packet(char *data,
-					     char *new,
-					     t_list *list)
-{
-  static char	*packet = NULL;
-  int		index;
-
-  while (data && (data = epur_begin_str(data, " \t\r"))
-	 && data[0] && my_strlen(data) > 0)
-    {
-      if ((index = find_first_of(data, '\n')) < 0)
-	{
-	  packet = packet ? my_concat(packet, data, NULL) : my_strdup(data);
-	  data = NULL;
-	}
-      else
-	{
-	  new = my_strndup(data, 0, index);
-	  if (packet)
-	    {
-	      new = my_concat(packet, new, NULL);
-	      packet = NULL;
-	    }
-	  (list ? (list->push_back(&list, (void*)new))
-	   : (void)(list = new_list((void*)new)));
-	  data = epur_begin_str(data + index, "\n");
-	}
-    }
-  return (list);
-}
-
 
 static void	_server_treat_actions_for_player(const t_server *serv,
 						 t_player *player)
@@ -108,11 +82,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     {
-      if (!(list = _server_extract_data_packet
-	    (replace_char(player->socket->read
-			  (player->socket, 424242), '\r', ' '), NULL, NULL)))
-	server_disconnect_player(player);
-      puts("##################+");
+      list = server_extract_packet(player);
       i = 0;
       while (list)
 	{
@@ -121,14 +91,13 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 	      if (i < 10)
 		i = player->io->out ? player->io->out->size(player->io->out) : 0;
 	      if (i >= 10)
-		player->notify(player, serv, "ko\n", 0);
+		player->notify(player, "ko\n");
 	      else
-		_server_treat_cmd_for_player(serv, player, (const char*)list->data);
+		_server_treat_cmd_for_player(serv, player, (char*)list->data);
 	      i++;
 	    }
 	  list = list->next;
 	}
-      puts("##################-");
     }
 }
 

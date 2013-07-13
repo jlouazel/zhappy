@@ -5,11 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-<<<<<<< HEAD
-** Last update Thu Jul 11 21:14:17 2013 julien fortin
-=======
-** Last update Mon Jul  8 12:25:55 2013 julien fortin
->>>>>>> 3066dd62253e7cd3866725ad525c4fc4b08c62ac
+** Last update Fri Jul 12 23:35:28 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -56,18 +52,7 @@ typedef struct  s_player
   const t_socket	*socket;
 
   bool		(*is_allowed)(const struct s_player*);
-  void		(*notify)(struct s_player*, const t_server *, const char*, int);
-  const char    *(*advance)(struct s_player *, const t_server *, void *);
-  const char    *(*right)(struct s_player *, const t_server *, void *);
-  const char    *(*left)(struct s_player *, const t_server *, void *);
-  const char    *(*see)(struct s_player *, const t_server *, void *);
-  const char    *(*inventory)(struct s_player *, const t_server *, void *);
-  const char    *(*take)(struct s_player *, const t_server *, void *);
-  const char    *(*put)(struct s_player *, const t_server *, void *);
-  const char    *(*deport)(struct s_player *, const t_server *, void *);
-  const char    *(*broadcast)(struct s_player *, const t_server *, void *);
-  const char    *(*pfork)(struct s_player *, const t_server *, void*);
-  const char    *(*connect_nbr)(struct s_player *, const t_server *, void *);
+  void		(*notify)(struct s_player*, const char*);
 } t_player;
 
 t_player        *create_player(const t_socket *);

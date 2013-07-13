@@ -1,11 +1,11 @@
 /*
 ** init_ig.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Fri Jul 12 15:04:12 2013 louaze_j
+** Last update Sat Jul 13 00:01:15 2013 julien fortin
 */
 
 #include	"lib_std.h"
@@ -20,9 +20,9 @@ static void	init_attr(t_graphical *new_graph)
   _pnw(new_graph); // NOK
   _ppo(new_graph); // NOK
   _plv(new_graph); // NOK
-  /* _pin(new_graph); // NOK */
-  /* _pex(new_graph); // NOK */
-  /* _pbc(new_graph); // NOK */
+  _pin(new_graph); // NOK
+  _pex(new_graph); // NOK
+  _pbc(new_graph); // NOK
   /* _pic(new_graph); // NOK */
   /* _pie(new_graph); // NOK */
   /* _pfk(new_graph); // NOK */
@@ -47,7 +47,8 @@ t_graphical	*new_graphical_client(const t_socket *socket)
 
   if (!(new_graph = xcalloc(1, sizeof(*new_graph))))
     return (NULL);
-new_graph->socket = socket;
+  new_graph->io = init_server_io();
+  new_graph->socket = socket;
   init_attr(new_graph);
   return (new_graph);
 }

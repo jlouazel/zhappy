@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
 <<<<<<< HEAD
-** Last update Thu Jul 11 22:52:07 2013 julien fortin
+** Last update Fri Jul 12 23:48:30 2013 julien fortin
 =======
 ** Last update Tue Jul  9 19:01:19 2013 louaze_j
 >>>>>>> 77d41bfb879f951a9a4b39028ca7c64d92a04285
@@ -35,9 +35,11 @@ static int	_init_select_serv(const t_server *server,
       && server->socket->is_valid(deconst_cast(server->socket)))
     FD_SET(server->socket->_socket, rfd);
   server_listen_player(server, rfd, &max_fd);
+  server_listen_graph(server, rfd, &max_fd);
   server_will_notify_player(server, wfd, &max_fd);
+  server_will_notify_graph(server, wfd, &max_fd);
   bzero(timeout, sizeof(*timeout));
-  timeout->tv_sec = 1;
+  timeout->tv_usec = 5;
   return (max_fd);
 }
 
@@ -47,7 +49,9 @@ static int	_server_action(const t_server *server,
 {
   server_accept(server, rfd);
   server_players_actions(server, rfd);
+  server_exec_actions(server);
   server_notify_player(server, wfd);
+  server_notify_graph(server, wfd);
   return (EXIT_SUCCESS);
 }
 

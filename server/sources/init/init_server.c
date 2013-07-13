@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 03:59:56 2013 julien fortin
-** Last update Thu Jul 11 18:50:13 2013 louaze_j
+** Last update Fri Jul 12 20:20:22 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -18,19 +18,24 @@
 
 static bool	log_conf(t_server *server)
 {
-  t_list	*tmp;
-
-  printf("\033[32mConfiguration : Max(%d) WorldX(%d) WorldY(%d) T(%d)\n",
+  printf("\033[32mConfiguration :\
+ Max(%d) WorldX(%d) WorldY(%d) T(%d)\n\033[0m",
 	 server->options->nb_max_clients,
 	 server->options->x,
 	 server->options->y,
 	 server->options->time);
-  printf("Team :\n\033[0m");
+  return (true);
+}
+
+static bool	log_teams(t_server *server)
+{
+    t_list	*tmp;
+  printf("\033[32mTeam :\n\033[0m");
   tmp = server->options->teams_name;
   while (tmp)
     {
       printf("\033[32m\tName(%s) Max(%d)\n\033[0m", (char *)tmp->data,
-	     server->options->nb_max_clients);
+  	     server->options->nb_max_clients);
       tmp = tmp->next;
     }
   return (true);
@@ -45,6 +50,7 @@ const t_server	*server_init(t_server *serv, int ac, const char **av)
       || !(serv->options = init_server_options(ac, av))
       || !(log_conf(serv))
       || !(serv->socket = new_socket(serv->options->port, NULL, SOCK_SERV))
+      || !(log_teams(serv))
       || !(serv->game = init_game(serv->options)))
     return (destroy_server(serv));
   return (serv);
