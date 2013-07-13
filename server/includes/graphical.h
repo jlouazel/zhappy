@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sat Jul 13 16:38:19 2013 julien fortin
+** Last update Sat Jul 13 18:20:48 2013 julien fortin
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -20,6 +20,8 @@ typedef struct	s_graphical
   const t_io		*io;
   const t_socket	*socket;
   char			*packet;
+
+  void          (*notify)(struct s_graphical*, const char*);
 
   const char	*(*msz)(struct s_graphical *, const t_server *);
   const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *);

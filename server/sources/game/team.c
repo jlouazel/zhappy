@@ -5,7 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
+<<<<<<< HEAD
 ** Last update Sat Jul 13 19:22:40 2013 louaze_j
+=======
+** Last update Sat Jul 13 17:45:37 2013 julien fortin
+>>>>>>> 6b5c1317b57794fda28f3e4557c6ee6cda3549fa
 */
 
 #include	<stdio.h>
@@ -50,6 +54,8 @@ static bool	team_add_player(t_team *team,
       printf("*** [JOIN] player %u join team %s\n", player->id, team->name);
       return (true);
     }
+  player->notify(player, "ko\n");
+  printf("*** [ERR] player %u cannot join team %s\n", player->id, team->name);
   return (false);
 }
 

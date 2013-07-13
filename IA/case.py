@@ -65,4 +65,4 @@ class case:
         print "}",
 
     def reduceProbabilities(self):
-        self._probabilities = self._probabilities - 2
+        self._probabilities = self._probabilities - 5

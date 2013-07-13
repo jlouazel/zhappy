@@ -5,26 +5,61 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sat Jul 13 01:55:19 2013 julien fortin
-** Last update Sat Jul 13 14:37:59 2013 julien fortin
+** Last update Sat Jul 13 18:44:27 2013 julien fortin
 */
 
 #include	<sys/select.h>
+#include	<string.h>
 #include	"lib_std.h"
+#include	"lib_strings.h"
 #include	"graphical.h"
+
+static int      _server_get_cmd_graph_index(const t_cmd_graph *this, const char *cmd)
+{
+  int           cmd_len;
+  int           real_len;
+  int           beg_len;
+  unsigned int  i;
+
+  i = 0;
+  while (cmd && this && this->name && this->name[i]
+         && this->cmd && this->cmd[i])
+    {
+      cmd_len = my_strlen(cmd);
+      real_len = my_strlen(this->name[i]);
+      beg_len = find_first_of(cmd, ' ');
+      if (!strncmp(this->name[i], cmd, real_len)
+          && (cmd_len == real_len || beg_len == real_len))
+        return (i);
+      i++;
+    }
+  return (-1);
+}
 
 static void	_server_treat_actions_for_graph(const t_server *serv,
 						t_graphical *graph)
 {
   t_list	*list;
+  int		index;
 
   if (!serv || !graph || !graph->socket
       || !graph->socket->is_valid(deconst_cast(graph->socket)))
     return ;
-  list = server_extract_graph_packet(graph);
-  while (list)
-    {
-      list = list->next;
-    }
+  list = server_extract_graph_packet(serv, graph);
+    while (list)
+      {
+	if (list->data)
+	  {
+	    if ((index = _server_get_cmd_graph_index
+		 (serv ? serv->cmd_graph : NULL, (const char*)list->data)) >= 0)
+	      {
+
+	      }
+	    else
+	      graph->notify(graph, "ko\n");
+	  }
+	list = list->next;
+      }
 }
 
 bool            server_graph_actions(const t_server *serv, fd_set *rfd)

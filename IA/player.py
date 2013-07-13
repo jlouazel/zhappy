@@ -36,11 +36,12 @@ class player:
         self._toIncanteX = -1
         self._toIncanteY = -1
         self._leveling = False
-        self._wantIncante = False
         self._waiting = 0
         self._call = False
         self._coolDown = 0
         self._intervalle = 0
+        self._lead = False
+        self._pong = False
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -130,6 +131,7 @@ class player:
     def incantation(self):
         self._socket.send("incantation\n")
         self._queue.put("incantation\n")
+        self._lead = True
 
     def _treatCase(self, tab, i):
         tmp = 0
@@ -177,6 +179,7 @@ class player:
 
     def fork(self):
         self._socket.send("fork\n")
+        self._queue.put("fork\n")
 
     def reduceProbabilities(self):
         i = 0
@@ -277,36 +280,40 @@ class player:
         return False
 
     def decideCaseToGo(self):
-        if (self._inventaire._nourriture < self._nourritureMinimal):
+         myNeed = self._elevation.getNeed(self._lvl)
+         i = self._lenMapX * self._posY + self._posX
+         if (self._inventaire._nourriture < self._nourritureMinimal):
             tab = self.findFood(3)
             if tab[0] != -1 and tab[1] != -1:
                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
             else:
                 self.goToUnknow()
-        elif (self._inventaire._nourriture < 20 - self._intervalle):
-            self._intervalle = 0
-            tab = self.findFood(3)
-            if tab[0] != -1 and tab[1] != -1:
-                self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
-                self.decideSecondAction()
-            else:
-                self.goToUnknow()
+         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= 15):
+             self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
+         elif (self._inventaire._nourriture < 20 - self._intervalle):
+             self._intervalle = 0
+             tab = self.findFood(3)
+             if tab[0] != -1 and tab[1] != -1:
+                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
+                 self.decideSecondAction()
+             else:
+                 self.goToUnknow()
+         else:
+             self._intervalle = 5
+             flag = False
+             i = 0
+             while i < self._action._secondAction.__len__():
+                 tab = self.findStone(self._action._secondAction[i])
+                 if tab[0] != -1 and tab[1] != -1:
+                     self._action.setMove(tab[0], tab[1], self._action._secondAction[i], 2)
+                     self._action._secondAction.addSecondAction(self._action._PossibleAction._nourriture)
+                     i = self._action._secondAction.__len__()
+                     flag = True
+                 else:
+                     i = i + 1
+             if flag == False:
+                 self.goToUnknow()
             #self._action.affSecondAction()
-        else:
-            self._intervalle = 5
-            flag = False
-            i = 0
-            while i < self._action._secondAction.__len__():
-                tab = self.findStone(self._action._secondAction[i])
-                if tab[0] != -1 and tab[1] != -1:
-                    self._action.setMove(tab[0], tab[1], self._action._secondAction[i], 2)
-                    self._action._secondAction.addSecondAction(self._action._PossibleAction._nourriture)
-                    i = self._action._secondAction.__len__()
-                    flag = True
-                else:
-                    i = i + 1
-            if flag == False:
-                self.goToUnknow()
 
     def deplacementAbsolut(self, x, y):
         if (self._posX != x):
@@ -399,6 +406,8 @@ class player:
             tmp = self._lenMapX * self._posY + self._posX
         elif (self._action._firstAction == self._action._PossibleAction._incantation):
             self.incantIfPossible()
+        elif (self._action._firstAction == self._action._PossibleAction._join):
+            self._action._define = 0
 
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
@@ -429,6 +438,7 @@ class player:
             j = j + 1
 
     def goToUnknow(self):
+        print "Go to Unknow"
         j = 0
         x = 0
         y = 0
@@ -438,15 +448,17 @@ class player:
             while i < self._lenMapX - 1:
                 tmp = math.fabs(self._posX - i) + math.fabs(self._posY - j)
                 tmp2 = self._lenMapX * j + i
-                if tmp < nb and self._map[tmp2]._probabilities <= 0:
+                if tmp < nb and self._map[tmp2]._probabilities <= 10 and self._map[tmp2]._players == 0:
                     x = i
                     y = j
                     nb = tmp
                 i = i + 1
             j = j + 1
         if nb != 100000:
+            print "I Find Unknow"
             self.deplacementAbsolut(x, y)
         else:
+            print "Juste an avance."
             self.avance()
         self.voir()
 
@@ -535,7 +547,6 @@ class player:
                 self._waiting = 4
                 self._call = True
                 self._action._define = 0
-                self._leveling = True
             else:
                 if self._waiting > 0:
                     # Pourquoi pas rammasser tout ce qui est sur la case.
@@ -555,8 +566,10 @@ class player:
                         self._call = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
             self.putObjectIncantation()
+            self._action._define = 0
         elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
             self.takeObjectIncantation()
+            self._action._define = 0
 
     def findGoodMove(self):
         self._ping = False
@@ -567,7 +580,12 @@ class player:
                 print "je wait because leveling"
             time.sleep(0.1)
         else:
-            if self._inventaire._nourriture < self._nourritureMinimal:
+            if self._inventaire._nourriture < self._nourritureMinimal and self._action._firstAction != self._action._PossibleAction._nourriture and self._action._emergency != 3:
+                print "Must find nourriture absolument."
+                self._incomming = 0
+                self._call = False
+                self._leveling = False
+                self._waiting = 0
                 tab = self.findFood(3)
                 if tab[0] != -1 and tab[1] != -1:
                     self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
@@ -575,28 +593,25 @@ class player:
                     self.goToUnknow()
             else:
                 if (self._action._define == 0 and self._posX == self._action._x and self._posY == self._action._y):
-                    if self._action._firstAction != self._action._PossibleAction._incantation:
+                    if self._action._firstAction != self._action._PossibleAction._incantation and self._action._firstAction != self._action._PossibleAction._join:
                         self.takeObject()
                     self.takeObjectif()
                 elif (self._action._define == 0 and (self._posX != self._action._x or self._posY != self._action._y)):
                     self.takeObject()
                     self.moveToAction()
                 elif (self._action._define != 0):
-                    myNeed = self._elevation.getNeed(self._lvl)
-                    i = self._lenMapX * self._posY + self._posX
-                    if (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0):
-                        self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
-                    else:
-                        self.decideCaseToGo()
-            print self._inventaire._nourriture
+                    self.decideCaseToGo()
             self.inventaire()
             self.voir()
+            print "PosX = ", self._posX, " PosY = ", self._posY
 
 
     def treatOk(self, trame):
+        if trame[0:9] == "elevation" and self._lead == False:
+            self._leveling = True
+            self._queue.put("incantation\n")
         if trame == "ok" or trame == "ko":
             if self._queue.empty() != True:
-            	self._leveling = False
                 tmp = self._queue.get()
                 if tmp.split(' ')[0] == "prend" and trame == "ok":
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
@@ -604,6 +619,7 @@ class player:
                     #print "C;est confirme je pose : ", tmp.split(' ')[1].split('\n')[0]
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
                 elif tmp == "avance\n" and trame == "ok":
+                    print "avance"
                     if (self._orientation == 0):
                         self._posY = self.myAbsolute(self._posY - 1, self._lenMapY)
                     elif (self._orientation == 1):
@@ -619,17 +635,26 @@ class player:
                         self._orientation = self._orientation - 1
                 elif tmp == "droite\n" and trame == "ok":
                     self._orientation = (self._orientation + 1) % 4
+                elif tmp == "incantation\n" and trame == "ko":
+                    self._leveling = False
+                    self._lead = False
+                    print "elevation Failed."
+            else:
+                print "PROBLEME1"
         elif trame[0:6] == "niveau":
-            self._leveling = False
-            self._wantIncante = False
             self._lvl = self._lvl + 1
             if self._queue.empty() != True:
                 tmp = self._queue.get()
+            else:
+                print "PROBLEME2"
             print "I up."
+            self._lead = False
+            self._leveling = False
             self._incomming = 0
             self.goToUnknow()
             self.decideCaseToGo()
-            self._leveling = False
+            self._toIncanteX = -1
+            self._toIncanteY = -1
         # traitement de reception de broadcast trame = "message X,txt"
         elif trame[0:7] == "message":
             direction = trame[8:9]
@@ -652,7 +677,7 @@ class player:
                 x = msg.split(',')[1]
                 y = msg.split(',')[2]
                 print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
-                if self._lvl == int(lvl) and self._inventaire._nourriture >= 15 and self._toIncanteX == -1 and self._toIncanteY == -1:
+                if self._lvl == int(lvl) and self._inventaire._nourriture >= 10 and self._toIncanteX == -1 and self._toIncanteY == -1:
                     print "J'accepte j'attend confirmation"
                     self._toIncanteX = int(x)
                     self._toIncanteY = int(y)
@@ -676,8 +701,9 @@ class player:
             elif msg[0:1] == "D" and self._call == True:
                 print "Une personne de plus peut me rejoindre."
                 self._incomming += 1
-            elif msg[0:4] == "Ping":
+            elif msg[0:4] == "Ping" and self._pong == False:
             	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8))
+                self._pong = True
             elif msg[0:4] == "Pong" and self._ping == True:
             	other_direction = int(msg.split(',')[1])
                 self.setMyOrientation(int(direction), other_direction)
