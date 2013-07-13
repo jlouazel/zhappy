@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sat Jul 13 01:55:19 2013 julien fortin
-** Last update Sat Jul 13 18:44:27 2013 julien fortin
+** Last update Sat Jul 13 19:28:03 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -40,7 +40,9 @@ static void	_server_treat_actions_for_graph(const t_server *serv,
 						t_graphical *graph)
 {
   t_list	*list;
+  char		*res;
   int		index;
+  int		i;
 
   if (!serv || !graph || !graph->socket
       || !graph->socket->is_valid(deconst_cast(graph->socket)))
@@ -53,7 +55,10 @@ static void	_server_treat_actions_for_graph(const t_server *serv,
 	    if ((index = _server_get_cmd_graph_index
 		 (serv ? serv->cmd_graph : NULL, (const char*)list->data)) >= 0)
 	      {
-
+		i = (i = find_first_of((const char*)list->data, ' ')) >= 0 ? i : 0;
+		res = serv->cmd_graph[index](graph, serv, ((char*)list->data) + i);
+		if (res)
+		  graph->notify(graph, res);
 	      }
 	    else
 	      graph->notify(graph, "ko\n");
