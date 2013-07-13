@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sat Jul 13 16:04:45 2013 julien fortin
+** Last update Sat Jul 13 19:48:10 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -36,7 +36,6 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
 {
   static unsigned int	id = DEFAULT_PID;
 
-  new_player->egg = true;
   new_player->packet = NULL;
   new_player->x = 0;
   new_player->y = 0;

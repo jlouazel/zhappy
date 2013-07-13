@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
 <<<<<<< HEAD
-** Last update Sat Jul 13 16:34:15 2013 louaze_j
+** Last update Sat Jul 13 19:48:25 2013 louaze_j
 =======
 <<<<<<< HEAD
 ** Last update Sat Jul 13 14:32:35 2013 julien fortin
@@ -49,7 +49,6 @@ typedef struct  s_player
   int			x;
   int			y;
   unsigned int		id;
-  bool			egg;
   t_team		*team;
   t_status		status;
   unsigned int		level;
