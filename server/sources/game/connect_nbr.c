@@ -5,20 +5,25 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:20:07 2013 louaze_j
-** Last update Mon Jul  8 11:08:57 2013 julien fortin
+** Last update Sat Jul 13 03:36:13 2013 louaze_j
 */
 
-#include	"server.h"
-
 #include	<stdio.h>
+#include	"server.h"
+#include	"lib_strings.h"
 
 const char	*_player_connect_nbr(t_player *player,
 			     const t_server *server, void *arg)
 {
+  char		*ret;
+  char		buff[11];
+
+  (void)arg;
+  ret = "";
   if (!player->is_allowed(player))
     return (NULL);
-  (void)arg;
-  printf("connect_nbr = %d\n",
-	 server->game->max_players_by_team - player->team->nb_members);
-  return (NULL);
+
+  sprintf(buff, "%d\n", server->game->max_players_by_team - player->team->nb_members);
+  ret = my_concat(ret, buff, NULL);
+  return (ret);
 }

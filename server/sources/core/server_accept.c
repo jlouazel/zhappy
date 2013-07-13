@@ -5,11 +5,12 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Sat Jul 13 00:35:04 2013 louaze_j
+** Last update Sat Jul 13 16:38:58 2013 julien fortin
 */
 
 #include	<stdio.h>
 #include	<sys/select.h>
+#include	<stdio.h>
 #include	"lib_std.h"
 #include	"lib_strings.h"
 #include	"player.h"
@@ -44,7 +45,14 @@ void		server_accept(const t_server *server, const fd_set *rfd)
   if (server && server->socket && FD_ISSET(server->socket->_socket, rfd))
     {
       if ((client = server->socket->accept(server->socket)))
-        _server_accept_player(server, client);
+        {
+	  if (client->_client)
+	    printf("*** New connection from %s:%d\n",
+		   client->_client->_ip, client->_port);
+	  else
+	    printf("*** New connection.\n");
+	    _server_accept_player(server, client);
+	}
     }
 }
 
@@ -52,11 +60,13 @@ void		_server_get_new_graphic(const t_server *serv, t_player *player)
 {
   const t_socket	*socket;
   t_graphical		*graph;
+  unsigned int		id;
 
   socket = player->socket;
   player->socket = NULL;
+  id = player->id;
   delete_player(player, serv);
-  if (serv && serv->game && (graph = new_graphical_client(socket)))
+  if (serv && serv->game && (graph = new_graphical_client(socket, id)))
     {
       if (serv->game->graphicals)
 	((t_game*)serv->game)->graphicals->push_back

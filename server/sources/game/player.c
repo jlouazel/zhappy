@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Fri Jul 12 23:35:12 2013 louaze_j
+** Last update Sat Jul 13 16:04:45 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -37,6 +37,7 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
   static unsigned int	id = DEFAULT_PID;
 
   new_player->egg = true;
+  new_player->packet = NULL;
   new_player->x = 0;
   new_player->y = 0;
   new_player->id = id;
@@ -58,9 +59,10 @@ t_player	*create_player(const t_socket *socket)
   if (!(new_player = xcalloc(1, sizeof(*new_player))))
     return (NULL);
   init_attr(new_player, socket);
-  /**/
-  printf("Player %u : I'm alive !\n", new_player->id);
-  /**/
+  printf("*** Added new player %u at (%d, %d)\n",
+	 new_player->id,
+	 new_player->x,
+	 new_player->y);
   return (new_player);
 }
 
@@ -81,7 +83,7 @@ void		delete_player(t_player *player, const t_server *server)
       /* list = player->team && player->team->members ? player->team->members : NULL; */
       /* if (list) */
       /* 	list->erase(&list, player); */
-      printf("Player %u is dead..\n", player->id);
+      printf("*** Deleting player %u\n", player->id);
       /**/
       player->socket = delete_socket(player->socket);
       xfree((void**)&player, sizeof(*player));

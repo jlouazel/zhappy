@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
 <<<<<<< HEAD
-** Last update Fri Jul 12 23:48:30 2013 julien fortin
+** Last update Sat Jul 13 01:55:06 2013 julien fortin
 =======
 ** Last update Tue Jul  9 19:01:19 2013 louaze_j
 >>>>>>> 77d41bfb879f951a9a4b39028ca7c64d92a04285
@@ -51,6 +51,7 @@ static int	_server_action(const t_server *server,
   server_players_actions(server, rfd);
   server_exec_actions(server);
   server_notify_player(server, wfd);
+  server_graph_actions(server, rfd);
   server_notify_graph(server, wfd);
   return (EXIT_SUCCESS);
 }

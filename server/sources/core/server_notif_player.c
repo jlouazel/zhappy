@@ -5,13 +5,15 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Fri Jul 12 21:01:00 2013 julien fortin
+** Last update Sat Jul 13 16:31:29 2013 julien fortin
 */
 
-#include	"server.h"
-#include	"player.h"
 #include	<stdio.h>
 #include	<time.h>
+#include	"server.h"
+#include	"player.h"
+#include	"lib_std.h"
+#include	"lib_strings.h"
 
 bool			server_will_notify_player(const t_server *serv,
 						  fd_set *wfd, int *max_fd)
@@ -37,21 +39,34 @@ bool			server_will_notify_player(const t_server *serv,
     }
   if (list)
     return (true);
-  return false;
+  return (false);
 }
 
 static void		_notify_foreach_player(t_player *player)
 {
   t_list	*list;
-  const char	*data;
+  char		*data;
+  char		*disp;
+  unsigned int	i;
 
   list = player->io ? player->io->out : NULL;
   while (list)
     {
       if (list->data)
 	{
-	  data = (const char*)list->data;
+	  data = (char*)list->data;
 	  player->socket->write(player->socket, data);
+	  i = my_strlen(data);
+	  if (i > 0)
+	    {
+	      disp = my_strndup(data, 0, i - 1);
+	      if (disp)
+	  	printf("%d:\tSending message \"%s\" to %u\n",
+	  	       (int)GET_CURRENT_TIME(1),
+	  	       disp,
+	  	       player->id);
+	      xfree((void**)&disp, 0);
+	    }
 	}
       list = list->next;
     }

@@ -5,14 +5,13 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:55:06 2013 louaze_j
-** Last update Mon Jul  8 11:12:29 2013 julien fortin
+** Last update Sat Jul 13 12:48:14 2013 louaze_j
 */
 
 #include	"world.h"
 #include	"player.h"
 #include	"ressources.h"
 #include	"lib_strings.h"
-#include	"str_ressources.h"
 
 const char	*_player_take(t_player *player, const t_server *server, void *arg)
 {
@@ -26,7 +25,7 @@ const char	*_player_take(t_player *player, const t_server *server, void *arg)
 		      POS_LIST(player->x, player->y, server->game->world->width));
   while (type != EMPTY)
     {
-      if (my_strcmp((char *)arg, string_ressources[type]) == 0)
+      if (my_strcmp((char *)arg, get_str(type)) == 0)
 	{
 	  if (sq->content[type] == 0)
 	    return ("KO\n");
@@ -34,7 +33,7 @@ const char	*_player_take(t_player *player, const t_server *server, void *arg)
 	    {
 	      sq->content[type]--;
 	      player->inventory_tab[type]++;
-	    return ("OK\n");
+	      return ("OK\n");
 	    }
 	}
       type++;
