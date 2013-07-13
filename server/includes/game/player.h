@@ -5,7 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
+<<<<<<< HEAD
 ** Last update Sat Jul 13 14:32:35 2013 julien fortin
+=======
+** Last update Sat Jul 13 13:17:06 2013 louaze_j
+>>>>>>> fa0803fdbc5d2dfe3a1bdfa2f0d8230b855f1b46
 */
 
 #ifndef __PLAYERS_H__
@@ -59,15 +63,15 @@ typedef struct  s_player
 t_player        *create_player(const t_socket *);
 void            delete_player(t_player *, const t_server *);
 
-const char	*_player_advance(t_player*, const t_server*, void*);
-const char	*_player_right(t_player*, const t_server*, void*);
-const char	*_player_left(t_player*, const t_server*, void*);
-const char	*_player_see(t_player*, const t_server*, void*);
-const char	*_player_inventory(t_player*, const t_server*, void*);
-const char	*_player_take(t_player*, const t_server*, void*);
-const char	*_player_put(t_player*, const t_server*, void*);
+const char	*_player_advance(t_player*, const t_server*, void*); // OK
+const char	*_player_right(t_player*, const t_server*, void*); // OK
+const char	*_player_left(t_player*, const t_server*, void*);  // OK
+const char	*_player_see(t_player*, const t_server*, void*);  // OK
+const char	*_player_inventory(t_player*, const t_server*, void*); // OK
+const char	*_player_take(t_player*, const t_server*, void*); // OK
+const char	*_player_put(t_player*, const t_server*, void*); // OK
 const char	*_player_broadcast(t_player*, const t_server*, void*);
-const char	*_player_connect_nbr(t_player*, const t_server*, void*);
+const char	*_player_connect_nbr(t_player*, const t_server*, void*); // OK
 const char	*_player_deport(t_player*, const t_server*, void*);
 const char	*_player_fork(t_player*, const t_server*, void*);
 

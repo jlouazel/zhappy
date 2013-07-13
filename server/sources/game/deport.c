@@ -5,9 +5,10 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:33:07 2013 louaze_j
-** Last update Mon Jul  8 11:09:59 2013 julien fortin
+** Last update Sat Jul 13 16:25:14 2013 louaze_j
 */
 
+#include	<stdbool.h>
 #include	"player.h"
 
 static
@@ -26,18 +27,24 @@ void		get_pointed_square_pos(t_player *player,
 
 const char	*_player_deport(t_player *player, const t_server *server, void *arg)
 {
-  int		x;
-  int		y;
-  t_player	*dest;
+  t_list	*l;
+  t_player	*pl;
+  bool		done;
 
+  (void)arg;
+  done = false;
   if (!player->is_allowed(player))
     return (NULL);
-  dest = (t_player *)arg;
-  x = dest->x;
-  y = dest->y;
-  if (player->x == dest->x && player->y == dest->y)
-    get_pointed_square_pos(player, server, &x, &y);
-  dest->x = x;
-  dest->y = y;
-  return (NULL);
+  l = server->game->players;
+  while (l)
+    {
+      pl = l->data;
+      if (player != pl && player->x == pl->x && player->y == pl->y)
+	{
+	  get_pointed_square_pos(player, server, &pl->x, &pl->y);
+	  done = true;
+	}
+      l = l->next;
+    }
+  return ((done == true) ? "OK\n" : "KO\n");
 }

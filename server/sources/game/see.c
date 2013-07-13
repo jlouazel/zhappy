@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Sat Jul 13 00:56:13 2013 louaze_j
+** Last update Sat Jul 13 13:07:34 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -57,7 +57,6 @@ const char	*_player_see(t_player *player, const t_server *server, void *arg)
       type = 0;
       x = player->x + vision[player->direction][i][0];
       y = player->y + vision[player->direction][i][1];
-      ret = my_concat(ret, see_player(server, ABS_X(x, server->game->world->width), ABS_Y(y, server->game->world->height)), NULL);
       sq = server->game->world->map->at(server->game->world->map,
 					POS_LIST(ABS_X(x, server->game->world->width),
 						 ABS_Y(y, server->game->world->height), server->game->world->width));
@@ -67,6 +66,7 @@ const char	*_player_see(t_player *player, const t_server *server, void *arg)
 	    ret = my_concat(ret, " ", get_str(type), NULL);
 	  type++;
 	}
+      ret = my_concat(ret, see_player(server, ABS_X(x, server->game->world->width), ABS_Y(y, server->game->world->height)), NULL);
       if (i != index - 1)
 	ret = my_concat(ret, ",", NULL);
       i++;

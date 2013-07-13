@@ -5,7 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 04:16:18 2013 julien fortin
+<<<<<<< HEAD:server/sources/init/init_server_cmd_player.c
 ** Last update Sat Jul 13 01:34:31 2013 julien fortin
+=======
+** Last update Sat Jul 13 16:29:12 2013 louaze_j
+>>>>>>> fa0803fdbc5d2dfe3a1bdfa2f0d8230b855f1b46:server/sources/init/init_server_cmd.c
 */
 
 #include	<stdlib.h>
@@ -25,7 +29,7 @@ static void	_init_server_cmd_player_name(t_cmd_player *cmd)
   cmd->name[6] = "pose";
   cmd->name[7] = "broadcast";
   cmd->name[8] = "connect_nbr";
-  cmd->name[9] = "expluse";
+  cmd->name[9] = "expulse";
   cmd->name[10] = "fork";
   cmd->name[11] = NULL;
 }
