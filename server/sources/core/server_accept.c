@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Sat Jul 13 16:38:58 2013 julien fortin
+** Last update Sat Jul 13 17:09:42 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -91,7 +91,7 @@ bool            server_get_auth_from_player(const t_server *serv,
       _server_get_new_graphic(serv, player);
       return (true);
     }
-  else if ((list = serv && serv->game && serv->game->teams ? serv->game->teams : NULL))
+  else if ((list = serv && serv->game ? serv->game->teams : NULL))
     while (list)
       {
         if (list->data && !my_strcmp(((t_team*)list->data)->name, data))

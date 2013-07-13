@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sat Jul 13 16:04:45 2013 julien fortin
+** Last update Sat Jul 13 17:54:43 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -19,7 +19,7 @@
 
 static bool	_player_is_allowed(const t_player *player)
 {
-  return (player->status != PLAYER_STATUS_NOT_ALLOW && player->team);
+  return (player->status == PLAYER_STATUS_ALLOW && player->team);
 }
 
 static void	_player_notify(t_player *player, const char *data)
