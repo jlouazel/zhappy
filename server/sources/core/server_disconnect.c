@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  8 10:53:15 2013 julien fortin
-** Last update Sat Jul 13 15:51:23 2013 julien fortin
+** Last update Sat Jul 13 16:55:37 2013 julien fortin
 */
 
 #include	"server.h"
@@ -24,7 +24,7 @@ bool		server_disconnect_player(t_player *player)
 {
   if (player)
     {
-      printf("Player %d disconnect.\n", player->id);
+      printf("*** Player %d connection lost.\n", player->id);
       player->socket = delete_socket(player->socket);
     }
   return (true);

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 12:30:30 2013 julien fortin
-** Last update Sat Jul 13 16:49:01 2013 julien fortin
+** Last update Sat Jul 13 16:53:49 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -24,7 +24,7 @@ static void		_server_log_input(char *from, int id, t_list *list)
 	       (int)GET_CURRENT_TIME(1),
 	       from,
 	       id,
-	       (char*)list->data);
+	       epur_end_str((char*)list->data, " \t\n\r"));
       list = list->next;
     }
 }
