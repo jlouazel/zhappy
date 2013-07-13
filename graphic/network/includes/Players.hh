@@ -27,6 +27,8 @@ private:
   int			_level;
   std::string		_teamName;
   eDirections		_direction;
+  float			_realDirection;
+  float			_oldDirection;
 
 public:
   explicit Players(int x, int y, int id, int lvl, std::string const & team, eDirections dir);
@@ -41,6 +43,8 @@ public:
   Ogre::SceneNode	*getNode() const;
   std::string const &	getTeamName() const;
   eDirections		getDirection() const;
+  float			getOldDirection() const;
+  float			getRealDirection() const;
 
   void			setX(int);
   void			setY(int);
@@ -49,6 +53,8 @@ public:
   void			setLvl(int);
   void			setNode(Ogre::SceneNode *);
   void			setDirection(eDirections);
+  void			setOldDirection(float);
+  void			setRealDirection(float);
 };
 
 #endif
