@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
-** Last update Sat Jul 13 13:17:06 2013 louaze_j
+** Last update Sat Jul 13 16:34:15 2013 louaze_j
 */
 
 #ifndef __PLAYERS_H__
@@ -67,7 +67,7 @@ const char	*_player_take(t_player*, const t_server*, void*); // OK
 const char	*_player_put(t_player*, const t_server*, void*); // OK
 const char	*_player_broadcast(t_player*, const t_server*, void*);
 const char	*_player_connect_nbr(t_player*, const t_server*, void*); // OK
-const char	*_player_deport(t_player*, const t_server*, void*);
+const char	*_player_deport(t_player*, const t_server*, void*); // OK
 const char	*_player_fork(t_player*, const t_server*, void*);
 
 #endif

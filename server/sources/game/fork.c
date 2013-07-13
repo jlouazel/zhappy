@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul  5 09:46:29 2013 louaze_j
-** Last update Mon Jul  8 11:10:09 2013 julien fortin
+** Last update Sat Jul 13 16:37:49 2013 louaze_j
 */
 
 #include	"player.h"
