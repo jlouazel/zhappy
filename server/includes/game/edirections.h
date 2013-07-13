@@ -13,10 +13,10 @@
 
 typedef enum
   {
-    LEFT,
-    RIGHT,
     UP,
+    RIGHT,
     DOWN,
+    LEFT,
     DOWN_LEFT,
     DOWN_RIGHT,
     UP_LEFT,

@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 19:00:15 2013 louaze_j
-** Last update Mon Jul  8 11:08:31 2013 julien fortin
+** Last update Sat Jul 13 15:45:09 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -27,10 +27,10 @@ double		calc_angle(t_player *s, t_player *d)
   int		y_tmp;
 
   x_tmp = s->x;
-  if (s->y == 0)
-    y_tmp = 1;
-  else
-    y_tmp = 0;
+  /* if (s->y == 0) */
+  /*   y_tmp = 1; */
+  /* else */
+  y_tmp = 0;
   a = sqrt(pow(s->x - d->x, 2) + pow(s->y - d->y, 2));
   b = sqrt(pow(s->x - x_tmp, 2) + pow(s->y - y_tmp, 2));
   c = sqrt(pow(d->x - x_tmp, 2) + pow(d->y - y_tmp, 2));
@@ -76,6 +76,5 @@ const char	*_player_broadcast(t_player *player, const t_server *server, void *ar
     return (NULL);
   printf("Player %u receive a broadcast from %s\n", ((t_player *)arg)->id, string_directions[get_direction(player, server,
 													   (t_player *)arg)]);
-  printf("BroBroBroDDDCast !!!\n");
-  return (NULL);
+  return ("OK\n");
 }

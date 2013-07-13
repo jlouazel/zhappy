@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:36:33 2013 louaze_j
-** Last update Sat Jul 13 01:01:59 2013 louaze_j
+** Last update Sat Jul 13 03:27:42 2013 louaze_j
 */
 
 #define		_GNU_SOURCE
@@ -19,6 +19,7 @@
 const char *	_player_inventory(t_player *player, const t_server *server, void *arg)
 {
   char			*ret;
+  char			buff[11];
   e_ressource		type;
 
   ret = "";
@@ -32,7 +33,8 @@ const char *	_player_inventory(t_player *player, const t_server *server, void *a
     {
       if (type != 0)
 	ret = my_concat(ret, ", ", NULL);
-      ret = my_concat(ret, get_str(type), " ", player->inventory_tab[type], NULL);
+      sprintf(buff, "%d", player->inventory_tab[type]);
+      ret = my_concat(ret, get_str(type), " ", buff, NULL);
       type++;
     }
   ret = my_concat(ret, "}\n", NULL);
