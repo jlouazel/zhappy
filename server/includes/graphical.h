@@ -1,11 +1,11 @@
 /*
 ** graphical.h for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Fri Jul 12 17:34:41 2013 louaze_j
+** Last update Sat Jul 13 16:38:19 2013 julien fortin
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -16,8 +16,10 @@
 
 typedef struct	s_graphical
 {
+  unsigned int		id;
   const t_io		*io;
   const t_socket	*socket;
+  char			*packet;
 
   const char	*(*msz)(struct s_graphical *, const t_server *);
   const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *);
@@ -47,7 +49,7 @@ typedef struct	s_graphical
   const char	*(*sbp)(struct s_graphical *, const t_server *); // NOK
 } t_graphical;
 
-t_graphical	*new_graphical_client(const t_socket *);
+t_graphical	*new_graphical_client(const t_socket *, unsigned int);
 
 void		_msz(t_graphical *);
 void		_bct(t_graphical *);
@@ -77,4 +79,3 @@ void		_pbc(t_graphical *);
 /* void		_sbp(t_graphical *);  */
 
 #endif
-

@@ -6,7 +6,7 @@
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
 <<<<<<< HEAD
-** Last update Fri Jul 12 23:52:28 2013 julien fortin
+** Last update Sat Jul 13 14:34:53 2013 julien fortin
 =======
 ** Last update Thu Jul 11 16:00:59 2013 julien fortin
 >>>>>>> ad25151838df947b61426937bba16c95ecaf08e6
@@ -24,8 +24,10 @@
 const t_server	*server_init(t_server*, int, const char**);
 const t_server  *destroy_server(t_server*);
 
-const t_cmd	*init_server_cmd();
-const t_cmd	*destroy_server_cmd(const t_cmd*);
+const t_cmd_graph	*init_server_cmd_graph();
+
+const t_cmd_player	*init_server_cmd_player();
+const t_cmd_player	*destroy_server_cmd_player(const t_cmd_player*);
 
 const t_io      *init_server_io();
 const t_io      *destroy_server_io(const t_io*);
@@ -35,13 +37,19 @@ const t_options	*destroy_server_options(const t_options*);
 
 const t_game    *init_game(const t_options*);
 
-t_list		*server_extract_packet(t_player*);
+t_list		*server_extract_player_packet(t_player*);
+t_list		*server_extract_graph_packet(t_graphical*);
 
 int		server_loop(const t_server*);
 int		run(const t_server*);
 
+bool		server_graph_actions(const t_server*, fd_set*);
+
 bool		server_exec_actions(const t_server*);
+
 bool		server_disconnect_player(t_player*);
+bool		server_disconnect_graph(t_graphical*);
+
 bool		server_kick_player(const t_server*, t_player*);
 bool            server_players_actions(const t_server*, fd_set*);
 

@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Fri Jul 12 20:25:55 2013 julien fortin
+** Last update Sat Jul 13 16:30:20 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -29,7 +29,7 @@ static bool	team_add_player(t_team *team,
 			   const t_server *serv,
 			   t_player *player)
 {
-  char	msg[512];
+  char	*msg;
 
   if (serv && serv->game && serv->game->world && player && team
       && team->eggs > 0)
@@ -42,13 +42,13 @@ static bool	team_add_player(t_team *team,
       else
 	team->members->push_back(&team->members, player);
       team->nb_members++;
-      bzero(msg, 512);
-      snprintf(msg, 512, "%d\n%d %d\n",
-	       team->eggs,
-	       serv->game->world->width,
-	       serv->game->world->height);
+      msg = xcalloc(12, sizeof(*msg));
+      snprintf(msg, 12, "%d\n", team->eggs);
       player->notify(player, msg);
-      printf("New player in team: %s\n", team->name);
+      msg = xcalloc(400, sizeof(*msg));
+      snprintf(msg, 20, "%d %d\n", serv->game->world->width, serv->game->world->height);
+      player->notify(player, msg);
+      printf("*** [JOIN] player %u join team %s\n", player->id, team->name);
       return (true);
     }
   return (false);

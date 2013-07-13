@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul  7 16:05:19 2013 julien fortin
-** Last update Fri Jul 12 19:37:24 2013 julien fortin
+** Last update Sat Jul 13 15:41:23 2013 julien fortin
 */
 
 #include	<strings.h>
@@ -25,6 +25,7 @@ int	main(int ac, const char **av)
   socket = new_socket(atoi(av[1]), "localhost", SOCK_CLIENT);
   if (socket && socket->is_valid(deconst_cast(socket)))
     {
+      socket->write(socket, "voi\n");
       bzero(buff, 4242);
       while ((r = read(0, buff, 4242)) > 0)
 	{

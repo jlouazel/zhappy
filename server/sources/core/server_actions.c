@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Fri Jul 12 21:04:38 2013 julien fortin
+** Last update Sat Jul 13 14:36:58 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -18,7 +18,7 @@
 
 #include	<stdio.h>
 
-static int	_server_get_cmd_index(const t_cmd *this, const char *cmd)
+static int	_server_get_cmd_index(const t_cmd_player *this, const char *cmd)
 {
   int           cmd_len;
   int           real_len;
@@ -49,8 +49,8 @@ static void	_server_treat_cmd_for_player(const t_server *serv,
   int		i;
 
   cmd = epur_end_str(epur_begin_str(cmd, " \t\n\r"), " \t\n\r");
-  if (((index = _server_get_cmd_index(serv->cmd, cmd)) >= 0)
-    && serv->cmd->cmd[index])
+  if (((index = _server_get_cmd_index(serv->cmd_player, cmd)) >= 0)
+      && serv->cmd_player->cmd[index])
     {
       if (!(data = xcalloc(1, sizeof(*data))))
 	{
@@ -58,9 +58,9 @@ static void	_server_treat_cmd_for_player(const t_server *serv,
 	  return ;
 	}
       data->time = (GET_CURRENT_TIME(serv->options->time))
-	+ (serv->cmd->time[index] / serv->options->time);
+	+ (serv->cmd_player->time[index] / serv->options->time);
       data->data = cmd + ((i = find_first_of(cmd, ' ')) > 0 ? i : 0);
-      data->foo = serv->cmd->cmd[index];
+      data->foo = serv->cmd_player->cmd[index];
       if (player->io && player->io->in)
 	player->io->in->push_back(&((t_io*)player->io)->in, (void*)data);
       else
@@ -82,7 +82,7 @@ static void	_server_treat_actions_for_player(const t_server *serv,
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     {
-      list = server_extract_packet(player);
+      list = server_extract_player_packet(player);
       i = 0;
       while (list)
 	{

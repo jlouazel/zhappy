@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Fri Jul 12 23:34:32 2013 julien fortin
+## Last update Sat Jul 13 01:59:03 2013 julien fortin
 ##
 
 CC			= gcc
@@ -48,7 +48,8 @@ SRCS			= $(SRCS_DIR)main.c \
 			$(SRCS_DIR)server_log.c \
 
 SRCS_INIT       	= $(SRCS_DIR)$(INIT_DIR)init_server.c \
-			$(SRCS_DIR)$(INIT_DIR)init_server_cmd.c \
+			$(SRCS_DIR)$(INIT_DIR)init_server_cmd_player.c \
+			$(SRCS_DIR)$(INIT_DIR)init_server_cmd_graph.c \
 			$(SRCS_DIR)$(INIT_DIR)init_server_io.c \
 			$(SRCS_DIR)$(INIT_DIR)init_server_options.c \
 			$(SRCS_DIR)$(INIT_DIR)init_game.c \
@@ -66,6 +67,7 @@ CORE_SRCS		= $(SRCS_DIR)$(CORE_DIR)server_accept.c \
 			$(SRCS_DIR)$(CORE_DIR)server_extract.c \
 			$(SRCS_DIR)$(CORE_DIR)server_exec.c \
                         $(SRCS_DIR)$(CORE_DIR)server_actions.c \
+                        $(SRCS_DIR)$(CORE_DIR)server_graph_actions.c \
 			$(SRCS_DIR)$(CORE_DIR)server_notif_player.c \
 			$(SRCS_DIR)$(CORE_DIR)server_notif_graph.c \
 
