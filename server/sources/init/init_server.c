@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 03:59:56 2013 julien fortin
-** Last update Fri Jul 12 20:20:22 2013 louaze_j
+** Last update Sat Jul 13 01:41:25 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -46,7 +46,8 @@ const t_server	*server_init(t_server *serv, int ac, const char **av)
   srand(time(NULL));
   bzero(serv, sizeof(*serv));
   if (!(serv->io = init_server_io())
-      || !(serv->cmd = init_server_cmd())
+      || !(serv->cmd_player = init_server_cmd_player())
+      || !(serv->cmd_graph = init_server_cmd_graph())
       || !(serv->options = init_server_options(ac, av))
       || !(log_conf(serv))
       || !(serv->socket = new_socket(serv->options->port, NULL, SOCK_SERV))

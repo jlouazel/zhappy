@@ -5,14 +5,14 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jun 23 21:22:23 2013 julien fortin
-** Last update Sun Jun 30 23:58:24 2013 julien fortin
+** Last update Sat Jul 13 01:31:08 2013 julien fortin
 */
 
 #include	<stdlib.h>
 #include	"lib_std.h"
 #include	"server.h"
 
-const t_cmd	*destroy_server_cmd(const t_cmd *cmd)
+const t_cmd_player	*destroy_server_cmd_player(const t_cmd_player *cmd)
 {
   cmd = xfree((void **)&cmd, sizeof(*cmd));
   return (NULL);
