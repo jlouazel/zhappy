@@ -5,11 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-<<<<<<< HEAD
-** Last update Sat Jul 13 19:48:10 2013 louaze_j
-=======
-** Last update Sat Jul 13 18:24:04 2013 julien fortin
->>>>>>> 6b5c1317b57794fda28f3e4557c6ee6cda3549fa
+** Last update Sat Jul 13 19:51:56 2013 louaze_j
 */
 
 #include	<stdlib.h>

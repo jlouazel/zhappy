@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Jun 28 16:40:55 2013 louaze_j
 <<<<<<< HEAD
-** Last update Sat Jul 13 19:48:25 2013 louaze_j
+** Last update Sat Jul 13 20:09:12 2013 louaze_j
 =======
 <<<<<<< HEAD
 ** Last update Sat Jul 13 14:32:35 2013 julien fortin
@@ -77,5 +77,7 @@ const char	*_player_broadcast(t_player*, const t_server*, void*);
 const char	*_player_connect_nbr(t_player*, const t_server*, void*); // OK
 const char	*_player_deport(t_player*, const t_server*, void*); // OK
 const char	*_player_fork(t_player*, const t_server*, void*);
+
+int             _player_connect_nbr_int(const t_server*, void*);
 
 #endif

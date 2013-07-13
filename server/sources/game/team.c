@@ -5,11 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-<<<<<<< HEAD
-** Last update Sat Jul 13 19:22:40 2013 louaze_j
-=======
-** Last update Sat Jul 13 17:45:37 2013 julien fortin
->>>>>>> 6b5c1317b57794fda28f3e4557c6ee6cda3549fa
+** Last update Sat Jul 13 22:37:56 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -35,7 +31,9 @@ static bool	team_add_player(t_team *team,
 {
   char	*msg;
 
-  if (serv && serv->game && serv->game->world && player && team)
+  if (serv && serv->game && serv->game->world && player && team
+      && team->eggs && (team->eggs->size(team->eggs) > 0)
+      && _player_connect_nbr_int(serv, team) > 0)
     {
       team->eggs--;
       player->status = PLAYER_STATUS_ALLOW;
