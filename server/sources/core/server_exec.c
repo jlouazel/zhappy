@@ -5,11 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 13:32:46 2013 julien fortin
-** Last update Sat Jul 13 12:45:58 2013 louaze_j
+** Last update Sat Jul 13 22:23:00 2013 julien fortin
 */
 
 #include	<stdlib.h>
 #include	<time.h>
+#include	"lib_strings.h"
+#include	"lib_std.h"
 #include	"server.h"
 
 bool		_server_treat_player_data(const t_server *serv,
@@ -24,7 +26,7 @@ bool		_server_treat_player_data(const t_server *serv,
       && data->time
       < GET_CURRENT_TIME(serv->options->time))
     {
-      res = data->foo(player, serv, (void*)data->data + 1);
+      res = data->foo(player, serv, (void*)epur_begin_str(deconst_cast(data->data), " \t"));
       if (res)
 	player->notify(player, res);
       player->io->in->erase(&((t_io*)player->io)->in, data);
