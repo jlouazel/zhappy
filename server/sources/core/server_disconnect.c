@@ -5,18 +5,31 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  8 10:53:15 2013 julien fortin
-** Last update Sat Jul 13 16:55:37 2013 julien fortin
+** Last update Sat Jul 13 18:40:09 2013 julien fortin
 */
 
+#include	<stdio.h>
+#include	"lib_std.h"
 #include	"server.h"
 #include	"graphical.h"
 
-#include	<stdio.h>
-
-bool		server_disconnect_graph(t_graphical *graph)
+bool		server_disconnect_graph(const t_server *serv,
+					t_graphical *graph)
 {
   if (graph)
-    graph->socket = delete_socket(graph->socket);
+    {
+      printf("*** Graph client %d connection lost.\n", graph->id);
+      printf("*** Deleting graph client %d\n", graph->id);
+      graph->socket = delete_socket(graph->socket);
+    }
+  else
+    {
+      printf("*** Graph client undifined connection lost.\n");
+      printf("*** Deleting graph client undifined\n");
+    }
+  if (serv && serv->game && serv->game->graphicals)
+    serv->game->graphicals->erase((t_list**)&serv->game->graphicals, graph);
+  xfree((void**)&graph, sizeof(*graph));
   return (true);
 }
 
@@ -32,6 +45,10 @@ bool		server_disconnect_player(t_player *player)
 
 bool		server_kick_player(const t_server *serv, t_player *p)
 {
+  if (p)
+    printf("*** Deleting player %d\n", p->id);
+  else
+    printf("*** Deleting undifined player.\n");
   delete_player(p, serv);
   return (true);
 }

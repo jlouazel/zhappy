@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 12:30:30 2013 julien fortin
-** Last update Sat Jul 13 16:53:49 2013 julien fortin
+** Last update Sat Jul 13 18:43:54 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -77,7 +77,8 @@ t_list		*server_extract_player_packet(t_player *player)
   return (list);
 }
 
-t_list		*server_extract_graph_packet(t_graphical *graph)
+t_list		*server_extract_graph_packet(const t_server *serv,
+					     t_graphical *graph)
 {
   t_list	*list;
 
@@ -89,7 +90,7 @@ t_list		*server_extract_graph_packet(t_graphical *graph)
 	 NULL,
 	 NULL,
 	 &graph->packet)))
-    server_disconnect_graph(graph);
+    server_disconnect_graph(serv, graph);
   _server_log_input("graph", graph->id, list);
   return (list);
 }

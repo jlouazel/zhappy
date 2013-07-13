@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sat Jul 13 17:54:43 2013 julien fortin
+** Last update Sat Jul 13 18:24:04 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -24,7 +24,7 @@ static bool	_player_is_allowed(const t_player *player)
 
 static void	_player_notify(t_player *player, const char *data)
 {
-  if (!player)
+  if (!player || !data)
     return ;
   if (player->io && player->io->out)
     player->io->out->push_back((t_list**)&player->io->out, (void*)data);
