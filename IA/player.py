@@ -4,6 +4,8 @@ import time
 import cmath
 import math
 import Queue
+import random
+import os
 
 from action import *
 from elevation import *
@@ -17,7 +19,7 @@ class player:
             self._map.append(case())
             i = i + 1
 
-    def __init__(self, socket, team):
+    def __init__(self, socket, team, port, host):
         self._posX = 0
         self._posY = 0
         self._lenMapX = 0
@@ -42,6 +44,10 @@ class player:
         self._intervalle = 0
         self._lead = False
         self._pong = False
+        self._numClient = -1
+        self._group = False
+        self._port = port
+        self._host = host
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -53,10 +59,10 @@ class player:
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
         self.broadcast("Ping")
-        self._createMap()
         self.inventaire()
+        self._createMap()
         self.fork()
-        time.sleep(0.05)
+        time.sleep(0.5)
 
     def broadcast(self, msg):
     	self._socket.send("broadcast " + msg + "\n")
@@ -180,6 +186,7 @@ class player:
     def fork(self):
         self._socket.send("fork\n")
         self._queue.put("fork\n")
+    	time.sleep(0.01)
 
     def reduceProbabilities(self):
         i = 0
@@ -215,25 +222,27 @@ class player:
             self._queue.put(toSend)
             time.sleep(0.05)
 
-    def findFood(self, emergency):
-        j = 0
-        x = 0
-        y = 0
-        nb = 100000
-        while j < self._lenMapY:
-            i = 0
-            while i < self._lenMapX:
-                tmp = math.fabs(self._posX - i) + math.fabs(self._posY - j)
-                tmp2 = self._lenMapX * j + i
-                if tmp < nb and self._map[tmp2]._nourriture > 0:
-                    x = i
-                    y = j
-                    nb = tmp
-                i = i + 1
-            j = j + 1
-        if nb != 100000:
-            return [x, y]
-        return [-1, -1]
+    def findFood(self):
+        tab = []
+        i = self._lenMapX * self.myAbsolute(self._posY - 1, self._lenMapY) + self._posX
+        if (self._map[i]._nourriture > 0):
+            tab.append([self._posX, self.myAbsolute(self._posY - 1, self._lenMapY)])
+
+        i = self._lenMapX * self._posY + self.myAbsolute(self._posX, self._lenMapX)
+        if (self._map[i]._nourriture > 0):
+            tab.append([self.myAbsolute(self._posX, self._lenMapX), self._posY])
+
+        i = self._lenMapX * ((self._posY + 1) % self._lenMapY) + self._posX
+        if (self._map[i]._nourriture > 0):
+            tab.append([self._posX, (self._posY + 1) % self._lenMapY])
+
+        i = self._lenMapX * self._posY + ((self._posX + 1) % self._lenMapX)
+        if (self._map[i]._nourriture > 0):
+            tab.append([((self._posX + 1) % self._lenMapX), self._posY])
+        if tab.__len__() == 0:
+            return [-1, -1]
+        r = random.randint(0, tab.__len__() - 1)
+        return tab[r]
 
     def checkFindStone(self, i, stone):
         if (stone == "linemate" and self._map[i]._linemate > 0):
@@ -283,16 +292,16 @@ class player:
          myNeed = self._elevation.getNeed(self._lvl)
          i = self._lenMapX * self._posY + self._posX
          if (self._inventaire._nourriture < self._nourritureMinimal):
-            tab = self.findFood(3)
-            if tab[0] != -1 and tab[1] != -1:
-                self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
-            else:
-                self.goToUnknow()
-         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= 15):
+             tab = self.findFood()
+             if tab[0] != -1 and tab[1] != -1:
+                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
+             else:
+                 self.goToUnknow()
+         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= 25):
              self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
-         elif (self._inventaire._nourriture < 20 - self._intervalle):
+         elif (self._inventaire._nourriture < 30 - self._intervalle):
              self._intervalle = 0
-             tab = self.findFood(3)
+             tab = self.findFood()
              if tab[0] != -1 and tab[1] != -1:
                  self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
                  self.decideSecondAction()
@@ -412,54 +421,60 @@ class player:
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
         j = 0
-        while j < self._action._secondAction.__len__():
-            if (self._action._secondAction[j] == self._action._PossibleAction._linemate and self._map[i]._linemate > 0
+        if self._action._emergency != 3:
+            while j < self._action._secondAction.__len__():
+                if (self._action._secondAction[j] == self._action._PossibleAction._linemate and self._map[i]._linemate > 0
 ):
-                self.prendreObject("linemate")
-                self._map[i]._linemate -= 1
-            elif (self._action._secondAction[j] == self._action._PossibleAction._deraumere and self._map[i]._deraumere > 0):
-                self.prendreObject("deraumere")
-                self._map[i]._deraumere -= 1
-            elif (self._action._secondAction[j] == self._action._PossibleAction._sibur and self._map[i]._sibur > 0):
-                self.prendreObject("sibur")
-                self._map[i]._sibur -= 1
-            elif (self._action._secondAction[j] == self._action._PossibleAction._mendiane and self._map[i]._mendiane > 0):
-                self.prendreObject("mendiane")
-                self._map[i]._mendiane -= 1
-            elif (self._action._secondAction[j] == self._action._PossibleAction._phiras and self._map[i]._phiras > 0):
-                self.prendreObject("phiras")
-                self._map[i]._phiras -= 1
-            elif (self._action._secondAction[j] == self._action._PossibleAction._thystame and self._map[i]._thystame > 0):
-                self.prendreObject("thystame")
-                self._map[i]._thystame -= 1
-            elif (self._action._secondAction[j] == self._action._PossibleAction._nourriture and self._map[i]._nourriture > 0):
-                self.prendreObject("nourriture")
-                self._map[i]._nourriture -= 1
-            j = j + 1
+                    self.prendreObject("linemate")
+                    self._map[i]._linemate -= 1
+                elif (self._action._secondAction[j] == self._action._PossibleAction._deraumere and self._map[i]._deraumere > 0):
+                    self.prendreObject("deraumere")
+                    self._map[i]._deraumere -= 1
+                elif (self._action._secondAction[j] == self._action._PossibleAction._sibur and self._map[i]._sibur > 0):
+                    self.prendreObject("sibur")
+                    self._map[i]._sibur -= 1
+                elif (self._action._secondAction[j] == self._action._PossibleAction._mendiane and self._map[i]._mendiane > 0):
+                    self.prendreObject("mendiane")
+                    self._map[i]._mendiane -= 1
+                elif (self._action._secondAction[j] == self._action._PossibleAction._phiras and self._map[i]._phiras > 0):
+                    self.prendreObject("phiras")
+                    self._map[i]._phiras -= 1
+                elif (self._action._secondAction[j] == self._action._PossibleAction._thystame and self._map[i]._thystame > 0):
+                    self.prendreObject("thystame")
+                    self._map[i]._thystame -= 1
+                elif (self._action._secondAction[j] == self._action._PossibleAction._nourriture and self._map[i]._nourriture > 0):
+                    self.prendreObject("nourriture")
+                    self._map[i]._nourriture -= 1
+                j = j + 1
 
     def goToUnknow(self):
         print "Go to Unknow"
-        j = 0
-        x = 0
-        y = 0
-        nb = 100000
-        while j < self._lenMapY - 1:
-            i = 0
-            while i < self._lenMapX - 1:
-                tmp = math.fabs(self._posX - i) + math.fabs(self._posY - j)
-                tmp2 = self._lenMapX * j + i
-                if tmp < nb and self._map[tmp2]._probabilities <= 10 and self._map[tmp2]._players == 0:
-                    x = i
-                    y = j
-                    nb = tmp
-                i = i + 1
-            j = j + 1
-        if nb != 100000:
-            print "I Find Unknow"
-            self.deplacementAbsolut(x, y)
+#        j = 0
+#        x = 0
+#        y = 0
+#        tabPossible = []
+#        while j < self._lenMapY - 1:
+#            i = 0
+#            while i < self._lenMapX - 1:
+#                tmp2 = self._lenMapX * j + i
+#                if self._map[tmp2]._probabilities <= 10 and self._map[tmp2]._players == 0:
+#                    tabPossible.append([x, y])
+#                i = i + 1
+#            j = j + 1
+#        if tabPossible.__len__() >= 1:
+ #           r = random.randint(0,tabPossible.__len__() - 1)
+  #          self.deplacementAbsolut(tabPossible[r][0], tabPossible[r][1])
+#        else:
+        r = random.randint(0, 42)
+        r = (r * self._numClient * 1337) % 4
+        if r == 0:
+            self.goUp()
+        elif r == 1:
+            self.goRight()
+        elif r == 2:
+            self.goDown()
         else:
-            print "Juste an avance."
-            self.avance()
+            self.goLeft()
         self.voir()
 
     def decideSecondAction(self):
@@ -529,7 +544,7 @@ class player:
     def incantIfPossible(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
+        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
             self._action.initSecondAction()
             #print "J'incante"
             self._leveling = True
@@ -537,6 +552,7 @@ class player:
             print "Incantation"
             self._incomming = 0
             self._call = False
+            self._group = False
         elif (self._map[i]._players < myNeed._joueur):
             if self._call == False:
                 msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
@@ -555,16 +571,21 @@ class player:
                     self._action._define = 0
                 else:
                     print "J'ai fini d'attendre MyneedJoueur = ", myNeed._joueur, " self._incomming = ", self._incomming
-                    if self._incomming >= myNeed._joueur - 1:
+                    if self._incomming >= myNeed._joueur - 1 and self._group == False:
                         print "je leur dis de venir en X = ", self._posX, " Y = ", self._posY
                         self.broadcast("C," + str(self._posX) + "," + str(self._posY))
+                        self._action._define = 0
+                        self._group = True
+                    elif self._group == True:
+                        print "J'attend que les autre arrivent sans broadcast"
                         self._action._define = 0
                     else:
                         print "je leur dis fuck."
                         self.broadcast("A," + str(self._posX) + "," + str(self._posY))
                         self._coolDown = 10
                         self._call = False
-        elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players >= myNeed._joueur or myNeed._joueur == 1)):
+                        self._group = False
+        elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
             self.putObjectIncantation()
             self._action._define = 0
         elif (self._map[i]._linemate > myNeed._linemate or self._map[i]._deraumere > myNeed._deraumere or self._map[i]._sibur > myNeed._sibur or self._map[i]._mendiane > myNeed._mendiane or self._map[i]._phiras > myNeed._phiras or self._map[i]._thystame > myNeed._thystame):
@@ -580,30 +601,29 @@ class player:
                 print "je wait because leveling"
             time.sleep(0.1)
         else:
-            if self._inventaire._nourriture < self._nourritureMinimal and self._action._firstAction != self._action._PossibleAction._nourriture and self._action._emergency != 3:
+            if self._inventaire._nourriture < self._nourritureMinimal and (self._action._firstAction != self._action._PossibleAction._nourriture or self._action._emergency != 3):
                 print "Must find nourriture absolument."
                 self._incomming = 0
                 self._call = False
+                self._group = False
                 self._leveling = False
                 self._waiting = 0
-                tab = self.findFood(3)
+                tab = self.findFood()
                 if tab[0] != -1 and tab[1] != -1:
                     self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
                 else:
                     self.goToUnknow()
-            else:
-                if (self._action._define == 0 and self._posX == self._action._x and self._posY == self._action._y):
-                    if self._action._firstAction != self._action._PossibleAction._incantation and self._action._firstAction != self._action._PossibleAction._join:
-                        self.takeObject()
-                    self.takeObjectif()
-                elif (self._action._define == 0 and (self._posX != self._action._x or self._posY != self._action._y)):
+            if (self._action._define == 0 and self._posX == self._action._x and self._posY == self._action._y):
+                if self._action._firstAction != self._action._PossibleAction._incantation and self._action._firstAction != self._action._PossibleAction._join:
                     self.takeObject()
-                    self.moveToAction()
-                elif (self._action._define != 0):
-                    self.decideCaseToGo()
+                self.takeObjectif()
+            elif (self._action._define == 0 and (self._posX != self._action._x or self._posY != self._action._y)):
+                self.takeObject()
+                self.moveToAction()
+            elif (self._action._define != 0):
+                self.decideCaseToGo()
             self.inventaire()
             self.voir()
-            print "PosX = ", self._posX, " PosY = ", self._posY
 
 
     def treatOk(self, trame):
@@ -619,7 +639,6 @@ class player:
                     #print "C;est confirme je pose : ", tmp.split(' ')[1].split('\n')[0]
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
                 elif tmp == "avance\n" and trame == "ok":
-                    print "avance"
                     if (self._orientation == 0):
                         self._posY = self.myAbsolute(self._posY - 1, self._lenMapY)
                     elif (self._orientation == 1):
@@ -638,6 +657,7 @@ class player:
                 elif tmp == "incantation\n" and trame == "ko":
                     self._leveling = False
                     self._lead = False
+                    self._group = False
                     print "elevation Failed."
             else:
                 print "PROBLEME1"
@@ -674,30 +694,39 @@ class player:
                 nb_m = need[10:11]
                 nb_p = need[12:13]
                 nb_t = need[14:15]
-                x = msg.split(',')[1]
-                y = msg.split(',')[2]
-                print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
-                if self._lvl == int(lvl) and self._inventaire._nourriture >= 10 and self._toIncanteX == -1 and self._toIncanteY == -1:
-                    print "J'accepte j'attend confirmation"
-                    self._toIncanteX = int(x)
-                    self._toIncanteY = int(y)
-                    self.broadcast("D," + x + "," + y)
+                tmp = msg.split(',')
+                if tmp.__len__() >= 3:
+                    x = tmp[1]
+                    y = tmp[2]
+                    y = tmp[2].split('\n')[0]
+                    print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
+                    if self._lvl == int(lvl) and self._inventaire._nourriture >= 15 and self._toIncanteX == -1 and self._toIncanteY == -1:
+                        print "J'accepte j'attend confirmation"
+                        self._toIncanteX = int(x)
+                        self._toIncanteY = int(y)
+                        self.broadcast("D," + x + "," + y)
             elif msg[0:1] == "C":
-                x = msg.split(',')[1]
-                y = msg.split(',')[2]
-                if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
-                    self._action.initSecondAction()
-                    self._action.addSecondAction(self._action._PossibleAction._nourriture)
-                    self._action.setMove(int(x), int(y), self._action._PossibleAction._join, 2)
-                    print "Il me demande de venir en X = " + x + " Y = " + y
-                    print "Et ma pose est de X = ", self._posX, " Y = ", self._posY
+                tmp = msg.split(',')
+                if tmp.__len__() >= 3:
+                    x = tmp[1]
+                    y = tmp[2]
+                    y = tmp[2].split('\n')[0]
+                    if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
+                        self._action.initSecondAction()
+                        self._action.addSecondAction(self._action._PossibleAction._nourriture)
+                        self._action.setMove(int(x), int(y), self._action._PossibleAction._join, 3)
+                        print "Il me demande de venir en X = " + x + " Y = " + y
+                        print "Et ma pose est de X = ", self._posX, " Y = ", self._posY
             elif msg[0:1] == "A":
-                x = msg.split(',')[1]
-                y = msg.split(',')[2]
-                if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
-                    print "Il me dit fuck"
-                    self._toIncanteX = -1
-                    self._toIncanteY = -1
+                tmp = msg.split(',')
+                if tmp.__len__() >= 3:
+                    x = tmp[1]
+                    y = tmp[2]
+                    y = tmp[2].split('\n')[0]
+                    if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
+                        print "Il me dit fuck"
+                        self._toIncanteX = -1
+                        self._toIncanteY = -1
             elif msg[0:1] == "D" and self._call == True:
                 print "Une personne de plus peut me rejoindre."
                 self._incomming += 1
