@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Sat Jul 13 16:30:20 2013 julien fortin
+** Last update Sun Jul 14 00:42:16 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -19,10 +19,7 @@
 static void	team_remove_player(t_team *team, t_player *player)
 {
   if (team && player && team->members && (team->members->erase(&team->members, player)) == true)
-    {
-      team->nb_members--;
-      team->eggs++;
-    }
+    team->nb_members--;
 }
 
 static bool	team_add_player(t_team *team,
@@ -32,9 +29,9 @@ static bool	team_add_player(t_team *team,
   char	*msg;
 
   if (serv && serv->game && serv->game->world && player && team
-      && team->eggs > 0)
+      && (!team->members || (team->members && team->eggs))
+      && _player_connect_nbr_int(serv, team) > 0)
     {
-      team->eggs--;
       player->status = PLAYER_STATUS_ALLOW;
       player->team = team;
       if (team->members == NULL)
@@ -43,7 +40,7 @@ static bool	team_add_player(t_team *team,
 	team->members->push_back(&team->members, player);
       team->nb_members++;
       msg = xcalloc(12, sizeof(*msg));
-      snprintf(msg, 12, "%d\n", team->eggs);
+      /* snprintf(msg, 12, "%d\n", team->eggs); */
       player->notify(player, msg);
       msg = xcalloc(400, sizeof(*msg));
       snprintf(msg, 20, "%d %d\n", serv->game->world->width, serv->game->world->height);
@@ -51,6 +48,8 @@ static bool	team_add_player(t_team *team,
       printf("*** [JOIN] player %u join team %s\n", player->id, team->name);
       return (true);
     }
+  player->notify(player, "ko\n");
+  printf("*** [ERR] player %u cannot join team %s\n", player->id, team->name);
   return (false);
 }
 
@@ -59,7 +58,7 @@ static void	init_attr(t_team *new_team, char *name)
   static unsigned int	id = DEFAULT_TID;
 
   new_team->id = id;
-  new_team->eggs = 1;
+  new_team->eggs = NULL;
   new_team->name = name;
   new_team->members = NULL;
   new_team->nb_members = 0;

@@ -5,9 +5,10 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Sat Jul 13 16:38:07 2013 julien fortin
+** Last update Sat Jul 13 18:31:01 2013 julien fortin
 */
 
+#include	<stdio.h>
 #include	"lib_std.h"
 #include	"graphical.h"
 
@@ -41,6 +42,16 @@ static void	init_attr(t_graphical *new_graph)
   /* _sbp(new_graph); // NOK */
 }
 
+static void	_graph_notify(t_graphical *graph, const char *data)
+{
+  if (!graph || !data)
+    return ;
+  if (graph->io && graph->io->out)
+    graph->io->out->push_back((t_list**)&graph->io->out, (void*)data);
+  else if (graph->io)
+    ((t_io*)graph->io)->out = new_list((void*)data);
+}
+
 t_graphical	*new_graphical_client(const t_socket *socket, unsigned int id)
 {
   t_graphical	*new_graph;
@@ -51,6 +62,8 @@ t_graphical	*new_graphical_client(const t_socket *socket, unsigned int id)
   new_graph->io = init_server_io();
   new_graph->packet = NULL;
   new_graph->socket = socket;
+  new_graph->notify = &_graph_notify;
   init_attr(new_graph);
+  printf("*** New graphic client %d\n", id);
   return (new_graph);
 }

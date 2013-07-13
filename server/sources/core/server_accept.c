@@ -5,10 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Sat Jul 13 16:38:58 2013 julien fortin
+** Last update Sat Jul 13 18:30:00 2013 julien fortin
 */
 
 #include	<stdio.h>
+#include	<time.h>
 #include	<sys/select.h>
 #include	<stdio.h>
 #include	"lib_std.h"
@@ -91,7 +92,7 @@ bool            server_get_auth_from_player(const t_server *serv,
       _server_get_new_graphic(serv, player);
       return (true);
     }
-  else if ((list = serv && serv->game && serv->game->teams ? serv->game->teams : NULL))
+  else if ((list = serv && serv->game ? serv->game->teams : NULL))
     while (list)
       {
         if (list->data && !my_strcmp(((t_team*)list->data)->name, data))
@@ -101,6 +102,9 @@ bool            server_get_auth_from_player(const t_server *serv,
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     player->socket->write(player->socket, "ko\n");
-  delete_player(player, serv);
+  {
+    printf("%d:\tSending message \"ko\" to %d\n", (int)GET_CURRENT_TIME(1), player->id);
+    delete_player(player, serv);
+  }
   return (false);
 }

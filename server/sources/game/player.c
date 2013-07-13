@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sat Jul 13 16:04:45 2013 julien fortin
+** Last update Sun Jul 14 01:03:46 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -19,12 +19,12 @@
 
 static bool	_player_is_allowed(const t_player *player)
 {
-  return (player->status != PLAYER_STATUS_NOT_ALLOW && player->team);
+  return (player->status == PLAYER_STATUS_ALLOW && player->team);
 }
 
 static void	_player_notify(t_player *player, const char *data)
 {
-  if (!player)
+  if (!player || !data)
     return ;
   if (player->io && player->io->out)
     player->io->out->push_back((t_list**)&player->io->out, (void*)data);
@@ -36,7 +36,6 @@ static void	init_attr(t_player *new_player, const t_socket *socket)
 {
   static unsigned int	id = DEFAULT_PID;
 
-  new_player->egg = true;
   new_player->packet = NULL;
   new_player->x = 0;
   new_player->y = 0;
@@ -70,6 +69,7 @@ void		delete_player(t_player *player, const t_server *server)
 {
   t_list	*list;
 
+  printf(">> DELETE PLAYER\n");
   (void)server;
   if (player)
     {

@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Sat Jul 13 01:59:03 2013 julien fortin
+## Last update Sat Jul 13 18:58:54 2013 louaze_j
 ##
 
 CC			= gcc
@@ -75,6 +75,7 @@ CORE_SRCS		= $(SRCS_DIR)$(CORE_DIR)server_accept.c \
 GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)square.c \
 			$(SRCS_DIR)$(GAME_DIR)player.c \
+			$(SRCS_DIR)$(GAME_DIR)eggs.c \
 			$(SRCS_DIR)$(GAME_DIR)ressources.c \
 			$(SRCS_DIR)$(GAME_DIR)advance.c \
 			$(SRCS_DIR)$(GAME_DIR)right.c \
@@ -97,7 +98,6 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)pin.c \
 			$(SRCS_DIR)$(GAME_DIR)pex.c \
 			$(SRCS_DIR)$(GAME_DIR)pbc.c \
-
 
 #
 #library
