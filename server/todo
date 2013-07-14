@@ -1,6 +1,5 @@
-
-
-server_graph_actions.c -> traiter les cmd du graphic
+pour chaque player stocker l'heure du dernier message recu, et dans les deamons si ca fait trop longtemps que ya rien eu on dedage le mec.
+(client non joueur (sans team)).
 
 
 
