@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Sun Jul 14 20:50:50 2013 louaze_j
-** Last update Sun Jul 14 20:54:40 2013 louaze_j
+** Last update Sun Jul 14 22:31:43 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -61,7 +61,7 @@ static void	_init_server_cmd_player_fun(t_cmd_player *cmd)
   cmd->cmd[8] = &_player_connect_nbr;
   cmd->cmd[9] = &_player_deport;
   cmd->cmd[10] = &_player_fork;
-  cmd->cmd[11] = NULL;
+  cmd->cmd[11] = &_player_incantation;
   cmd->cmd[12] = NULL;
 }
 
