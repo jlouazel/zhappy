@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sun Jul 14 10:16:10 2013 louaze_j
+** Last update Sun Jul 14 16:14:07 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -13,6 +13,8 @@
 
 #include	"server.h"
 #include	"lib_socket.h"
+#include	"eressources.h"
+#include	"egg.h"
 
 typedef struct	s_graphical
 {
@@ -22,33 +24,6 @@ typedef struct	s_graphical
   char			*packet;
 
   void          (*notify)(struct s_graphical*, const char*);
-
-  const char	*(*msz)(struct s_graphical *, const t_server *);
-  const char	*(*bct)(const t_server *, int, int);
-  const char	*(*mct)(struct s_graphical*, const t_server *);
-  const char	*(*tna)(struct s_graphical *, const t_server *);
-  const char	*(*pnw)(struct s_graphical *, const t_server *, void *); //NOK
-  const char	*(*ppo)(const t_server *, int);
-  const char	*(*plv)(const t_server *, int);
-  const char	*(*pin)(struct s_graphical *, const t_server *, void *);
-  const char	*(*pex)(struct s_graphical *, const t_server *, void *);
-  const char	*(*pbc)(struct s_graphical *, const t_server *, void *, void *);
-  const char	*(*pic)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pie)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pfk)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pdr)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pgt)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pdi)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*enw)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*eht)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*ebo)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*edi)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*sgt)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*sst)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*seg)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*smg)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*suc)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*sbp)(struct s_graphical *, const t_server *); // NOK
 } t_graphical;
 
 t_graphical	*new_graphical_client(const t_socket *, unsigned int);
@@ -63,32 +38,33 @@ const char	*_graph_pin(t_graphical *, const t_server *, const char *);
 const char	*_graph_sgt(t_graphical *, const t_server *, const char *);
 const char	*_graph_sst(t_graphical *, const t_server *, const char *);
 
-void		_msz(t_graphical *);
-void		_bct(t_graphical *);
-void		_mct(t_graphical *);
-void		_tna(t_graphical *);
-void		_pnw(t_graphical *);
-void		_ppo(t_graphical *);
-void		_plv(t_graphical *);
-void		_pin(t_graphical *);
-void		_pex(t_graphical *);
-void		_pbc(t_graphical *);
-/* void		_pic(t_graphical *); */
-/* void		_pie(t_graphical *); */
-/* void		_pfk(t_graphical *); */
-/* void		_pdr(t_graphical *); */
-/* void		_pgt(t_graphical *); */
-/* void		_pdi(t_graphical *); */
-/* void		_enw(t_graphical *); */
-/* void		_eht(t_graphical *); */
-/* void		_ebo(t_graphical *); */
-/* void		_edi(t_graphical *); */
-/* void		_sgt(t_graphical *); */
-/* void		_sst(t_graphical *); */
-/* void		_seg(t_graphical *); */
-/* void		_smg(t_graphical *); */
-/* void		_suc(t_graphical *); */
-/* void		_sbp(t_graphical *); */
+
+const char	*msz(const t_server *); // OK
+const char	*bct(const t_server *, int, int); // OK
+const char	*mct(t_graphical *, const t_server *); // OK
+const char	*tna(t_graphical *, const t_server *); // OK
+const char	*ppo(const t_server *, int); // OK
+const char	*plv(t_player *); // OK
+const char	*pin(t_player *); // OK
+const char	*pex(t_player *); // OK
+const char	*pbc(t_player *); // OK
+const char	*pic(t_player *, const t_server *); // OK
+const char	*pie(t_player *); // OK
+const char	*pfk(t_player *); // OK
+const char	*pdr(t_player *, e_ressource); // OK
+const char	*pgt(t_player *); // OK
+const char	*pdi(t_player *); // OK
+const char	*enw(t_player *, t_egg *); // OK
+const char	*eht(t_egg *); // OK
+const char	*ebo(t_egg *); // OK
+const char	*edi(t_egg *); // OK
+const char	*sgt(const t_server *); // OK
+const char	*sst(const t_server *); // OK
+const char	*seg(const char *); // OK
+/* const char	*smg(t_graphical *, const t_server *); // NOK */
+/* const char	*suc(t_graphical *, const t_server *); // NOK */
+/* const char	*sbp(t_graphical *, const t_server *); // NOK */
+/* const char	*pnw(t_player *); */
 
 void		_welcome(t_graphical *, const t_server *);
 

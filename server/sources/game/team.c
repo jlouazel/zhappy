@@ -5,7 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Sun Jul 14 11:31:55 2013 julien fortin
+<<<<<<< HEAD
+** Last update Sun Jul 14 15:27:53 2013 louaze_j
+=======
+** Last update Sun Jul 14 15:53:20 2013 julien fortin
+>>>>>>> 857685584db8bf283516c66a99706e61d129305f
 */
 
 #include	<stdio.h>
@@ -98,7 +102,7 @@ t_team		*create_team(char *name)
 {
   t_team	*new_team;
 
-  if ((new_team = xcalloc(1, sizeof(*new_team))))
+  if (!(new_team = xcalloc(1, sizeof(*new_team))))
     return (NULL);
   init_attr(new_team, name);
   return (new_team);

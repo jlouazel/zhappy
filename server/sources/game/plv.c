@@ -5,29 +5,23 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul 12 15:00:39 2013 louaze_j
-<<<<<<< HEAD
-** Last update Sun Jul 14 08:08:59 2013 julien fortin
-=======
-** Last update Sun Jul 14 04:56:54 2013 louaze_j
->>>>>>> a24eb59b03a5d4f8eeb3e3f9c0f72c69d9a7340c
+** Last update Sun Jul 14 11:34:36 2013 louaze_j
 */
 
-#include	"graphical.h"
 #include	<stdio.h>
+#include	"player.h"
+#include	"lib_std.h"
 
-static
-const char	*plv(const t_server *server, int id)
+const char	*plv(t_player *player)
 {
-  (void)server;(void)id;
-  //printf("plv %d %d\n", pl->id, pl->level);
-  return (NULL);
-}
+  char		*ret;
 
-
-void		_plv(t_graphical *graphical)
-{
-  if (graphical)
+  if (!player)
+    return ("ko\n");
+  if ((ret = xcalloc(20, sizeof(*ret))))
     {
-      graphical->plv = &plv;
+      snprintf(ret, 20, "plv %d %d\n", player->id, player->level);
+      return (ret);
     }
+  return ("ko\n");
 }

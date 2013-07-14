@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jun 26 18:35:42 2013 louaze_j
-** Last update Sun Jul 14 14:03:08 2013 julien fortin
+** Last update Sun Jul 14 15:53:38 2013 julien fortin
 */
 
 #include	<stdbool.h>
@@ -13,6 +13,7 @@
 #include	"world.h"
 #include	"lib_std.h"
 #include	"server.h"
+#include	"team.h"
 #include	"lib_strings.h"
 
 static bool	check_if_exists(const t_options *options,
