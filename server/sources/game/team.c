@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Sun Jul 14 00:42:16 2013 louaze_j
+** Last update Sun Jul 14 02:21:58 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -19,7 +19,9 @@
 static void	team_remove_player(t_team *team, t_player *player)
 {
   if (team && player && team->members && (team->members->erase(&team->members, player)) == true)
-    team->nb_members--;
+    {
+      team->nb_members--;
+    }
 }
 
 static bool	team_add_player(t_team *team,
