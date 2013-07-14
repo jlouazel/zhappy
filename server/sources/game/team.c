@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Sat Jul 13 22:37:56 2013 louaze_j
+** Last update Sun Jul 14 02:21:58 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -21,7 +21,6 @@ static void	team_remove_player(t_team *team, t_player *player)
   if (team && player && team->members && (team->members->erase(&team->members, player)) == true)
     {
       team->nb_members--;
-      team->eggs++;
     }
 }
 
@@ -32,10 +31,9 @@ static bool	team_add_player(t_team *team,
   char	*msg;
 
   if (serv && serv->game && serv->game->world && player && team
-      && team->eggs && (team->eggs->size(team->eggs) > 0)
+      && (!team->members || (team->members && team->eggs))
       && _player_connect_nbr_int(serv, team) > 0)
     {
-      team->eggs--;
       player->status = PLAYER_STATUS_ALLOW;
       player->team = team;
       if (team->members == NULL)

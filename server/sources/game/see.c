@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Sat Jul 13 13:07:34 2013 louaze_j
+** Last update Sun Jul 14 00:51:27 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -24,7 +24,8 @@ const char	*see_player(const t_server *server, int x, int y)
   tmp = server->game->players;
   while (tmp)
     {
-      if (((t_player *)tmp->data)->x == x &&
+      if (((t_player *)tmp->data)->team &&
+	  ((t_player *)tmp->data)->x == x &&
 	  ((t_player *)tmp->data)->y == y)
 	ret = my_concat(ret, " player", NULL);
       tmp = tmp->next;
