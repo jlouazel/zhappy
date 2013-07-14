@@ -5,7 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
+<<<<<<< HEAD
 ** Last update Sun Jul 14 11:04:38 2013 louaze_j
+=======
+** Last update Sun Jul 14 15:23:01 2013 julien fortin
+>>>>>>> c21ee31039ebb5bc76b12af9cc306b730e33fb60
 */
 
 #include	<stdlib.h>
@@ -69,7 +73,6 @@ void		delete_player(t_player *player, const t_server *server)
 {
   t_list	*list;
 
-  printf(">> DELETE PLAYER\n");
   (void)server;
   if (player)
     {
