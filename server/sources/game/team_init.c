@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 22:31:34 2013 julien fortin
-** Last update Sun Jul 14 22:34:34 2013 julien fortin
+** Last update Sun Jul 14 23:20:16 2013 louaze_j
 */
 
 #include	"team.h"
@@ -32,8 +32,17 @@ static t_egg    *getFirstEgg(t_team *team)
 
 void	_init_player_in_team(t_team *team, t_player *player)
 {
+  t_egg	*egg;
+
   if (team->eggs)
-    team->eggs->erase(&team->eggs, getFirstEgg(team));
+    {
+      if ((egg = getFirstEgg(team)))
+	{
+	  player->x = egg->x;
+	  player->y = egg->y;
+	}
+      team->eggs->erase(&team->eggs, getFirstEgg(team));
+    }
   player->status = PLAYER_STATUS_ALLOW;
   player->team = team;
   team->nb_members++;
