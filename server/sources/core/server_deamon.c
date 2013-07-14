@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 21:27:29 2013 julien fortin
-** Last update Sun Jul 14 22:52:14 2013 julien fortin
+** Last update Sun Jul 14 23:01:42 2013 julien fortin
 */
 
 #include	<math.h>
@@ -45,7 +45,14 @@ static void		_perimage_de_food(const t_server *serv, int n)
 
 static void		_launch_deamon(const t_server *serv, int n)
 {
-  _perimage_de_food(serv, n);
+  static int	food = 0;
+
+  food += n;
+  if (food >= 126)
+    {
+      _perimage_de_food(serv, 1);
+      food -= 126;
+    }
 }
 
 void		server_deamon(const t_server *serv)
