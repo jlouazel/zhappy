@@ -1,3 +1,11 @@
+Ajouter des joueurs a la place des eggs
+// modifier add_player en consequence. Qui reprend les coordonnees de l'oeuf etc..
+
+
+
+
+
+
 pour chaque player stocker l'heure du dernier message recu, et dans les deamons si ca fait trop longtemps que ya rien eu on dedage le mec.
 (client non joueur (sans team)).
 
