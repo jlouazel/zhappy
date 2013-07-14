@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul 12 15:00:39 2013 louaze_j
-** Last update Sun Jul 14 04:38:57 2013 julien fortin
+** Last update Sun Jul 14 04:56:54 2013 louaze_j
 */
 
 #include	"graphical.h"
@@ -17,6 +17,7 @@ const char	*plv(const t_server *server, int id)
   t_list	*list;
   t_player	*pl;
 
+  (void)id;
   pl = NULL;
   list = server && server->game ? server->game->players : NULL;
   while (list)

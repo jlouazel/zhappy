@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Sun Jul 14 02:21:58 2013 louaze_j
+** Last update Sun Jul 14 02:52:50 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -15,6 +15,7 @@
 #include	"team.h"
 #include	"list.h"
 #include	"player.h"
+#include	"egg.h"
 
 static void	team_remove_player(t_team *team, t_player *player)
 {
@@ -22,6 +23,24 @@ static void	team_remove_player(t_team *team, t_player *player)
     {
       team->nb_members--;
     }
+}
+
+static t_egg	*getFirstEgg(t_team *team)
+{
+  t_list	*tmp;
+  t_egg		*egg;
+
+  tmp = team->eggs;
+  if (!tmp)
+    return (NULL);
+  egg = tmp->data;
+  while (tmp)
+    {
+      if (egg->id > ((t_egg *)tmp->data)->id)
+	egg = tmp->data;
+      tmp = tmp->next;
+    }
+  return (egg);
 }
 
 static bool	team_add_player(t_team *team,
@@ -34,6 +53,8 @@ static bool	team_add_player(t_team *team,
       && (!team->members || (team->members && team->eggs))
       && _player_connect_nbr_int(serv, team) > 0)
     {
+      if (team->eggs)
+	team->eggs->erase(&team->eggs, getFirstEgg(team));
       player->status = PLAYER_STATUS_ALLOW;
       player->team = team;
       if (team->members == NULL)
