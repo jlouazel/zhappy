@@ -1,24 +1,39 @@
 /*
 ** tna.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Tue Jul  9 18:20:10 2013 louaze_j
-** Last update Tue Jul  9 18:23:06 2013 louaze_j
+** Last update Sun Jul 14 02:42:45 2013 julien fortin
 */
 
 #include	"server.h"
 #include	"graphical.h"
-
+#include	"lib_strings.h"
 #include	<stdio.h>
 
 static
-const char	*tna(t_graphical *graphical, const t_server *server, void *arg)
+const char	*tna(t_graphical *graphical, const t_server *server)
 {
-  (void)graphical;
-  (void)server;
-  (void)arg;
+  t_list	*list;
+  char		*msg;
+
+  if (!graphical || !server)
+    return ("ko\n");
+  list = server->game ? server->game->teams : NULL;
+  while (list)
+    {
+      if (list->data)
+	{
+	  msg = my_concat("tna ",
+			  ((t_team*)list->data)->name,
+			  "\n",
+			  NULL);
+	  graphical->notify(graphical, msg);
+	}
+      list = list->next;
+    }
   return (NULL);
 }
 

@@ -1,11 +1,11 @@
 /*
 ** mct.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Mon Jul  8 16:30:37 2013 louaze_j
-** Last update Mon Jul  8 17:11:33 2013 louaze_j
+** Last update Sun Jul 14 01:39:35 2013 julien fortin
 */
 
 #include	"server.h"
@@ -23,7 +23,7 @@ const char	*mct(t_graphical *graphical, const t_server *server)
       x = 0;
       while (x != server->game->world->width)
 	{
-	  graphical->bct(graphical, server, &x, &y);
+	  graphical->notify(graphical, graphical->bct(server, x, y));
 	  x++;
 	}
       y++;
