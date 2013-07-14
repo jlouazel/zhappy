@@ -61,6 +61,7 @@ class player:
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
         self._nourritureMinimal = math.floor(math.log(self._lenMapX * self._lenMapY))
+        print self._nourritureMinimal
         self._foodToHelp = math.floor(3 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToHelp 
         self._foodToRequest = math.floor(4 * math.log(self._lenMapX * self._lenMapY))
@@ -554,7 +555,7 @@ class player:
     def incantIfPossible(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
+        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1) and self._inventaire._nourriture > self._nourritureMinimal):
             self._action.initSecondAction()
             #print "J'incante"
             self._leveling = True
