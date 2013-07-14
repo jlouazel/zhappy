@@ -5,30 +5,25 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul 12 17:23:21 2013 louaze_j
-** Last update Fri Jul 12 17:34:19 2013 louaze_j
+** Last update Sun Jul 14 13:47:56 2013 louaze_j
 */
 
-#include	"graphical.h"
+#include	<stdio.h>
+#include	"player.h"
+#include	"lib_std.h"
+#include	"lib_strings.h"
 
-#include <stdio.h>
-
-static
-const char	*pbc(t_graphical *graphical, const t_server *server,
-		     void *arg, void *msg)
+const char	*pbc(t_player *player, const char *msg)
 {
-  t_player	*pl;
+  char		*ret;
 
-  (void)graphical;
-  (void)server;
-  pl = (t_player *)arg;
-  printf("pbc %d %s\n", pl->id, (char *)msg);
-  return (NULL);
-}
-
-void		_pbc(t_graphical *graphical)
-{
-  if (graphical)
+  if (!player || !msg)
+    return ("ko\n");
+  if ((ret = xcalloc(5 + my_strlen(msg), sizeof(*ret))))
     {
-      graphical->pbc = &pbc;
+      snprintf(ret, 5 + my_strlen(msg), "pbc %d %s\n",
+	       player->id, msg);
+      return (ret);
     }
+  return ("ko\n");
 }

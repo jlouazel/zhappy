@@ -5,25 +5,24 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul 12 20:31:25 2013 louaze_j
-** Last update Fri Jul 12 20:36:16 2013 louaze_j
+** Last update Sun Jul 14 14:39:41 2013 louaze_j
 */
 
-#include	"graphical.h"
+#include	<stdbool.h>
+#include	<stdio.h>
+#include	"player.h"
+#include	"lib_std.h"
 
-#include <stdio.h>
-
-static
-const char	*pie(t_graphical *graphical, const t_server *server, void *arg,
-		     void *res)
+const char	*pie(t_player *player, bool success)
 {
-  printf("pie % Y R\n");
-  return (NULL):
-}
+  char		*ret;
 
-void		_pie(t_graphical *graphical)
-{
-  if (graphical)
+  if (!player)
+    return ("ko\n");
+  if ((ret = xcalloc(42, sizeof(*ret))))
     {
-      graphical->pie = &pie;
+      snprintf(ret, 42, "pie %d %d %d\n", player->x, player->y, success);
+      return (ret);
     }
+  return ("ko\n");
 }

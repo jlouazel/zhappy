@@ -5,46 +5,50 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Sun Jul 14 10:15:34 2013 louaze_j
+** Last update Sun Jul 14 11:24:44 2013 louaze_j
 */
 
 #include	<stdio.h>
 #include	"lib_std.h"
 #include	"graphical.h"
 
-static void init_attr(t_graphical *new_graph)
-{
-  _msz(new_graph); // NOK
-  _bct(new_graph); // NOK
-  _mct(new_graph); // NOK
-  _tna(new_graph); // NOK
-  _pnw(new_graph); // NOK
-  _ppo(new_graph); // NOK
-  _plv(new_graph); // NOK
-  _pin(new_graph); // NOK
-  _pex(new_graph); // NOK
-  _pbc(new_graph); // NOK
-  /* _pic(new_graph); // NOK */
-  /* _pie(new_graph); // NOK */
-  /* _pfk(new_graph); // NOK */
-  /* _pdr(new_graph); // NOK */
-  /* _pgt(new_graph); // NOK */
-  /* _pdi(new_graph); // NOK */
-  /* _enw(new_graph); // NOK */
-  /* _eht(new_graph); // NOK */
-  /* _ebo(new_graph); // NOK */
-  /* _edi(new_graph); // NOK */
-  /* _sgt(new_graph); // NOK */
-  /* _sst(new_graph); // NOK */
-  /* _seg(new_graph); // NOK */
-  /* _smg(new_graph); // NOK */
-  /* _suc(new_graph); // NOK */
-  /* _sbp(new_graph); // NOK */
-}
+/* static void init_attr(t_graphical *new_graph) */
+/* { */
+/*   _msz(new_graph); */
+/*   _bct(new_graph); */
+/*   _mct(new_graph); */
+/*   _tna(new_graph); */
+/*   /\* _pnw(new_graph); // NOK *\/ */
+/*   _ppo(new_graph); // NOK */
+/*   _plv(new_graph); // NOK */
+/*   _pin(new_graph); // NOK */
+/*   _pex(new_graph); // NOK */
+/*   _pbc(new_graph); // NOK */
+/*   _sgt(new_graph); */
+/*   /\* _pic(new_graph); // NOK *\/ */
+/*   /\* _pie(new_graph); // NOK *\/ */
+/*   /\* _pfk(new_graph); // NOK *\/ */
+/*   /\* _pdr(new_graph); // NOK *\/ */
+/*   /\* _pgt(new_graph); // NOK *\/ */
+/*   /\* _pdi(new_graph); // NOK *\/ */
+/*   /\* _enw(new_graph); // NOK *\/ */
+/*   /\* _eht(new_graph); // NOK *\/ */
+/*   /\* _ebo(new_graph); // NOK *\/ */
+/*   /\* _edi(new_graph); // NOK *\/ */
+/*   /\* _sgt(new_graph); // NOK *\/ */
+/*   /\* _sst(new_graph); // NOK *\/ */
+/*   /\* _seg(new_graph); // NOK *\/ */
+/*   /\* _smg(new_graph); // NOK *\/ */
+/*   /\* _suc(new_graph); // NOK *\/ */
+/*   /\* _sbp(new_graph); // NOK *\/ */
+/* } */
 
 void	_welcome(t_graphical *graph, const t_server *server)
 {
-  graph->notify(graph, _graph_msz(graph, server, NULL));
+  graph->notify(graph, msz(server));
+  graph->notify(graph, sgt(graph, server));
+  mct(graph, server);
+  tna(graph, server);
 }
 
 static void	_graph_notify(t_graphical *graph, const char *data)
@@ -68,7 +72,6 @@ t_graphical	*new_graphical_client(const t_socket *socket, unsigned int id)
   new_graph->packet = NULL;
   new_graph->socket = socket;
   new_graph->notify = &_graph_notify;
-  init_attr(new_graph);
   printf("*** New graphic client %d\n", id);
   return (new_graph);
 }

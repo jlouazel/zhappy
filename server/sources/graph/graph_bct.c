@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 10:11:07 2013 louaze_j
+** Last update Sun Jul 14 11:27:15 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -37,6 +37,6 @@ const char	*_graph_bct(t_graphical *graph,
       tok = strtok(NULL, " \t");
     }
   if (x >= 0 && y >= 0)
-    return ((graph->bct(serv, x, y)));
+    return ((bct(serv, x, y)));
   return ("ko\n");
 }

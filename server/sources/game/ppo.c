@@ -5,16 +5,16 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul 12 14:52:32 2013 louaze_j
-** Last update Sun Jul 14 07:10:27 2013 louaze_j
+** Last update Sun Jul 14 11:25:45 2013 louaze_j
 */
 
-#include	"graphical.h"
+#include	<stdio.h>
+#include	"lib_std.h"
+#include	"server.h"
 
-#include <stdio.h>
-
-static
 const char	*ppo(const t_server *server, int id)
 {
+  char		*ret;
   t_list	*list;
   t_player	*pl;
 
@@ -33,17 +33,11 @@ const char	*ppo(const t_server *server, int id)
     }
   if (pl)
     {
-      printf("ppo %d %d %d %d\n", pl->id, pl->x, pl->y, pl->direction);
-      return (NULL);
+      if ((ret = xcalloc(50, sizeof(*ret))))
+	{
+	  snprintf(ret, 50, "ppo %d %d %d %d\n", pl->id, pl->x, pl->y, pl->direction);
+	  return (ret);
+	}
     }
-  else
-    return ("ko\n");
-}
-
-void		_ppo(t_graphical *graphical)
-{
-  if (graphical)
-    {
-      graphical->ppo = &ppo;
-    }
+  return ("ko\n");
 }

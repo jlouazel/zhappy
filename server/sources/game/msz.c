@@ -5,24 +5,25 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:09:51 2013 louaze_j
-** Last update Sun Jul 14 06:41:30 2013 louaze_j
+** Last update Sun Jul 14 11:25:02 2013 louaze_j
 */
 
 #include	"server.h"
-#include	"graphical.h"
+#include	"lib_std.h"
 
 #include	<stdio.h>
 
-static
-const char	*_msz_graph(t_graphical *graphical, const t_server *server)
+const char	*msz(const t_server *server)
 {
-  (void)graphical;
-  printf("msz %d %d\n", server->game->world->width, server->game->world->height);
-  return (NULL);
-}
+  char		*ret;
 
-void		_msz(t_graphical *graph)
-{
-  if (graph)
-    graph->msz = &_msz_graph;
+  if (!server || !server->game || !server->game->world)
+    return ("ko\n");
+  if ((ret = xcalloc(42, sizeof(*ret))))
+    {
+      snprintf(ret, 42, "msz %d %d\n",
+	       server->game->world->width, server->game->world->height);
+      return (ret);
+    }
+  return ("ko\n");
 }

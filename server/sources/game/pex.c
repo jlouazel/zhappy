@@ -5,29 +5,23 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jul 12 17:23:21 2013 louaze_j
-** Last update Fri Jul 12 17:33:07 2013 louaze_j
+** Last update Sun Jul 14 13:38:14 2013 louaze_j
 */
 
-#include	"graphical.h"
+#include	<stdio.h>
+#include	"player.h"
+#include	"lib_std.h"
 
-#include <stdio.h>
-
-static
-const char	*pex(t_graphical *graphical, const t_server *server, void *arg)
+const char	*pex(t_player *player)
 {
-  t_player	*pl;
+  char		*ret;
 
-  (void)graphical;
-  (void)server;
-  pl = (t_player *)arg;
-  printf("pex %d\n", pl->id);
-  return (NULL);
-}
-
-void		_pex(t_graphical *graphical)
-{
-  if (graphical)
+  if (!player)
+    return ("ko\n");
+  if ((ret = xcalloc(15, sizeof(*ret))))
     {
-      graphical->pex = &pex;
+      snprintf(ret, 15, "pex %d\n", player->id);
+      return (ret);
     }
+  return ("ko\n");
 }
