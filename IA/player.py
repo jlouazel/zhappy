@@ -47,6 +47,7 @@ class player:
         self._lead = False
         self._pong = False
         self._numClient = -1
+        self._answers = []
         self._group = False
         self._port = port
         self._host = host
@@ -565,7 +566,6 @@ class player:
         elif (self._map[i]._players < myNeed._joueur):
             if self._call == False:
                 msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
-                #print "je diffuse" + msg
                 print "je diffuse message d'aide"
                 self._incomming = 0
                 self.broadcast(msg)
@@ -575,7 +575,6 @@ class player:
                 self._action._define = 0
             else:
                 if self._waiting > 0:
-                    # Pourquoi pas rammasser tout ce qui est sur la case.
                     print "j'attends que les autre me reponde, pour l'intant : ", self._incomming, " personne me rejoigne."
                     self._waiting -= 1
                     self._action._define = 0
@@ -583,7 +582,12 @@ class player:
                     print "J'ai fini d'attendre MyneedJoueur = ", myNeed._joueur - 1, " self._incomming = ", self._incomming
                     if self._incomming == myNeed._joueur - 1 and self._group == False:
                         print "je leur dis de venir en X = ", self._posX, " Y = ", self._posY
-                        self.broadcast("C," + str(self._posX) + "," + str(self._posY))
+                        if (self._incomming > myNeed._joueur - 1)
+                        	self.broadcast("A/" + str(self._answers.pop()) + "/" + str(self._posX) + "," + str(self._posY))
+                        	self._incomming -= 1
+                        elif (self._incomming > 0)
+                        	self.broadcast("C/" + str(self._answers.pop()) + "/" + str(self._posX) + "," + str(self._posY))
+                        	self._incomming -= 1
                         self._action._define = 0
                         self._group = True
                     elif self._group == True:
@@ -591,9 +595,16 @@ class player:
                         self._action._define = 0
                     else:
                         print "je leur dis fuck."
+<<<<<<< HEAD
                         self.broadcast("A," + str(self._posX) + "," + str(self._posY))
                         self._coolDown = 10
                         self._incomming = 0
+=======
+                        if (self._incomming > 0)
+                        	self.broadcast("A/" + str(self._answers.pop()) + "/" + str(self._posX) + "," + str(self._posY))
+                        	self._incomming -= 1
+                        self._coolDown = 5
+>>>>>>> 3af3a9d77b1356ab1c22ba5a38eb3a9d9cb110ab
                         self._call = False
                         self._group = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
@@ -717,14 +728,16 @@ class player:
                     y = tmp[2].split('\n')[0]
                     print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
                     if self._lvl == int(lvl) and self._inventaire._nourriture >= self._foodToHelp and self._toIncanteX == -1 and self._toIncanteY == -1:
-                    # MODIFICATION DU CHECK DE LA QTE DE BOUFFE
                         print "J'accepte j'attend confirmation"
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
-                        self.broadcast("D," + x + "," + y)
+                        self.broadcast("D/" + str(self._numClient) + "/" + x + "," + y)
             elif msg[0:1] == "C":
+            	trame = msg.split['/']
+            	botId = int(trame[1])
+            	tmp = trame[2]
                 tmp = msg.split(',')
-                if tmp.__len__() >= 3:
+                if tmp.__len__() >= 3 and botId == self._numClient:
                     x = tmp[1]
                     y = tmp[2]
                     y = tmp[2].split('\n')[0]
@@ -734,8 +747,11 @@ class player:
                         self._action.setMove(int(x), int(y), self._action._PossibleAction._join, 3)
                         print "Il me demande de venir en X = " + x + " Y = " + y + " et ma pose est de X = ", self._posX, " Y = ", self._posY
             elif msg[0:1] == "A":
+            	trame = msg.split['/']
+            	botId = int(trame[1])
+            	tmp = trame[2]
                 tmp = msg.split(',')
-                if tmp.__len__() >= 3:
+                if tmp.__len__() >= 3 and botId == self._numClient:
                     x = tmp[1]
                     y = tmp[2]
                     y = tmp[2].split('\n')[0]
@@ -744,8 +760,12 @@ class player:
                         self._toIncanteX = -1
                         self._toIncanteY = -1
             elif msg[0:1] == "D" and self._call == True:
-                print "Une personne de plus peut me rejoindre."
-                self._incomming += 1
+                trame = msg.split['/']
+                coord = trame[2].split(',')
+                if (int(coord[0]) == self._posX and int(coord[1]) == self._posY):
+                	print "Une personne de plus peut me rejoindre."
+	                self._answers.append(int(trame[1]))
+	                self._incomming += 1
             elif msg[0:4] == "Ping" and self._pong == False:
             	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8))
                 self._pong = True

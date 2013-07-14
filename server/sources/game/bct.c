@@ -5,14 +5,13 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 16:23:31 2013 louaze_j
-** Last update Sun Jul 14 01:35:58 2013 julien fortin
+** Last update Sun Jul 14 02:54:07 2013 julien fortin
 */
 
 #include	"square.h"
 #include	"server.h"
 #include	"graphical.h"
 #include	"eressources.h"
-
 #include	<stdio.h>
 
 static
