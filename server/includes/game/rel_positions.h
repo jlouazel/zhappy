@@ -5,13 +5,13 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Mon Jul  1 14:39:03 2013 louaze_j
-** Last update Sat Jul 13 12:58:57 2013 louaze_j
+** Last update Sun Jul 14 05:25:18 2013 louaze_j
 */
 
 #ifndef	__REL_POSITIONS_H__
 #define	__REL_POSITIONS_H__
 
-const int  vision[4][81][2] =
+static const int  vision[4][81][2] =
   {
     {/* UP */
       {0, 0},

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Sat Jul 13 18:30:00 2013 julien fortin
+** Last update Sun Jul 14 06:34:53 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -78,6 +78,7 @@ void		_server_get_new_graphic(const t_server *serv, t_player *player)
       //notif_queue_for_graph(graph, "bct...\);
       //notif_queue_for_graph(graph, "bct...\);
       //notif_queue_for_graph(graph, "bct...\);
+      _welcome(graph, serv);
     }
 }
 

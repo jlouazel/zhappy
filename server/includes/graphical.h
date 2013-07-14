@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sun Jul 14 04:30:48 2013 julien fortin
+** Last update Sun Jul 14 06:40:46 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -23,32 +23,32 @@ typedef struct	s_graphical
 
   void          (*notify)(struct s_graphical*, const char*);
 
-  const char	*(*msz)(struct s_graphical *, const t_server *);
-  const char	*(*bct)(const t_server *, int, int);
-  const char	*(*mct)(struct s_graphical*, const t_server *);
-  const char	*(*tna)(struct s_graphical *, const t_server *);
-  const char	*(*pnw)(struct s_graphical *, const t_server *, void *); //NOK
-  const char	*(*ppo)(const t_server *, int);
-  const char	*(*plv)(const t_server *, int);
-  const char	*(*pin)(struct s_graphical *, const t_server *, void *);
-  const char	*(*pex)(struct s_graphical *, const t_server *, void *);
-  const char	*(*pbc)(struct s_graphical *, const t_server *, void *, void *);
-  const char	*(*pic)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pie)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pfk)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pdr)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pgt)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*pdi)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*enw)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*eht)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*ebo)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*edi)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*sgt)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*sst)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*seg)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*smg)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*suc)(struct s_graphical *, const t_server *); // NOK
-  const char	*(*sbp)(struct s_graphical *, const t_server *); // NOK
+  /* const char	*(*msz)(struct s_graphical *, const t_server *); */
+  /* const char	*(*bct)(const t_server *, int, int); */
+  /* const char	*(*mct)(struct s_graphical*, const t_server *); */
+  /* const char	*(*tna)(struct s_graphical *, const t_server *); */
+  /* const char	*(*pnw)(struct s_graphical *, const t_server *, void *); //NOK */
+  /* const char	*(*ppo)(const t_server *, int); */
+  /* const char	*(*plv)(const t_server *, int); */
+  /* const char	*(*pin)(struct s_graphical *, const t_server *, void *); */
+  /* const char	*(*pex)(struct s_graphical *, const t_server *, void *); */
+  /* const char	*(*pbc)(struct s_graphical *, const t_server *, void *, void *); */
+  /* const char	*(*pic)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*pie)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*pfk)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*pdr)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*pgt)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*pdi)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*enw)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*eht)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*ebo)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*edi)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*sgt)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*sst)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*seg)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*smg)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*suc)(struct s_graphical *, const t_server *); // NOK */
+  /* const char	*(*sbp)(struct s_graphical *, const t_server *); // NOK */
 } t_graphical;
 
 t_graphical	*new_graphical_client(const t_socket *, unsigned int);
@@ -63,16 +63,16 @@ const char	*_graph_pin(t_graphical *, const t_server *, const char *);
 const char	*_graph_sgt(t_graphical *, const t_server *, const char *);
 const char	*_graph_sst(t_graphical *, const t_server *, const char *);
 
-void		_msz(t_graphical *);
-void		_bct(t_graphical *);
-void		_mct(t_graphical *);
-void		_tna(t_graphical *);
-void		_pnw(t_graphical *);
-void		_ppo(t_graphical *);
-void		_plv(t_graphical *);
-void		_pin(t_graphical *);
-void		_pex(t_graphical *);
-void		_pbc(t_graphical *);
+/* void		_msz(t_graphical *); */
+/* void		_bct(t_graphical *); */
+/* void		_mct(t_graphical *); */
+/* void		_tna(t_graphical *); */
+/* void		_pnw(t_graphical *); */
+/* void		_ppo(t_graphical *); */
+/* void		_plv(t_graphical *); */
+/* void		_pin(t_graphical *); */
+/* void		_pex(t_graphical *); */
+/* void		_pbc(t_graphical *); */
 /* void		_pic(t_graphical *);  */
 /* void		_pie(t_graphical *);  */
 /* void		_pfk(t_graphical *);  */
@@ -89,5 +89,7 @@ void		_pbc(t_graphical *);
 /* void		_smg(t_graphical *);  */
 /* void		_suc(t_graphical *);  */
 /* void		_sbp(t_graphical *);  */
+
+void		_welcome(t_graphical *, const t_server *);
 
 #endif

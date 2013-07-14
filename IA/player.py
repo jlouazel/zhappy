@@ -52,6 +52,8 @@ class player:
         self._port = port
         self._host = host
         self._id = 0
+        self._count = 0
+        self._arrived = False
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -434,6 +436,10 @@ class player:
         elif (self._action._firstAction == self._action._PossibleAction._incantation):
             self.incantIfPossible()
         elif (self._action._firstAction == self._action._PossibleAction._join):
+            if self._arrived == False:
+                self._arrived = True
+                self.broadcast("H," + str(self._posX) + "," + str(self._posY))
+                print "J'envois le message comme quoi je suis arrive."
             self._action._define = 0
 
     def takeObject(self):
@@ -545,7 +551,8 @@ class player:
     def incantIfPossible(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
+        print "self._count = ", self._count, " need : ", myNeed._joueur - 1
+        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._count == myNeed._joueur - 1 or myNeed._joueur == 1)):
             self._action.initSecondAction()
             self._leveling = True
             self.incantation()
@@ -559,7 +566,7 @@ class player:
                 print "je diffuse message d'aide"
                 self._incomming = 0
                 self.broadcast(msg)
-                self._waiting = 4
+                self._waiting = 3
                 self._call = True
                 self._group = False
                 self._action._define = 0
@@ -592,7 +599,7 @@ class player:
                         while (self._incomming > 0):
                             self.broadcast("A/" + str(self._answers.get()) + "/" + str(self._posX) + "," + str(self._posY))
                             self._incomming -= 1
-                        self._coolDown = 10
+                        self._coolDown = 5
                         self._call = False
                         self._group = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
@@ -674,6 +681,8 @@ class player:
                     self._leveling = False
                     self._lead = False
                     self._group = False
+                    self._arrived = False
+                    self._count = 0
                     print "elevation Failed."
                     self._toIncanteY = -1
                     self._toIncanteX = -1
@@ -689,6 +698,8 @@ class player:
             self._lead = False
             self._leveling = False
             self._group = False
+            self._arrived = False
+            self._count = 0
             self._incomming = 0
             self.goToUnknow()
             self.decideCaseToGo()
@@ -757,12 +768,22 @@ class player:
                         self._leveling = False
                         self._lead = False
                         self._group = False
+                        self._arrived = False
+                        self._count = 0
             elif msg[0:1] == "D" and self._call == True:
                 trame = msg.split('/')
                 coord = trame[2].split(',')
                 if (int(coord[0]) == self._posX and int(coord[1]) == self._posY):
                     self._answers.put(int(trame[1]))
                     self._incomming += 1
+            elif msg[0:1] == "H" and self._group == True:
+                trame = msg.split(',')
+                x = int(trame[1])
+                y = int(trame[2])
+                print "x = ", x, " y = ", y, " myPosX = ", self._posX, " myPosY = ", self._posY
+                if x == self._posX and y == self._posY:
+                    print "J'augmente le conteur"
+                    self._count += 1
             elif msg[0:4] == "Ping" and self._pong == False:
             	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8) + "," + str(self._id + 1))
                 self._pong = True

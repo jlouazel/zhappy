@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Sun Jul 14 00:40:32 2013 julien fortin
+## Last update Sun Jul 14 06:42:05 2013 louaze_j
 ##
 
 CC			= gcc
@@ -97,16 +97,17 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)connect_nbr.c \
 			$(SRCS_DIR)$(GAME_DIR)deport.c \
 			$(SRCS_DIR)$(GAME_DIR)fork.c \
-			$(SRCS_DIR)$(GAME_DIR)msz.c \
-			$(SRCS_DIR)$(GAME_DIR)bct.c \
-			$(SRCS_DIR)$(GAME_DIR)mct.c \
-			$(SRCS_DIR)$(GAME_DIR)tna.c \
-			$(SRCS_DIR)$(GAME_DIR)pnw.c \
-			$(SRCS_DIR)$(GAME_DIR)ppo.c \
-			$(SRCS_DIR)$(GAME_DIR)plv.c \
-			$(SRCS_DIR)$(GAME_DIR)pin.c \
-			$(SRCS_DIR)$(GAME_DIR)pex.c \
-			$(SRCS_DIR)$(GAME_DIR)pbc.c \
+			$(SRCS_DIR)$(GAME_DIR)incantate.c \
+			# $(SRCS_DIR)$(GAME_DIR)msz.c \
+			# $(SRCS_DIR)$(GAME_DIR)bct.c \
+			# $(SRCS_DIR)$(GAME_DIR)mct.c \
+			# $(SRCS_DIR)$(GAME_DIR)tna.c \
+			# $(SRCS_DIR)$(GAME_DIR)pnw.c \
+			# $(SRCS_DIR)$(GAME_DIR)ppo.c \
+			# $(SRCS_DIR)$(GAME_DIR)plv.c \
+			# $(SRCS_DIR)$(GAME_DIR)pin.c \
+			# $(SRCS_DIR)$(GAME_DIR)pex.c \
+			# $(SRCS_DIR)$(GAME_DIR)pbc.c \
 
 #
 #library
