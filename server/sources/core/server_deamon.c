@@ -5,16 +5,54 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 21:27:29 2013 julien fortin
-** Last update Sun Jul 14 21:48:25 2013 julien fortin
+** Last update Sun Jul 14 23:01:42 2013 julien fortin
 */
 
 #include	<math.h>
 #include	"server.h"
+#include	"eressources.h"
+#include	"graphical.h"
+#include	<stdio.h>
+
+static void		_perimage_de_food(const t_server *serv, int n)
+{
+  t_player		*player;
+  t_list		*list;
+  t_list		*tmp;
+
+  list = serv && serv->game ? serv->game->players : NULL;
+  while (list)
+    {
+      tmp = list->next;
+      if (list->data)
+	{
+	  player = (t_player*)list->data;
+	  if (player->inventory_tab && player->is_allowed(player))
+	    {
+	      player->inventory_tab[FOOD] -= n;
+	      if (player->inventory_tab[FOOD] <= 0)
+		{
+		  if (player->socket
+		      && player->socket->is_valid((t_socket*)player->socket))
+		    player->socket->write(player->socket, "mort\n");
+		  delete_player(player, serv);
+		}
+	    }
+	}
+      list = tmp;
+    }
+}
 
 static void		_launch_deamon(const t_server *serv, int n)
 {
-  (void)serv;
-  (void)n;
+  static int	food = 0;
+
+  food += n;
+  if (food >= 126)
+    {
+      _perimage_de_food(serv, 1);
+      food -= 126;
+    }
 }
 
 void		server_deamon(const t_server *serv)
@@ -32,7 +70,7 @@ void		server_deamon(const t_server *serv)
       n = abs(last - get_current_timestamp()) * serv->options->time;
       if (n > 0)
 	{
-	  _launch_deamon(serv, 0);
+	  _launch_deamon(serv, n);
 	  last = get_current_timestamp();
 	}
     }

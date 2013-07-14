@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sat Jul 13 01:55:19 2013 julien fortin
-** Last update Sun Jul 14 20:56:23 2013 louaze_j
+** Last update Sun Jul 14 22:27:16 2013 julien fortin
 */
 
 #include	<unistd.h>
@@ -38,18 +38,14 @@ static int      _server_get_cmd_graph_index(const t_cmd_graph *this,
   return (-1);
 }
 
-static void	_server_treat_actions_for_graph(const t_server *serv,
-						t_graphical *graph)
+static void	_parkour_list(const t_server *serv,
+			      t_graphical *graph,
+			      t_list *list)
 {
   const char	*res;
-  t_list	*list;
   int		index;
   int		i;
 
-  if (!serv || !graph || !graph->socket
-      || !graph->socket->is_valid(deconst_cast(graph->socket)))
-    return ;
-  list = server_extract_graph_packet(serv, graph);
   while (list)
     {
       if (list->data)
@@ -69,6 +65,18 @@ static void	_server_treat_actions_for_graph(const t_server *serv,
 	}
       list = list->next;
     }
+}
+
+static void	_server_treat_actions_for_graph(const t_server *serv,
+						t_graphical *graph)
+{
+  t_list	*list;
+
+  if (!serv || !graph || !graph->socket
+      || !graph->socket->is_valid(deconst_cast(graph->socket)))
+    return ;
+  list = server_extract_graph_packet(serv, graph);
+  _parkour_list(serv, graph, list);
 }
 
 bool            server_graph_actions(const t_server *serv, fd_set *rfd)

@@ -1,15 +1,11 @@
 /*
-** server_actions.c for zappy in /home/fortin_j/tek2/projects/zappy/zappy-2016-louaze_j/server
+** server_actions.c for zappy in /home/fortin_j/tek2/projects/zappy/git/zhappy/server
 **
 ** Made by julien fortin
 ** Login   <fortin_j@epitech.net>
 **
-** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-<<<<<<< HEAD
-** Last update Sun Jul 14 21:27:13 2013 julien fortin
-=======
-** Last update Sun Jul 14 21:00:40 2013 louaze_j
->>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
+** Started on  Sun Jul 14 22:20:44 2013 julien fortin
+** Last update Sun Jul 14 22:21:41 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -21,7 +17,8 @@
 #include	"server.h"
 #include	"player.h"
 
-static int	_server_get_cmd_index(const t_cmd_player *this, const char *cmd)
+static int	_server_get_cmd_index(const t_cmd_player *this,
+				      const char *cmd)
 {
   int           cmd_len;
   int           real_len;
@@ -43,7 +40,8 @@ static int	_server_get_cmd_index(const t_cmd_player *this, const char *cmd)
   return (-1);
 }
 
-static void	_server_time_for_action(const t_server *serv, t_player *player,
+static void	_server_time_for_action(const t_server *serv,
+					t_player *player,
 					int index, char *cmd)
 {
   t_data	*data;
@@ -56,8 +54,9 @@ static void	_server_time_for_action(const t_server *serv, t_player *player,
     }
   data->data = cmd + ((i = find_first_of(cmd, ' ')) > 0 ? i : 0);
   data->foo = serv->cmd_player->cmd[index];
-  data->time = get_current_time() + get_time_for_action(serv->cmd_player->time[index],
-							serv->options->time);
+  data->time = get_current_time()
+    + get_time_for_action(serv->cmd_player->time[index],
+			  serv->options->time);
   if (player->io && player->io->in)
     player->io->in->push_back(&((t_io*)player->io)->in, (void*)data);
   else
@@ -102,11 +101,13 @@ static void	_server_treat_actions_for_player(const t_server *serv,
 	  if (list->data)
 	    {
 	      if (i < 10)
-		i = player->io->out ? player->io->out->size(player->io->out) : 0;
+		i = player->io->out
+		  ? player->io->out->size(player->io->out) : 0;
 	      if (i >= 10)
 		player->notify(player, "ko\n");
 	      else
-		_server_treat_cmd_for_player(serv, player, (char*)list->data, rfd);
+		_server_treat_cmd_for_player(serv, player,
+					     (char*)list->data, rfd);
 	      i++;
 	    }
 	  list = list->next;
