@@ -6,7 +6,7 @@
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
 <<<<<<< HEAD
-** Last update Sun Jul 14 20:09:28 2013 julien fortin
+** Last update Sun Jul 14 21:52:08 2013 julien fortin
 =======
 ** Last update Sun Jul 14 20:57:38 2013 louaze_j
 >>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
@@ -66,12 +66,8 @@ static void		_notify_foreach_player(t_player *player)
 	      disp = my_strndup(data, 0, i - 1);
 	      if (disp)
 	  	printf("%d:\tSending message \"%s\" to %u\n",
-<<<<<<< HEAD
 	  	       get_current_timestamp(),
 	  	       disp,
-=======
-	  	       (int)GET_CURRENT_TIME(1), disp,
->>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
 	  	       player->id);
 	      xfree((void**)&disp, 0);
 	    }

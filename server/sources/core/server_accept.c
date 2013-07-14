@@ -6,7 +6,7 @@
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
 <<<<<<< HEAD
-** Last update Sun Jul 14 20:07:27 2013 julien fortin
+** Last update Sun Jul 14 21:51:41 2013 julien fortin
 =======
 ** Last update Sun Jul 14 20:59:14 2013 louaze_j
 >>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
@@ -107,12 +107,7 @@ bool            server_get_auth_from_player(const t_server *serv,
       && player->socket->is_valid(deconst_cast(player->socket)))
     player->socket->write(player->socket, "ko\n");
   {
-<<<<<<< HEAD
     printf("%d:\tSending message \"ko\" to %d\n", get_current_timestamp(), player->id);
-=======
-    printf("%d:\tSending message \"ko\" to %d\n", (int)GET_CURRENT_TIME(1),
-	   player->id);
->>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
     delete_player(player, serv);
   }
   return (false);
