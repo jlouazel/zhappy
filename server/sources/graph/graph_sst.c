@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 00:50:33 2013 julien fortin
+** Last update Sun Jul 14 10:21:01 2013 julien fortin
 */
 
 #include	"server.h"
@@ -14,8 +14,15 @@ const char	*_graph_sst(t_graphical *graph,
 			    const t_server *server,
 			    const char *data)
 {
+  int	new;
+
   (void)graph;
-  (void)server;
-  (void)data;
-  return (NULL);
+  if (!server || !data || !data[0])
+    return ("ko\n");
+  new = atoi(data);
+  if (new > 0 && new < 10000)
+    {
+
+    }
+  return ("ko\n");
 }

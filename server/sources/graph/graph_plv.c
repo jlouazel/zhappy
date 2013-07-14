@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 09:51:43 2013 julien fortin
+** Last update Sun Jul 14 10:12:46 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -36,7 +36,8 @@ const char	*_graph_plv(t_graphical *graph,
     }
   if (player)
     {
-      res = xcalloc(42, sizeof(*res));
+      if (!(res = xcalloc(42, sizeof(*res))))
+	return ("ko\n");
       snprintf(res, 42, "plv %d %d\n", player->id, player->level);
       return (res);
     }
