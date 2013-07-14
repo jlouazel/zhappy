@@ -854,7 +854,7 @@ class player:
             	other_direction = int(msg.split(',')[1])
                 self._id = int(msg.split(',')[2])
                 if self._id > 2:
-                    self.setMove(0, 0, self._PossibleAction._die, 3)
+                    self._acion._setMove(0, 0, self._acion._PossibleAction._die, 3)
                 else:
                     self.setMyOrientation(int(direction), other_direction)
                 self._ping = False
