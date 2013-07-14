@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 10:12:46 2013 julien fortin
+** Last update Sun Jul 14 14:14:37 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -24,7 +24,7 @@ const char	*_graph_plv(t_graphical *graph,
 
   (void)graph;
   if (!server || !data || !data[0])
-    return ("ko\n");
+    return ("suc\n");
   id = atoi(data);
   player = NULL;
   list = server && server->game ? server->game->players : NULL;
@@ -37,9 +37,9 @@ const char	*_graph_plv(t_graphical *graph,
   if (player)
     {
       if (!(res = xcalloc(42, sizeof(*res))))
-	return ("ko\n");
+	return ("suc\n");
       snprintf(res, 42, "plv %d %d\n", player->id, player->level);
       return (res);
     }
-  return ("ko\n");
+  return ("suc\n");
 }

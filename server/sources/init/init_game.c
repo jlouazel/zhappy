@@ -1,11 +1,11 @@
 /*
 ** init_game.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Wed Jun 26 18:35:42 2013 louaze_j
-** Last update Fri Jul 12 17:54:43 2013 louaze_j
+** Last update Sun Jul 14 14:03:08 2013 julien fortin
 */
 
 #include	<stdbool.h>
@@ -20,10 +20,10 @@ static bool	check_if_exists(const t_options *options,
 {
   t_list	*tmp;
 
-  tmp = *teams;
+  tmp = teams && name && options ? *teams : NULL;
   while (tmp)
     {
-      if (my_strcmp(((t_team *)tmp->data)->name, name) == 0)
+      if (tmp->data && my_strcmp(((t_team *)tmp->data)->name, name) == 0)
 	{
 	  fprintf(stderr, "\033[31m%s:\
 two teams can't have the same name ('%s')\n\033[0m",
