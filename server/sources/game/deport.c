@@ -5,11 +5,12 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:33:07 2013 louaze_j
-** Last update Sat Jul 13 16:25:14 2013 louaze_j
+** Last update Sun Jul 14 18:25:15 2013 louaze_j
 */
 
 #include	<stdbool.h>
 #include	"player.h"
+#include	"graphical.h"
 
 static
 void		get_pointed_square_pos(t_player *player,
@@ -43,6 +44,7 @@ const char	*_player_deport(t_player *player, const t_server *server, void *arg)
 	{
 	  get_pointed_square_pos(player, server, &pl->x, &pl->y);
 	  done = true;
+	  notify_graph(server, pex(player));
 	}
       l = l->next;
     }

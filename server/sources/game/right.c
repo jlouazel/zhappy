@@ -5,10 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:23:05 2013 louaze_j
-** Last update Sun Jul 14 16:18:30 2013 julien fortin
+** Last update Sun Jul 14 17:05:14 2013 louaze_j
 */
 
 #include	"player.h"
+#include	"graphical.h"
 
 static void	look_in_good_direction(t_player *player)
 {
@@ -24,10 +25,10 @@ static void	look_in_good_direction(t_player *player)
 
 const char	*_player_right(t_player *player, const t_server *server, void *arg)
 {
+  (void)arg;
   if (!player->is_allowed(player))
     return ("ko\n");
-  (void)server;
-  (void)arg;
   look_in_good_direction(player);
+  notify_graph(server, ppo(player));
   return ("ok\n");
 }

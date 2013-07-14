@@ -6,7 +6,7 @@
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
 <<<<<<< HEAD
-** Last update Sun Jul 14 15:27:53 2013 louaze_j
+** Last update Sun Jul 14 16:54:40 2013 louaze_j
 =======
 ** Last update Sun Jul 14 15:53:20 2013 julien fortin
 >>>>>>> 857685584db8bf283516c66a99706e61d129305f
@@ -19,6 +19,7 @@
 #include	"team.h"
 #include	"list.h"
 #include	"player.h"
+#include	"graphical.h"
 #include	"egg.h"
 
 static void	team_remove_player(t_team *team, t_player *player)
@@ -76,6 +77,7 @@ static bool	team_add_player(t_team *team,
 	}
       snprintf(msg, 20, "%d %d\n", serv->game->world->width, serv->game->world->height);
       player->notify(player, msg);
+      notify_graph(serv, pnw(player));
       printf("*** [JOIN] player %u join team %s\n", player->id, team->name);
       return (true);
     }

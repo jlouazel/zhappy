@@ -5,11 +5,11 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 17:32:06 2013 louaze_j
-** Last update Sun Jul 14 15:21:22 2013 julien fortin
+** Last update Sun Jul 14 17:05:32 2013 louaze_j
 */
 
 #include	"player.h"
-#include	<stdio.h>
+#include	"graphical.h"
 
 static void	modify_coors(t_player *player, t_world *world)
 {
@@ -31,14 +31,12 @@ static void	modify_coors(t_player *player, t_world *world)
     player->y = 0;
 }
 
-#include "str_directions.h"
 const char	*_player_advance(t_player *player, const t_server *server, void *arg)
 {
   (void)arg;
   if (!player->is_allowed(player))
     return (NULL);
-  printf("[%s] (%d;%d) -> ", string_directions[player->direction], player->x, player->y);
   modify_coors(player, server->game->world);
-  printf("(%d;%d)\n", player->x, player->y);
+  notify_graph(server, ppo(player));
   return ("ok\n");
 }

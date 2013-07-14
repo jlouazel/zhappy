@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 15:24:06 2013 louaze_j
+** Last update Sun Jul 14 17:01:08 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -20,5 +20,5 @@ const char	*_graph_ppo(t_graphical *graph,
   (void)graph;
   if (!server || !data || !data[0])
     return ("suc\n");
-  return (ppo(server, atoi(data)));
+  return (ppo(get_player_for_id(server, atoi(data))));
 }

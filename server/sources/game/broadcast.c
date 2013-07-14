@@ -5,16 +5,17 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 19:00:15 2013 louaze_j
-** Last update Sun Jul 14 05:09:31 2013 louaze_j
+** Last update Sun Jul 14 17:57:09 2013 louaze_j
 */
 
+#include	<math.h>
+#include	<stdio.h>
 #include	<stdlib.h>
 #include	<stdbool.h>
 #include	"player.h"
+#include	"graphical.h"
 #include	"inverted_directions.h"
 #include	"str_directions.h"
-#include	<stdio.h>
-#include	<math.h>
 
 static
 double		calc_angle(t_player *s, t_player *d)
@@ -70,11 +71,13 @@ e_direction	get_direction(t_player *src, const t_server *server,
   return (dir);
 }
 
-const char	*_player_broadcast(t_player *player, const t_server *server, void *arg)
+const char	*_player_broadcast(t_player *player, const t_server *server,
+				     void *arg)
 {
   if (!player->is_allowed(player))
     return (NULL);
   printf("Player %u receive a broadcast from %s\n", ((t_player *)arg)->id, string_directions[get_direction(player, server,
-													   (t_player *)arg)]);
+  													   (t_player *)arg)]);
+/* notify_graph(server, pbc(player), ); */
   return ("OK\n");
 }

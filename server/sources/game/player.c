@@ -5,21 +5,18 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-<<<<<<< HEAD
-** Last update Sun Jul 14 11:04:38 2013 louaze_j
-=======
-** Last update Sun Jul 14 15:23:01 2013 julien fortin
->>>>>>> c21ee31039ebb5bc76b12af9cc306b730e33fb60
+** Last update Sun Jul 14 18:14:26 2013 louaze_j
 */
 
+#include	<time.h>
+#include	<stdio.h>
 #include	<stdlib.h>
 #include	"server.h"
 #include	"lib_std.h"
 #include	"player.h"
 #include	"list.h"
+#include	"graphical.h"
 #include	"eressources.h"
-#include	<time.h>
-#include	<stdio.h>
 
 static bool	_player_is_allowed(const t_player *player)
 {
@@ -86,6 +83,7 @@ void		delete_player(t_player *player, const t_server *server)
       /* list = player->team && player->team->members ? player->team->members : NULL; */
       /* if (list) */
       /* 	list->erase(&list, player); */
+      notify_graph(server, pdi(player));
       printf("*** Deleting player %u\n", player->id);
       /**/
       player->socket = delete_socket(player->socket);

@@ -5,11 +5,12 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:55:06 2013 louaze_j
-** Last update Sat Jul 13 12:48:14 2013 louaze_j
+** Last update Sun Jul 14 18:07:39 2013 louaze_j
 */
 
 #include	"world.h"
 #include	"player.h"
+#include	"graphical.h"
 #include	"ressources.h"
 #include	"lib_strings.h"
 
@@ -33,6 +34,7 @@ const char	*_player_take(t_player *player, const t_server *server, void *arg)
 	    {
 	      sq->content[type]--;
 	      player->inventory_tab[type]++;
+	      notify_graph(server, pgt(player, type));
 	      return ("OK\n");
 	    }
 	}
