@@ -5,34 +5,53 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 21:27:29 2013 julien fortin
-** Last update Sun Jul 14 22:28:59 2013 louaze_j
+** Last update Sun Jul 14 23:01:42 2013 julien fortin
 */
 
 #include	<math.h>
 #include	"server.h"
 #include	"eressources.h"
 #include	"graphical.h"
-#include <stdio.h>
+#include	<stdio.h>
+
+static void		_perimage_de_food(const t_server *serv, int n)
+{
+  t_player		*player;
+  t_list		*list;
+  t_list		*tmp;
+
+  list = serv && serv->game ? serv->game->players : NULL;
+  while (list)
+    {
+      tmp = list->next;
+      if (list->data)
+	{
+	  player = (t_player*)list->data;
+	  if (player->inventory_tab && player->is_allowed(player))
+	    {
+	      player->inventory_tab[FOOD] -= n;
+	      if (player->inventory_tab[FOOD] <= 0)
+		{
+		  if (player->socket
+		      && player->socket->is_valid((t_socket*)player->socket))
+		    player->socket->write(player->socket, "mort\n");
+		  delete_player(player, serv);
+		}
+	    }
+	}
+      list = tmp;
+    }
+}
+
 static void		_launch_deamon(const t_server *serv, int n)
 {
-  t_list		*l;
+  static int	food = 0;
 
-  if (serv && serv->game)
+  food += n;
+  if (food >= 126)
     {
-      l = serv->game->players;
-      while (l && l->data)
-	{
-	  if (n < (int)((t_player *)l->data)->inventory_tab[FOOD])
-	    ((t_player *)l->data)->inventory_tab[FOOD] -= n;
-	  else
-	    {
-	      ((t_player *)l->data)->inventory_tab[FOOD] = 0;
-	      notify_graph(serv, pdi(((t_player *)l->data)));
-	      /* delete_player(((t_player *)l->data), serv); */
-	      /* l->erase(&l, ((t_player *)l->data)); */
-	    }
-	  l = l->next;
-	}
+      _perimage_de_food(serv, 1);
+      food -= 126;
     }
 }
 
