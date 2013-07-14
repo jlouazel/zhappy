@@ -70,5 +70,7 @@ try:
 	
 	connexion.close()
 except:
-    print "Unexpected error:", sys.exc_info()[0]
-    raise
+	print "Exception in user code:"
+	print '-'*60
+	traceback.print_exc(file=sys.stdout)
+	print '-'*60
