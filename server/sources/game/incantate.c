@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Sun Jul 14 05:17:22 2013 louaze_j
-** Last update Sun Jul 14 23:13:27 2013 louaze_j
+** Last update Sun Jul 14 23:17:25 2013 louaze_j
 */
 
 #include	<stdbool.h>
@@ -104,5 +104,6 @@ const char	*_player_incantation(t_player *player, const t_server *server,
       sq->content[PHIRAS] == incantation_tab[player->level][PHIRAS] &&
       sq->content[THYSTAME] == incantation_tab[player->level][THYSTAME])
     return (new_lvl(server, sq, player));
+  notify_graph(server, pie(player, false));
   return ("ko\n");
 }
