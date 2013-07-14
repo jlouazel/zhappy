@@ -6,7 +6,7 @@
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
 <<<<<<< HEAD
-** Last update Sun Jul 14 09:30:03 2013 julien fortin
+** Last update Sun Jul 14 09:59:25 2013 julien fortin
 =======
 ** Last update Thu Jul 11 16:00:59 2013 julien fortin
 >>>>>>> ad25151838df947b61426937bba16c95ecaf08e6
@@ -39,6 +39,8 @@ const t_game    *init_game(const t_options*);
 
 t_list		*server_extract_player_packet(t_player*);
 t_list		*server_extract_graph_packet(const t_server*, t_graphical*);
+
+t_player        *get_player_for_id(const t_server *, int);
 
 bool		notify_graph(const t_server *, const char *);
 
