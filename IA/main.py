@@ -4,6 +4,7 @@ import select
 import socket
 import time
 import sys
+import traceback
 
 from optparse import OptionParser
 from player import *
