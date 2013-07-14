@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Sun Jul 14 08:05:17 2013 louaze_j
+** Last update Sun Jul 14 09:38:08 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -14,10 +14,7 @@
 
 void	_welcome(t_graphical *graph, const t_server *server)
 {
-  (void)server;
-  printf("T'ES UNE SOUS RACE\n");
-  //  _graph_msz(graph, server, NULL)
-  graph->notify(graph, "PD\n");
+  graph->notify(graph, _graph_msz(graph, server, NULL));
 }
 
 static void	_graph_notify(t_graphical *graph, const char *data)
