@@ -6,7 +6,7 @@
 **
 ** Started on  Wed May 22 04:16:18 2013 julien fortin
 <<<<<<< HEAD:server/sources/init/init_server_cmd_player.c
-** Last update Sat Jul 13 01:34:31 2013 julien fortin
+** Last update Sun Jul 14 13:54:53 2013 julien fortin
 =======
 ** Last update Sat Jul 13 16:29:12 2013 louaze_j
 >>>>>>> fa0803fdbc5d2dfe3a1bdfa2f0d8230b855f1b46:server/sources/init/init_server_cmd.c
@@ -31,6 +31,7 @@ static void	_init_server_cmd_player_name(t_cmd_player *cmd)
   cmd->name[8] = "connect_nbr";
   cmd->name[9] = "expulse";
   cmd->name[10] = "fork";
+  //cmd->name[11] = "incntation"
   cmd->name[11] = NULL;
 }
 
@@ -48,6 +49,7 @@ static void	_init_server_cmd_player_time(t_cmd_player *cmd)
   cmd->time[9] = 7.0;
   cmd->time[10] = 42.0;
   cmd->time[11] = 0.0;
+  //cmd->name[11] = "incntation"
 }
 
 static void	_init_server_cmd_player_fun(t_cmd_player *cmd)
@@ -63,6 +65,7 @@ static void	_init_server_cmd_player_fun(t_cmd_player *cmd)
   cmd->cmd[8] = &_player_connect_nbr;
   cmd->cmd[9] = &_player_deport;
   cmd->cmd[10] = &_player_fork;
+  //cmd->name[11] = "incntation"
   cmd->cmd[11] = NULL;
 }
 

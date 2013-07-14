@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed May 22 03:59:56 2013 julien fortin
-** Last update Sat Jul 13 01:41:25 2013 julien fortin
+** Last update Sun Jul 14 14:00:35 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -34,8 +34,9 @@ static bool	log_teams(t_server *server)
   tmp = server->options->teams_name;
   while (tmp)
     {
-      printf("\033[32m\tName(%s) Max(%d)\n\033[0m", (char *)tmp->data,
-  	     server->options->nb_max_clients);
+      if (tmp->data)
+	printf("\033[32m\tName(%s) Max(%d)\n\033[0m", (char *)tmp->data,
+	       server->options->nb_max_clients);
       tmp = tmp->next;
     }
   return (true);

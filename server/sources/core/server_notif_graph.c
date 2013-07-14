@@ -5,9 +5,13 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 23:21:09 2013 julien fortin
-** Last update Sat Jul 13 00:04:37 2013 julien fortin
+** Last update Sun Jul 14 09:38:26 2013 julien fortin
 */
 
+#include	<time.h>
+#include	<stdio.h>
+#include	"lib_strings.h"
+#include	"lib_std.h"
 #include	"server.h"
 #include	"graphical.h"
 
@@ -41,6 +45,8 @@ static void             _notify_foreach_graph(t_graphical *graph)
 {
   t_list        *list;
   const char    *data;
+  char		*disp;
+  unsigned int	i;
 
   list = graph->io ? graph->io->out : NULL;
   while (list)
@@ -49,7 +55,17 @@ static void             _notify_foreach_graph(t_graphical *graph)
         {
 	  data = (const char*)list->data;
           graph->socket->write(graph->socket, data);
-        }
+	  i = my_strlen(data);
+	  if (i > 0)
+	    {
+	      disp = my_strndup(data, 0, i - 1);
+	      printf("%d:\tSending message \"%s\" to %u\n",
+		     (int)GET_CURRENT_TIME(1),
+		     disp,
+		     graph->id);
+	      xfree((void**)&disp, 0);
+	    }
+	}
       list = list->next;
     }
 }

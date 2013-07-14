@@ -5,17 +5,30 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 00:50:24 2013 julien fortin
+** Last update Sun Jul 14 14:15:07 2013 julien fortin
 */
 
+#include	<stdio.h>
+#include	"lib_std.h"
 #include	"server.h"
 
 const char	*_graph_sgt(t_graphical *graph,
 			    const t_server *server,
 			    const char *data)
 {
+  char	*res;
+
   (void)graph;
-  (void)server;
   (void)data;
-  return (NULL);
+  if (!server)
+    return ("suc\n");
+  if ((res = xcalloc(42, sizeof(*res))))
+    {
+      if (server->options)
+	snprintf(res, 42, "sgt %d\n", server->options->time);
+      else
+	res = "suc\n";
+      return (res);
+    }
+  return ("suc\n");
 }

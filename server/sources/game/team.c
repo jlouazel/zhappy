@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-** Last update Sun Jul 14 02:52:50 2013 louaze_j
+** Last update Sun Jul 14 11:31:55 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -62,10 +62,14 @@ static bool	team_add_player(t_team *team,
       else
 	team->members->push_back(&team->members, player);
       team->nb_members++;
-      msg = xcalloc(12, sizeof(*msg));
+      //msg = xcalloc(12, sizeof(*msg));
       /* snprintf(msg, 12, "%d\n", team->eggs); */
-      player->notify(player, msg);
-      msg = xcalloc(400, sizeof(*msg));
+      //player->notify(player, msg);
+      if (!(msg = xcalloc(400, sizeof(*msg))))
+	{
+	  printf("*** [ERR] player %u cannot join team %s\n", player->id, team->name);
+	  return (false);
+	}
       snprintf(msg, 20, "%d %d\n", serv->game->world->width, serv->game->world->height);
       player->notify(player, msg);
       printf("*** [JOIN] player %u join team %s\n", player->id, team->name);
@@ -94,8 +98,7 @@ t_team		*create_team(char *name)
 {
   t_team	*new_team;
 
-  new_team = xcalloc(1, sizeof(*new_team));
-  if (!new_team)
+  if ((new_team = xcalloc(1, sizeof(*new_team))))
     return (NULL);
   init_attr(new_team, name);
   return (new_team);

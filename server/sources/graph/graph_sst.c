@@ -5,17 +5,28 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 00:50:33 2013 julien fortin
+** Last update Sun Jul 14 14:15:24 2013 julien fortin
 */
 
+#include	"graphical.h"
 #include	"server.h"
 
 const char	*_graph_sst(t_graphical *graph,
 			    const t_server *server,
 			    const char *data)
 {
-  (void)graph;
-  (void)server;
-  (void)data;
-  return (NULL);
+  int	new;
+
+  if (!server || !data || !data[0])
+    return ("suc\n");
+  new = atoi(data);
+  if (new > 0 && new < 10000)
+    {
+      if (server && server->options)
+	{
+	  ((t_options*)server->options)->time = new;
+	  return (_graph_sgt(graph, server, NULL));
+	}
+    }
+  return ("suc\n");
 }
