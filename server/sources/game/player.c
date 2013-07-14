@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sun Jul 14 18:14:26 2013 louaze_j
+** Last update Sun Jul 14 22:25:15 2013 louaze_j
 */
 
 #include	<time.h>
@@ -70,7 +70,6 @@ void		delete_player(t_player *player, const t_server *server)
 {
   t_list	*list;
 
-  (void)server;
   if (player)
     {
       /**/
