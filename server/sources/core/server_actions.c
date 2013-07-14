@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sun Jul 14 09:27:10 2013 julien fortin
+** Last update Sun Jul 14 10:33:55 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -50,7 +50,12 @@ static void	_server_treat_cmd_for_player(const t_server *serv,
   int		i;
 
   cmd = epur_end_str(epur_begin_str(cmd, " \t\n\r"), " \t\n\r");
-  if (((index = _server_get_cmd_index(serv->cmd_player, cmd)) >= 0)
+  if (player && !player->is_allowed(player))
+    {
+      puts("TRYAUTH");
+      server_get_auth_from_player(serv, player, cmd, rfd);
+    }
+  else if (((index = _server_get_cmd_index(serv->cmd_player, cmd)) >= 0)
       && serv->cmd_player->cmd[index])
     {
       if (!(data = xcalloc(1, sizeof(*data))))
@@ -68,8 +73,6 @@ static void	_server_treat_cmd_for_player(const t_server *serv,
 	((t_io*)player->io)->in = new_list((void*)data);
       // if (elevation etc..)
     }
-  else if (index < 0 && player && !player->is_allowed(player))
-    server_get_auth_from_player(serv, player, cmd, rfd);
   else
     player->notify(player, "ko\n");
 }
