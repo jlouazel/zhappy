@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul 12 15:00:39 2013 louaze_j
-** Last update Sun Jul 14 04:38:57 2013 julien fortin
+** Last update Sun Jul 14 04:49:28 2013 julien fortin
 */
 
 #include	"graphical.h"
@@ -14,16 +14,8 @@
 static
 const char	*plv(const t_server *server, int id)
 {
-  t_list	*list;
-  t_player	*pl;
-
-  pl = NULL;
-  list = server && server->game ? server->game->players : NULL;
-  while (list)
-    {
-      list = list->next;
-    }
-  printf("plv %d %d\n", pl->id, pl->level);
+  (void)server;(void)id;
+  //printf("plv %d %d\n", pl->id, pl->level);
   return (NULL);
 }
 
