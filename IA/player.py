@@ -33,7 +33,9 @@ class player:
         self._queue = Queue.Queue()
         self._elevation = elevation()
         self._lvl = 1
-        self._nourritureMinimal = 5
+        self._nourritureMinimal = 0
+        self._foodToHelp = 0
+        self._foodToRequest = 0
         self._ping = True
         self._toIncanteX = -1
         self._toIncanteY = -1
@@ -58,6 +60,9 @@ class player:
         answer = answer[2].split(' ')
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
+        self._nourritureMinimal = math.floor(math.log(self._lenMapX * self._lenMapY))
+        self._foodToHelp = math.floor(3 * math.log(self._lenMapX * self._lenMapY))
+        self._foodToRequest = math.floor(4 * math.log(self._lenMapX * self._lenMapY))
         self.broadcast("Ping")
         self.inventaire()
         self._createMap()
@@ -553,7 +558,8 @@ class player:
             self._incomming = 0
             self._call = False
             self._group = False
-        elif (self._map[i]._players < myNeed._joueur):
+        elif (self._map[i]._players < myNeed._joueur and self._inventaire._nourriture >= self._foodToRequest):
+        # ajout du AND
             if self._call == False:
                 msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
                 #print "je diffuse" + msg
@@ -700,7 +706,8 @@ class player:
                     y = tmp[2]
                     y = tmp[2].split('\n')[0]
                     print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
-                    if self._lvl == int(lvl) and self._inventaire._nourriture >= 15 and self._toIncanteX == -1 and self._toIncanteY == -1:
+                    if self._lvl == int(lvl) and self._inventaire._nourriture >= self._foodToHelp and self._toIncanteX == -1 and self._toIncanteY == -1:
+                    # MODIFICATION DU CHECK DE LA QTE DE BOUFFE
                         print "J'accepte j'attend confirmation"
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
@@ -715,8 +722,7 @@ class player:
                         self._action.initSecondAction()
                         self._action.addSecondAction(self._action._PossibleAction._nourriture)
                         self._action.setMove(int(x), int(y), self._action._PossibleAction._join, 3)
-                        print "Il me demande de venir en X = " + x + " Y = " + y
-                        print "Et ma pose est de X = ", self._posX, " Y = ", self._posY
+                        print "Il me demande de venir en X = " + x + " Y = " + y + " et ma pose est de X = ", self._posX, " Y = ", self._posY
             elif msg[0:1] == "A":
                 tmp = msg.split(',')
                 if tmp.__len__() >= 3:
