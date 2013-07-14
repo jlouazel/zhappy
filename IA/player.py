@@ -571,6 +571,7 @@ class player:
                 self.broadcast(msg)
                 self._waiting = 4
                 self._call = True
+                self._group = False
                 self._action._define = 0
             else:
                 if self._waiting > 0:
@@ -579,8 +580,8 @@ class player:
                     self._waiting -= 1
                     self._action._define = 0
                 else:
-                    print "J'ai fini d'attendre MyneedJoueur = ", myNeed._joueur, " self._incomming = ", self._incomming
-                    if self._incomming >= myNeed._joueur - 1 and self._group == False:
+                    print "J'ai fini d'attendre MyneedJoueur = ", myNeed._joueur - 1, " self._incomming = ", self._incomming
+                    if self._incomming == myNeed._joueur - 1 and self._group == False:
                         print "je leur dis de venir en X = ", self._posX, " Y = ", self._posY
                         self.broadcast("C," + str(self._posX) + "," + str(self._posY))
                         self._action._define = 0
@@ -592,6 +593,7 @@ class player:
                         print "je leur dis fuck."
                         self.broadcast("A," + str(self._posX) + "," + str(self._posY))
                         self._coolDown = 10
+                        self._incomming = 0
                         self._call = False
                         self._group = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
@@ -683,6 +685,7 @@ class player:
             print "I up."
             self._lead = False
             self._leveling = False
+            self._group = False
             self._incomming = 0
             self.goToUnknow()
             self.decideCaseToGo()
