@@ -4,12 +4,8 @@
 ** Made by julien fortin
 ** Login   <fortin_j@epitech.net>
 **
-** Started on  Fri Jul 12 23:21:09 2013 julien fortin
-<<<<<<< HEAD
-** Last update Sun Jul 14 20:09:47 2013 julien fortin
-=======
-** Last update Sun Jul 14 20:58:44 2013 louaze_j
->>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
+** Started on  Sun Jul 14 22:28:15 2013 julien fortin
+** Last update Sun Jul 14 22:28:18 2013 julien fortin
 */
 
 #include	<time.h>
@@ -20,7 +16,7 @@
 #include	"graphical.h"
 
 bool                    server_will_notify_graph(const t_server *serv,
-                                                  fd_set *wfd, int *max_fd)
+						 fd_set *wfd, int *max_fd)
 {
   t_list        *list;
   t_graphical	*graph;

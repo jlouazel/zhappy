@@ -1,11 +1,11 @@
 /*
 ** team.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Sun Jul 14 21:40:41 2013 louaze_j
-** Last update Sun Jul 14 21:40:42 2013 louaze_j
+** Last update Sun Jul 14 22:34:23 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -27,24 +27,6 @@ static void	team_remove_player(t_team *team, t_player *player)
     }
 }
 
-static t_egg	*getFirstEgg(t_team *team)
-{
-  t_list	*tmp;
-  t_egg		*egg;
-
-  tmp = team->eggs;
-  if (!tmp)
-    return (NULL);
-  egg = tmp->data;
-  while (tmp)
-    {
-      if (egg->id > ((t_egg *)tmp->data)->id)
-	egg = tmp->data;
-      tmp = tmp->next;
-    }
-  return (egg);
-}
-
 static bool	team_add_player(t_team *team,
 			   const t_server *serv,
 			   t_player *player)
@@ -55,18 +37,11 @@ static bool	team_add_player(t_team *team,
       && (!team->members || (team->members && team->eggs))
       && _player_connect_nbr_int(serv, team) > 0)
     {
-      if (team->eggs)
-	team->eggs->erase(&team->eggs, getFirstEgg(team));
-      player->status = PLAYER_STATUS_ALLOW;
-      player->team = team;
+      _init_player_in_team(team, player);
       if (team->members == NULL)
 	team->members = new_list(player);
       else
 	team->members->push_back(&team->members, player);
-      team->nb_members++;
-      //msg = xcalloc(12, sizeof(*msg));
-      /* snprintf(msg, 12, "%d\n", team->eggs); */
-      //player->notify(player, msg);
       if (!(msg = xcalloc(400, sizeof(*msg))))
 	{
 	  printf("*** [ERR] player %u cannot join team %s\n", player->id, team->name);

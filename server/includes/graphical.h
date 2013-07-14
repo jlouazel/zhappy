@@ -5,12 +5,13 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sun Jul 14 21:48:37 2013 louaze_j
+** Last update Sun Jul 14 23:10:10 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
 #define		__GRAPHICAL_H__
 
+#include	<stdbool.h>
 #include	"server.h"
 #include	"lib_socket.h"
 #include	"eressources.h"
@@ -49,7 +50,7 @@ const char	*pin(t_player *);
 const char	*pex(t_player *);
 const char	*pbc(t_player *, const char *);
 const char	*pic(t_player *, const t_server *);
-const char	*pie(t_player *);
+const char	*pie(t_player *, bool);
 const char	*pfk(t_player *);
 const char	*pdr(t_player *, e_ressource);
 const char	*pgt(t_player *, e_ressource);
