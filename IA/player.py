@@ -194,10 +194,6 @@ class player:
         self._socket.send("fork\n")
         self._queue.put("fork\n")
     	time.sleep(0.01)
-        #child_pid = os.fork()
-        #if child_pid == 0:
-        #    self.__init__(self._socket, self._team, self._port, self._host)
-        #    self.connect()
 
     def reduceProbabilities(self):
         i = 0
@@ -649,6 +645,10 @@ class player:
                 tmp = self._queue.get()
                 if tmp.split(' ')[0] == "prend" and trame == "ok":
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
+#                elif tmp == "fork\n":
+#                    child_pid = os.fork()
+#                    if child_pid == 0:
+#                        os.system("./")
                 elif tmp.split(' ')[0] == "pose" and trame == "ok":
                     #print "C;est confirme je pose : ", tmp.split(' ')[1].split('\n')[0]
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
