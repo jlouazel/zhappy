@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jun 23 21:29:57 2013 julien fortin
-** Last update Sun Jul 14 22:08:55 2013 julien fortin
+** Last update Sun Jul 14 22:47:59 2013 julien fortin
 */
 
 #include	<strings.h>
@@ -26,9 +26,12 @@ const t_server	*destroy_server(t_server *serv)
 {
   if (serv)
     {
-      serv->cmd_player = destroy_server_cmd_player(serv->cmd_player);
-      serv->socket = delete_socket(serv->socket);
-      serv->game = destroy_game(serv->game);
+      if (serv->cmd_player)
+	serv->cmd_player = destroy_server_cmd_player(serv->cmd_player);
+      if (serv->socket)
+	serv->socket = delete_socket(serv->socket);
+      if (serv->game)
+	serv->game = destroy_game(serv->game);
       bzero(serv, sizeof(*serv));
     }
   return (NULL);
