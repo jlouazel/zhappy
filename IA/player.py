@@ -59,7 +59,6 @@ class player:
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
         self.broadcast("Ping")
-        self.inventaire()
         self._createMap()
         self.fork()
         time.sleep(0.5)
@@ -187,6 +186,10 @@ class player:
         self._socket.send("fork\n")
         self._queue.put("fork\n")
     	time.sleep(0.01)
+        #child_pid = os.fork()
+        #if child_pid == 0:
+        #    self.__init__(self._socket, self._team, self._port, self._host)
+        #    self.connect()
 
     def reduceProbabilities(self):
         i = 0
