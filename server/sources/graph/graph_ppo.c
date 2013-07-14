@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 03:07:31 2013 julien fortin
+** Last update Sun Jul 14 03:14:36 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -19,6 +19,5 @@ const char	*_graph_ppo(t_graphical *graph,
 {
   if (!server || !data || !data[0])
     return ("ko\n");
-  puts(data);
   return (graph->ppo(server, atoi(data)));
 }

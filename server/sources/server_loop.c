@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
 <<<<<<< HEAD
-** Last update Sat Jul 13 01:55:06 2013 julien fortin
+** Last update Sun Jul 14 04:24:25 2013 julien fortin
 =======
 ** Last update Tue Jul  9 19:01:19 2013 louaze_j
 >>>>>>> 77d41bfb879f951a9a4b39028ca7c64d92a04285
@@ -16,6 +16,7 @@
 #include	<stdlib.h>
 #include	<string.h>
 #include	<sys/select.h>
+#include	<unistd.h>
 #include	"lib_socket.h"
 #include	"lib_errs.h"
 #include	"lib_std.h"

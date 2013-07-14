@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sun Jul 14 02:55:37 2013 julien fortin
+** Last update Sun Jul 14 04:30:48 2013 julien fortin
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -29,7 +29,7 @@ typedef struct	s_graphical
   const char	*(*tna)(struct s_graphical *, const t_server *);
   const char	*(*pnw)(struct s_graphical *, const t_server *, void *); //NOK
   const char	*(*ppo)(const t_server *, int);
-  const char	*(*plv)(struct s_graphical *, const t_server *, void *);
+  const char	*(*plv)(const t_server *, int);
   const char	*(*pin)(struct s_graphical *, const t_server *, void *);
   const char	*(*pex)(struct s_graphical *, const t_server *, void *);
   const char	*(*pbc)(struct s_graphical *, const t_server *, void *, void *);
