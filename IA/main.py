@@ -10,6 +10,7 @@ from optparse import OptionParser
 from player import *
 
 try:
+	print "JE SUIS EN TRAIN DE ME LANCER"
 	connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 	usage = "usage: %prog -n TeamName -p Port -h MachineName"
@@ -24,20 +25,20 @@ try:
 	if options.help or options.teamName == None or options.port == None or options.host == None:
 	    parser.print_help()
 	    sys.exit()
-	
+
 	teamName = options.teamName
 	port = options.port
 	host = options.host
-	
+
 	connexion.connect((host, int(port)))
-	
+
 	myPlayer = player(connexion, teamName, port, host)
 	inputs = [connexion]
 	outputs = []
 	timeout = 0.1
-	
+
 	myPlayer.connect()
-	
+
 	while 42 :
 	    inputready,outputready,exceptready = select.select(inputs, outputs, [], timeout)
 	    if not (inputready or outputready or exceptready):
@@ -48,7 +49,6 @@ try:
 	        for s in inputready:
 	            if s == connexion:
 	                answer = connexion.recv(1000)
-	#                print "[", answer, "]"
 	                if (len(answer) == 0):
 	                    print "Server Disconnected"
 	                    sys.exit()
@@ -68,7 +68,6 @@ try:
 	            else:
 	                print "Server Disconnected"
 	                sys.exit()
-	
 	connexion.close()
 except:
 	print "Exception in user code:"
