@@ -54,21 +54,24 @@ class player:
         self._id = 0
         self._count = 0
         self._arrived = False
+        self._countAnswer = 0
+        self._boolAnswer = False
 
     def connect(self):
+        answer = self._socket.recv(100)
         self._socket.send(self._team + "\n")
         time.sleep(0.05)
         answer = self._socket.recv(1000)
         answer = answer.split('\n')
-        self._numClient = int(answer[1])
-        answer = answer[2].split(' ')
+        self._numClient = int(answer[0])
+        answer = answer[1].split(' ')
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
-        self._nourritureMinimal = round(math.log(self._lenMapX * self._lenMapY))
+        self._nourritureMinimal = round(1.2 * math.log(self._lenMapX * self._lenMapY))
         print self._nourritureMinimal
-        self._foodToHelp = round(3 * math.log(self._lenMapX * self._lenMapY))
+        self._foodToHelp = round(3.2 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToHelp
-        self._foodToRequest = round(4.7 * math.log(self._lenMapX * self._lenMapY))
+        self._foodToRequest = round(5 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToRequest
         self.broadcast("Ping")
         self._createMap()
@@ -308,6 +311,10 @@ class player:
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
         if (self._inventaire._nourriture < self._nourritureMinimal):
+            if self._group == True:
+                self.broadcast("A//" + str(self._action._x) + "," + str(self._action._y))
+            if self._toIncanteX != -1 and self._toIncanteY != -1:
+                self.broadcast("A//" + str(self._toIncanteX) + "," + str(self._toIncanteY))
             self._toIncanteY = -1
             self._toIncanteX = -1
             self._call = False
@@ -611,7 +618,7 @@ class player:
                         while (self._incomming > 0):
                             self.broadcast("A/" + str(self._answers.pop()[0]) + "/" + str(self._posX) + "," + str(self._posY))
                             self._incomming -= 1
-                        self._coolDown = 5
+                        self._coolDown = 3
                         self._call = False
                         self._group = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
@@ -625,6 +632,13 @@ class player:
         self._ping = False
         if self._coolDown > 0:
             self._coolDown -= 1
+        if self._countAnswer > 0:
+            self._countAnswer -= 1
+            if self._countAnswer == 0 and self._boolAnswer != True:
+                self._toIncanteX = -1
+                self._toIncanteY = -1
+        else:
+            self._boolAnswer = False
         if (self._queue.qsize() > 4 or self._leveling == True):
             if self._leveling == True:
                 print "je wait because leveling"
@@ -632,6 +646,10 @@ class player:
         else:
             if self._inventaire._nourriture < self._nourritureMinimal and (self._action._firstAction != self._action._PossibleAction._nourriture or self._action._emergency != 3):
                 print "Must find nourriture absolument."
+                if self._group == True:
+                    self.broadcast("A//" + str(self._posX) + "," + str(self._posY))
+                if self._toIncanteX != -1 and self._toIncanteY != -1:
+                    self.broadcast("A//" + str(self._toIncanteX) + "," + str(self._toIncanteY))
                 self._incomming = 0
                 self._call = False
                 self._group = False
@@ -695,7 +713,9 @@ class player:
                     self._lead = False
                     self._group = False
                     self._arrived = False
+                    self._boolAnswer = False
                     self._count = 0
+                    self._countAnswer = 0
                     print "elevation Failed."
                     self._toIncanteY = -1
                     self._toIncanteX = -1
@@ -712,7 +732,9 @@ class player:
             self._leveling = False
             self._group = False
             self._arrived = False
+            self._boolAnswer = False
             self._count = 0
+            self._countAnswer = 0
             self._incomming = 0
             self.goToUnknow()
             self.decideCaseToGo()
@@ -746,6 +768,8 @@ class player:
                     print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
                     if self._lvl == int(lvl) and self._inventaire._nourriture >= self._foodToHelp and self._toIncanteX == -1 and self._toIncanteY == -1:
                         print "J'accepte une incantation j'attend confirmation"
+                        self._countAnswer = 6
+                        self._boolAnswer = False
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
                         self.broadcast("D/" + str(self._id) + "/" + x + "," + y + "/" + str(int(self.nbMove(self._posX, self._toIncanteX, self._posY, self._toIncanteY))))
@@ -762,27 +786,48 @@ class player:
                     y = tmp2[1]
                     if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
                         print "Il me dit ok"
+                        self._boolAnswer = True
                         self._action.initSecondAction()
                         self._action.addSecondAction(self._action._PossibleAction._nourriture)
                         self._action.setMove(int(x), int(y), self._action._PossibleAction._join, 3)
                         #print "Il me demande de venir en X = " + x + " Y = " + y + " et ma pose est de X = ", self._posX, " Y = ", self._posY
             elif msg[0:1] == "A":
             	trame = msg.split('/')
-           	botId = int(trame[1])
-            	tmp = trame[2]
-                tmp = tmp.split(',')
-                if tmp.__len__() >= 2 and botId == self._id:
-                    x = tmp[0]
-                    y = tmp[1]
-                    if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
-                        print "Il me dit fuck"
-                        self._toIncanteX = -1
-                        self._toIncanteY = -1
-                        self._leveling = False
-                        self._lead = False
-                        self._group = False
-                        self._arrived = False
-                        self._count = 0
+                if trame[1] != "":
+                    botId = int(trame[1])
+                    tmp = trame[2]
+                    tmp = tmp.split(',')
+                    if tmp.__len__() >= 2 and botId == self._id:
+                        x = tmp[0]
+                        y = tmp[1]
+                        if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
+                            print "Il me dit fuck"
+                            self._toIncanteX = -1
+                            self._toIncanteY = -1
+                            self._leveling = False
+                            self._lead = False
+                            self._group = False
+                            self._arrived = False
+                            self._boolAnswer = False
+                            self._count = 0
+                            self._countAnswer = 0
+                else:
+                    tmp = trame[2]
+                    tmp = tmp.split(',')
+                    if tmp.__len__() >= 2:
+                        x = tmp[0]
+                        y = tmp[1]
+                        if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
+                            print "Probleme Incatatation can't start."
+                            self._toIncanteX = -1
+                            self._toIncanteY = -1
+                            self._leveling = False
+                            self._lead = False
+                            self._group = False
+                            self._arrived = False
+                            self._boolAnswer = False
+                            self._count = 0
+                            self._countAnswer = 0
             elif msg[0:1] == "D" and self._call == True:
                 trame = msg.split('/')
                 coord = trame[2].split(',')
