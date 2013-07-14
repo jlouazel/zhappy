@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Sun Jul 14 13:50:15 2013 louaze_j
-** Last update Sun Jul 14 14:12:15 2013 louaze_j
+** Last update Sun Jul 14 21:45:03 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -24,24 +24,19 @@ const char	*pic(t_player *player, const t_server *serv)
   if (!player || !serv || !serv->game)
     return ("ko\n");
   l = serv->game->players;
-  if ((ret = xcalloc(6 * l->size(l) + 50, sizeof(*ret))))
+  if (!(ret = xcalloc(6 * l->size(l) + 50, sizeof(*ret))))
+    return ("ko\n");
+  snprintf(ret, 6 * l->size(l) + 50, "pic %d %d %d",
+	   player->x, player->y, player->level);
+  while (l && l->data)
     {
-      snprintf(ret, 6 * l->size(l) + 50, "pic %d %d %d",
-	       player->x, player->y, player->level);
-      while (l)
+      id = ((t_player *)l->data)->id;
+      if (id != player->id)
 	{
-	  if (l->data)
-	    {
-	      id = ((t_player *)l->data)->id;
-	      if (id != player->id)
-		{
-		  sprintf(buff, "%d", id);
-		  ret = my_concat(ret, buff, NULL);
-		}
-	      l = l->next;
-	    }
+	  sprintf(buff, "%d", id);
+	  ret = my_concat(ret, buff, NULL);
 	}
-      return (my_concat(ret, "\n", NULL));
+      l = l->next;
     }
-  return ("ko\n");
+  return (my_concat(ret, "\n", NULL));
 }

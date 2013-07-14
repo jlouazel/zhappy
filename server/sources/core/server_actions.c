@@ -5,12 +5,17 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
+<<<<<<< HEAD
 ** Last update Sun Jul 14 21:27:13 2013 julien fortin
+=======
+** Last update Sun Jul 14 21:00:40 2013 louaze_j
+>>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
 */
 
 #include	<sys/select.h>
 #include	<string.h>
 #include	<time.h>
+#include	<stdio.h>
 #include	"lib_strings.h"
 #include	"lib_std.h"
 #include	"server.h"
@@ -115,7 +120,8 @@ bool		server_players_actions(const t_server *serv, fd_set *rfd)
   t_list	*tmp;
   t_player	*player;
 
-  list = serv && serv->game && serv->game->players ? serv->game->players : NULL;
+  list = serv && serv->game && serv->game->players ?
+    serv->game->players : NULL;
   while (list)
     {
       tmp = list->next;

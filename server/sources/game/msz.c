@@ -5,13 +5,12 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:09:51 2013 louaze_j
-** Last update Sun Jul 14 11:25:02 2013 louaze_j
+** Last update Sun Jul 14 21:48:05 2013 louaze_j
 */
 
+#include	<stdio.h>
 #include	"server.h"
 #include	"lib_std.h"
-
-#include	<stdio.h>
 
 const char	*msz(const t_server *server)
 {

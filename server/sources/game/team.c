@@ -1,15 +1,11 @@
 /*
 ** team.c for zhappy in /home/louaze_j
-**
+** 
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-**
-** Started on  Mon Jul  1 09:15:15 2013 louaze_j
-<<<<<<< HEAD
-** Last update Sun Jul 14 16:54:40 2013 louaze_j
-=======
-** Last update Sun Jul 14 15:53:20 2013 julien fortin
->>>>>>> 857685584db8bf283516c66a99706e61d129305f
+** 
+** Started on  Sun Jul 14 21:40:41 2013 louaze_j
+** Last update Sun Jul 14 21:40:42 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -24,7 +20,8 @@
 
 static void	team_remove_player(t_team *team, t_player *player)
 {
-  if (team && player && team->members && (team->members->erase(&team->members, player)) == true)
+  if (team && player && team->members &&
+      (team->members->erase(&team->members, player)) == true)
     {
       team->nb_members--;
     }
