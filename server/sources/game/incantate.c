@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Sun Jul 14 05:17:22 2013 louaze_j
-** Last update Sun Jul 14 23:17:25 2013 louaze_j
+** Last update Sun Jul 14 23:31:19 2013 louaze_j
 */
 
 #include	<stdbool.h>
@@ -57,7 +57,6 @@ static char	*new_lvl(const t_server *server, t_square *sq, t_player *pl)
   char		*ret;
   t_list	*l;
 
-
   if ((ret = xcalloc(42, sizeof(*ret))))
     snprintf(ret, 42, "niveau actuel : %d\n", pl->level);
   l = server->game->players;
@@ -75,7 +74,6 @@ static char	*new_lvl(const t_server *server, t_square *sq, t_player *pl)
   notify_graph(server, bct(server, sq->x, sq->y));
   return (ret);
 }
-
 
 const char	*_player_incantation(t_player *player, const t_server *server,
 				     void *arg)
