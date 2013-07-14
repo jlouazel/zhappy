@@ -47,6 +47,7 @@ class player:
         self._lead = False
         self._pong = False
         self._numClient = -1
+        self._answers = []
         self._group = False
         self._port = port
         self._host = host
@@ -715,7 +716,7 @@ class player:
                         print "J'accepte j'attend confirmation"
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
-                        self.broadcast("D," + x + "," + y)
+                        self.broadcast("D/"+str(self._numClient)+"/" + x + "," + y)
             elif msg[0:1] == "C":
                 tmp = msg.split(',')
                 if tmp.__len__() >= 3:
