@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 10:10:23 2013 louaze_j
+** Last update Sun Jul 14 14:13:41 2013 julien fortin
 */
 
 #include	"graphical.h"
@@ -17,6 +17,6 @@ const char	*_graph_mct(t_graphical *graph,
 {
   (void)data;
   if (!graph || !serv)
-    return ("ko\n");
+    return ("suc\n");
   return (graph->mct(graph, serv));
 }

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 10:13:22 2013 julien fortin
+** Last update Sun Jul 14 14:14:13 2013 julien fortin
 */
 
 #include	"graphical.h"
@@ -16,6 +16,6 @@ const char	*_graph_pin(t_graphical *graph,
 			    const char *data)
 {
   if (!graph || !server || !data || !data[0])
-    return ("ko\n");
+    return ("suc\n");
   return (graph->pin(graph, server, get_player_for_id(server, atoi(data))));
 }

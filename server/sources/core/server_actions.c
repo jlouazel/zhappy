@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sun Jul 14 11:26:15 2013 julien fortin
+** Last update Sun Jul 14 13:55:49 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -68,7 +68,8 @@ static void	_server_treat_cmd_for_player(const t_server *serv,
 	player->io->in->push_back(&((t_io*)player->io)->in, (void*)data);
       else
 	((t_io*)player->io)->in = new_list((void*)data);
-      // if (elevation etc..)
+      if (index == 11)
+	player->notify(player, "elevation en cours\n");
     }
   else
     player->notify(player, "ko\n");

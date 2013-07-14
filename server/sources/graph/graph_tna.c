@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 10:12:21 2013 louaze_j
+** Last update Sun Jul 14 14:15:38 2013 julien fortin
 */
 
 #include	"graphical.h"
@@ -18,6 +18,6 @@ const char	*_graph_tna(t_graphical *graph,
 {
   (void)data;
   if (!serv || !graph)
-    return ("ko\n");
+    return ("suc\n");
   return (graph->tna(graph, serv));
 }

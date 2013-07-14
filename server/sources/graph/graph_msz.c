@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 01:10:47 2013 julien fortin
+** Last update Sun Jul 14 14:14:01 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -20,7 +20,7 @@ const char	*_graph_msz(t_graphical *graph,
 
   (void)data;
   if (!graph || !serv || !serv->game || !serv->game->world)
-    return ("ko\n");
+    return ("suc\n");
   if ((msg = xcalloc(42, sizeof(*msg))))
     {
       snprintf(msg, 42, "msz %d %d\n",
@@ -28,5 +28,5 @@ const char	*_graph_msz(t_graphical *graph,
 	       serv->game->world->height);
       return (msg);
     }
-  return ("ko\n");
+  return ("suc\n");
 }

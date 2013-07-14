@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jul 14 00:31:59 2013 julien fortin
-** Last update Sun Jul 14 10:17:52 2013 julien fortin
+** Last update Sun Jul 14 14:15:07 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -21,14 +21,14 @@ const char	*_graph_sgt(t_graphical *graph,
   (void)graph;
   (void)data;
   if (!server)
-    return ("ko\n");
+    return ("suc\n");
   if ((res = xcalloc(42, sizeof(*res))))
     {
       if (server->options)
 	snprintf(res, 42, "sgt %d\n", server->options->time);
       else
-	res = "ko\n";
+	res = "suc\n";
       return (res);
     }
-  return ("ko\n");
+  return ("suc\n");
 }
