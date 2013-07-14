@@ -47,10 +47,11 @@ class player:
         self._lead = False
         self._pong = False
         self._numClient = -1
-        self._answers = []
+        self._answers = Queue.Queue()
         self._group = False
         self._port = port
         self._host = host
+        self._id = 0
 
     def connect(self):
         self._socket.send(self._team + "\n")
@@ -305,7 +306,7 @@ class player:
                  self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
              else:
                  self.goToUnknow()
-         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= self._foodToRequest):
+         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= self._foodToRequest and self._toIncanteX == -1 and self._toIncanteY == -1):
          # AJOUT AND
              self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
          elif (self._inventaire._nourriture < self._foodToRequest - self._intervalle):
@@ -357,6 +358,7 @@ class player:
         if (self._orientation == 3 or self._orientation == 1):
             self._orientation = (self._orientation + 2) % 4
         print self._orientation
+        print "My ID = ", self._id
 
     def createArea(self, x1, x2, y1, y2):
         if x1 < x2:
@@ -458,23 +460,6 @@ class player:
                 j = j + 1
 
     def goToUnknow(self):
-        print "Go to Unknow"
-#        j = 0
-#        x = 0
-#        y = 0
-#        tabPossible = []
-#        while j < self._lenMapY - 1:
-#            i = 0
-#            while i < self._lenMapX - 1:
-#                tmp2 = self._lenMapX * j + i
-#                if self._map[tmp2]._probabilities <= 10 and self._map[tmp2]._players == 0:
-#                    tabPossible.append([x, y])
-#                i = i + 1
-#            j = j + 1
-#        if tabPossible.__len__() >= 1:
- #           r = random.randint(0,tabPossible.__len__() - 1)
-  #          self.deplacementAbsolut(tabPossible[r][0], tabPossible[r][1])
-#        else:
         r = random.randint(0, 42)
         r = (r * self._numClient * 1337) % 4
         if r == 0:
@@ -556,7 +541,6 @@ class player:
         i = self._lenMapX * self._posY + self._posX
         if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
             self._action.initSecondAction()
-            #print "J'incante"
             self._leveling = True
             self.incantation()
             print "Incantation"
@@ -580,14 +564,18 @@ class player:
                     self._action._define = 0
                 else:
                     print "J'ai fini d'attendre MyneedJoueur = ", myNeed._joueur - 1, " self._incomming = ", self._incomming
-                    if self._incomming == myNeed._joueur - 1 and self._group == False:
+                    if self._incomming >= myNeed._joueur - 1 and self._group == False:
                         print "je leur dis de venir en X = ", self._posX, " Y = ", self._posY
-                        if (self._incomming > myNeed._joueur - 1)
-                        	self.broadcast("A/" + str(self._answers.pop()) + "/" + str(self._posX) + "," + str(self._posY))
-                        	self._incomming -= 1
-                        elif (self._incomming > 0)
-                        	self.broadcast("C/" + str(self._answers.pop()) + "/" + str(self._posX) + "," + str(self._posY))
-                        	self._incomming -= 1
+                        while (self._incomming > myNeed._joueur - 1):
+                            himId = self._answers.get()
+                            print "Je dis non a l'id ", himId
+                            self.broadcast("A/" + str(himId) + "/" + str(self._posX) + "," + str(self._posY))
+                            self._incomming -= 1
+                        while (self._incomming > 0):
+                            himId = self._answers.get()
+                            print "Je dis oui a l'id ", himId
+                            self.broadcast("C/" + str(himId) + "/" + str(self._posX) + "," + str(self._posY))
+                            self._incomming -= 1
                         self._action._define = 0
                         self._group = True
                     elif self._group == True:
@@ -595,16 +583,10 @@ class player:
                         self._action._define = 0
                     else:
                         print "je leur dis fuck."
-<<<<<<< HEAD
-                        self.broadcast("A," + str(self._posX) + "," + str(self._posY))
-                        self._coolDown = 10
-                        self._incomming = 0
-=======
-                        if (self._incomming > 0)
-                        	self.broadcast("A/" + str(self._answers.pop()) + "/" + str(self._posX) + "," + str(self._posY))
-                        	self._incomming -= 1
+                        while (self._incomming > 0):
+                            self.broadcast("A/" + str(self._answers.get()) + "/" + str(self._posX) + "," + str(self._posY))
+                            self._incomming -= 1
                         self._coolDown = 5
->>>>>>> 3af3a9d77b1356ab1c22ba5a38eb3a9d9cb110ab
                         self._call = False
                         self._group = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
@@ -706,6 +688,7 @@ class player:
         elif trame[0:7] == "message":
             direction = trame[8:9]
             msg = trame[10:]
+            print msg
             if msg[0:2] == "IE":
                 # Incantation ennemie
                 print "IE"
@@ -721,56 +704,55 @@ class player:
                 nb_m = need[10:11]
                 nb_p = need[12:13]
                 nb_t = need[14:15]
-                tmp = msg.split(',')
-                if tmp.__len__() >= 3:
-                    x = tmp[1]
-                    y = tmp[2]
-                    y = tmp[2].split('\n')[0]
-                    print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
+                tmp2 = msg.split(',')
+                if tmp2.__len__() >= 3:
+                    x = tmp2[1]
+                    y = tmp2[2]
+                    y = tmp2[2].split('\n')[0]
+                    #print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
                     if self._lvl == int(lvl) and self._inventaire._nourriture >= self._foodToHelp and self._toIncanteX == -1 and self._toIncanteY == -1:
-                        print "J'accepte j'attend confirmation"
+                        print "J'accepte une incantation j'attend confirmation"
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
-                        self.broadcast("D/" + str(self._numClient) + "/" + x + "," + y)
+                        self.broadcast("D/" + str(self._id) + "/" + x + "," + y)
             elif msg[0:1] == "C":
-            	trame = msg.split['/']
+            	trame = msg.split('/')
             	botId = int(trame[1])
-            	tmp = trame[2]
-                tmp = msg.split(',')
-                if tmp.__len__() >= 3 and botId == self._numClient:
-                    x = tmp[1]
-                    y = tmp[2]
-                    y = tmp[2].split('\n')[0]
+            	tmp2 = trame[2]
+                tmp2 = tmp2.split(',')
+                if tmp2.__len__() >= 2 and botId == self._id:
+                    x = tmp2[0]
+                    y = tmp2[1]
                     if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
+                        print "Il me dit ok"
                         self._action.initSecondAction()
                         self._action.addSecondAction(self._action._PossibleAction._nourriture)
                         self._action.setMove(int(x), int(y), self._action._PossibleAction._join, 3)
-                        print "Il me demande de venir en X = " + x + " Y = " + y + " et ma pose est de X = ", self._posX, " Y = ", self._posY
+                        #print "Il me demande de venir en X = " + x + " Y = " + y + " et ma pose est de X = ", self._posX, " Y = ", self._posY
             elif msg[0:1] == "A":
-            	trame = msg.split['/']
-            	botId = int(trame[1])
+            	trame = msg.split('/')
+           	botId = int(trame[1])
             	tmp = trame[2]
-                tmp = msg.split(',')
-                if tmp.__len__() >= 3 and botId == self._numClient:
-                    x = tmp[1]
-                    y = tmp[2]
-                    y = tmp[2].split('\n')[0]
+                tmp = tmp.split(',')
+                if tmp.__len__() >= 2 and botId == self._id:
+                    x = tmp[0]
+                    y = tmp[1]
                     if int(x) == self._toIncanteX and int(y) == self._toIncanteY:
                         print "Il me dit fuck"
                         self._toIncanteX = -1
                         self._toIncanteY = -1
             elif msg[0:1] == "D" and self._call == True:
-                trame = msg.split['/']
+                trame = msg.split('/')
                 coord = trame[2].split(',')
                 if (int(coord[0]) == self._posX and int(coord[1]) == self._posY):
-                	print "Une personne de plus peut me rejoindre."
-	                self._answers.append(int(trame[1]))
-	                self._incomming += 1
+                    self._answers.put(int(trame[1]))
+                    self._incomming += 1
             elif msg[0:4] == "Ping" and self._pong == False:
-            	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8))
+            	self.broadcast("Pong," + str((int(direction) + (4 - self._orientation) * 2) % 8) + "," + str(self._id + 1))
                 self._pong = True
             elif msg[0:4] == "Pong" and self._ping == True:
             	other_direction = int(msg.split(',')[1])
+                self._id = int(msg.split(',')[2])
                 self.setMyOrientation(int(direction), other_direction)
                 self._ping = False
 
