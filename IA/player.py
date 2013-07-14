@@ -6,7 +6,6 @@ import math
 import Queue
 import random
 import os
-
 from action import *
 from elevation import *
 from case import *
@@ -73,9 +72,9 @@ class player:
         print self._foodToHelp
         self._foodToRequest = round(5 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToRequest
-        self.broadcast("Ping")
         self._createMap()
         self.fork()
+        self.broadcast("Ping")
         time.sleep(0.5)
         self.inventaire()
 
@@ -452,6 +451,11 @@ class player:
                 self.broadcast("H," + str(self._posX) + "," + str(self._posY))
                 print "J'envois le message comme quoi je suis arrive."
             self._action._define = 0
+        elif self._action._firstAction == self._action._die:
+            self._action._define = 0
+            while self._inventaire._nourriture > 0:
+                self.poserObject("linemate")
+                self._incomming._nourriture -= 1
 
     def takeObject(self):
         i = self._lenMapX * self._posY + self._posX
@@ -644,7 +648,7 @@ class player:
                 print "je wait because leveling"
             time.sleep(0.1)
         else:
-            if self._inventaire._nourriture < self._nourritureMinimal and (self._action._firstAction != self._action._PossibleAction._nourriture or self._action._emergency != 3):
+            if self._inventaire._nourriture < self._nourritureMinimal and (self._action._firstAction != self._action._PossibleAction._nourriture or self._action._emergency != 3) and self._action._firstAction != self._action._die:
                 print "Must find nourriture absolument."
                 if self._group == True:
                     self.broadcast("A//" + str(self._posX) + "," + str(self._posY))
@@ -849,6 +853,8 @@ class player:
             elif msg[0:4] == "Pong" and self._ping == True:
             	other_direction = int(msg.split(',')[1])
                 self._id = int(msg.split(',')[2])
-                self.setMyOrientation(int(direction), other_direction)
+                if self._id > 2:
+                    self.setMove(0, 0, self._PossibleAction._die, 3)
+                else:
+                    self.setMyOrientation(int(direction), other_direction)
                 self._ping = False
-
