@@ -305,9 +305,11 @@ class player:
                  self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
              else:
                  self.goToUnknow()
-         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= 25):
+         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= self._foodToHelp):
+         # AJOUT AND
              self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
-         elif (self._inventaire._nourriture < 30 - self._intervalle):
+         elif (self._inventaire._nourriture < self._foodToRequest - self._intervalle):
+         # MODIF
              self._intervalle = 0
              tab = self.findFood()
              if tab[0] != -1 and tab[1] != -1:
