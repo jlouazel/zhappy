@@ -1,11 +1,11 @@
 /*
 ** bct.c for zhappy in /home/louaze_j
-** 
+**
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-** 
+**
 ** Started on  Mon Jul  8 16:23:31 2013 louaze_j
-** Last update Tue Jul  9 18:14:57 2013 louaze_j
+** Last update Sun Jul 14 01:35:58 2013 julien fortin
 */
 
 #include	"square.h"
@@ -16,16 +16,11 @@
 #include	<stdio.h>
 
 static
-const char	*bct(t_graphical *graphical, const t_server *server,
-		     void *arg1, void *arg2)
+const char	*bct(const t_server *server,
+		     int x, int y)
 {
-  int		x;
-  int		y;
   t_square	*square;
 
-  (void)graphical;
-  x = *(int *)arg1;
-  y = *(int *)arg2;
   square =
     server->game->world->map->at(server->game->world->map,
 				 POS_LIST(x, y, server->game->world->width));

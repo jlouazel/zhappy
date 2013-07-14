@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sat Jul 13 18:20:48 2013 julien fortin
+** Last update Sun Jul 14 01:43:45 2013 julien fortin
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -24,10 +24,10 @@ typedef struct	s_graphical
   void          (*notify)(struct s_graphical*, const char*);
 
   const char	*(*msz)(struct s_graphical *, const t_server *);
-  const char	*(*bct)(struct s_graphical *, const t_server *, void *, void *);
-  const char	*(*mct)(struct s_graphical *, const t_server *);
-  const char	*(*tna)(struct s_graphical *, const t_server *, void *);
-  const char	*(*pnw)(struct s_graphical *, const t_server *, void *);
+  const char	*(*bct)(const t_server *, int, int);
+  const char	*(*mct)(struct s_graphical*, const t_server *);
+  const char	*(*tna)(struct s_graphical *, const t_server *);
+  const char	*(*pnw)(struct s_graphical *, const t_server *, void *); //NOK
   const char	*(*ppo)(struct s_graphical *, const t_server *, void *);
   const char	*(*plv)(struct s_graphical *, const t_server *, void *);
   const char	*(*pin)(struct s_graphical *, const t_server *, void *);
@@ -52,6 +52,16 @@ typedef struct	s_graphical
 } t_graphical;
 
 t_graphical	*new_graphical_client(const t_socket *, unsigned int);
+
+const char	*_graph_msz(t_graphical *, const t_server *, const char *);
+const char	*_graph_bct(t_graphical *, const t_server *, const char *);
+const char	*_graph_mct(t_graphical *, const t_server *, const char *);
+const char	*_graph_tna(t_graphical *, const t_server *, const char *);
+const char	*_graph_ppo(t_graphical *, const t_server *, const char *);
+const char	*_graph_plv(t_graphical *, const t_server *, const char *);
+const char	*_graph_pin(t_graphical *, const t_server *, const char *);
+const char	*_graph_sgt(t_graphical *, const t_server *, const char *);
+const char	*_graph_sst(t_graphical *, const t_server *, const char *);
 
 void		_msz(t_graphical *);
 void		_bct(t_graphical *);
