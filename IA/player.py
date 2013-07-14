@@ -65,13 +65,14 @@ class player:
         self._nourritureMinimal = round(math.log(self._lenMapX * self._lenMapY))
         print self._nourritureMinimal
         self._foodToHelp = round(3 * math.log(self._lenMapX * self._lenMapY))
-        print self._foodToHelp 
-        self._foodToRequest = round(4 * math.log(self._lenMapX * self._lenMapY))
+        print self._foodToHelp
+        self._foodToRequest = round(4.7 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToRequest
         self.broadcast("Ping")
         self._createMap()
         self.fork()
         time.sleep(0.5)
+        self.inventaire()
 
     def broadcast(self, msg):
     	self._socket.send("broadcast " + msg + "\n")
@@ -298,41 +299,46 @@ class player:
         return False
 
     def decideCaseToGo(self):
-         myNeed = self._elevation.getNeed(self._lvl)
-         i = self._lenMapX * self._posY + self._posX
-         if (self._inventaire._nourriture < self._nourritureMinimal):
-             tab = self.findFood()
-             if tab[0] != -1 and tab[1] != -1:
-                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
-             else:
-                 self.goToUnknow()
-         elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= self._foodToRequest and self._toIncanteX == -1 and self._toIncanteY == -1):
-         # AJOUT AND
-             self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
-         elif (self._inventaire._nourriture < self._foodToRequest - self._intervalle):
-         # MODIF
-             self._intervalle = 0
-             tab = self.findFood()
-             if tab[0] != -1 and tab[1] != -1:
-                 self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
-                 self.decideSecondAction()
-             else:
-                 self.goToUnknow()
-         else:
-             self._intervalle = 5
-             flag = False
-             i = 0
-             while i < self._action._secondAction.__len__():
-                 tab = self.findStone(self._action._secondAction[i])
-                 if tab[0] != -1 and tab[1] != -1:
-                     self._action.setMove(tab[0], tab[1], self._action._secondAction[i], 2)
-                     self._action._secondAction.addSecondAction(self._action._PossibleAction._nourriture)
-                     i = self._action._secondAction.__len__()
-                     flag = True
-                 else:
-                     i = i + 1
-             if flag == False:
-                 self.goToUnknow()
+        myNeed = self._elevation.getNeed(self._lvl)
+        i = self._lenMapX * self._posY + self._posX
+        if (self._inventaire._nourriture < self._nourritureMinimal):
+            self._toIncanteY = -1
+            self._toIncanteX = -1
+            self._call = False
+            self._group = False
+            self._leveling = False
+            tab = self.findFood()
+            if tab[0] != -1 and tab[1] != -1:
+                self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 3)
+            else:
+                self.goToUnknow()
+        elif (self._inventaire._linemate + self._map[i]._linemate >= myNeed._linemate and self._inventaire._deraumere + self._map[i]._deraumere >= myNeed._deraumere and self._inventaire._sibur + self._map[i]._sibur >= myNeed._sibur and self._inventaire._mendiane + self._map[i]._mendiane >= myNeed._mendiane and self._inventaire._phiras + self._map[i]._phiras >= myNeed._phiras and self._inventaire._thystame + self._map[i]._thystame >= myNeed._thystame and self._coolDown == 0 and self._inventaire._nourriture >= self._foodToRequest and self._toIncanteX == -1 and self._toIncanteY == -1):
+            # AJOUT AND
+            self._action.setMove(self._posX, self._posY, self._action._PossibleAction._incantation, 3)
+        elif (self._inventaire._nourriture < self._foodToRequest - self._intervalle):
+            # MODIF
+            self._intervalle = 0
+            tab = self.findFood()
+            if tab[0] != -1 and tab[1] != -1:
+                self._action.setMove(tab[0], tab[1], self._action._PossibleAction._nourriture, 2)
+                self.decideSecondAction()
+            else:
+                self.goToUnknow()
+        else:
+            self._intervalle = 5
+            flag = False
+            i = 0
+            while i < self._action._secondAction.__len__():
+                tab = self.findStone(self._action._secondAction[i])
+                if tab[0] != -1 and tab[1] != -1:
+                    self._action.setMove(tab[0], tab[1], self._action._secondAction[i], 2)
+                    self._action._secondAction.addSecondAction(self._action._PossibleAction._nourriture)
+                    i = self._action._secondAction.__len__()
+                    flag = True
+                else:
+                    i = i + 1
+            if flag == False:
+                self.goToUnknow()
             #self._action.affSecondAction()
 
     def deplacementAbsolut(self, x, y):
@@ -586,7 +592,7 @@ class player:
                         while (self._incomming > 0):
                             self.broadcast("A/" + str(self._answers.get()) + "/" + str(self._posX) + "," + str(self._posY))
                             self._incomming -= 1
-                        self._coolDown = 5
+                        self._coolDown = 10
                         self._call = False
                         self._group = False
         elif ((self._map[i]._linemate < myNeed._linemate or self._map[i]._deraumere < myNeed._deraumere or self._map[i]._sibur < myNeed._sibur or self._map[i]._mendiane < myNeed._mendiane or self._map[i]._phiras < myNeed._phiras or self._map[i]._thystame < myNeed._thystame) and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
@@ -611,6 +617,8 @@ class player:
                 self._call = False
                 self._group = False
                 self._leveling = False
+                self._toIncanteY = -1
+                self._toIncanteX = -1
                 self._waiting = 0
                 tab = self.findFood()
                 if tab[0] != -1 and tab[1] != -1:
@@ -667,6 +675,8 @@ class player:
                     self._lead = False
                     self._group = False
                     print "elevation Failed."
+                    self._toIncanteY = -1
+                    self._toIncanteX = -1
             else:
                 print "PROBLEME1"
         elif trame[0:6] == "niveau":
@@ -709,12 +719,15 @@ class player:
                     x = tmp2[1]
                     y = tmp2[2]
                     y = tmp2[2].split('\n')[0]
-                    #print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
+                    print "message receive from lvl ", lvl, " I'm lvl ", self._lvl
                     if self._lvl == int(lvl) and self._inventaire._nourriture >= self._foodToHelp and self._toIncanteX == -1 and self._toIncanteY == -1:
                         print "J'accepte une incantation j'attend confirmation"
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
                         self.broadcast("D/" + str(self._id) + "/" + x + "," + y)
+                    else:
+                        print "Je ne peux accepter ma nourriture = ", self._inventaire._nourriture, " and I need : ", self._foodToHelp
+                        print "je suis deja sense aller en x = ", self._toIncanteX, " y = ", self._toIncanteY
             elif msg[0:1] == "C":
             	trame = msg.split('/')
             	botId = int(trame[1])
@@ -741,6 +754,9 @@ class player:
                         print "Il me dit fuck"
                         self._toIncanteX = -1
                         self._toIncanteY = -1
+                        self._leveling = False
+                        self._lead = False
+                        self._group = False
             elif msg[0:1] == "D" and self._call == True:
                 trame = msg.split('/')
                 coord = trame[2].split(',')
