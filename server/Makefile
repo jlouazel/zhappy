@@ -1,11 +1,11 @@
-##
+
 ## Makefile for zappy in /home/louaze_j
 ##
 ## Made by Jean-Baptiste Louazel
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Sun Jul 14 15:06:04 2013 louaze_j
+## Last update Sun Jul 14 16:13:36 2013 louaze_j
 ##
 
 CC			= gcc
@@ -110,10 +110,19 @@ GAME_SRCS		= $(SRCS_DIR)$(GAME_DIR)team.c \
 			$(SRCS_DIR)$(GAME_DIR)pin.c \
 			$(SRCS_DIR)$(GAME_DIR)pex.c \
 			$(SRCS_DIR)$(GAME_DIR)pbc.c \
-			$(SRCS_DIR)$(GAME_DIR)sgt.c \
 			$(SRCS_DIR)$(GAME_DIR)pic.c \
 			$(SRCS_DIR)$(GAME_DIR)pie.c \
 			$(SRCS_DIR)$(GAME_DIR)pfk.c \
+			$(SRCS_DIR)$(GAME_DIR)pdr.c \
+			$(SRCS_DIR)$(GAME_DIR)pgt.c \
+			$(SRCS_DIR)$(GAME_DIR)pdi.c \
+			$(SRCS_DIR)$(GAME_DIR)enw.c \
+			$(SRCS_DIR)$(GAME_DIR)eht.c \
+			$(SRCS_DIR)$(GAME_DIR)ebo.c \
+			$(SRCS_DIR)$(GAME_DIR)edi.c \
+			$(SRCS_DIR)$(GAME_DIR)sgt.c \
+			$(SRCS_DIR)$(GAME_DIR)sst.c \
+			$(SRCS_DIR)$(GAME_DIR)seg.c \
 
 #
 #library

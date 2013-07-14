@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Sun Jul 14 11:24:44 2013 louaze_j
+** Last update Sun Jul 14 16:08:49 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -46,7 +46,7 @@
 void	_welcome(t_graphical *graph, const t_server *server)
 {
   graph->notify(graph, msz(server));
-  graph->notify(graph, sgt(graph, server));
+  graph->notify(graph, sgt(server));
   mct(graph, server);
   tna(graph, server);
 }

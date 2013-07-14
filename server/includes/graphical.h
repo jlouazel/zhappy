@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sun Jul 14 15:16:58 2013 louaze_j
+** Last update Sun Jul 14 16:14:07 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -14,6 +14,7 @@
 #include	"server.h"
 #include	"lib_socket.h"
 #include	"eressources.h"
+#include	"egg.h"
 
 typedef struct	s_graphical
 {
@@ -51,19 +52,19 @@ const char	*pic(t_player *, const t_server *); // OK
 const char	*pie(t_player *); // OK
 const char	*pfk(t_player *); // OK
 const char	*pdr(t_player *, e_ressource); // OK
-const char	*pgt(t_graphical *, const t_server *); // NOK
-const char	*pdi(t_graphical *, const t_server *); // NOK
-const char	*enw(t_graphical *, const t_server *); // NOK
-const char	*eht(t_graphical *, const t_server *); // NOK
-const char	*ebo(t_graphical *, const t_server *); // NOK
-const char	*edi(t_graphical *, const t_server *); // NOK
-const char	*sgt(t_graphical *, const t_server *); // OK
-const char	*sst(t_graphical *, const t_server *); // NOK
-const char	*seg(t_graphical *, const t_server *); // NOK
-const char	*smg(t_graphical *, const t_server *); // NOK
-const char	*suc(t_graphical *, const t_server *); // NOK
-const char	*sbp(t_graphical *, const t_server *); // NOK
-const char	*pnw(t_player *);
+const char	*pgt(t_player *); // OK
+const char	*pdi(t_player *); // OK
+const char	*enw(t_player *, t_egg *); // OK
+const char	*eht(t_egg *); // OK
+const char	*ebo(t_egg *); // OK
+const char	*edi(t_egg *); // OK
+const char	*sgt(const t_server *); // OK
+const char	*sst(const t_server *); // OK
+const char	*seg(const char *); // OK
+/* const char	*smg(t_graphical *, const t_server *); // NOK */
+/* const char	*suc(t_graphical *, const t_server *); // NOK */
+/* const char	*sbp(t_graphical *, const t_server *); // NOK */
+/* const char	*pnw(t_player *); */
 
 void		_welcome(t_graphical *, const t_server *);
 
