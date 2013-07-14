@@ -5,43 +5,12 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:59:23 2013 louaze_j
-** Last update Sun Jul 14 16:08:49 2013 louaze_j
+** Last update Sun Jul 14 20:49:43 2013 louaze_j
 */
 
 #include	<stdio.h>
 #include	"lib_std.h"
 #include	"graphical.h"
-
-/* static void init_attr(t_graphical *new_graph) */
-/* { */
-/*   _msz(new_graph); */
-/*   _bct(new_graph); */
-/*   _mct(new_graph); */
-/*   _tna(new_graph); */
-/*   /\* _pnw(new_graph); // NOK *\/ */
-/*   _ppo(new_graph); // NOK */
-/*   _plv(new_graph); // NOK */
-/*   _pin(new_graph); // NOK */
-/*   _pex(new_graph); // NOK */
-/*   _pbc(new_graph); // NOK */
-/*   _sgt(new_graph); */
-/*   /\* _pic(new_graph); // NOK *\/ */
-/*   /\* _pie(new_graph); // NOK *\/ */
-/*   /\* _pfk(new_graph); // NOK *\/ */
-/*   /\* _pdr(new_graph); // NOK *\/ */
-/*   /\* _pgt(new_graph); // NOK *\/ */
-/*   /\* _pdi(new_graph); // NOK *\/ */
-/*   /\* _enw(new_graph); // NOK *\/ */
-/*   /\* _eht(new_graph); // NOK *\/ */
-/*   /\* _ebo(new_graph); // NOK *\/ */
-/*   /\* _edi(new_graph); // NOK *\/ */
-/*   /\* _sgt(new_graph); // NOK *\/ */
-/*   /\* _sst(new_graph); // NOK *\/ */
-/*   /\* _seg(new_graph); // NOK *\/ */
-/*   /\* _smg(new_graph); // NOK *\/ */
-/*   /\* _suc(new_graph); // NOK *\/ */
-/*   /\* _sbp(new_graph); // NOK *\/ */
-/* } */
 
 void	_welcome(t_graphical *graph, const t_server *server)
 {

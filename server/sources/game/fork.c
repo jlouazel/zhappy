@@ -5,14 +5,15 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jul  5 09:46:29 2013 louaze_j
-** Last update Sun Jul 14 18:27:09 2013 louaze_j
+** Last update Sun Jul 14 21:40:16 2013 louaze_j
 */
 
 #include	"egg.h"
 #include	"player.h"
 #include	"graphical.h"
 
-const char	*_player_fork(t_player *player, const t_server *server, void *arg)
+const char	*_player_fork(t_player *player, const t_server *server,
+			      void *arg)
 {
   t_egg		*egg;
   t_team	*team;

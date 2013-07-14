@@ -1,15 +1,11 @@
 /*
 ** server_loop.c for zhappy in /home/louaze_j
-**
+** 
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
-**
-** Started on  Sun Jul  7 15:42:45 2013 louaze_j
-<<<<<<< HEAD
-** Last update Sun Jul 14 08:37:28 2013 julien fortin
-=======
-** Last update Tue Jul  9 19:01:19 2013 louaze_j
->>>>>>> 77d41bfb879f951a9a4b39028ca7c64d92a04285
+** 
+** Started on  Sun Jul 14 21:44:03 2013 louaze_j
+** Last update Sun Jul 14 21:44:03 2013 louaze_j
 */
 
 #include	<stdio.h>

@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Mon Jul  8 15:12:10 2013 louaze_j
-** Last update Sun Jul 14 18:39:06 2013 louaze_j
+** Last update Sun Jul 14 21:48:37 2013 louaze_j
 */
 
 #ifndef		__GRAPHICAL_H__
@@ -37,7 +37,6 @@ const char	*_graph_plv(t_graphical *, const t_server *, const char *);
 const char	*_graph_pin(t_graphical *, const t_server *, const char *);
 const char	*_graph_sgt(t_graphical *, const t_server *, const char *);
 const char	*_graph_sst(t_graphical *, const t_server *, const char *);
-
 
 const char	*msz(const t_server *);
 const char	*bct(const t_server *, int, int);

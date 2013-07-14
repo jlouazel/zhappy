@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Sun Jul 14 16:54:00 2013 louaze_j
+** Last update Sun Jul 14 20:59:14 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -95,14 +95,16 @@ bool            server_get_auth_from_player(const t_server *serv,
     while (list)
       {
         if (list->data && !my_strcmp(((t_team*)list->data)->name, data))
-	  return (((t_team*)list->data)->add_player(((t_team*)list->data), serv, player));
+	  return (((t_team*)list->data)->add_player(((t_team*)list->data),
+						    serv, player));
         list = list->next;
       }
   if (player && player->socket
       && player->socket->is_valid(deconst_cast(player->socket)))
     player->socket->write(player->socket, "ko\n");
   {
-    printf("%d:\tSending message \"ko\" to %d\n", (int)GET_CURRENT_TIME(1), player->id);
+    printf("%d:\tSending message \"ko\" to %d\n", (int)GET_CURRENT_TIME(1),
+	   player->id);
     delete_player(player, serv);
   }
   return (false);

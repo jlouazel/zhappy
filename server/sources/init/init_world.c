@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Tue Jul  2 10:25:55 2013 louaze_j
-** Last update Fri Jul 12 20:19:39 2013 louaze_j
+** Last update Sun Jul 14 20:50:15 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -58,7 +58,7 @@ static t_list	*create_world(const t_options *options)
   printf("\033[32mGenerating world...");
   while (y >= 0)
     {
-      x = options->x - 1;;
+      x = options->x - 1;
       while (x >= 0)
 	{
 	  if (!squares)
@@ -67,8 +67,6 @@ static t_list	*create_world(const t_options *options)
 	    squares->push_front(&squares, new_square(x, y));
 	  x--;
 	}
-      /* log_map((options->x * options->y) - (y * options->y), */
-      /* 	      options->x * options->y); */
       y--;
     }
   return (squares);

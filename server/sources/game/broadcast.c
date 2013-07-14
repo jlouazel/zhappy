@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 19:00:15 2013 louaze_j
-** Last update Sun Jul 14 20:14:10 2013 louaze_j
+** Last update Sun Jul 14 21:38:04 2013 louaze_j
 */
 
 #include	<math.h>
@@ -48,6 +48,7 @@ e_direction	get_direction(t_player *src, const t_server *server,
   int		angle;
   e_direction	dir;
 
+  dir = IN;
   angle = (int)calc_angle(src, dest);
   if ((angle > 315 && angle <= 360) || (angle >= 0 && angle < 45))
     dir = UP;
@@ -65,8 +66,6 @@ e_direction	get_direction(t_player *src, const t_server *server,
     dir = LEFT;
   else if (angle == 315)
     dir = UP_LEFT;
-  else
-    dir = IN;
   if (dir != IN && (abs(src->x - dest->x) > server->game->world->width / 2 ||
 		    (abs(src->y - dest->y) > server->game->world->height / 2)))
     return (inverted_directions[dir]);
@@ -89,8 +88,8 @@ const char	*_player_broadcast(t_player *player, const t_server *server,
       {
 	if ((t_player *)list->data && (t_player *)list->data != player)
 	  {
-	    snprintf(str, my_strlen((char *)msg) +
-		     my_strlen("message K, \n") + 1, "message %d, %s\n",
+	    snprintf(str, my_strlen((char *)msg)
+		     + my_strlen("message K, \n") + 1, "message %d, %s\n",
 		     dirs_tab[((t_player *)list->data)->direction]
 		     [get_direction(player, server, (t_player *)list->data)],
 		     (char *)msg);

@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 10:09:16 2013 julien fortin
-** Last update Fri Jul 12 23:20:31 2013 julien fortin
+** Last update Sun Jul 14 20:53:27 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -14,7 +14,8 @@
 #include	"graphical.h"
 #include	"player.h"
 
-bool		server_listen_player(const t_server *serv, fd_set *rfd, int *max_fd)
+bool		server_listen_player(const t_server *serv, fd_set *rfd,
+				     int *max_fd)
 {
   t_list	*clients;
 

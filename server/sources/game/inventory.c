@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:36:33 2013 louaze_j
-** Last update Sun Jul 14 18:05:52 2013 louaze_j
+** Last update Sun Jul 14 21:39:48 2013 louaze_j
 */
 
 #define		_GNU_SOURCE
@@ -16,7 +16,8 @@
 #include	"eressources.h"
 #include	"lib_strings.h"
 
-const char *	_player_inventory(t_player *player, const t_server *server, void *arg)
+const char *	_player_inventory(t_player *player, const t_server *server,
+				  void *arg)
 {
   char			*ret;
   char			buff[11];

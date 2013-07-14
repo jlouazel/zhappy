@@ -1,15 +1,11 @@
 /*
-** zappy.h for zappy in /home/fortin_j/tek2/projects/zappy/fortin_j/server
-**
-** Made by julien fortin
-** Login   <fortin_j@epitech.net>
-**
-** Started on  Thu May  2 15:48:20 2013 julien fortin
-<<<<<<< HEAD
-** Last update Sun Jul 14 09:59:25 2013 julien fortin
-=======
-** Last update Thu Jul 11 16:00:59 2013 julien fortin
->>>>>>> ad25151838df947b61426937bba16c95ecaf08e6
+** server.h for zhappy in /home/louaze_j
+** 
+** Made by louaze_j
+** Login   <louaze_j@epitech.net>
+** 
+** Started on  Sun Jul 14 21:48:55 2013 louaze_j
+** Last update Sun Jul 14 21:49:16 2013 louaze_j
 */
 
 #ifndef	__SERVERZAPPY_H__
@@ -67,7 +63,8 @@ bool            server_will_notify_graph(const t_server *, fd_set *, int*);
 bool		server_notify_player(const t_server *, fd_set*);
 bool		server_notify_graph(const t_server *, fd_set*);
 
-bool            server_get_auth_from_player(const t_server *, t_player *, const char *, fd_set*);
+bool            server_get_auth_from_player(const t_server *, t_player *,
+					    const char *, fd_set*);
 
 void		server_accept(const t_server*, const fd_set*);
 

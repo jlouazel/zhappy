@@ -5,18 +5,18 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sat Jul 13 01:55:19 2013 julien fortin
-** Last update Sun Jul 14 03:26:49 2013 julien fortin
+** Last update Sun Jul 14 20:56:23 2013 louaze_j
 */
 
+#include	<unistd.h>
 #include	<sys/select.h>
 #include	<string.h>
 #include	"lib_std.h"
 #include	"lib_strings.h"
 #include	"graphical.h"
 
-#include	<unistd.h>
-
-static int      _server_get_cmd_graph_index(const t_cmd_graph *this, const char *cmd)
+static int      _server_get_cmd_graph_index(const t_cmd_graph *this,
+					    const char *cmd)
 {
   int           cmd_len;
   int           real_len;
@@ -59,7 +59,8 @@ static void	_server_treat_actions_for_graph(const t_server *serv,
 	    {
 	      i = (i = find_first_of((const char*)list->data, ' ')) >= 0
 		? i : (int)my_strlen((const char*)list->data);
-	      res = serv->cmd_graph->cmd[index](graph, serv, ((char*)list->data) + i);
+	      res = serv->cmd_graph->cmd[index](graph, serv,
+						((char*)list->data) + i);
 	      if (res)
 		graph->notify(graph, res);
 	    }

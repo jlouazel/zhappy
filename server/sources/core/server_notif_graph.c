@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 23:21:09 2013 julien fortin
-** Last update Sun Jul 14 09:38:26 2013 julien fortin
+** Last update Sun Jul 14 20:58:44 2013 louaze_j
 */
 
 #include	<time.h>
@@ -86,7 +86,8 @@ bool            server_notify_graph(const t_server *serv, fd_set *wfd)
                 {
 		  _notify_foreach_graph(graph);
                   if (graph->io->out)
-                    ((t_io*)graph->io)->out = delete_list(graph->io->out, NULL);
+                    ((t_io*)graph->io)->out =
+		      delete_list(graph->io->out, NULL);
                 }
             }
           list = list->next;
@@ -107,7 +108,8 @@ void		_notify_each_graph(void *data, void *arg)
       if (graph->io)
 	{
 	  if (graph->io->out)
-	    ((t_io*)graph->io)->out->push_back((t_list**)&graph->io->out, (void*)msg);
+	    ((t_io*)graph->io)->out->push_back((t_list**)&graph->io->out,
+					       (void*)msg);
 	  else
 	    ((t_io*)graph->io)->out = new_list((void*)msg);
 	}

@@ -1,4 +1,3 @@
-
 /*
 ** square.c for zhappy in /home/louaze_j
 ** 
@@ -6,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 ** 
 ** Started on  Fri Jun 28 20:21:32 2013 louaze_j
-** Last update Tue Jul  2 19:52:17 2013 louaze_j
+** Last update Sun Jul 14 21:40:55 2013 louaze_j
 */
 
 #include	<strings.h>

@@ -1,22 +1,21 @@
 /*
 ** server_actions.c for zappy in /home/fortin_j/tek2/projects/zappy/zappy-2016-louaze_j/server
-[1;5B]**
+**
 ** Made by julien fortin
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sun Jul 14 13:55:49 2013 julien fortin
+** Last update Sun Jul 14 21:00:40 2013 louaze_j
 */
 
 #include	<sys/select.h>
 #include	<string.h>
 #include	<time.h>
+#include	<stdio.h>
 #include	"lib_strings.h"
 #include	"lib_std.h"
 #include	"server.h"
 #include	"player.h"
-
-#include	<stdio.h>
 
 static int	_server_get_cmd_index(const t_cmd_player *this, const char *cmd)
 {
@@ -110,7 +109,8 @@ bool		server_players_actions(const t_server *serv, fd_set *rfd)
   t_list	*tmp;
   t_player	*player;
 
-  list = serv && serv->game && serv->game->players ? serv->game->players : NULL;
+  list = serv && serv->game && serv->game->players ?
+    serv->game->players : NULL;
   while (list)
     {
       tmp = list->next;
