@@ -60,11 +60,11 @@ class player:
         answer = answer[2].split(' ')
         self._lenMapX = int(answer[0])
         self._lenMapY = int(answer[1])
-        self._nourritureMinimal = math.floor(math.log(self._lenMapX * self._lenMapY))
+        self._nourritureMinimal = round(math.log(self._lenMapX * self._lenMapY))
         print self._nourritureMinimal
-        self._foodToHelp = math.floor(3 * math.log(self._lenMapX * self._lenMapY))
+        self._foodToHelp = round(3 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToHelp 
-        self._foodToRequest = math.floor(4 * math.log(self._lenMapX * self._lenMapY))
+        self._foodToRequest = round(4 * math.log(self._lenMapX * self._lenMapY))
         print self._foodToRequest
         self.broadcast("Ping")
         self.inventaire()
