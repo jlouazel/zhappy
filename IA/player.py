@@ -554,7 +554,7 @@ class player:
     def incantIfPossible(self):
         myNeed = self._elevation.getNeed(self._lvl)
         i = self._lenMapX * self._posY + self._posX
-        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1) and self._inventaire._nourriture > self._nourritureMinimal):
+        if (self._map[i]._linemate == myNeed._linemate and self._map[i]._deraumere == myNeed._deraumere and self._map[i]._sibur == myNeed._sibur and self._map[i]._mendiane == myNeed._mendiane and self._map[i]._phiras == myNeed._phiras and self._map[i]._thystame == myNeed._thystame and (self._map[i]._players == myNeed._joueur or myNeed._joueur == 1)):
             self._action.initSecondAction()
             #print "J'incante"
             self._leveling = True
@@ -563,8 +563,7 @@ class player:
             self._incomming = 0
             self._call = False
             self._group = False
-        elif (self._map[i]._players < myNeed._joueur and self._inventaire._nourriture >= self._foodToRequest):
-        # ajout du AND
+        elif (self._map[i]._players < myNeed._joueur):
             if self._call == False:
                 msg = "B" + str(self._lvl) + str(myNeed._joueur) + "J" + str(myNeed._linemate) +  "L" + str(myNeed._deraumere) + "D" + str(myNeed._sibur) +  "S" + str(myNeed._mendiane) + "M" + str(myNeed._phiras) + "P" + str(myNeed._thystame) +  "T" + "," + str(self._posX) + "," + str(self._posY)
                 #print "je diffuse" + msg
