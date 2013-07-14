@@ -5,14 +5,12 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Wed Jun 26 17:32:30 2013 julien fortin
-** Last update Wed Jul 10 22:55:05 2013 julien fortin
+** Last update Sun Jul 14 21:04:49 2013 louaze_j
 */
 
 #include	<stdlib.h>
 #include	"lib_std.h"
 #include	"list.h"
-
-#include	<stdio.h>
 
 static void	*list_pop_front(t_list **list)
 {
@@ -69,18 +67,17 @@ static bool	list_erase(t_list **list, void *elem)
       xfree((void**)&tmp, sizeof(*tmp));
       return (true);
     }
-  else
-    while (tmp)
-      {
-	if (tmp->data && tmp->data == elem)
-	  {
-	    prev->next = tmp->next;
-	    xfree((void**)&tmp, sizeof(*tmp));
-	    return (true);
-	  }
-	prev = tmp;
-	tmp = tmp->next;
-      }
+  while (tmp)
+    {
+      if (tmp->data && tmp->data == elem)
+	{
+	  prev->next = tmp->next;
+	  xfree((void**)&tmp, sizeof(*tmp));
+	  return (true);
+	}
+      prev = tmp;
+      tmp = tmp->next;
+    }
   return (false);
 }
 

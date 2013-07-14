@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 12:30:30 2013 julien fortin
-** Last update Sat Jul 13 18:43:54 2013 julien fortin
+** Last update Sun Jul 14 20:08:21 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -21,7 +21,7 @@ static void		_server_log_input(char *from, int id, t_list *list)
     {
       if (list->data)
 	printf("%d:\tReceived message from %s(%d) \"%s\"\n",
-	       (int)GET_CURRENT_TIME(1),
+	       get_current_timestamp(),
 	       from,
 	       id,
 	       epur_end_str((char*)list->data, " \t\n\r"));

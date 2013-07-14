@@ -5,7 +5,11 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 13:32:46 2013 julien fortin
-** Last update Sat Jul 13 22:23:00 2013 julien fortin
+<<<<<<< HEAD
+** Last update Sun Jul 14 21:24:53 2013 julien fortin
+=======
+** Last update Sun Jul 14 20:59:33 2013 louaze_j
+>>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
 */
 
 #include	<stdlib.h>
@@ -22,11 +26,10 @@ bool		_server_treat_player_data(const t_server *serv,
 
   if (!serv || !serv->options || !player || !data)
     return (false);
-  if (data->foo
-      && data->time
-      < GET_CURRENT_TIME(serv->options->time))
+  if (data->foo && (data->time <= get_current_time()))
     {
-      res = data->foo(player, serv, (void*)epur_begin_str(deconst_cast(data->data), " \t"));
+      res = data->foo(player, serv,
+		      (void*)epur_begin_str(deconst_cast(data->data), " \t"));
       if (res)
 	player->notify(player, res);
       player->io->in->erase(&((t_io*)player->io)->in, data);

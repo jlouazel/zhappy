@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:20:07 2013 louaze_j
-** Last update Sun Jul 14 00:25:56 2013 louaze_j
+** Last update Sun Jul 14 21:05:13 2013 louaze_j
 */
 
 #include	<stdio.h>
@@ -23,7 +23,8 @@ const char	*_player_connect_nbr(t_player *player,
   if (!player->is_allowed(player))
     return (NULL);
 
-  sprintf(buff, "%d\n", server->game->max_players_by_team - player->team->nb_members);
+  sprintf(buff, "%d\n", server->game->max_players_by_team -
+	  player->team->nb_members);
   ret = my_concat(ret, buff, NULL);
   return (ret);
 }

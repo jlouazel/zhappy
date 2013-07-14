@@ -1,15 +1,11 @@
 /*
-** server_init_cmd.c for zappy in /home/fortin_j/tek2/projects/zappy/fortin_j/server
-**
-** Made by julien fortin
-** Login   <fortin_j@epitech.net>
-**
-** Started on  Wed May 22 04:16:18 2013 julien fortin
-<<<<<<< HEAD:server/sources/init/init_server_cmd_player.c
-** Last update Sun Jul 14 13:54:53 2013 julien fortin
-=======
-** Last update Sat Jul 13 16:29:12 2013 louaze_j
->>>>>>> fa0803fdbc5d2dfe3a1bdfa2f0d8230b855f1b46:server/sources/init/init_server_cmd.c
+** init_server_cmd_player.c for zhappy in /home/louaze_j
+** 
+** Made by louaze_j
+** Login   <louaze_j@epitech.net>
+** 
+** Started on  Sun Jul 14 20:50:50 2013 louaze_j
+** Last update Sun Jul 14 20:54:40 2013 louaze_j
 */
 
 #include	<stdlib.h>
@@ -31,8 +27,8 @@ static void	_init_server_cmd_player_name(t_cmd_player *cmd)
   cmd->name[8] = "connect_nbr";
   cmd->name[9] = "expulse";
   cmd->name[10] = "fork";
-  //cmd->name[11] = "incntation"
-  cmd->name[11] = NULL;
+  cmd->name[11] = "incantation";
+  cmd->name[12] = NULL;
 }
 
 static void	_init_server_cmd_player_time(t_cmd_player *cmd)
@@ -48,8 +44,8 @@ static void	_init_server_cmd_player_time(t_cmd_player *cmd)
   cmd->time[8] = 0.0;
   cmd->time[9] = 7.0;
   cmd->time[10] = 42.0;
-  cmd->time[11] = 0.0;
-  //cmd->name[11] = "incntation"
+  cmd->time[11] = 300.0;
+  cmd->time[12] = 0.0;
 }
 
 static void	_init_server_cmd_player_fun(t_cmd_player *cmd)
@@ -65,8 +61,8 @@ static void	_init_server_cmd_player_fun(t_cmd_player *cmd)
   cmd->cmd[8] = &_player_connect_nbr;
   cmd->cmd[9] = &_player_deport;
   cmd->cmd[10] = &_player_fork;
-  //cmd->name[11] = "incntation"
   cmd->cmd[11] = NULL;
+  cmd->cmd[12] = NULL;
 }
 
 const t_cmd_player	*init_server_cmd_player()

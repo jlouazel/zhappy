@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:33:07 2013 louaze_j
-** Last update Sun Jul 14 19:32:28 2013 louaze_j
+** Last update Sun Jul 14 21:39:09 2013 louaze_j
 */
 
 #include	<stdbool.h>
@@ -26,7 +26,8 @@ void		get_pointed_square_pos(t_player *player,
     *x = ABS_X(player->x + 1, server->game->world->height);
 }
 
-const char	*_player_deport(t_player *player, const t_server *server, void *arg)
+const char	*_player_deport(t_player *player, const t_server *server,
+				void *arg)
 {
   t_list	*l;
   t_player	*pl;
@@ -43,8 +44,10 @@ const char	*_player_deport(t_player *player, const t_server *server, void *arg)
       if (player != pl && player->x == pl->x && player->y == pl->y)
 	{
 	  get_pointed_square_pos(player, server, &pl->x, &pl->y);
+	  if (done == false)
+	    notify_graph(server, pex(player));
 	  done = true;
-	  notify_graph(server, pex(player));
+	  notify_graph(server, ppo(pl));
 	}
       l = l->next;
     }

@@ -1,21 +1,28 @@
 /*
 ** server_loop.c for zhappy in /home/louaze_j
-**
+** 
 ** Made by louaze_j
 ** Login   <louaze_j@epitech.net>
+<<<<<<< HEAD
 **
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
 <<<<<<< HEAD
-** Last update Sun Jul 14 08:37:28 2013 julien fortin
+** Last update Sun Jul 14 21:42:32 2013 julien fortin
 =======
 ** Last update Tue Jul  9 19:01:19 2013 louaze_j
 >>>>>>> 77d41bfb879f951a9a4b39028ca7c64d92a04285
+=======
+** 
+** Started on  Sun Jul 14 21:44:03 2013 louaze_j
+** Last update Sun Jul 14 21:44:03 2013 louaze_j
+>>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
 */
 
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<string.h>
 #include	<sys/select.h>
+#include	<time.h>
 #include	<unistd.h>
 #include	"lib_socket.h"
 #include	"lib_errs.h"
@@ -54,6 +61,7 @@ static int	_server_action(const t_server *server,
   server_notify_player(server, wfd);
   server_graph_actions(server, rfd);
   server_notify_graph(server, wfd);
+  server_deamon(server);
   return (EXIT_SUCCESS);
 }
 
