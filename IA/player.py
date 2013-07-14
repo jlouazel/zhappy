@@ -47,7 +47,7 @@ class player:
         self._lead = False
         self._pong = False
         self._numClient = -1
-        self._answers = Queue.Queue()
+        self._answers = []
         self._group = False
         self._port = port
         self._host = host
@@ -299,6 +299,10 @@ class player:
         if tmp < tmp2:
             return True
         return False
+
+    def nbMove(self, Pos1X, Pos1Y, Pos2X, Pos2Y):
+         to_return = math.fabs(Pos1X - Pos2X) + math.fabs(Pos1Y - Pos2Y)
+         return to_return
 
     def decideCaseToGo(self):
         myNeed = self._elevation.getNeed(self._lvl)
@@ -579,16 +583,24 @@ class player:
                     print "J'ai fini d'attendre MyneedJoueur = ", myNeed._joueur - 1, " self._incomming = ", self._incomming
                     if self._incomming >= myNeed._joueur - 1 and self._group == False:
                         print "je leur dis de venir en X = ", self._posX, " Y = ", self._posY
-                        while (self._incomming > myNeed._joueur - 1):
-                            himId = self._answers.get()
-                            print "Je dis non a l'id ", himId
-                            self.broadcast("A/" + str(himId) + "/" + str(self._posX) + "," + str(self._posY))
+                        while self._incomming > myNeed._joueur - 1:
+                            nb = self._answers[0][1]
+                            i = 1
+                            j = 0
+                            while i < self._answers.__len__():
+                                if self._answers[i] > nb:
+                                    nb = self._answers[i][1]
+                                    j = i
+                                i = i + 1
                             self._incomming -= 1
-                        while (self._incomming > 0):
-                            himId = self._answers.get()
+                            self.broadcast("A/" + str(self._answers[j][0]) + "/" + str(self._posX) + "," + str(self._posY))
+                            print "j'ai remove le player -> ", self._answers[j][0]
+                            lala = self._answers.remove([self._answers[j][0], self._answers[j][1]])
+                        while self._answers.__len__() != 0:
+                            himId = self._answers.pop()[0]
                             print "Je dis oui a l'id ", himId
                             self.broadcast("C/" + str(himId) + "/" + str(self._posX) + "," + str(self._posY))
-                            self._incomming -= 1
+
                         self._action._define = 0
                         self._group = True
                     elif self._group == True:
@@ -597,7 +609,7 @@ class player:
                     else:
                         print "je leur dis fuck."
                         while (self._incomming > 0):
-                            self.broadcast("A/" + str(self._answers.get()) + "/" + str(self._posX) + "," + str(self._posY))
+                            self.broadcast("A/" + str(self._answers.pop()[0]) + "/" + str(self._posX) + "," + str(self._posY))
                             self._incomming -= 1
                         self._coolDown = 5
                         self._call = False
@@ -633,11 +645,12 @@ class player:
                 else:
                     self.goToUnknow()
             if (self._action._define == 0 and self._posX == self._action._x and self._posY == self._action._y):
-                if self._action._firstAction != self._action._PossibleAction._incantation and self._action._firstAction != self._action._PossibleAction._join:
+                if self._action._firstAction != self._action._PossibleAction._incantation and self._action._firstAction != self._action._PossibleAction._join and self._action._emergency != 3:
                     self.takeObject()
                 self.takeObjectif()
             elif (self._action._define == 0 and (self._posX != self._action._x or self._posY != self._action._y)):
-                self.takeObject()
+                if self._action._emergency != 3:
+                    self.takeObject()
                 self.moveToAction()
             elif (self._action._define != 0):
                 self.decideCaseToGo()
@@ -735,7 +748,7 @@ class player:
                         print "J'accepte une incantation j'attend confirmation"
                         self._toIncanteX = int(x)
                         self._toIncanteY = int(y)
-                        self.broadcast("D/" + str(self._id) + "/" + x + "," + y)
+                        self.broadcast("D/" + str(self._id) + "/" + x + "," + y + "/" + str(int(self.nbMove(self._posX, self._toIncanteX, self._posY, self._toIncanteY))))
                     else:
                         print "Je ne peux accepter ma nourriture = ", self._inventaire._nourriture, " and I need : ", self._foodToHelp
                         print "je suis deja sense aller en x = ", self._toIncanteX, " y = ", self._toIncanteY
@@ -773,8 +786,9 @@ class player:
             elif msg[0:1] == "D" and self._call == True:
                 trame = msg.split('/')
                 coord = trame[2].split(',')
+                distance = int(trame[3])
                 if (int(coord[0]) == self._posX and int(coord[1]) == self._posY):
-                    self._answers.put(int(trame[1]))
+                    self._answers.append([int(trame[1]), distance])
                     self._incomming += 1
             elif msg[0:1] == "H" and self._group == True:
                 trame = msg.split(',')
