@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:32:22 2013 louaze_j
-** Last update Sun Jul 14 00:51:27 2013 louaze_j
+** Last update Sun Jul 14 16:13:13 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -27,7 +27,7 @@ const char	*see_player(const t_server *server, int x, int y)
       if (((t_player *)tmp->data)->team &&
 	  ((t_player *)tmp->data)->x == x &&
 	  ((t_player *)tmp->data)->y == y)
-	ret = my_concat(ret, " player", NULL);
+	ret = my_concat(ret, " joueur", NULL);
       tmp = tmp->next;
     }
   return (ret);

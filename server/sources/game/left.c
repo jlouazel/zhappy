@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:49:57 2013 louaze_j
-** Last update Fri Jul 12 23:39:03 2013 louaze_j
+** Last update Sun Jul 14 16:18:42 2013 julien fortin
 */
 
 #include	"player.h"
@@ -25,9 +25,9 @@ static void	look_in_good_direction(t_player *player)
 const char	*_player_left(t_player *player, const t_server *server, void *arg)
 {
   if (!player->is_allowed(player))
-    return (NULL);
+    return ("ko\n");
   (void)server;
   (void)arg;
   look_in_good_direction(player);
-  return ("OK\n");
+  return ("ok\n");
 }
