@@ -5,7 +5,7 @@
 ## Login   <louaze_j@epitech.net>
 ##
 ## Started on  Wed Jun 19 10:28:03 2013 Jean-Baptiste Louazel
-## Last update Sun Jul 14 16:13:36 2013 louaze_j
+## Last update Sun Jul 14 21:41:45 2013 julien fortin
 ##
 
 CC			= gcc
@@ -17,9 +17,9 @@ CFLAGS			+= -I ./includes/
 CFLAGS			+= -I ./includes/core/
 CFLAGS			+= -I ./includes/game/
 CFLAGS			+= -I ./includes/lib/
-CFLAGS			+= -msse -msse2 -msse3 -mmmx -m3dnow -O3 -fomit-frame-pointer -frerun-loop-opt -fgcse  -g3
+CFLAGS			+= -msse -msse2 -msse3 -mmmx -m3dnow -O3 -fomit-frame-pointer -frerun-loop-opt -fgcse -g3
 
-LDFLAGS			= -lm
+LDFLAGS			= -lm -lrt
 NAME			= zhappy
 
 #
@@ -64,7 +64,9 @@ SRCS_DEST        	= $(SRCS_DIR)$(DEST_DIR)server_destroy.c \
 CORE_SRCS		= $(SRCS_DIR)$(CORE_DIR)server_accept.c \
 			$(SRCS_DIR)$(CORE_DIR)server_listen.c \
 			$(SRCS_DIR)$(CORE_DIR)server_disconnect.c \
+			$(SRCS_DIR)$(CORE_DIR)server_deamon.c \
 			$(SRCS_DIR)$(CORE_DIR)server_extract.c \
+			$(SRCS_DIR)$(CORE_DIR)server_time.c \
 			$(SRCS_DIR)$(CORE_DIR)server_exec.c \
                         $(SRCS_DIR)$(CORE_DIR)server_actions.c \
                         $(SRCS_DIR)$(CORE_DIR)server_graph_actions.c \

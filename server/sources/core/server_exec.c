@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 13:32:46 2013 julien fortin
-** Last update Sat Jul 13 22:23:00 2013 julien fortin
+** Last update Sun Jul 14 21:24:53 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -22,9 +22,7 @@ bool		_server_treat_player_data(const t_server *serv,
 
   if (!serv || !serv->options || !player || !data)
     return (false);
-  if (data->foo
-      && data->time
-      < GET_CURRENT_TIME(serv->options->time))
+  if (data->foo && (data->time <= get_current_time()))
     {
       res = data->foo(player, serv, (void*)epur_begin_str(deconst_cast(data->data), " \t"));
       if (res)

@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Jul  7 15:42:45 2013 louaze_j
 <<<<<<< HEAD
-** Last update Sun Jul 14 08:37:28 2013 julien fortin
+** Last update Sun Jul 14 21:42:32 2013 julien fortin
 =======
 ** Last update Tue Jul  9 19:01:19 2013 louaze_j
 >>>>>>> 77d41bfb879f951a9a4b39028ca7c64d92a04285
@@ -16,6 +16,7 @@
 #include	<stdlib.h>
 #include	<string.h>
 #include	<sys/select.h>
+#include	<time.h>
 #include	<unistd.h>
 #include	"lib_socket.h"
 #include	"lib_errs.h"
@@ -54,6 +55,7 @@ static int	_server_action(const t_server *server,
   server_notify_player(server, wfd);
   server_graph_actions(server, rfd);
   server_notify_graph(server, wfd);
+  server_deamon(server);
   return (EXIT_SUCCESS);
 }
 

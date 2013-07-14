@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-** Last update Sat Jul 13 16:31:29 2013 julien fortin
+** Last update Sun Jul 14 20:09:28 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -62,7 +62,7 @@ static void		_notify_foreach_player(t_player *player)
 	      disp = my_strndup(data, 0, i - 1);
 	      if (disp)
 	  	printf("%d:\tSending message \"%s\" to %u\n",
-	  	       (int)GET_CURRENT_TIME(1),
+	  	       get_current_timestamp(),
 	  	       disp,
 	  	       player->id);
 	      xfree((void**)&disp, 0);

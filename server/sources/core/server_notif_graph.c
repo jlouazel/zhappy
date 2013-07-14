@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Fri Jul 12 23:21:09 2013 julien fortin
-** Last update Sun Jul 14 09:38:26 2013 julien fortin
+** Last update Sun Jul 14 20:09:47 2013 julien fortin
 */
 
 #include	<time.h>
@@ -60,7 +60,7 @@ static void             _notify_foreach_graph(t_graphical *graph)
 	    {
 	      disp = my_strndup(data, 0, i - 1);
 	      printf("%d:\tSending message \"%s\" to %u\n",
-		     (int)GET_CURRENT_TIME(1),
+		     get_current_timestamp(),
 		     disp,
 		     graph->id);
 	      xfree((void**)&disp, 0);

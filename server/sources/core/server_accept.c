@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Thu Jun 27 17:01:27 2013 julien fortin
-** Last update Sun Jul 14 16:54:00 2013 louaze_j
+** Last update Sun Jul 14 20:07:27 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -102,7 +102,7 @@ bool            server_get_auth_from_player(const t_server *serv,
       && player->socket->is_valid(deconst_cast(player->socket)))
     player->socket->write(player->socket, "ko\n");
   {
-    printf("%d:\tSending message \"ko\" to %d\n", (int)GET_CURRENT_TIME(1), player->id);
+    printf("%d:\tSending message \"ko\" to %d\n", get_current_timestamp(), player->id);
     delete_player(player, serv);
   }
   return (false);

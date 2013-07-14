@@ -6,7 +6,7 @@
 **
 ** Started on  Thu May  2 15:48:20 2013 julien fortin
 <<<<<<< HEAD
-** Last update Sun Jul 14 09:59:25 2013 julien fortin
+** Last update Sun Jul 14 21:39:39 2013 julien fortin
 =======
 ** Last update Thu Jul 11 16:00:59 2013 julien fortin
 >>>>>>> ad25151838df947b61426937bba16c95ecaf08e6
@@ -47,6 +47,10 @@ bool		notify_graph(const t_server *, const char *);
 int		server_loop(const t_server*);
 int		run(const t_server*);
 
+unsigned int	get_current_timestamp();
+unsigned int	get_time_for_action(int, int);
+unsigned int	get_current_time();
+
 bool		server_graph_actions(const t_server*, fd_set*);
 
 bool		server_exec_actions(const t_server*);
@@ -70,5 +74,6 @@ bool		server_notify_graph(const t_server *, fd_set*);
 bool            server_get_auth_from_player(const t_server *, t_player *, const char *, fd_set*);
 
 void		server_accept(const t_server*, const fd_set*);
+void            server_deamon(const t_server *);
 
 #endif

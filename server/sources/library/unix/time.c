@@ -5,14 +5,14 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sat Mar  2 23:30:55 2013 julien fortin
-** Last update Wed Jun 19 15:45:52 2013 julien fortin
+** Last update Sun Jul 14 20:10:59 2013 julien fortin
 */
 
 #include	<stdlib.h>
 #include	<time.h>
 #include	"lib_errs.h"
 
-const char		*get_current_time(void)
+const char		*get_current_date(void)
 {
   char		*str;
   time_t        t;

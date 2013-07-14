@@ -1,11 +1,11 @@
 /*
 ** server_actions.c for zappy in /home/fortin_j/tek2/projects/zappy/zappy-2016-louaze_j/server
-[1;5B]**
+**
 ** Made by julien fortin
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Tue Jul  2 14:36:59 2013 julien fortin
-** Last update Sun Jul 14 13:55:49 2013 julien fortin
+** Last update Sun Jul 14 21:27:13 2013 julien fortin
 */
 
 #include	<sys/select.h>
@@ -15,8 +15,6 @@
 #include	"lib_std.h"
 #include	"server.h"
 #include	"player.h"
-
-#include	<stdio.h>
 
 static int	_server_get_cmd_index(const t_cmd_player *this, const char *cmd)
 {
@@ -40,14 +38,33 @@ static int	_server_get_cmd_index(const t_cmd_player *this, const char *cmd)
   return (-1);
 }
 
+static void	_server_time_for_action(const t_server *serv, t_player *player,
+					int index, char *cmd)
+{
+  t_data	*data;
+  int		i;
+
+  if (!(data = xcalloc(1, sizeof(*data))))
+    {
+      player->notify(player, "ko\n");
+      return ;
+    }
+  data->data = cmd + ((i = find_first_of(cmd, ' ')) > 0 ? i : 0);
+  data->foo = serv->cmd_player->cmd[index];
+  data->time = get_current_time() + get_time_for_action(serv->cmd_player->time[index],
+							serv->options->time);
+  if (player->io && player->io->in)
+    player->io->in->push_back(&((t_io*)player->io)->in, (void*)data);
+  else
+    ((t_io*)player->io)->in = new_list((void*)data);
+}
+
 static void	_server_treat_cmd_for_player(const t_server *serv,
 					     t_player *player,
 					     char *cmd,
 					     fd_set *rfd)
 {
-  t_data	*data;
   int		index;
-  int		i;
 
   cmd = epur_end_str(epur_begin_str(cmd, " \t\n\r"), " \t\n\r");
   if (player && !player->is_allowed(player))
@@ -55,19 +72,7 @@ static void	_server_treat_cmd_for_player(const t_server *serv,
   else if (((index = _server_get_cmd_index(serv->cmd_player, cmd)) >= 0)
       && serv->cmd_player->cmd[index])
     {
-      if (!(data = xcalloc(1, sizeof(*data))))
-	{
-	  player->notify(player, "ko\n");
-	  return ;
-	}
-      data->time = (GET_CURRENT_TIME(serv->options->time))
-	+ (serv->cmd_player->time[index] / serv->options->time);
-      data->data = cmd + ((i = find_first_of(cmd, ' ')) > 0 ? i : 0);
-      data->foo = serv->cmd_player->cmd[index];
-      if (player->io && player->io->in)
-	player->io->in->push_back(&((t_io*)player->io)->in, (void*)data);
-      else
-	((t_io*)player->io)->in = new_list((void*)data);
+      _server_time_for_action(serv, player, index, cmd);
       if (index == 11)
 	player->notify(player, "elevation en cours\n");
     }
