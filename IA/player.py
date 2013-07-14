@@ -644,10 +644,10 @@ class player:
                 tmp = self._queue.get()
                 if tmp.split(' ')[0] == "prend" and trame == "ok":
                     self._inventaire.addOne(tmp.split(' ')[1].split('\n')[0])
-                elif tmp == "fork\n":
-                    child_pid = os.fork()
-                    if child_pid == 0:
-                        os.system("./main.py -p " + self._port + " -h " + self._host + " -n " + self._team)
+#                elif tmp == "fork\n":
+#                   child_pid = os.fork()
+#                    if child_pid == 0:
+#                        os.system("./main.py -p " + self._port + " -h " + self._host + " -n " + self._team)
                 elif tmp.split(' ')[0] == "pose" and trame == "ok":
                     #print "C;est confirme je pose : ", tmp.split(' ')[1].split('\n')[0]
                     self._inventaire.delOne(tmp.split(' ')[1].split('\n')[0])
