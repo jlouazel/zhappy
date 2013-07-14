@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 18:58:04 2013 louaze_j
-** Last update Sun Jul 14 18:03:20 2013 louaze_j
+** Last update Sun Jul 14 19:32:49 2013 louaze_j
 */
 
 #include	"world.h"
@@ -30,16 +30,16 @@ const char	*_player_put(t_player *player, const t_server *server, void *arg)
       if (my_strcmp((char *)arg, string_ressources[type]) == 0)
 	{
 	  if (player->inventory_tab[type] == 0)
-	    return ("KO\n");
+	    return ("ko\n");
 	  else
 	    {
 	      player->inventory_tab[type]--;
 	      sq->content[type]++;
 	      notify_graph(server, pdr(player, type));
-	      return ("OK\n");
+	      return ("ok\n");
 	    }
 	}
       type++;
     }
-  return ("KO\n");
+  return ("ko\n");
 }

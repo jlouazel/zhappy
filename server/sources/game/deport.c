@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Thu Jul  4 00:33:07 2013 louaze_j
-** Last update Sun Jul 14 18:25:15 2013 louaze_j
+** Last update Sun Jul 14 19:32:28 2013 louaze_j
 */
 
 #include	<stdbool.h>
@@ -48,5 +48,5 @@ const char	*_player_deport(t_player *player, const t_server *server, void *arg)
 	}
       l = l->next;
     }
-  return ((done == true) ? "OK\n" : "KO\n");
+  return ((done == true) ? "ok\n" : "ko\n");
 }
