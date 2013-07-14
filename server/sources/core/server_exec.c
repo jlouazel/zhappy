@@ -4,12 +4,8 @@
 ** Made by julien fortin
 ** Login   <fortin_j@epitech.net>
 **
-** Started on  Fri Jul 12 13:32:46 2013 julien fortin
-<<<<<<< HEAD
-** Last update Sun Jul 14 21:24:53 2013 julien fortin
-=======
-** Last update Sun Jul 14 20:59:33 2013 louaze_j
->>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
+** Started on  Sun Jul 14 22:28:37 2013 julien fortin
+** Last update Sun Jul 14 22:28:37 2013 julien fortin
 */
 
 #include	<stdlib.h>

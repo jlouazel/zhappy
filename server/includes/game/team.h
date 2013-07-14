@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:36:54 2013 louaze_j
-** Last update Sun Jul 14 21:49:31 2013 louaze_j
+** Last update Sun Jul 14 22:29:27 2013 julien fortin
 */
 
 #ifndef	__TEAMS_H__
@@ -32,5 +32,7 @@ typedef struct s_team
 
 t_team	*create_team(char *);
 void	delete_team(t_team *);
+
+void	_init_player_in_team();
 
 #endif

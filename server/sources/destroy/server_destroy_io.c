@@ -5,7 +5,7 @@
 ** Login   <fortin_j@epitech.net>
 **
 ** Started on  Sun Jun 23 21:12:27 2013 julien fortin
-** Last update Sun Jun 23 21:17:33 2013 julien fortin
+** Last update Sun Jul 14 22:12:57 2013 julien fortin
 */
 
 #include	<stdlib.h>
@@ -15,7 +15,8 @@ const t_io	*destroy_server_io(const t_io *io)
 {
   if (io)
     {
-      // delete les deux lists;
+      delete_list(io->in, NULL);
+      delete_list(io->out, NULL);
     }
   return (NULL);
 }

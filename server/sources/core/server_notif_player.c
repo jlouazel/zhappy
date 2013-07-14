@@ -1,15 +1,11 @@
 /*
-** server_notif.c for zappy in /home/fortin_j/tek2/projects/zappy/zappy-2016-louaze_j/server
+** server_notif_player.c for zappy in /home/fortin_j/tek2/projects/zappy/git/zhappy/server
 **
 ** Made by julien fortin
 ** Login   <fortin_j@epitech.net>
 **
-** Started on  Mon Jul  1 11:45:37 2013 julien fortin
-<<<<<<< HEAD
-** Last update Sun Jul 14 21:52:08 2013 julien fortin
-=======
-** Last update Sun Jul 14 20:57:38 2013 louaze_j
->>>>>>> 96cdfe696ee61df24e967afca8ef067c18f0bd4d
+** Started on  Sun Jul 14 22:23:50 2013 julien fortin
+** Last update Sun Jul 14 22:24:27 2013 julien fortin
 */
 
 #include	<stdio.h>
@@ -67,8 +63,7 @@ static void		_notify_foreach_player(t_player *player)
 	      if (disp)
 	  	printf("%d:\tSending message \"%s\" to %u\n",
 	  	       get_current_timestamp(),
-	  	       disp,
-	  	       player->id);
+	  	       disp, player->id);
 	      xfree((void**)&disp, 0);
 	    }
 	}

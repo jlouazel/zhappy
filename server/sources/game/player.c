@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Fri Jun 28 16:35:27 2013 louaze_j
-** Last update Sun Jul 14 18:14:26 2013 louaze_j
+** Last update Sun Jul 14 22:20:14 2013 julien fortin
 */
 
 #include	<time.h>
@@ -73,19 +73,12 @@ void		delete_player(t_player *player, const t_server *server)
   (void)server;
   if (player)
     {
-      /**/
       list = server->game->players;
       if (list)
       	list->erase(&list, player);
       ((t_game*)server->game)->players = list;
-      // erase de la liste des joueurs de l'equipe. et rajoute un oeuf au compteur.
-      // player->team = player->team->remove_player(player->team, player); renvoi NULL;
-      /* list = player->team && player->team->members ? player->team->members : NULL; */
-      /* if (list) */
-      /* 	list->erase(&list, player); */
       notify_graph(server, pdi(player));
       printf("*** Deleting player %u\n", player->id);
-      /**/
       player->socket = delete_socket(player->socket);
       xfree((void**)&player, sizeof(*player));
     }
