@@ -5,7 +5,7 @@
 ** Login   <louaze_j@epitech.net>
 **
 ** Started on  Wed Jul  3 19:00:15 2013 louaze_j
-** Last update Sun Jul 14 17:57:09 2013 louaze_j
+** Last update Sun Jul 14 20:14:10 2013 louaze_j
 */
 
 #include	<math.h>
@@ -15,7 +15,9 @@
 #include	"player.h"
 #include	"graphical.h"
 #include	"inverted_directions.h"
-#include	"str_directions.h"
+#include	"lib_std.h"
+#include	"lib_strings.h"
+#include	"rel_directions.h"
 
 static
 double		calc_angle(t_player *s, t_player *d)
@@ -28,10 +30,10 @@ double		calc_angle(t_player *s, t_player *d)
   int		y_tmp;
 
   x_tmp = s->x;
-  /* if (s->y == 0) */
-  /*   y_tmp = 1; */
-  /* else */
-  y_tmp = 0;
+  if (s->y == 0)
+    y_tmp = 1;
+  else
+    y_tmp = 0;
   a = sqrt(pow(s->x - d->x, 2) + pow(s->y - d->y, 2));
   b = sqrt(pow(s->x - x_tmp, 2) + pow(s->y - y_tmp, 2));
   c = sqrt(pow(d->x - x_tmp, 2) + pow(d->y - y_tmp, 2));
@@ -72,12 +74,30 @@ e_direction	get_direction(t_player *src, const t_server *server,
 }
 
 const char	*_player_broadcast(t_player *player, const t_server *server,
-				     void *arg)
+				   void *msg)
 {
-  if (!player->is_allowed(player))
-    return (NULL);
-  printf("Player %u receive a broadcast from %s\n", ((t_player *)arg)->id, string_directions[get_direction(player, server,
-  													   (t_player *)arg)]);
-/* notify_graph(server, pbc(player), ); */
-  return ("OK\n");
+  t_list	*list;
+  char		*str;
+
+  if (!msg || !player || !server || !server->game ||
+      !player->is_allowed(player))
+    return ("ko\n");
+  list = server->game->players;
+  if ((str = xcalloc(my_strlen((char *)msg) + my_strlen("message K, \n") + 1,
+		     sizeof(*str))))
+    while (list)
+      {
+	if ((t_player *)list->data && (t_player *)list->data != player)
+	  {
+	    snprintf(str, my_strlen((char *)msg) +
+		     my_strlen("message K, \n") + 1, "message %d, %s\n",
+		     dirs_tab[((t_player *)list->data)->direction]
+		     [get_direction(player, server, (t_player *)list->data)],
+		     (char *)msg);
+	    ((t_player *)list->data)->notify((t_player *)list->data, str);
+	  }
+	list = list->next;
+      }
+  notify_graph(server, pbc(player, (char *)msg));
+  return ("ok\n");
 }
